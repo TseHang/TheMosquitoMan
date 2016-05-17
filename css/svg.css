@@ -1,0 +1,4 @@
+#hand:hover{
+	filter: url(#pictureFilter);
+	cursor: pointer;
+}
