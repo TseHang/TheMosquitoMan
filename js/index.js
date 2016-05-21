@@ -14,7 +14,7 @@ $(document).scroll(function(){
 	//img-logo
 	imgLogoShow();
 
-	distance = $(window).scrollTop() - $('#cloud-1').offset().top ;
+	distance = $(window).scrollTop() - $('#cloud-1').offset().top;
   if ( distance > -1*deviceHeight){
   	$('.cloud').addClass('cloud-move');
   	console.log('加入囉');
@@ -23,6 +23,7 @@ $(document).scroll(function(){
   	$('.cloud').removeClass('cloud-move');
   	console.log('移掉囉');
   }
+  
 });
 
 

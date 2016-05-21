@@ -52,14 +52,14 @@ body , html , div , p  , img , a , h1 , h2 , h3 ,ul ,li{
 
 /***** section2 *********/
 .section-2{
-	background:white url('../src/img/2/background2.png') no-repeat bottom;
+	background:white url('../src/img/2/background2-2.png') no-repeat bottom;
 	background-size: 100vw auto;
 }
 
 #mosss{
 	position: relative;
 	left:5%;
-	top:25%;
+	top:27%;
 	width:27%;
 }
 
