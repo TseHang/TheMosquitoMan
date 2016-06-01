@@ -1,0 +1,524 @@
+@charset "UTF-8";
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 6, ../sass/_reset.scss */
+body,
+html,
+div,
+p,
+img,
+a,
+h1,
+h2,
+h3,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  /* img elements 圖片元素 */
+  border: medium none;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* line 26, ../sass/_reset.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 32, ../sass/_reset.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+/* line 35, ../sass/_reset.scss */
+em {
+  font-style: normal;
+}
+
+/* 重置清單元素 */
+/* line 39, ../sass/_reset.scss */
+ul, ol {
+  list-style: none;
+}
+
+/* 重置超連結元素 */
+/* line 43, ../sass/_reset.scss */
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* line 47, ../sass/_reset.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* 重置圖片元素 */
+/* line 51, ../sass/_reset.scss */
+img {
+  vertical-align: middle;
+  border: 0px;
+}
+
+/********************
+ reset OVER!
+*********************/
+/****** 開始 navigation bar  **/
+/* line 8, ../sass/_nav.scss */
+.navbar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 100;
+}
+/* line 14, ../sass/_nav.scss */
+.navbar > ul {
+  float: right;
+  text-align: center;
+  padding: 1% 1% 0px 0px;
+}
+
+/* line 20, ../sass/_nav.scss */
+.navbar_li {
+  float: left;
+  color: #999999;
+  transition: all 0.1s ease-out;
+}
+/* line 25, ../sass/_nav.scss */
+.navbar_li:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(0.9);
+  font-weight: bold;
+}
+
+/* line 33, ../sass/_nav.scss */
+.navbar_li_a {
+  display: block;
+  color: #999999;
+  font-size: 16px;
+  padding: 3px 10px;
+}
+/* line 40, ../sass/_nav.scss */
+.navbar_li_a > h2 {
+  padding-bottom: 8px;
+  color: #666666;
+  font-size: 1.3em;
+}
+/* line 46, ../sass/_nav.scss */
+.navbar_li_a > p {
+  font-size: 0.9em;
+}
+
+/* line 51, ../sass/_nav.scss */
+#sub-logo {
+  position: absolute;
+  width: 13%;
+}
+
+@keyframes img-logo-show {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/********/
+/* line 8, ../sass/home.scss */
+.wrap, .background {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 13, ../sass/home.scss */
+.mainTitle > img, .section4-text > img, .cloud-col > img, .cloud-botton-container > img {
+  position: relative;
+}
+
+/* line 17, ../sass/home.scss */
+.wrap {
+  position: fixed;
+}
+/* line 21, ../sass/home.scss */
+.wrap > img {
+  position: absolute;
+}
+/* line 25, ../sass/home.scss */
+.wrap > div {
+  position: absolute;
+}
+
+/* line 33, ../sass/home.scss */
+.background > .horizontal {
+  display: flex;
+  height: 100%;
+}
+/* line 37, ../sass/home.scss */
+.background img {
+  height: 100%;
+}
+
+/* line 44, ../sass/home.scss */
+.mosquito-container {
+  right: 9%;
+  top: 13%;
+  width: 9%;
+}
+
+/* line 50, ../sass/home.scss */
+#mosquito {
+  background: url("../src/img/1-mosquito-all.png") repeat no-repeat;
+  width: 50px;
+  height: 64px;
+  -moz-animation: mosquito-fly 0.4s steps(3) infinite;
+  -webkit-animation: mosquito-fly 0.4s steps(3) infinite;
+  animation: mosquito-fly 0.4s steps(3) infinite;
+}
+
+@-moz-keyframes mosquito-fly {
+  to {
+    background-position-x: -150px;
+  }
+}
+@-webkit-keyframes mosquito-fly {
+  to {
+    background-position-x: -150px;
+  }
+}
+@keyframes mosquito-fly {
+  to {
+    background-position-x: -150px;
+  }
+}
+/* line 63, ../sass/home.scss */
+.mainTitle {
+  width: 45%;
+  left: 40%;
+  top: 23%;
+}
+/* line 72, ../sass/home.scss */
+.mainTitle > .logo-title {
+  width: 100%;
+}
+/* line 76, ../sass/home.scss */
+.mainTitle > .section1-text {
+  position: absolute;
+  width: 80%;
+  bottom: 0%;
+  left: -24%;
+  opacity: 0;
+  -moz-animation: section1-textIn 0.3s linear 0.5s forwards;
+  -webkit-animation: section1-textIn 0.3s linear 0.5s forwards;
+  animation: section1-textIn 0.3s linear 0.5s forwards;
+}
+
+@-moz-keyframes section1-textIn {
+  0% {
+    -moz-transform: scale(10, 10);
+    transform: scale(10, 10);
+    opacity: 0;
+  }
+  100% {
+    -moz-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes section1-textIn {
+  0% {
+    -webkit-transform: scale(10, 10);
+    transform: scale(10, 10);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+@keyframes section1-textIn {
+  0% {
+    -moz-transform: scale(10, 10);
+    -ms-transform: scale(10, 10);
+    -webkit-transform: scale(10, 10);
+    transform: scale(10, 10);
+    opacity: 0;
+  }
+  100% {
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+/* line 102, ../sass/home.scss */
+#mosss {
+  top: 11%;
+  left: -50%;
+  width: 36%;
+}
+
+/* line 108, ../sass/home.scss */
+#section2-text {
+  top: 43%;
+  left: -100%;
+  width: 45%;
+}
+
+/* line 114, ../sass/home.scss */
+#bottle {
+  bottom: -100%;
+  width: 70%;
+  left: 5%;
+}
+
+/* line 120, ../sass/home.scss */
+#bottle-2 {
+  width: 50%;
+  bottom: -100%;
+  left: 50%;
+}
+
+/* line 129, ../sass/home.scss */
+#tsunami {
+  width: 100%;
+  bottom: -100%;
+}
+
+/* line 134, ../sass/home.scss */
+#section3-text {
+  top: 19%;
+  left: 11%;
+  width: 45%;
+  opacity: 0;
+}
+
+/* line 141, ../sass/home.scss */
+.bone {
+  bottom: -100%;
+  width: 80%;
+}
+
+/* line 146, ../sass/home.scss */
+#bone1 {
+  left: 5%;
+}
+
+/* line 170, ../sass/home.scss */
+#theMosquitoMan {
+  width: 5%;
+  left: 50%;
+  bottom: 30%;
+  opacity: 0;
+}
+
+/* line 177, ../sass/home.scss */
+.section4-text {
+  width: 45%;
+  bottom: 62%;
+  left: 15%;
+  opacity: 0;
+}
+/* line 187, ../sass/home.scss */
+.section4-text > #section4-text_1 {
+  width: 100%;
+}
+/* line 191, ../sass/home.scss */
+.section4-text > #section4-text_2 {
+  width: 60%;
+  left: 50%;
+  opacity: 0;
+}
+
+/* line 198, ../sass/home.scss */
+.cloud {
+  left: 5%;
+  width: 200%;
+  height: 80%;
+  display: flex;
+  opacity: 0;
+}
+/* line 206, ../sass/home.scss */
+.cloud > .cloud-top {
+  top: -15%;
+}
+/* line 210, ../sass/home.scss */
+.cloud > .cloud-bottom {
+  top: 10%;
+}
+
+/* line 217, ../sass/home.scss */
+.cloud-move {
+  -moz-animation: cloud-move 300s linear forwards;
+  -webkit-animation: cloud-move 300s linear forwards;
+  animation: cloud-move 300s linear forwards;
+}
+
+@-moz-keyframes cloud-move {
+  0% {
+    left: 5%;
+  }
+  100% {
+    left: -150%;
+  }
+}
+@-webkit-keyframes cloud-move {
+  0% {
+    left: 5%;
+  }
+  100% {
+    left: -150%;
+  }
+}
+@keyframes cloud-move {
+  0% {
+    left: 5%;
+  }
+  100% {
+    left: -150%;
+  }
+}
+/* line 230, ../sass/home.scss */
+.cloud-col {
+  position: relative;
+  width: 25%;
+  height: 100%;
+}
+/* line 234, ../sass/home.scss */
+.cloud-col > img {
+  width: 50%;
+}
+/* line 239, ../sass/home.scss */
+.cloud-col > .cloud01 {
+  top: 10%;
+}
+/* line 242, ../sass/home.scss */
+.cloud-col > .cloud02 {
+  left: -10%;
+  top: 15%;
+}
+/* line 246, ../sass/home.scss */
+.cloud-col > .cloud03 {
+  left: 30%;
+}
+/* line 250, ../sass/home.scss */
+.cloud-col > .cloud04 {
+  left: 0%;
+}
+/* line 253, ../sass/home.scss */
+.cloud-col > .cloud05 {
+  left: 30%;
+}
+/* line 256, ../sass/home.scss */
+.cloud-col > .cloud06 {
+  left: 50%;
+}
+/* line 260, ../sass/home.scss */
+.cloud-col > .cloud07 {
+  left: 0%;
+}
+/* line 263, ../sass/home.scss */
+.cloud-col > .cloud08 {
+  left: 39%;
+}
+/* line 266, ../sass/home.scss */
+.cloud-col > .cloud09 {
+  left: 50%;
+  top: -7%;
+}
+
+/* line 275, ../sass/home.scss */
+.man-run-container {
+  bottom: 35%;
+  left: -30%;
+}
+
+/* line 280, ../sass/home.scss */
+.man-run {
+  position: relative;
+  background: url("../src/img/5-run-all2.png") no-repeat right;
+  width: 214px;
+  height: 91px;
+  -moz-animation: man-run 0.5s steps(9) infinite;
+  -webkit-animation: man-run 0.5s steps(9) infinite;
+  animation: man-run 0.5s steps(9) infinite;
+}
+
+@-moz-keyframes man-run {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
+@-webkit-keyframes man-run {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
+@keyframes man-run {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
+/* line 297, ../sass/home.scss */
+.cloud-botton-container {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  left: 55%;
+  opacity: 0;
+}
+/* line 308, ../sass/home.scss */
+.cloud-botton-container > img {
+  width: 40%;
+}
+
+/* line 313, ../sass/home.scss */
+#cloud-botton_1 {
+  left: -40%;
+}
+
+/* line 316, ../sass/home.scss */
+#cloud-botton_2 {
+  left: -10%;
+}
+
+@media screen and (max-width: 900px) {
+  /* line 322, ../sass/home.scss */
+  #mosquito {
+    top: 9%;
+  }
+
+  /* line 325, ../sass/home.scss */
+  #logo-title {
+    top: 18%;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 331, ../sass/home.scss */
+  #mosquito {
+    top: 6%;
+  }
+
+  /* line 334, ../sass/home.scss */
+  #logo-title {
+    top: 10%;
+  }
+}

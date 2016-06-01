@@ -1,0 +1,357 @@
+@import 'reset';
+@import 'nav';
+@import "compass/support";
+@import "compass/css3";
+
+$background-color:white;
+
+%RWDscreen{
+	width:100%;
+	height:100%;
+}
+
+%position_relative{
+	position:relative;
+}
+
+.wrap{
+	@extend %RWDscreen;
+	position:fixed;
+
+	> img {
+		position:absolute;
+	}
+
+	> div {
+		position:absolute;
+	}
+}
+
+.background{
+	@extend %RWDscreen;
+
+	> .horizontal{
+		display:flex;
+		height:100%;
+	}
+	img{
+		height:100%;
+	}
+}
+
+// 
+// section1
+.mosquito-container {
+	right:9%;
+	top:13%;
+	width:9%;
+}
+
+#mosquito {
+	background: url('../src/img/1-mosquito-all.png') repeat no-repeat;
+	width:50px;
+	height:64px;
+	@include animation(mosquito-fly 0.4s steps(3) infinite);
+}
+
+@include keyframes(mosquito-fly){
+	to{
+		background-position-x:-150px;
+	}
+}
+
+.mainTitle{
+	width:45%;
+	left:40%;
+	top:23%;
+
+	> img {
+		@extend %position_relative;
+	}
+
+	> .logo-title{
+		width:100%;
+	}
+
+	> .section1-text{
+		position:absolute;
+
+		width:80%;
+		bottom:0%;
+		left:-24%;
+
+		opacity:0;
+
+		@include animation(section1-textIn 0.3s linear 0.5s forwards);
+	}
+}
+
+@include keyframes(section1-textIn){
+	0%{
+		@include scale(10);
+		opacity:0;
+	}
+	100%{
+		@include scale(1);
+		opacity:1;
+	}
+}
+
+// 
+// section2
+#mosss{
+	top:11%;
+	left:-50%;
+	width:36%;
+}
+
+#section2-text{
+	top:43%;
+	left:-100%;
+	width:45%;
+}
+
+#bottle{
+	bottom:-100%;
+	width:70%;
+	left:5%;
+}
+
+#bottle-2{
+	width:50%;
+	bottom:-100%;
+	left:50%;
+}
+
+// 
+// section3 
+
+#tsunami{
+	width:100%;
+	bottom:-100%;
+}
+
+#section3-text{
+	top:19%;
+	left:11%;
+	width:45%;
+	opacity:0;
+}
+
+.bone{
+	bottom:-100%;
+	width:80%;
+}
+
+#bone1{
+	left:5%;
+
+}
+
+// 
+// section4
+#theMosquitoMan{
+	width:5%;
+	left:50%;
+	bottom:30%;
+	opacity:0;
+}
+
+.section4-text{
+	width:45%;
+	bottom:62%;
+	left:15%;
+	opacity:0;
+
+	> img {
+		@extend %position_relative;
+	}
+
+	> #section4-text_1{
+		width:100%;
+	}
+
+	> #section4-text_2{
+		width:60%;
+		left:50%;
+		opacity:0;
+	}
+}
+
+.cloud{
+	left:13%;
+	width:100%;
+	height:80%;
+	display:flex;
+
+	opacity:0;
+
+	@include animation(cloud-move 300s linear infinite forwards);
+}
+
+.cloud-move{
+	@include animation(cloud-move 300s linear forwards);
+}
+
+@include keyframes(cloud-move){
+	0%{
+		left:10%;
+	}
+	100%{
+		left:-100%;
+	}
+}
+
+.cloud-col{
+	display:flex;
+	flex-direction:column;
+	width:50%;
+	height:100%;
+	> img {
+		@extend %position_relative;
+		width:40%;
+	}
+
+	> .cloud01 {
+	}
+	> .cloud02 {
+		left:-10%;
+		top:-5%;
+	}
+	> .cloud03 {
+		left:30%;
+	}
+
+	> .cloud04 {
+		top:25%;
+		left:-10%;
+	}
+	> .cloud05 {
+		top:-7%;
+		left:30%;
+	}
+	> .cloud06 {
+		left:50%;
+	}
+	> .cloud07 {
+		left:20%;
+	}
+
+	> .cloud-button_1{
+		top:25%;
+		left:-10%;
+	}
+
+	> .cloud-button_2{
+		left:20%;
+	}
+}
+
+.cloud-button{
+	@extend %position_relative;
+	width:40%;
+
+	> p{
+		opacity:0;
+		color:#575555;
+		left:20%;
+		font-size:1.3em;
+		font-weight:bold;
+		position:absolute;
+		// @include animation(button-text 1s linear infinite);
+	}
+
+	> #button-p_2{
+		top:10px;
+		left:15%
+	}
+}
+
+@include keyframes(button-text){
+	0%{
+		@include scale(1);
+	}
+	50%{
+		@include scale(1.2);
+	}
+	100%{
+		@include scale(1);
+	}
+}
+
+// 
+// section5
+
+.man-run-container{
+	bottom:35%;
+	left:-30%;
+}
+
+.man-run{
+	position:relative;
+	background: url('../src/img/5-run-all2.png') no-repeat right;
+	width:214px;
+	height:91px;
+
+	@include animation(man-run 0.5s steps(9) infinite);
+}
+@include keyframes(man-run){
+	from{
+		background-position-x: 0px;
+	}
+	to{
+		background-position-x: -1926px;
+	}
+}
+
+.cloud-botton-container{
+	width:50%;
+	height:80%;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	left:55%;
+
+	opacity:0;
+
+	> img{
+		width:40%;
+		@extend %position_relative;
+	}
+}
+#cloud-botton_1{
+	left:-25%;
+	// @include animation(cloud-button1 300s linear forwards);
+}
+#cloud-botton_2{
+	left:-10%;
+}
+
+@include keyframes(cloud-button1){
+	0%{
+		left:-25%;
+	}
+	100%{
+		left:-100%;
+	}
+}
+
+
+@media screen and (max-width: 900px) {
+	#mosquito{
+		top:9%;
+	}
+	#logo-title{
+		top:18%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#mosquito{
+		top:6%;
+	}
+	#logo-title{
+		top:10%;
+	}
+}
