@@ -45,6 +45,17 @@ $background-color:white;
 	right:9%;
 	top:13%;
 	width:9%;
+
+	@include animation(top-down 0.6s linear 1s infinite alternate);
+}
+
+@include keyframes(top-down){
+	0%{
+		top:13%;
+	}
+	100%{
+		top:15%;
+	}
 }
 
 #mosquito {
@@ -71,6 +82,7 @@ $background-color:white;
 
 	> .logo-title{
 		width:100%;
+		cursor:pointer;
 	}
 
 	> .section1-text{
@@ -80,19 +92,17 @@ $background-color:white;
 		bottom:0%;
 		left:-24%;
 
-		opacity:0;
-
-		@include animation(section1-textIn 0.3s linear 0.5s forwards);
+		// @include animation(section1-textIn 0.3s linear 0.5s forwards);
 	}
 }
 
 @include keyframes(section1-textIn){
 	0%{
-		@include scale(10);
+		left:-30%;
 		opacity:0;
 	}
 	100%{
-		@include scale(1);
+		left:-24%;
 		opacity:1;
 	}
 }
@@ -186,7 +196,7 @@ $background-color:white;
 
 	opacity:0;
 
-	@include animation(cloud-move 300s linear infinite forwards);
+	// @include animation(cloud-move 300s linear infinite forwards);
 }
 
 .cloud-move{
@@ -198,7 +208,7 @@ $background-color:white;
 		left:10%;
 	}
 	100%{
-		left:-100%;
+		left:-80%;
 	}
 }
 
@@ -258,24 +268,16 @@ $background-color:white;
 		font-size:1.3em;
 		font-weight:bold;
 		position:absolute;
-		// @include animation(button-text 1s linear infinite);
+
+		border-radius:20%;
+		background-color:rgba(255,235,59,0.2);
+		box-shadow:0px 0px 7px 7px rgba(255,235,59,0.1);
+		cursor:pointer;
 	}
 
 	> #button-p_2{
 		top:10px;
-		left:15%
-	}
-}
-
-@include keyframes(button-text){
-	0%{
-		@include scale(1);
-	}
-	50%{
-		@include scale(1.2);
-	}
-	100%{
-		@include scale(1);
+		left:15%;
 	}
 }
 
@@ -285,11 +287,44 @@ $background-color:white;
 .man-run-container{
 	bottom:35%;
 	left:-30%;
+
+	@include animation(run 8s linear infinite forwards);
+}
+@include keyframes(run){
+	0%{
+		left:-8%;
+		bottom:35%;
+	}
+	10%{
+		bottom:40%;
+		left:6%;
+	}
+	25%{
+		bottom:27%;
+		left:20%;
+	}
+	55%{
+		left:50%;
+		bottom:22%;
+	}
+	70%{
+		bottom:28%;
+		left:65%;
+	}
+	80%{
+		bottom:7%;
+		left:75%;
+	}
+	100%{
+		bottom:5%;
+		left:150%;
+	}
+	
 }
 
 .man-run{
 	position:relative;
-	background: url('../src/img/5-run-all2.png') no-repeat right;
+	background: url('../src/img/5-run-all.png') no-repeat right;
 	width:214px;
 	height:91px;
 
@@ -304,38 +339,6 @@ $background-color:white;
 	}
 }
 
-.cloud-botton-container{
-	width:50%;
-	height:80%;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	justify-content:center;
-	left:55%;
-
-	opacity:0;
-
-	> img{
-		width:40%;
-		@extend %position_relative;
-	}
-}
-#cloud-botton_1{
-	left:-25%;
-	// @include animation(cloud-button1 300s linear forwards);
-}
-#cloud-botton_2{
-	left:-10%;
-}
-
-@include keyframes(cloud-button1){
-	0%{
-		left:-25%;
-	}
-	100%{
-		left:-100%;
-	}
-}
 
 
 @media screen and (max-width: 900px) {

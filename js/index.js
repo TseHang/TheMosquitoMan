@@ -29,12 +29,6 @@ var s = skrollr.init({
 
 });
 
-$('.section-horizontal').mousewheel(function(e, delta){
-	if(e.deltaY < 0){
-		$(this).css("left","200px");
-		console.log("22");
-	}
-});
 
 
 // var deviceWidth = $(window).width(), deviceHeight = $(window).height();
