@@ -4,6 +4,7 @@
 @import "compass/css3";
 
 $background-color:white;
+$logo-title-zindex:20;
 
 %RWDscreen{
 	width:100%;
@@ -46,7 +47,7 @@ $background-color:white;
 	top:13%;
 	width:9%;
 
-	@include animation(top-down 0.6s linear 1s infinite alternate);
+	@include animation(top-down 0.6s linear infinite alternate);
 }
 
 @include keyframes(top-down){
@@ -57,6 +58,196 @@ $background-color:white;
 		top:15%;
 	}
 }
+
+.mosquito-container-animation-main{
+	@include animation(mosquito-animation-main 2s linear infinite alternate) ;
+}
+@include keyframes(mosquito-animation-main){
+	0%{
+		transform:rotateZ(0deg);
+	}
+	50%{
+		transform:rotateZ(3600deg);
+	}
+	100%{
+		transform:rotateZ(0deg);
+	}
+}
+
+.mos-disappear{
+	display:none !important;
+}
+
+.mos-after{
+	width:9%;
+	opacity:0;
+}
+
+.mos1{
+	right:77%;
+	top:15%;
+}
+
+.mos2{
+	right:82%;
+	top:50%;
+}
+
+.mos3{
+	right:42%;
+	top:80%;
+}
+
+.mos4{
+	right:7%;
+	top:76%;
+}
+
+
+.mos-after-animation-1{
+	@include animation(mos-after-animation-1 1s linear infinite alternate) ;
+}
+
+@include keyframes(mos-after-animation-1){
+	0%{
+		right:77%;
+		top:15%;
+		transform:scale(1);
+	}
+	35%{
+		right:57%;
+		top:80%;
+		transform:scale(2);
+	}
+	50%{
+		right:5%;
+		top:90%;
+		transform:scale(1);
+	}
+	85%{
+		top:20%;
+		transform:scale(2);
+	}
+	100%{
+		right:77%;
+		top:15%;
+		transform:scale(1);
+	}
+}
+
+.mos-after-animation-2{
+	@include animation(mos-after-animation-2 1s linear infinite alternate) ;
+}
+
+@include keyframes(mos-after-animation-2){
+	0%{
+		right:82%;
+		top:50%;
+		transform:scale(1);
+	}
+	25%{
+		right:5%;
+		top:90%;
+		transform:scale(2);
+	}
+	50%{
+		right:30%;
+		top:20%;
+		transform:scale(1);
+	}
+	75%{
+		right:62%;
+		top:10%;
+		transform:scale(2);
+	}
+	100%{
+		right:82%;
+		top:50%;
+		transform:scale(1);
+	}
+}
+
+.mos-after-animation-3{
+	@include animation(mos-after-animation-3 1s linear infinite alternate) ;
+}
+
+@include keyframes(mos-after-animation-3){
+	0%{
+		right:42%;
+		top:80%;
+		transform:scale(1);
+	}
+	15%{
+		right:80%;
+		top:60%;
+		transform:scale(2);
+	}
+	50%{
+		right:40%;
+		top:28%;
+		transform:scale(1);
+	}
+	60%{
+		right:20%;
+		top:59%;
+		transform:scale(1);
+	}
+	85%{
+		right:6%;
+		top:90%;
+		transform:scale(2);
+	}
+	100%{
+		right:42%;
+		top:80%;
+		transform:scale(1);
+	}
+}
+
+.mos-after-animation-4{
+	@include animation(mos-after-animation-4 2s linear infinite alternate) ;
+}
+
+@include keyframes(mos-after-animation-4){
+	0%{
+		right:7%;
+		top:76%;
+	}
+	15%{
+		right:79%;
+		top:19%;
+	}
+	30%{
+		right:70%;
+		top:75%;
+	}
+	45%{
+		right:5%;
+		top:10%;
+	}
+	60%{
+		right:30%;
+		top:40%;
+	}
+	75%{
+		right:65%;
+		top:45%;
+	}
+	86%{
+		right:45%;
+		top:50%;
+	}
+	93%{
+		right:40%;
+		top:25%;
+	}
+	100%{
+		right:7%;
+		top:76%;
+	}
+}
+
+
 
 #mosquito {
 	background: url('../src/img/1-mosquito-all.png') repeat no-repeat;
@@ -83,6 +274,11 @@ $background-color:white;
 	> .logo-title{
 		width:100%;
 		cursor:pointer;
+		z-index:$logo-title-zindex;
+
+		&:hover{
+			@include animation(section1-animation 0.2s linear 2 forwards);
+		}
 	}
 
 	> .section1-text{
@@ -91,21 +287,43 @@ $background-color:white;
 		width:80%;
 		bottom:0%;
 		left:-24%;
-
-		// @include animation(section1-textIn 0.3s linear 0.5s forwards);
+		z-index:$logo-title-zindex+1;
 	}
 }
 
-@include keyframes(section1-textIn){
-	0%{
-		left:-30%;
-		opacity:0;
-	}
-	100%{
-		left:-24%;
-		opacity:1;
-	}
+.logo-title-animation{
+	@include animation(section1-animation 0.2s linear infinite );
 }
+@include keyframes (section1-animation ) {
+  10% {
+    transform: translate(-1px, 5px) rotate(-1.5deg);
+    opacity: 0.99; }
+  20% {
+    transform: translate(-2px, -1px) rotate(0.5deg);
+    opacity: 0.38; }
+  30% {
+    transform: translate(1px, -4px) rotate(0.5deg);
+    opacity: 0.34; }
+  40% {
+    transform: translate(1px, -4px) rotate(2.5deg);
+    opacity: 0.24; }
+  50% {
+    transform: translate(1px, -2px) rotate(0.5deg);
+    opacity: 0.55; }
+  60% {
+    transform: translate(2px, 1px) rotate(-0.5deg);
+    opacity: 0.72; }
+  70% {
+    transform: translate(-3px, 5px) rotate(0.5deg);
+    opacity: 0.26; }
+  80% {
+    transform: translate(4px, 3px) rotate(2.5deg);
+    opacity: 0.7; }
+  90% {
+    transform: translate(0px, 3px) rotate(-1.5deg);
+    opacity: 0.32; }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0); } }
 
 // 
 // section2
@@ -192,11 +410,11 @@ $background-color:white;
 	left:13%;
 	width:100%;
 	height:80%;
-	display:flex;
+	display:none;
 
 	opacity:0;
 
-	// @include animation(cloud-move 300s linear infinite forwards);
+	@include animation(cloud-move 300s linear infinite forwards);
 }
 
 .cloud-move{
@@ -288,6 +506,10 @@ $background-color:white;
 	bottom:35%;
 	left:-30%;
 
+	display:none;
+}
+
+.man-run-container-animation{
 	@include animation(run 8s linear infinite forwards);
 }
 @include keyframes(run){

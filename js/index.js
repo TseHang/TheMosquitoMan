@@ -1,3 +1,9 @@
+var deviceWidth = $(window).width(), deviceHeight = $(window).height();
+var errorDistance = 40 ;
+
+//控制第一頁動畫開關
+var isShowMos = 0 ;
+
 //初始化
 var s = skrollr.init({
   //跟smoothScrolling的功能，主要都是讓scroll事件不要這麼敏感，動畫才不會看起來卡卡的。
@@ -22,16 +28,68 @@ var s = skrollr.init({
   //render事件
 
   render: function(data) {
-      //Log the current scroll position.
+    //Log the current scroll position.
 
-      console.log(data.curTop);
+
+    // 問啟軒效能？
+
+    // 判斷雲出來的時機
+    if (parseInt($('.background').css("left")) < 0){
+      $('.cloud').css("display","flex");
+      $('.man-run-container').css("display","block");
+    }
+    else{
+      $('.cloud').css("display","none");
+      $('.man-run-container').css("display","none");
+    }
+
+    // 判斷小人是否要跑！！
+    if (data.curTop > (data.maxTop-errorDistance)){
+      $('.man-run-container').addClass("man-run-container-animation");
+    }
+    else{
+      $('.man-run-container').removeClass("man-run-container-animation");
+    }
   }
 
 });
 
+$('.logo-title').click(function(){
 
+  $('.mos-after').toggleClass("mos-disappear");
 
-// var deviceWidth = $(window).width(), deviceHeight = $(window).height();
+  if (isShowMos == 0){
+    $('.mos1').animate({opacity: 1,} , 200 , function(){
+      $('.mos2').animate({opacity: 1,} , 200 , function(){
+        $('.mos3').animate({opacity:1} , 200 , function(){
+          $('.mos4').animate({opacity:1} , 200 , function(){
+            $('.mos-main').toggleClass('mosquito-container-animation-main');
+            $('.mos1').toggleClass('mos-after-animation-1');
+            $('.mos2').toggleClass('mos-after-animation-2');
+            $('.mos3').toggleClass('mos-after-animation-3');
+            $('.mos4').toggleClass('mos-after-animation-4');
+            $('.section1-text').toggleClass('shake-crazy shake-constant shake-constant--hover');
+            $('.logo-title').toggleClass('logo-title-animation');
+          });
+        });
+     });
+    });
+
+    isShowMos = 1;
+  }
+  else {
+    $('.mos-main').toggleClass('mosquito-container-animation-main');
+    $('.logo-title').toggleClass('logo-title-animation');
+    $('.section1-text').toggleClass('shake-crazy shake-constant shake-constant--hover');
+
+    for (i = 1 ; i < 5 ; i++){
+      $('.mos'+i).toggleClass("mos-after-animation-"+i);
+      $('.mos'+i).css("opacity",0);
+    }
+
+    isShowMos = 0;
+  }
+})
 
 // $(document).ready(function(){
 // 	//img-logo

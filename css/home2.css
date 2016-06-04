@@ -129,48 +129,48 @@ img {
   }
 }
 /********/
-/* line 8, ../sass/home2.scss */
+/* line 9, ../sass/home2.scss */
 .wrap, .background {
   width: 100%;
   height: 100%;
 }
 
-/* line 13, ../sass/home2.scss */
+/* line 14, ../sass/home2.scss */
 .mainTitle > img, .section4-text > img, .cloud-col > img, .cloud-button {
   position: relative;
 }
 
-/* line 17, ../sass/home2.scss */
+/* line 18, ../sass/home2.scss */
 .wrap {
   position: fixed;
 }
-/* line 21, ../sass/home2.scss */
+/* line 22, ../sass/home2.scss */
 .wrap > img {
   position: absolute;
 }
-/* line 25, ../sass/home2.scss */
+/* line 26, ../sass/home2.scss */
 .wrap > div {
   position: absolute;
 }
 
-/* line 33, ../sass/home2.scss */
+/* line 34, ../sass/home2.scss */
 .background > .horizontal {
   display: flex;
   height: 100%;
 }
-/* line 37, ../sass/home2.scss */
+/* line 38, ../sass/home2.scss */
 .background img {
   height: 100%;
 }
 
-/* line 44, ../sass/home2.scss */
+/* line 45, ../sass/home2.scss */
 .mosquito-container {
   right: 9%;
   top: 13%;
   width: 9%;
-  -moz-animation: top-down 0.6s linear 1s infinite alternate;
-  -webkit-animation: top-down 0.6s linear 1s infinite alternate;
-  animation: top-down 0.6s linear 1s infinite alternate;
+  -moz-animation: top-down 0.6s linear infinite alternate;
+  -webkit-animation: top-down 0.6s linear infinite alternate;
+  animation: top-down 0.6s linear infinite alternate;
 }
 
 @-moz-keyframes top-down {
@@ -197,7 +197,479 @@ img {
     top: 15%;
   }
 }
-/* line 61, ../sass/home2.scss */
+/* line 62, ../sass/home2.scss */
+.mosquito-container-animation-main {
+  -moz-animation: mosquito-animation-main 2s linear infinite alternate;
+  -webkit-animation: mosquito-animation-main 2s linear infinite alternate;
+  animation: mosquito-animation-main 2s linear infinite alternate;
+}
+
+@-moz-keyframes mosquito-animation-main {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(3600deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes mosquito-animation-main {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(3600deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes mosquito-animation-main {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(3600deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+/* line 77, ../sass/home2.scss */
+.mos-disappear {
+  display: none !important;
+}
+
+/* line 81, ../sass/home2.scss */
+.mos-after {
+  width: 9%;
+  opacity: 0;
+}
+
+/* line 86, ../sass/home2.scss */
+.mos1 {
+  right: 77%;
+  top: 15%;
+}
+
+/* line 91, ../sass/home2.scss */
+.mos2 {
+  right: 82%;
+  top: 50%;
+}
+
+/* line 96, ../sass/home2.scss */
+.mos3 {
+  right: 42%;
+  top: 80%;
+}
+
+/* line 101, ../sass/home2.scss */
+.mos4 {
+  right: 7%;
+  top: 76%;
+}
+
+/* line 107, ../sass/home2.scss */
+.mos-after-animation-1 {
+  -moz-animation: mos-after-animation-1 1s linear infinite alternate;
+  -webkit-animation: mos-after-animation-1 1s linear infinite alternate;
+  animation: mos-after-animation-1 1s linear infinite alternate;
+}
+
+@-moz-keyframes mos-after-animation-1 {
+  0% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+  35% {
+    right: 57%;
+    top: 80%;
+    transform: scale(2);
+  }
+  50% {
+    right: 5%;
+    top: 90%;
+    transform: scale(1);
+  }
+  85% {
+    top: 20%;
+    transform: scale(2);
+  }
+  100% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes mos-after-animation-1 {
+  0% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+  35% {
+    right: 57%;
+    top: 80%;
+    transform: scale(2);
+  }
+  50% {
+    right: 5%;
+    top: 90%;
+    transform: scale(1);
+  }
+  85% {
+    top: 20%;
+    transform: scale(2);
+  }
+  100% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+}
+@keyframes mos-after-animation-1 {
+  0% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+  35% {
+    right: 57%;
+    top: 80%;
+    transform: scale(2);
+  }
+  50% {
+    right: 5%;
+    top: 90%;
+    transform: scale(1);
+  }
+  85% {
+    top: 20%;
+    transform: scale(2);
+  }
+  100% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+}
+/* line 138, ../sass/home2.scss */
+.mos-after-animation-2 {
+  -moz-animation: mos-after-animation-2 1s linear infinite alternate;
+  -webkit-animation: mos-after-animation-2 1s linear infinite alternate;
+  animation: mos-after-animation-2 1s linear infinite alternate;
+}
+
+@-moz-keyframes mos-after-animation-2 {
+  0% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+  25% {
+    right: 5%;
+    top: 90%;
+    transform: scale(2);
+  }
+  50% {
+    right: 30%;
+    top: 20%;
+    transform: scale(1);
+  }
+  75% {
+    right: 62%;
+    top: 10%;
+    transform: scale(2);
+  }
+  100% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes mos-after-animation-2 {
+  0% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+  25% {
+    right: 5%;
+    top: 90%;
+    transform: scale(2);
+  }
+  50% {
+    right: 30%;
+    top: 20%;
+    transform: scale(1);
+  }
+  75% {
+    right: 62%;
+    top: 10%;
+    transform: scale(2);
+  }
+  100% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+}
+@keyframes mos-after-animation-2 {
+  0% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+  25% {
+    right: 5%;
+    top: 90%;
+    transform: scale(2);
+  }
+  50% {
+    right: 30%;
+    top: 20%;
+    transform: scale(1);
+  }
+  75% {
+    right: 62%;
+    top: 10%;
+    transform: scale(2);
+  }
+  100% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+}
+/* line 170, ../sass/home2.scss */
+.mos-after-animation-3 {
+  -moz-animation: mos-after-animation-3 1s linear infinite alternate;
+  -webkit-animation: mos-after-animation-3 1s linear infinite alternate;
+  animation: mos-after-animation-3 1s linear infinite alternate;
+}
+
+@-moz-keyframes mos-after-animation-3 {
+  0% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+  15% {
+    right: 80%;
+    top: 60%;
+    transform: scale(2);
+  }
+  50% {
+    right: 40%;
+    top: 28%;
+    transform: scale(1);
+  }
+  60% {
+    right: 20%;
+    top: 59%;
+    transform: scale(1);
+  }
+  85% {
+    right: 6%;
+    top: 90%;
+    transform: scale(2);
+  }
+  100% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes mos-after-animation-3 {
+  0% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+  15% {
+    right: 80%;
+    top: 60%;
+    transform: scale(2);
+  }
+  50% {
+    right: 40%;
+    top: 28%;
+    transform: scale(1);
+  }
+  60% {
+    right: 20%;
+    top: 59%;
+    transform: scale(1);
+  }
+  85% {
+    right: 6%;
+    top: 90%;
+    transform: scale(2);
+  }
+  100% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+}
+@keyframes mos-after-animation-3 {
+  0% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+  15% {
+    right: 80%;
+    top: 60%;
+    transform: scale(2);
+  }
+  50% {
+    right: 40%;
+    top: 28%;
+    transform: scale(1);
+  }
+  60% {
+    right: 20%;
+    top: 59%;
+    transform: scale(1);
+  }
+  85% {
+    right: 6%;
+    top: 90%;
+    transform: scale(2);
+  }
+  100% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+}
+/* line 207, ../sass/home2.scss */
+.mos-after-animation-4 {
+  -moz-animation: mos-after-animation-4 2s linear infinite alternate;
+  -webkit-animation: mos-after-animation-4 2s linear infinite alternate;
+  animation: mos-after-animation-4 2s linear infinite alternate;
+}
+
+@-moz-keyframes mos-after-animation-4 {
+  0% {
+    right: 7%;
+    top: 76%;
+  }
+  15% {
+    right: 79%;
+    top: 19%;
+  }
+  30% {
+    right: 70%;
+    top: 75%;
+  }
+  45% {
+    right: 5%;
+    top: 10%;
+  }
+  60% {
+    right: 30%;
+    top: 40%;
+  }
+  75% {
+    right: 65%;
+    top: 45%;
+  }
+  86% {
+    right: 45%;
+    top: 50%;
+  }
+  93% {
+    right: 40%;
+    top: 25%;
+  }
+  100% {
+    right: 7%;
+    top: 76%;
+  }
+}
+@-webkit-keyframes mos-after-animation-4 {
+  0% {
+    right: 7%;
+    top: 76%;
+  }
+  15% {
+    right: 79%;
+    top: 19%;
+  }
+  30% {
+    right: 70%;
+    top: 75%;
+  }
+  45% {
+    right: 5%;
+    top: 10%;
+  }
+  60% {
+    right: 30%;
+    top: 40%;
+  }
+  75% {
+    right: 65%;
+    top: 45%;
+  }
+  86% {
+    right: 45%;
+    top: 50%;
+  }
+  93% {
+    right: 40%;
+    top: 25%;
+  }
+  100% {
+    right: 7%;
+    top: 76%;
+  }
+}
+@keyframes mos-after-animation-4 {
+  0% {
+    right: 7%;
+    top: 76%;
+  }
+  15% {
+    right: 79%;
+    top: 19%;
+  }
+  30% {
+    right: 70%;
+    top: 75%;
+  }
+  45% {
+    right: 5%;
+    top: 10%;
+  }
+  60% {
+    right: 30%;
+    top: 40%;
+  }
+  75% {
+    right: 65%;
+    top: 45%;
+  }
+  86% {
+    right: 45%;
+    top: 50%;
+  }
+  93% {
+    right: 40%;
+    top: 25%;
+  }
+  100% {
+    right: 7%;
+    top: 76%;
+  }
+}
+/* line 252, ../sass/home2.scss */
 #mosquito {
   background: url("../src/img/1-mosquito-all.png") repeat no-repeat;
   width: 50px;
@@ -222,90 +694,198 @@ img {
     background-position-x: -150px;
   }
 }
-/* line 74, ../sass/home2.scss */
+/* line 265, ../sass/home2.scss */
 .mainTitle {
   width: 45%;
   left: 40%;
   top: 23%;
 }
-/* line 83, ../sass/home2.scss */
+/* line 274, ../sass/home2.scss */
 .mainTitle > .logo-title {
   width: 100%;
   cursor: pointer;
+  z-index: 20;
 }
-/* line 88, ../sass/home2.scss */
+/* line 279, ../sass/home2.scss */
+.mainTitle > .logo-title:hover {
+  -moz-animation: section1-animation 0.2s linear 2 forwards;
+  -webkit-animation: section1-animation 0.2s linear 2 forwards;
+  animation: section1-animation 0.2s linear 2 forwards;
+}
+/* line 284, ../sass/home2.scss */
 .mainTitle > .section1-text {
   position: absolute;
   width: 80%;
   bottom: 0%;
   left: -24%;
+  z-index: 21;
 }
 
-@-moz-keyframes section1-textIn {
-  0% {
-    left: -30%;
-    opacity: 0;
+/* line 294, ../sass/home2.scss */
+.logo-title-animation {
+  -moz-animation: section1-animation 0.2s linear infinite;
+  -webkit-animation: section1-animation 0.2s linear infinite;
+  animation: section1-animation 0.2s linear infinite;
+}
+
+@-moz-keyframes section1-animation {
+  10% {
+    transform: translate(-1px, 5px) rotate(-1.5deg);
+    opacity: 0.99;
   }
-  100% {
-    left: -24%;
-    opacity: 1;
+  20% {
+    transform: translate(-2px, -1px) rotate(0.5deg);
+    opacity: 0.38;
+  }
+  30% {
+    transform: translate(1px, -4px) rotate(0.5deg);
+    opacity: 0.34;
+  }
+  40% {
+    transform: translate(1px, -4px) rotate(2.5deg);
+    opacity: 0.24;
+  }
+  50% {
+    transform: translate(1px, -2px) rotate(0.5deg);
+    opacity: 0.55;
+  }
+  60% {
+    transform: translate(2px, 1px) rotate(-0.5deg);
+    opacity: 0.72;
+  }
+  70% {
+    transform: translate(-3px, 5px) rotate(0.5deg);
+    opacity: 0.26;
+  }
+  80% {
+    transform: translate(4px, 3px) rotate(2.5deg);
+    opacity: 0.7;
+  }
+  90% {
+    transform: translate(0px, 3px) rotate(-1.5deg);
+    opacity: 0.32;
+  }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
   }
 }
-@-webkit-keyframes section1-textIn {
-  0% {
-    left: -30%;
-    opacity: 0;
+@-webkit-keyframes section1-animation {
+  10% {
+    transform: translate(-1px, 5px) rotate(-1.5deg);
+    opacity: 0.99;
   }
-  100% {
-    left: -24%;
-    opacity: 1;
+  20% {
+    transform: translate(-2px, -1px) rotate(0.5deg);
+    opacity: 0.38;
+  }
+  30% {
+    transform: translate(1px, -4px) rotate(0.5deg);
+    opacity: 0.34;
+  }
+  40% {
+    transform: translate(1px, -4px) rotate(2.5deg);
+    opacity: 0.24;
+  }
+  50% {
+    transform: translate(1px, -2px) rotate(0.5deg);
+    opacity: 0.55;
+  }
+  60% {
+    transform: translate(2px, 1px) rotate(-0.5deg);
+    opacity: 0.72;
+  }
+  70% {
+    transform: translate(-3px, 5px) rotate(0.5deg);
+    opacity: 0.26;
+  }
+  80% {
+    transform: translate(4px, 3px) rotate(2.5deg);
+    opacity: 0.7;
+  }
+  90% {
+    transform: translate(0px, 3px) rotate(-1.5deg);
+    opacity: 0.32;
+  }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
   }
 }
-@keyframes section1-textIn {
-  0% {
-    left: -30%;
-    opacity: 0;
+@keyframes section1-animation {
+  10% {
+    transform: translate(-1px, 5px) rotate(-1.5deg);
+    opacity: 0.99;
   }
-  100% {
-    left: -24%;
-    opacity: 1;
+  20% {
+    transform: translate(-2px, -1px) rotate(0.5deg);
+    opacity: 0.38;
+  }
+  30% {
+    transform: translate(1px, -4px) rotate(0.5deg);
+    opacity: 0.34;
+  }
+  40% {
+    transform: translate(1px, -4px) rotate(2.5deg);
+    opacity: 0.24;
+  }
+  50% {
+    transform: translate(1px, -2px) rotate(0.5deg);
+    opacity: 0.55;
+  }
+  60% {
+    transform: translate(2px, 1px) rotate(-0.5deg);
+    opacity: 0.72;
+  }
+  70% {
+    transform: translate(-3px, 5px) rotate(0.5deg);
+    opacity: 0.26;
+  }
+  80% {
+    transform: translate(4px, 3px) rotate(2.5deg);
+    opacity: 0.7;
+  }
+  90% {
+    transform: translate(0px, 3px) rotate(-1.5deg);
+    opacity: 0.32;
+  }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
   }
 }
-/* line 112, ../sass/home2.scss */
+/* line 330, ../sass/home2.scss */
 #mosss {
   top: 11%;
   left: -50%;
   width: 36%;
 }
 
-/* line 118, ../sass/home2.scss */
+/* line 336, ../sass/home2.scss */
 #section2-text {
   top: 43%;
   left: -100%;
   width: 45%;
 }
 
-/* line 124, ../sass/home2.scss */
+/* line 342, ../sass/home2.scss */
 #bottle {
   bottom: -100%;
   width: 70%;
   left: 5%;
 }
 
-/* line 130, ../sass/home2.scss */
+/* line 348, ../sass/home2.scss */
 #bottle-2 {
   width: 50%;
   bottom: -100%;
   left: 50%;
 }
 
-/* line 139, ../sass/home2.scss */
+/* line 357, ../sass/home2.scss */
 #tsunami {
   width: 100%;
   bottom: -100%;
 }
 
-/* line 144, ../sass/home2.scss */
+/* line 362, ../sass/home2.scss */
 #section3-text {
   top: 19%;
   left: 11%;
@@ -313,18 +893,18 @@ img {
   opacity: 0;
 }
 
-/* line 151, ../sass/home2.scss */
+/* line 369, ../sass/home2.scss */
 .bone {
   bottom: -100%;
   width: 80%;
 }
 
-/* line 156, ../sass/home2.scss */
+/* line 374, ../sass/home2.scss */
 #bone1 {
   left: 5%;
 }
 
-/* line 163, ../sass/home2.scss */
+/* line 381, ../sass/home2.scss */
 #theMosquitoMan {
   width: 5%;
   left: 50%;
@@ -332,34 +912,37 @@ img {
   opacity: 0;
 }
 
-/* line 170, ../sass/home2.scss */
+/* line 388, ../sass/home2.scss */
 .section4-text {
   width: 45%;
   bottom: 62%;
   left: 15%;
   opacity: 0;
 }
-/* line 180, ../sass/home2.scss */
+/* line 398, ../sass/home2.scss */
 .section4-text > #section4-text_1 {
   width: 100%;
 }
-/* line 184, ../sass/home2.scss */
+/* line 402, ../sass/home2.scss */
 .section4-text > #section4-text_2 {
   width: 60%;
   left: 50%;
   opacity: 0;
 }
 
-/* line 191, ../sass/home2.scss */
+/* line 409, ../sass/home2.scss */
 .cloud {
   left: 13%;
   width: 100%;
   height: 80%;
-  display: flex;
+  display: none;
   opacity: 0;
+  -moz-animation: cloud-move 300s linear infinite forwards;
+  -webkit-animation: cloud-move 300s linear infinite forwards;
+  animation: cloud-move 300s linear infinite forwards;
 }
 
-/* line 202, ../sass/home2.scss */
+/* line 420, ../sass/home2.scss */
 .cloud-move {
   -moz-animation: cloud-move 300s linear forwards;
   -webkit-animation: cloud-move 300s linear forwards;
@@ -390,59 +973,59 @@ img {
     left: -80%;
   }
 }
-/* line 215, ../sass/home2.scss */
+/* line 433, ../sass/home2.scss */
 .cloud-col {
   display: flex;
   flex-direction: column;
   width: 50%;
   height: 100%;
 }
-/* line 220, ../sass/home2.scss */
+/* line 438, ../sass/home2.scss */
 .cloud-col > img {
   width: 40%;
 }
-/* line 227, ../sass/home2.scss */
+/* line 445, ../sass/home2.scss */
 .cloud-col > .cloud02 {
   left: -10%;
   top: -5%;
 }
-/* line 231, ../sass/home2.scss */
+/* line 449, ../sass/home2.scss */
 .cloud-col > .cloud03 {
   left: 30%;
 }
-/* line 235, ../sass/home2.scss */
+/* line 453, ../sass/home2.scss */
 .cloud-col > .cloud04 {
   top: 25%;
   left: -10%;
 }
-/* line 239, ../sass/home2.scss */
+/* line 457, ../sass/home2.scss */
 .cloud-col > .cloud05 {
   top: -7%;
   left: 30%;
 }
-/* line 243, ../sass/home2.scss */
+/* line 461, ../sass/home2.scss */
 .cloud-col > .cloud06 {
   left: 50%;
 }
-/* line 246, ../sass/home2.scss */
+/* line 464, ../sass/home2.scss */
 .cloud-col > .cloud07 {
   left: 20%;
 }
-/* line 250, ../sass/home2.scss */
+/* line 468, ../sass/home2.scss */
 .cloud-col > .cloud-button_1 {
   top: 25%;
   left: -10%;
 }
-/* line 255, ../sass/home2.scss */
+/* line 473, ../sass/home2.scss */
 .cloud-col > .cloud-button_2 {
   left: 20%;
 }
 
-/* line 260, ../sass/home2.scss */
+/* line 478, ../sass/home2.scss */
 .cloud-button {
   width: 40%;
 }
-/* line 264, ../sass/home2.scss */
+/* line 482, ../sass/home2.scss */
 .cloud-button > p {
   opacity: 0;
   color: #575555;
@@ -455,16 +1038,21 @@ img {
   box-shadow: 0px 0px 7px 7px rgba(255, 235, 59, 0.1);
   cursor: pointer;
 }
-/* line 278, ../sass/home2.scss */
+/* line 496, ../sass/home2.scss */
 .cloud-button > #button-p_2 {
   top: 10px;
   left: 15%;
 }
 
-/* line 287, ../sass/home2.scss */
+/* line 505, ../sass/home2.scss */
 .man-run-container {
   bottom: 35%;
   left: -30%;
+  display: none;
+}
+
+/* line 512, ../sass/home2.scss */
+.man-run-container-animation {
   -moz-animation: run 8s linear infinite forwards;
   -webkit-animation: run 8s linear infinite forwards;
   animation: run 8s linear infinite forwards;
@@ -560,7 +1148,7 @@ img {
     left: 150%;
   }
 }
-/* line 325, ../sass/home2.scss */
+/* line 547, ../sass/home2.scss */
 .man-run {
   position: relative;
   background: url("../src/img/5-run-all.png") no-repeat right;
@@ -596,23 +1184,23 @@ img {
   }
 }
 @media screen and (max-width: 900px) {
-  /* line 345, ../sass/home2.scss */
+  /* line 567, ../sass/home2.scss */
   #mosquito {
     top: 9%;
   }
 
-  /* line 348, ../sass/home2.scss */
+  /* line 570, ../sass/home2.scss */
   #logo-title {
     top: 18%;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 354, ../sass/home2.scss */
+  /* line 576, ../sass/home2.scss */
   #mosquito {
     top: 6%;
   }
 
-  /* line 357, ../sass/home2.scss */
+  /* line 579, ../sass/home2.scss */
   #logo-title {
     top: 10%;
   }
