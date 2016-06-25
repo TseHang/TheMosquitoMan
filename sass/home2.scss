@@ -32,7 +32,7 @@ $logo-title-zindex:20;
 	@extend %RWDscreen;
 
 	> .horizontal{
-		display:flex;
+		display:inline-flex;
 		height:100%;
 	}
 	img{

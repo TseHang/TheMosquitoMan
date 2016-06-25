@@ -155,7 +155,7 @@ img {
 
 /* line 34, ../sass/home2.scss */
 .background > .horizontal {
-  display: flex;
+  display: inline-flex;
   height: 100%;
 }
 /* line 38, ../sass/home2.scss */
