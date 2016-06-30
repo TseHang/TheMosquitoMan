@@ -54,6 +54,9 @@ var s = skrollr.init({
 
 });
 
+
+// 
+//蚊子出來的動畫
 $('.logo-title').click(function(){
 
   $('.mos-after').toggleClass("mos-disappear");
@@ -90,6 +93,7 @@ $('.logo-title').click(function(){
     isShowMos = 0;
   }
 })
+
 
 // $(document).ready(function(){
 // 	//img-logo

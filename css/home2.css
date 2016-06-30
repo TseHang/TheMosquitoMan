@@ -863,29 +863,30 @@ img {
   top: 43%;
   left: -100%;
   width: 45%;
+  display: none;
 }
 
-/* line 342, ../sass/home2.scss */
+/* line 343, ../sass/home2.scss */
 #bottle {
   bottom: -100%;
   width: 70%;
   left: 5%;
 }
 
-/* line 348, ../sass/home2.scss */
+/* line 349, ../sass/home2.scss */
 #bottle-2 {
   width: 50%;
   bottom: -100%;
   left: 50%;
 }
 
-/* line 357, ../sass/home2.scss */
+/* line 358, ../sass/home2.scss */
 #tsunami {
   width: 100%;
   bottom: -100%;
 }
 
-/* line 362, ../sass/home2.scss */
+/* line 363, ../sass/home2.scss */
 #section3-text {
   top: 19%;
   left: 11%;
@@ -893,18 +894,18 @@ img {
   opacity: 0;
 }
 
-/* line 369, ../sass/home2.scss */
+/* line 370, ../sass/home2.scss */
 .bone {
   bottom: -100%;
   width: 80%;
 }
 
-/* line 374, ../sass/home2.scss */
+/* line 375, ../sass/home2.scss */
 #bone1 {
   left: 5%;
 }
 
-/* line 381, ../sass/home2.scss */
+/* line 382, ../sass/home2.scss */
 #theMosquitoMan {
   width: 5%;
   left: 50%;
@@ -912,25 +913,25 @@ img {
   opacity: 0;
 }
 
-/* line 388, ../sass/home2.scss */
+/* line 389, ../sass/home2.scss */
 .section4-text {
   width: 45%;
   bottom: 62%;
   left: 15%;
   opacity: 0;
 }
-/* line 398, ../sass/home2.scss */
+/* line 399, ../sass/home2.scss */
 .section4-text > #section4-text_1 {
   width: 100%;
 }
-/* line 402, ../sass/home2.scss */
+/* line 403, ../sass/home2.scss */
 .section4-text > #section4-text_2 {
   width: 60%;
   left: 50%;
   opacity: 0;
 }
 
-/* line 409, ../sass/home2.scss */
+/* line 410, ../sass/home2.scss */
 .cloud {
   left: 13%;
   width: 100%;
@@ -942,7 +943,7 @@ img {
   animation: cloud-move 300s linear infinite forwards;
 }
 
-/* line 420, ../sass/home2.scss */
+/* line 421, ../sass/home2.scss */
 .cloud-move {
   -moz-animation: cloud-move 300s linear forwards;
   -webkit-animation: cloud-move 300s linear forwards;
@@ -973,59 +974,59 @@ img {
     left: -80%;
   }
 }
-/* line 433, ../sass/home2.scss */
+/* line 434, ../sass/home2.scss */
 .cloud-col {
   display: flex;
   flex-direction: column;
   width: 50%;
   height: 100%;
 }
-/* line 438, ../sass/home2.scss */
+/* line 439, ../sass/home2.scss */
 .cloud-col > img {
   width: 40%;
 }
-/* line 445, ../sass/home2.scss */
+/* line 446, ../sass/home2.scss */
 .cloud-col > .cloud02 {
   left: -10%;
   top: -5%;
 }
-/* line 449, ../sass/home2.scss */
+/* line 450, ../sass/home2.scss */
 .cloud-col > .cloud03 {
   left: 30%;
 }
-/* line 453, ../sass/home2.scss */
+/* line 454, ../sass/home2.scss */
 .cloud-col > .cloud04 {
   top: 25%;
   left: -10%;
 }
-/* line 457, ../sass/home2.scss */
+/* line 458, ../sass/home2.scss */
 .cloud-col > .cloud05 {
   top: -7%;
   left: 30%;
 }
-/* line 461, ../sass/home2.scss */
+/* line 462, ../sass/home2.scss */
 .cloud-col > .cloud06 {
   left: 50%;
 }
-/* line 464, ../sass/home2.scss */
+/* line 465, ../sass/home2.scss */
 .cloud-col > .cloud07 {
   left: 20%;
 }
-/* line 468, ../sass/home2.scss */
+/* line 469, ../sass/home2.scss */
 .cloud-col > .cloud-button_1 {
   top: 25%;
   left: -10%;
 }
-/* line 473, ../sass/home2.scss */
+/* line 474, ../sass/home2.scss */
 .cloud-col > .cloud-button_2 {
   left: 20%;
 }
 
-/* line 478, ../sass/home2.scss */
+/* line 479, ../sass/home2.scss */
 .cloud-button {
   width: 40%;
 }
-/* line 482, ../sass/home2.scss */
+/* line 483, ../sass/home2.scss */
 .cloud-button > p {
   opacity: 0;
   color: #575555;
@@ -1038,20 +1039,20 @@ img {
   box-shadow: 0px 0px 7px 7px rgba(255, 235, 59, 0.1);
   cursor: pointer;
 }
-/* line 496, ../sass/home2.scss */
+/* line 497, ../sass/home2.scss */
 .cloud-button > #button-p_2 {
   top: 10px;
   left: 15%;
 }
 
-/* line 505, ../sass/home2.scss */
+/* line 506, ../sass/home2.scss */
 .man-run-container {
   bottom: 35%;
   left: -30%;
   display: none;
 }
 
-/* line 512, ../sass/home2.scss */
+/* line 513, ../sass/home2.scss */
 .man-run-container-animation {
   -moz-animation: run 8s linear infinite forwards;
   -webkit-animation: run 8s linear infinite forwards;
@@ -1148,7 +1149,7 @@ img {
     left: 150%;
   }
 }
-/* line 547, ../sass/home2.scss */
+/* line 548, ../sass/home2.scss */
 .man-run {
   position: relative;
   background: url("../src/img/5-run-all.png") no-repeat right;
@@ -1184,23 +1185,23 @@ img {
   }
 }
 @media screen and (max-width: 900px) {
-  /* line 567, ../sass/home2.scss */
+  /* line 568, ../sass/home2.scss */
   #mosquito {
     top: 9%;
   }
 
-  /* line 570, ../sass/home2.scss */
+  /* line 571, ../sass/home2.scss */
   #logo-title {
     top: 18%;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 576, ../sass/home2.scss */
+  /* line 577, ../sass/home2.scss */
   #mosquito {
     top: 6%;
   }
 
-  /* line 579, ../sass/home2.scss */
+  /* line 580, ../sass/home2.scss */
   #logo-title {
     top: 10%;
   }
