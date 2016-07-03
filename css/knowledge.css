@@ -1,0 +1,468 @@
+@charset "UTF-8";
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 9, ../sass/_reset.scss */
+body,
+html,
+div,
+p,
+img,
+a,
+h1,
+h2,
+h3,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  /* img elements 圖片元素 */
+  border: medium none;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* line 29, ../sass/_reset.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 35, ../sass/_reset.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+/* line 38, ../sass/_reset.scss */
+em {
+  font-style: normal;
+}
+
+/* 重置清單元素 */
+/* line 42, ../sass/_reset.scss */
+ul, ol {
+  list-style: none;
+}
+
+/* 重置超連結元素 */
+/* line 46, ../sass/_reset.scss */
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* line 50, ../sass/_reset.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* 重置圖片元素 */
+/* line 54, ../sass/_reset.scss */
+img {
+  vertical-align: middle;
+  border: 0px;
+}
+
+/********************
+ reset OVER!
+*********************/
+/* line 29, ../sass/_color.scss */
+.red {
+  color: #F44336;
+}
+
+/* line 33, ../sass/_color.scss */
+.yellow {
+  color: #fdf5db;
+}
+
+/* line 37, ../sass/_color.scss */
+.blue {
+  color: #292c77;
+}
+
+/****** 開始 navigation bar  **/
+/* line 8, ../sass/_nav.scss */
+.navbar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 100;
+  transition: all 0.2s ease-in;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px -1px black;
+}
+/* line 19, ../sass/_nav.scss */
+.navbar > ul {
+  float: right;
+  text-align: center;
+  padding: 1% 1% 1% 0px;
+}
+/* line 25, ../sass/_nav.scss */
+.navbar:hover {
+  background-color: white !important;
+  box-shadow: 1px 1px 5px 1px black !important;
+}
+
+/* line 30, ../sass/_nav.scss */
+.navbar_li {
+  float: left;
+  color: #999999;
+  transition: all 0.1s ease-out;
+}
+/* line 35, ../sass/_nav.scss */
+.navbar_li:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(0.9);
+  font-weight: bold;
+}
+
+/* line 43, ../sass/_nav.scss */
+.navbar_li_a {
+  display: block;
+  color: #999999;
+  font-size: 16px;
+  padding: 3px 10px;
+}
+/* line 50, ../sass/_nav.scss */
+.navbar_li_a > h2 {
+  padding-bottom: 8px;
+  color: #666666;
+  font-size: 1.3em;
+}
+/* line 56, ../sass/_nav.scss */
+.navbar_li_a > p {
+  font-size: 0.9em;
+}
+
+/* line 61, ../sass/_nav.scss */
+#sub-logo {
+  position: absolute;
+  width: 10%;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+/* line 67, ../sass/_nav.scss */
+#sub-logo:hover {
+  transform: scale(0.9);
+}
+
+/********/
+/* line 1, ../sass/_module.scss */
+.section {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 6, ../sass/_module.scss */
+.section1-top, .section1-top > .title-bar, .section1-bot, .mainTitleBox > .leftBar, .section2-top, .section2-bot, .section3-bot, .section3-horizon {
+  position: relative;
+}
+
+/* line 10, ../sass/_module.scss */
+.whats-dengue-text > .topic-title {
+  display: flex;
+  align-items: center;
+}
+
+/* line 15, ../sass/_module.scss */
+#button_killMosquito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 6, ../sass/knowledge.scss */
+body {
+  background-color: #ceeae1;
+}
+
+/* line 27, ../sass/knowledge.scss */
+.font-bold, .font-sub-to-big, .font-normal-to-big, .font-big-to-dbig {
+  font-weight: bold;
+}
+
+/* line 31, ../sass/knowledge.scss */
+.font-sub-to-big {
+  font-size: 18px;
+}
+
+/* line 36, ../sass/knowledge.scss */
+.font-normal-to-big {
+  font-size: 21px;
+}
+
+/* line 41, ../sass/knowledge.scss */
+.font-big-to-dbig {
+  font-size: 25px;
+}
+
+/* line 49, ../sass/knowledge.scss */
+.section1-top {
+  width: 100%;
+  height: 65%;
+}
+/* line 53, ../sass/knowledge.scss */
+.section1-top > .title-bar {
+  width: 190px;
+  height: 50px;
+  background-color: #fdf5db;
+  top: 25%;
+  padding-left: 8%;
+}
+/* line 61, ../sass/knowledge.scss */
+.section1-top > .title-bar > h1 {
+  letter-spacing: 5px;
+  font-size: 42px;
+  color: #292c77;
+  padding-top: 20px;
+}
+/* line 69, ../sass/knowledge.scss */
+.section1-top > .section1-text {
+  position: absolute;
+  color: #292c77;
+  bottom: 20px;
+  right: 8%;
+  font-size: 38px;
+}
+
+/* line 78, ../sass/knowledge.scss */
+.section1-bot {
+  width: 100%;
+  height: 35%;
+  background-color: #fdf5db;
+}
+
+/* line 84, ../sass/knowledge.scss */
+#button_killMosquito {
+  width: 20%;
+  height: 30%;
+  background-color: #F44336;
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  border-radius: 15px;
+  box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+  font-size: 33px;
+  color: #fdf5db;
+  transition: all 0.1s ease-in;
+}
+/* line 101, ../sass/knowledge.scss */
+#button_killMosquito:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+/* line 107, ../sass/knowledge.scss */
+.whats-dengue-text {
+  width: 55%;
+  height: 70%;
+  background-color: #292c77;
+  position: absolute;
+  bottom: -27%;
+  left: 8%;
+  z-index: 2;
+  padding-bottom: 10px;
+  color: white;
+}
+/* line 119, ../sass/knowledge.scss */
+.whats-dengue-text > .topic-title {
+  padding-left: 30px;
+  font-size: 40px;
+  height: 37%;
+}
+/* line 127, ../sass/knowledge.scss */
+.whats-dengue-text p {
+  font-size: 18px;
+  width: 82%;
+  font-weight: 100;
+  line-height: 25px;
+  padding: 0px 0px 20px 60px;
+}
+/* line 134, ../sass/knowledge.scss */
+.whats-dengue-text p > .inc_int {
+  line-height: 38px;
+  font-size: 30px;
+  color: #fdf5db;
+}
+
+/* line 145, ../sass/knowledge.scss */
+.mainTitleBox {
+  display: inline-flex;
+  z-index: 2;
+  align-items: center;
+  padding-left: 8%;
+  color: #292c77;
+  font-size: 42px;
+}
+/* line 154, ../sass/knowledge.scss */
+.mainTitleBox > .leftBar {
+  width: 15px;
+  height: 45px;
+  background-color: rgba(41, 44, 119, 0.6);
+  top: -5px;
+}
+/* line 162, ../sass/knowledge.scss */
+.mainTitleBox > h1 {
+  padding-left: 10px;
+}
+
+/* line 172, ../sass/knowledge.scss */
+.section2-top {
+  width: 100%;
+  height: 35%;
+  background-color: #fdf5db;
+}
+/* line 177, ../sass/knowledge.scss */
+.section2-top > #section2-mainTitle {
+  bottom: -20px;
+  position: absolute;
+}
+
+/* line 183, ../sass/knowledge.scss */
+.section2-bot {
+  width: 100%;
+  height: 65%;
+  background-color: #ceeae1;
+}
+
+/* line 189, ../sass/knowledge.scss */
+.section2-bot-subText {
+  width: 46%;
+  height: 20%;
+  padding: 50px 0px 60px 10%;
+  color: #666666;
+  line-height: 23px;
+  font-size: 15px;
+}
+/* line 198, ../sass/knowledge.scss */
+.section2-bot-subText > p {
+  margin-bottom: 10px;
+}
+
+/* line 203, ../sass/knowledge.scss */
+.section2-bot-horizon {
+  margin: auto;
+  width: 80%;
+  color: #292c77;
+}
+/* line 208, ../sass/knowledge.scss */
+.section2-bot-horizon > div {
+  float: left;
+}
+/* line 212, ../sass/knowledge.scss */
+.section2-bot-horizon .section2-box {
+  width: 35%;
+  height: 150px;
+}
+
+/* line 219, ../sass/knowledge.scss */
+.section2-bot-horizonContent {
+  width: 65%;
+  font-size: 18px;
+  line-height: 25px;
+}
+/* line 224, ../sass/knowledge.scss */
+.section2-bot-horizonContent > p {
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+/* line 234, ../sass/knowledge.scss */
+.section3-top {
+  width: 60%;
+  height: 30%;
+  margin-left: 10%;
+  border-bottom: 4px solid #fdf5db;
+}
+
+/* line 240, ../sass/knowledge.scss */
+.section3-bot {
+  width: 100%;
+  height: 70%;
+}
+/* line 244, ../sass/knowledge.scss */
+.section3-bot > #section3-mainTitle {
+  padding-top: 30px;
+}
+
+/* line 249, ../sass/knowledge.scss */
+.section3-horizon {
+  width: 90%;
+  left: 10%;
+  padding-top: 20px;
+  display: inline-flex;
+  color: #666666;
+  font-size: 18px;
+}
+/* line 259, ../sass/knowledge.scss */
+.section3-horizon > .section3-h-left {
+  width: 60%;
+}
+/* line 263, ../sass/knowledge.scss */
+.section3-horizon > .section3-h-right {
+  width: 40%;
+}
+/* line 267, ../sass/knowledge.scss */
+.section3-horizon p {
+  margin-bottom: 20px;
+  line-height: 28px;
+}
+
+/* line 277, ../sass/knowledge.scss */
+.section-breedingSource {
+  width: 100%;
+  height: 70%;
+}
+/* line 280, ../sass/knowledge.scss */
+.section-breedingSource > #section-breedingSource-mainTitle {
+  margin: 10% 0px 20px 0px;
+}
+/* line 284, ../sass/knowledge.scss */
+.section-breedingSource > p {
+  color: #666666;
+  position: absolute;
+  left: 10%;
+}
+
+/* line 291, ../sass/knowledge.scss */
+.section-video {
+  width: 100%;
+  background-color: #fdf5db;
+}
+/* line 295, ../sass/knowledge.scss */
+.section-video > #section-video-mainTitle {
+  margin-top: 50px;
+}
+/* line 299, ../sass/knowledge.scss */
+.section-video > .mosquito-video {
+  background-color: #fdf5db;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 50px 10%;
+}
+
+/* line 310, ../sass/knowledge.scss */
+.video > p {
+  color: #666666;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 10px;
+}
+/* line 317, ../sass/knowledge.scss */
+.video > iframe {
+  width: 300px;
+  height: 200px;
+  box-shadow: 0px 0px 1px 1px black;
+}
+
+@media screen and (max-width: 1030px) {
+  /* line 328, ../sass/knowledge.scss */
+  .section2-bot-subText {
+    width: 80%;
+  }
+}

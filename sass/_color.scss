@@ -1,0 +1,39 @@
+// ///////////
+// Option:
+// font-size都定義在每份自己的css檔案中
+// 
+// ///////////
+// ----------------------------------------
+
+// ///////////
+// navBar
+// ///////////
+$li-color:#666666;
+$sub-li-color:#999999;
+
+// /////////// 
+// main-color
+// ///////////
+
+$green-color:#ceeae1;
+$yellow-color:#fdf5db;
+$blue-color: #292c77 ;
+// $red-color: #e64642;
+$red-color: #F44336;
+
+// $leftBar-color: #cee9e0 ;
+$leftBar-color: rgba(41,44,119,0.6) ;
+
+
+
+.red{
+	color:$red-color;
+}
+
+.yellow{
+	color:$yellow-color ;
+}
+
+.blue{
+	color:$blue-color ;
+}

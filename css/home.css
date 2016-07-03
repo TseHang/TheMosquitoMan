@@ -3,7 +3,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 6, ../sass/_reset.scss */
+/* line 9, ../sass/_reset.scss */
 body,
 html,
 div,
@@ -23,42 +23,42 @@ li {
   background: transparent;
 }
 
-/* line 26, ../sass/_reset.scss */
+/* line 29, ../sass/_reset.scss */
 html, body {
   width: 100%;
   height: 100%;
 }
 
-/* line 32, ../sass/_reset.scss */
+/* line 35, ../sass/_reset.scss */
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
 }
 
-/* line 35, ../sass/_reset.scss */
+/* line 38, ../sass/_reset.scss */
 em {
   font-style: normal;
 }
 
 /* 重置清單元素 */
-/* line 39, ../sass/_reset.scss */
+/* line 42, ../sass/_reset.scss */
 ul, ol {
   list-style: none;
 }
 
 /* 重置超連結元素 */
-/* line 43, ../sass/_reset.scss */
+/* line 46, ../sass/_reset.scss */
 a {
   text-decoration: none;
   color: #333;
 }
 
-/* line 47, ../sass/_reset.scss */
+/* line 50, ../sass/_reset.scss */
 a:hover {
   text-decoration: none;
 }
 
 /* 重置圖片元素 */
-/* line 51, ../sass/_reset.scss */
+/* line 54, ../sass/_reset.scss */
 img {
   vertical-align: middle;
   border: 0px;
@@ -67,6 +67,21 @@ img {
 /********************
  reset OVER!
 *********************/
+/* line 29, ../sass/_color.scss */
+.red {
+  color: #F44336;
+}
+
+/* line 33, ../sass/_color.scss */
+.yellow {
+  color: #fdf5db;
+}
+
+/* line 37, ../sass/_color.scss */
+.blue {
+  color: #292c77;
+}
+
 /****** 開始 navigation bar  **/
 /* line 8, ../sass/_nav.scss */
 .navbar {
@@ -74,21 +89,29 @@ img {
   top: 0px;
   width: 100%;
   z-index: 100;
+  transition: all 0.2s ease-in;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px -1px black;
 }
-/* line 14, ../sass/_nav.scss */
+/* line 19, ../sass/_nav.scss */
 .navbar > ul {
   float: right;
   text-align: center;
-  padding: 1% 1% 0px 0px;
+  padding: 1% 1% 1% 0px;
+}
+/* line 25, ../sass/_nav.scss */
+.navbar:hover {
+  background-color: white !important;
+  box-shadow: 1px 1px 5px 1px black !important;
 }
 
-/* line 20, ../sass/_nav.scss */
+/* line 30, ../sass/_nav.scss */
 .navbar_li {
   float: left;
   color: #999999;
   transition: all 0.1s ease-out;
 }
-/* line 25, ../sass/_nav.scss */
+/* line 35, ../sass/_nav.scss */
 .navbar_li:hover {
   cursor: pointer;
   opacity: 0.7;
@@ -96,38 +119,36 @@ img {
   font-weight: bold;
 }
 
-/* line 33, ../sass/_nav.scss */
+/* line 43, ../sass/_nav.scss */
 .navbar_li_a {
   display: block;
   color: #999999;
   font-size: 16px;
   padding: 3px 10px;
 }
-/* line 40, ../sass/_nav.scss */
+/* line 50, ../sass/_nav.scss */
 .navbar_li_a > h2 {
   padding-bottom: 8px;
   color: #666666;
   font-size: 1.3em;
 }
-/* line 46, ../sass/_nav.scss */
+/* line 56, ../sass/_nav.scss */
 .navbar_li_a > p {
   font-size: 0.9em;
 }
 
-/* line 51, ../sass/_nav.scss */
+/* line 61, ../sass/_nav.scss */
 #sub-logo {
   position: absolute;
-  width: 13%;
+  width: 10%;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+/* line 67, ../sass/_nav.scss */
+#sub-logo:hover {
+  transform: scale(0.9);
 }
 
-@keyframes img-logo-show {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
 /********/
 /* line 8, ../sass/home.scss */
 .wrap, .background {

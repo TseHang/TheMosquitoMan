@@ -1,0 +1,24 @@
+%RWDscreen{
+	width:100%;
+	height:100%;
+}
+
+%position_relative{
+	position:relative;
+}
+
+%verticle_center{
+	display:flex;
+	align-items:center;
+}
+
+%all_center{
+	display:flex;
+	align-items:center ;
+	justify-content:center;
+}
+
+@mixin setSize($width , $height) {
+  width: $width ;
+  height: $height ;
+}
