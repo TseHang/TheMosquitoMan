@@ -1,7 +1,6 @@
 @import 'color' ;
 
 $font-size:16px;
-$nav-height:76px;
 // 
 // 
 // 
@@ -10,7 +9,6 @@ $nav-height:76px;
 	position: fixed;
 	top:0px;
 	width:100%;
-	height:$nav-height;
 
 	z-index:100;
 	transition:all 0.2s ease-in ;
@@ -21,7 +19,7 @@ $nav-height:76px;
 	> ul{
 		float: right;
 		text-align: center;
-		padding: 1% 1% 1% 0px ;
+		padding: 0.8% 1% 1% 0px ;
 	}
 
 	&:hover{
@@ -63,7 +61,7 @@ $nav-height:76px;
 #sub-logo{
 	position:absolute;
 	top:-5px;
-	height:90px;
+	height:86px;
 	transition:all 0.1s ease-out ;
 	cursor:pointer ;
 	

@@ -245,8 +245,6 @@ $logo-title-zindex:20;
 	}
 }
 
-
-
 #mosquito {
 	background: url('../src/img/1-mosquito-all.png') repeat no-repeat;
 	width:50px;
@@ -328,7 +326,11 @@ $logo-title-zindex:20;
 #mosss{
 	top:11%;
 	left:-50%;
-	width:36%;
+	// png
+	width:34% ;
+	// svg: 
+	// width:36%;
+	
 }
 
 #section2-text{
