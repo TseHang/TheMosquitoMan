@@ -43,16 +43,32 @@ var s = skrollr.init({
       $('.man-run-container').css("display","none");
     }
 
+    // 讓bar不見
+    if (data.curTop > 100 && data.direction == "down"){
+      navbarHidden() ;
+    }
+    else{
+      navbarShow() ;
+    }
+
     // 判斷小人是否要跑！！
     if (data.curTop > (data.maxTop-errorDistance)){
       $('.man-run-container').addClass("man-run-container-animation");
+      navbarShow() ;
     }
-    else{
+    else {
       $('.man-run-container').removeClass("man-run-container-animation");
     }
   }
 
 });
+
+function navbarShow(){
+  $('.navbar').css("top","0px");
+}
+function navbarHidden(){
+  $('.navbar').css("top","-76px");
+}
 
 
 // 
