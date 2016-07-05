@@ -1,4 +1,5 @@
 @import 'color' ;
+@import 'module' ;
 
 $font-size:16px;
 // 
@@ -14,7 +15,7 @@ $font-size:16px;
 	transition:all 0.2s ease-in ;
 
 	background-color:rgba(2555,255,255,0) ;
-	box-shadow : 0px 0px 0px -1px black ;
+	box-shadow : 0px 0px 0px 0px black ;
 
 	> ul{
 		float: right;
@@ -24,7 +25,7 @@ $font-size:16px;
 
 	&:hover{
 		background-color: rgba(2555,255,255,1) !important; 
-  	box-shadow: 0px 0px 15px 0px black !important ;
+  	box-shadow : 0px 1px 10px -2px ;
 	}
 }
 .navbar_li {
@@ -71,10 +72,111 @@ $font-size:16px;
 }
 
 
+.nav-small-icon{
+	display:none ;
+	position:absolute ;
+	right:20px ;
+	top:10px ;
+
+	> .nav-small-rect{
+		width:40px ;
+		height:7px ;
+		margin-top:5px ;
+		border-radius:10px ;
+		background-color: $sub-li-color ;
+	}
+}
+
+.nav-small-bar{
+	display:none ;
+	margin:20px 20px 0px 20px ;
+}
+
+.back-black{
+	@include setSize(100% , 150%);
+	display:none ;
+
+	top:-50% ;
+	position:fixed ;
+	background-color:rgba(0,0,0,0.8);
+	z-index:99 ;
+}
+
 
 /********/
 
-@media screen and (min-width:1600px) {
+@media screen and (max-width:1090px) {
+	#sub-logo{
+		top:-9px;
+	}
+}
 
 
+@media screen and (max-width: 940px) {
+	.navbar{
+		@include addHeight(2% , 36px );
+		width:8% ;
+		padding:0px 5px 5px 5px ;
+		background-color:white ;
+
+		display:flex ;
+		justify-content:center ;
+		align-items:center ;
+
+		right:0px ;
+		border-bottom-left-radius:15px ;
+
+		> ul {
+			display:none ;
+		}
+
+		&:hover{
+			box-shadow : none ;
+		}
+	}
+	
+	.nav-small-icon{
+		display:block ;
+	}
+
+	#sub-logo{
+		display:none ;
+	}
+
+	.navbar_li{
+		float:none ;
+		list-style:none ;
+		> .navbar_li_a{
+			font-size:25px ;
+			padding:15px 10px ;
+		}
+	}
+
+	// 展開用！！
+	.nav-small-show{
+		width:auto ;
+		height:100% ;
+		border-top-left-radius:10px ;
+
+		&:hover{
+			box-shadow : -10px 0px 15px 2px;
+		}
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.nav-small-icon{
+		right:9px ;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.navbar{
+		width:10% ;
+	}
+
+	// 展開用！！
+	.nav-small-show{
+		width:auto ;
+	}
 }

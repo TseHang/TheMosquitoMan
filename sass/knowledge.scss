@@ -330,7 +330,10 @@ $mainTitleLeft: 8% ;
 // //////////////
 // media
 // //////////////
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1090px) {
+	.title-bar {
+		margin-top:10% ;
+	}
 	.section2-bot{
 		> .section2-bot-subText{
 			width:80% ;
@@ -338,7 +341,7 @@ $mainTitleLeft: 8% ;
 	}
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 940px) {
 	.whats-dengue-text{
 		width:84% ;
 	}

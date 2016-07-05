@@ -18,7 +18,17 @@
 	justify-content:center;
 }
 
+.display-block{
+	display:block !important ;
+}
+
 @mixin setSize($width , $height) {
   width: $width ;
   height: $height ;
+}
+
+@mixin addHeight($a , $b){
+  height: -webkit-calc(#{$a} + #{$b});
+  height:    -moz-calc(#{$a} + #{$b});
+  height:         calc(#{$a} + #{$b});
 }

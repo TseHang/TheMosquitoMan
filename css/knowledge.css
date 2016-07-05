@@ -82,75 +82,6 @@ img {
   color: #292c77;
 }
 
-/****** 開始 navigation bar  **/
-/* line 8, ../sass/_nav.scss */
-.navbar {
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  z-index: 100;
-  transition: all 0.2s ease-in;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0px 0px 0px -1px black;
-}
-/* line 19, ../sass/_nav.scss */
-.navbar > ul {
-  float: right;
-  text-align: center;
-  padding: 0.8% 1% 1% 0px;
-}
-/* line 25, ../sass/_nav.scss */
-.navbar:hover {
-  background-color: white !important;
-  box-shadow: 0px 0px 15px 0px black !important;
-}
-
-/* line 30, ../sass/_nav.scss */
-.navbar_li {
-  float: left;
-  color: #999999;
-  transition: all 0.1s ease-out;
-}
-/* line 35, ../sass/_nav.scss */
-.navbar_li:hover {
-  cursor: pointer;
-  opacity: 0.7;
-  transform: scale(0.9);
-  font-weight: bold;
-}
-
-/* line 43, ../sass/_nav.scss */
-.navbar_li_a {
-  display: block;
-  color: #999999;
-  font-size: 16px;
-  padding: 3px 10px;
-}
-/* line 50, ../sass/_nav.scss */
-.navbar_li_a > h2 {
-  padding-bottom: 8px;
-  color: #666666;
-  font-size: 1.3em;
-}
-/* line 56, ../sass/_nav.scss */
-.navbar_li_a > p {
-  font-size: 0.9em;
-}
-
-/* line 61, ../sass/_nav.scss */
-#sub-logo {
-  position: absolute;
-  top: -5px;
-  height: 86px;
-  transition: all 0.1s ease-out;
-  cursor: pointer;
-}
-/* line 68, ../sass/_nav.scss */
-#sub-logo:hover {
-  transform: scale(0.9);
-}
-
-/********/
 /* line 1, ../sass/_module.scss */
 .section {
   width: 100%;
@@ -175,6 +106,192 @@ img {
   justify-content: center;
 }
 
+/* line 21, ../sass/_module.scss */
+.display-block {
+  display: block !important;
+}
+
+/****** 開始 navigation bar  **/
+/* line 9, ../sass/_nav.scss */
+.navbar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 100;
+  transition: all 0.2s ease-in;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px 0px black;
+}
+/* line 20, ../sass/_nav.scss */
+.navbar > ul {
+  float: right;
+  text-align: center;
+  padding: 0.8% 1% 1% 0px;
+}
+/* line 26, ../sass/_nav.scss */
+.navbar:hover {
+  background-color: white !important;
+  box-shadow: 0px 1px 10px -2px;
+}
+
+/* line 31, ../sass/_nav.scss */
+.navbar_li {
+  float: left;
+  color: #999999;
+  transition: all 0.1s ease-out;
+}
+/* line 36, ../sass/_nav.scss */
+.navbar_li:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(0.9);
+  font-weight: bold;
+}
+
+/* line 44, ../sass/_nav.scss */
+.navbar_li_a {
+  display: block;
+  color: #999999;
+  font-size: 16px;
+  padding: 3px 10px;
+}
+/* line 51, ../sass/_nav.scss */
+.navbar_li_a > h2 {
+  padding-bottom: 8px;
+  color: #666666;
+  font-size: 1.3em;
+}
+/* line 57, ../sass/_nav.scss */
+.navbar_li_a > p {
+  font-size: 0.9em;
+}
+
+/* line 62, ../sass/_nav.scss */
+#sub-logo {
+  position: absolute;
+  top: -5px;
+  height: 86px;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+/* line 69, ../sass/_nav.scss */
+#sub-logo:hover {
+  transform: scale(0.9);
+}
+
+/* line 75, ../sass/_nav.scss */
+.nav-small-icon {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+/* line 81, ../sass/_nav.scss */
+.nav-small-icon > .nav-small-rect {
+  width: 40px;
+  height: 7px;
+  margin-top: 5px;
+  border-radius: 10px;
+  background-color: #999999;
+}
+
+/* line 90, ../sass/_nav.scss */
+.nav-small-bar {
+  display: none;
+  margin: 20px 20px 0px 20px;
+}
+
+/* line 95, ../sass/_nav.scss */
+.back-black {
+  width: 100%;
+  height: 150%;
+  display: none;
+  top: -50%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+
+/********/
+@media screen and (max-width: 1090px) {
+  /* line 109, ../sass/_nav.scss */
+  #sub-logo {
+    top: -9px;
+  }
+}
+@media screen and (max-width: 940px) {
+  /* line 116, ../sass/_nav.scss */
+  .navbar {
+    height: -webkit-calc(2% + 36px);
+    height: -moz-calc(2% + 36px);
+    height: calc(2% + 36px);
+    width: 8%;
+    padding: 0px 5px 5px 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    border-bottom-left-radius: 15px;
+  }
+  /* line 129, ../sass/_nav.scss */
+  .navbar > ul {
+    display: none;
+  }
+  /* line 133, ../sass/_nav.scss */
+  .navbar:hover {
+    box-shadow: none;
+  }
+
+  /* line 138, ../sass/_nav.scss */
+  .nav-small-icon {
+    display: block;
+  }
+
+  /* line 142, ../sass/_nav.scss */
+  #sub-logo {
+    display: none;
+  }
+
+  /* line 146, ../sass/_nav.scss */
+  .navbar_li {
+    float: none;
+    list-style: none;
+  }
+  /* line 149, ../sass/_nav.scss */
+  .navbar_li > .navbar_li_a {
+    font-size: 25px;
+    padding: 15px 10px;
+  }
+
+  /* line 156, ../sass/_nav.scss */
+  .nav-small-show {
+    width: auto;
+    height: 100%;
+    border-top-left-radius: 10px;
+  }
+  /* line 161, ../sass/_nav.scss */
+  .nav-small-show:hover {
+    box-shadow: -10px 0px 15px 2px;
+  }
+}
+@media screen and (max-width: 680px) {
+  /* line 168, ../sass/_nav.scss */
+  .nav-small-icon {
+    right: 9px;
+  }
+}
+@media screen and (max-width: 500px) {
+  /* line 174, ../sass/_nav.scss */
+  .navbar {
+    width: 10%;
+  }
+
+  /* line 179, ../sass/_nav.scss */
+  .nav-small-show {
+    width: auto;
+  }
+}
 /* line 6, ../sass/knowledge.scss */
 body {
   background-color: #ceeae1;
@@ -459,19 +576,24 @@ body {
   box-shadow: 0px 0px 1px 1px black;
 }
 
-@media screen and (max-width: 1030px) {
-  /* line 335, ../sass/knowledge.scss */
+@media screen and (max-width: 1090px) {
+  /* line 334, ../sass/knowledge.scss */
+  .title-bar {
+    margin-top: 10%;
+  }
+
+  /* line 338, ../sass/knowledge.scss */
   .section2-bot > .section2-bot-subText {
     width: 80%;
   }
 }
-@media screen and (max-width: 930px) {
-  /* line 342, ../sass/knowledge.scss */
+@media screen and (max-width: 940px) {
+  /* line 345, ../sass/knowledge.scss */
   .whats-dengue-text {
     width: 84%;
   }
 
-  /* line 346, ../sass/knowledge.scss */
+  /* line 349, ../sass/knowledge.scss */
   .how-can-do {
     width: 100%;
     top: 0px;
@@ -479,7 +601,7 @@ body {
   }
 }
 @media screen and (max-width: 750px) {
-  /* line 357, ../sass/knowledge.scss */
+  /* line 360, ../sass/knowledge.scss */
   .section-video > .mosquito-video {
     justify-content: center;
   }
