@@ -1,3 +1,4 @@
+var toggle = 0;
 var num = 9 ;
 
 $(document).scroll(function(){  
@@ -21,6 +22,13 @@ $('.nav-small-icon').click(function(){
 	$('.back-black').toggleClass("display-block");
 	$('.nav-small-bar').toggleClass("display-block");
 	$('.nav-small-icon').toggleClass("nav-small-icon-show");
+
+	if (toggle == 1){
+		$('#bar1').css("transform","skew")
+	}
+	else {
+
+	}
 })
 
 // /////////////////

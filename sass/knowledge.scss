@@ -1,46 +1,10 @@
 @import 'reset';
 @import 'nav';
-@import 'color';
-@import 'module';
+@import 'footer';
+@import 'mainTitleBox';
 
 body {
 	background-color:$green-color;
-}
-
-$fontSize-line-height:23px;
-$sub-font-size:15px;
-$font-size:18px;
-$font-large-size:21px ;
-$font-dlarge-size:25px ;
-
-$title-font:42px;
-$subTitle-font:38px;
-$mainTitleLeft: 8% ;
-
-.section {
-	@extend %RWDscreen ;
-}
-
-// //////////////
-// font-transition
-// //////////////
-.font-bold{
-	font-weight:bold ;
-}
-
-.font-sub-to-big{
-	@extend .font-bold ;
-	font-size:$font-size;
-}
-
-.font-normal-to-big{
-	@extend .font-bold ;
-	font-size:$font-large-size;
-}
-
-.font-big-to-dbig{
-	@extend .font-bold ;
-	font-size:$font-dlarge-size ;
 }
 
 // //////////////
@@ -144,37 +108,10 @@ $mainTitleLeft: 8% ;
 	transition: all 0.1s ease-in ;
 
 	&:hover {
-		background-color:black;
+		transform:scale(0.9);
 		cursor:pointer;
 	}
 }
-
-
-// //////////////
-// mainTitleBox
-// //////////////
-.mainTitleBox{
-	display:inline-flex ;
-	z-index:2 ;
-	align-items:center ;
-
-	padding-left:$mainTitleLeft ;
-	color: $blue-color ;
-	font-size:$title-font;
-
-	> .leftBar {
-		@include setSize(15px , 45px) ;
-		@extend %position_relative ;
-
-		background-color:$leftBar-color;
-		top:-5px;
-	}
-
-	> h1 {
-		padding-left:10px ;
-	}
-}
-
 
 // //////////////
 // section2
@@ -261,11 +198,18 @@ $mainTitleLeft: 8% ;
 	font-size:$font-size ;
 
 	> .section3-h-left{
-		width:60% ;
+		width:50% ;
 	}
 
 	> .section3-h-right{
-		width:40% ;
+		@extend %all_center ;
+		@extend %position_relative ;
+		top:-70px ;
+		width:50% ;
+
+		> img{
+			width:70% ;
+		}
 	}
 
 	p{
@@ -279,13 +223,14 @@ $mainTitleLeft: 8% ;
 // //////////////
 
 .section-breedingSource{
-	@include setSize(100%,70%);
+	width:100% ;
 
 	> #section-breedingSource-mainTitle{
-		margin:10% 0px 20px 0px;
+		margin:5% 0px 20px 0px;
 	}
 
 	> p{
+		line-height:$fontSize-line-height;
 		color:$li-color ;
 		padding:0px 5% 0px 10% ;
 	}
@@ -308,6 +253,7 @@ $mainTitleLeft: 8% ;
 
 	  width: 80%;
 	  padding: 50px 10%;
+
 	}
 
 }
@@ -352,6 +298,29 @@ $mainTitleLeft: 8% ;
 		margin:15% auto auto auto ;
 
 	}
+
+	.section3-horizon {
+		width:80% ;
+		display: flex ;
+		justify-content:center ;
+		flex-direction:column;
+		align-items:center ;
+
+		> .section3-h-left{
+			width:100% ;
+		}
+
+		> .section3-h-right{
+			width:60% ;
+			top:0px ;
+
+			> img{
+				width:100% ;
+			}
+		}
+
+	}
+
 }
 
 @media screen and (max-width: 750px) {
@@ -361,4 +330,41 @@ $mainTitleLeft: 8% ;
 			justify-content:center ;
 		}
 	}
+	.section3-horizon{
+		> .section3-h-right{
+			width:75% ;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.whats-dengue-text{
+		text-align:center ;
+
+		> .topic-title{
+			padding:20px 0px ;
+			display:block ;
+		}
+
+		p{
+			margin:auto ;
+			padding: 0px 0px 20px 0px ;
+		}
+	}
+
+	.how-can-do{
+		margin-top:22% ;
+	}
+
+	#whats-dengue-text-p1 {
+		display:none ;
+	}
+
+	#section2-bot-subText-p1{
+		@extend #whats-dengue-text-p1 ;
+	}
+
+	// .section3-left-text{
+	// 	@extend #whats-dengue-text-p1 ;
+	// }
 }

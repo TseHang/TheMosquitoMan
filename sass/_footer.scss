@@ -1,0 +1,38 @@
+.footer{
+	width: 100% ;
+	height: 14%;
+	position:relative ;
+	background-color:$blue-color ;
+
+	> p{
+		position:relative ;
+		margin-left:10%;
+		color:white ;
+		top:33% ;
+		font-size:$sub-font-size - 2px;
+	}
+
+	span {
+		font-size:$sub-font-size + 1px;
+	}
+
+	> li{
+		@include setSize(60px , 60px);
+		list-style:none ;
+		float: right;
+		position:relative;
+		top:6%;
+	}
+}
+
+#aboutUs{
+	margin-right:10px;
+	background:url("../src/img/footer/aboutUs.svg") no-repeat center;
+	background-size:100%;
+}
+
+#facebook{
+	margin-right:10%;
+	background:url("../src/img/footer/facebook.svg") no-repeat center;
+	background-size:115%;
+}

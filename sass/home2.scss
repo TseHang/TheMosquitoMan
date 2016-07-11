@@ -4,15 +4,6 @@
 $background-color:white;
 $logo-title-zindex:20;
 
-%RWDscreen{
-	width:100%;
-	height:100%;
-}
-
-%position_relative{
-	position:relative;
-}
-
 .wrap{
 	@extend %RWDscreen;
 	position:fixed;
@@ -469,10 +460,12 @@ $logo-title-zindex:20;
 	> .cloud-button_1{
 		top:25%;
 		left:-10%;
+		cursor:pointer ;
 	}
 
 	> .cloud-button_2{
 		left:20%;
+		cursor:pointer ;
 	}
 }
 

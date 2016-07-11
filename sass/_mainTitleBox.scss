@@ -1,0 +1,24 @@
+// //////////////
+// mainTitleBox
+// //////////////
+.mainTitleBox{
+	display:inline-flex ;
+	z-index:2 ;
+	align-items:center ;
+
+	padding-left:$mainTitleLeft ;
+	color: $blue-color ;
+	font-size:$title-font;
+
+	> .leftBar {
+		@include setSize(15px , 45px) ;
+		@extend %position_relative ;
+
+		background-color:$leftBar-color;
+		top:-5px;
+	}
+
+	> h1 {
+		padding-left:10px ;
+	}
+}
