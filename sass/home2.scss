@@ -581,7 +581,7 @@ $logo-title-zindex:20;
 
 
 // 直版
-@media screen and (max-height: 1025px) {
+@media screen and (max-width: 780px)and (max-height: 1025px) {
 	.mainTitle{
 		width:80%;
 		left:16%;

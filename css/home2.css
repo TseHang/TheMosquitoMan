@@ -1476,7 +1476,7 @@ table {
     top: 10%;
   }
 }
-@media screen and (max-height: 1025px) {
+@media screen and (max-width: 780px) and (max-height: 1025px) {
   /* line 585, ../sass/home2.scss */
   .mainTitle {
     width: 80%;
