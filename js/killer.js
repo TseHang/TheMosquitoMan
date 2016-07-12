@@ -96,7 +96,9 @@ $('.h-page-title').click(function(){
 })
 
 
-function setPageId(pageMode , toggle = 1){
+function setPageId(pageMode , toggle){
+
+	toggle = toggle || 1 ;
 
 	if (toggle == 1){
 		switch(pageMode) {
@@ -112,7 +114,6 @@ function setPageId(pageMode , toggle = 1){
 			default:
 				window.alert("Page-Box-toggle1 出錯囉！");
 		}
-		console.log(pageId);
 	}
 	else if (toggle == 2){
 		switch(pageMode) {
