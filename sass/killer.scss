@@ -185,9 +185,22 @@ body {
 		padding-left:20px ;
 
 		> li{
-			color:$li-color ;
 			margin-bottom:5px ;
 			font-size:$font-size;
+			font-weight:bold;
+			color:$li-color ;
+		}
+
+		> .ps{
+			color:$li-color ;
+			font-size:$font-size - 3px;
+			margin-top:20px ;
+			line-height:$font-size;
+		}
+
+		a{
+			color:rgba(89,35,35,0.8);
+			text-decoration:underline ;
 		}
 	}
 
@@ -281,8 +294,17 @@ body {
 	}
 
 	> .page-ul-list{
+		list-style-image:url("../src/img/killer/white-diamond.svg");
 		> li{
 			color:$bar-back1-color;
+		}
+
+		> .ps{
+			color:$bar-back1-color ;
+		}
+
+		a{
+			color:#d8d6c3 ;
 		}
 	}
 	p ,h1{
@@ -360,6 +382,10 @@ body {
 			display:flex;
 			flex-direction:column;
 		}
+
+		> .select-top-box{
+			display:none ;
+		}
 	}
 
 	.bar-page{
@@ -385,6 +411,14 @@ body {
 				margin-left:20px ;
 			}
 		}
+
+		> .page-title{
+			> h1{
+				width:95% ;
+				margin:10px auto 45px auto ;
+			}
+		}
+
 
 		&:hover{
 			height:60px;
@@ -423,6 +457,13 @@ body {
 }
 
 @media screen and (max-width: 540px){
+	.bar-page{
+		> .page-ul-list{
+			margin-left:5%;
+			width:85%;
+		}
+	}
+
 	.bar-close{
 		> .page-close-title{
 			text-align:center ;

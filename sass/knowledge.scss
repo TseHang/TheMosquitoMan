@@ -108,10 +108,21 @@ body {
 	transition: all 0.1s ease-in ;
 
 	&:hover {
+		@include animation(bling 0.8s ease-in-out 0s infinite alternate);
 		transform:scale(0.9);
 		cursor:pointer;
 	}
 }
+
+@include keyframes(bling) {
+	0% {
+		box-shadow: 0 0 5px 2px rgba(92, 95, 99, 0.7);
+	}
+	100% {
+		box-shadow: 0 0 11px  2px rgba(0,0,0,0.3) , 0 0 13px 5px $green-color;
+	}
+}
+
 
 // //////////////
 // section2
@@ -155,15 +166,25 @@ body {
 	color: $blue-color ;
 
 	> .section2-box{
-		width:25% ;
-		height:150px ;
-		margin:10px 0px ;
+		width:30% ;
+		height:90%;
+		margin:10px;
+		display:inline-flex ;
+		background-color:$blue-color ;
 	}
+}
+
+.mosquito-img{
+	position:relative ;
+	top:-32px ;
+	left:20px ;
+	margin-right:10% ;
+	width:50%;
 }
 
 .section2-bot-horizonContent{
 	width:55% ;
-	margin:10px 0px 20px 0px;
+	margin:10px 0px 20px 45px;
 	font-size:$font-size ;
 	line-height:$fontSize-line-height + 2px ;
 
@@ -236,6 +257,92 @@ body {
 	}
 }
 
+.section-breedingSource-div{
+	display:inline-flex ;
+	width:90% ;
+	margin:20px 5% ;
+
+	> .section-breedingSource-h{
+		width:50% ;
+		display:inline-flex ;
+		justify-content:space-around ;
+		flex-wrap:wrap ;
+		margin-right:2% ;
+	}
+
+	.section-breedingSource-box{
+		@include setSize(30% , 150px);
+		background-color: $bar-back2-color;
+		color:white;
+		text-align:center ;
+		margin:1% 0px ;
+		line-height:150px ;
+		font-weight:bold ;
+		font-size: $font-large-size ;
+
+		> p{
+			display:none ;
+		}
+
+		> .back-gray{
+			@include setSize(100%,100%);
+			opacity:0 ;
+			background-color:rgba(204,204,204,0.8);
+			transition: opacity 0.1s ease-in ;
+
+			&:hover{
+				opacity:1 ;
+			}	
+		}
+	}
+}
+
+#bottle{
+	background: url("../src/img/knowledge/bottle.png") no-repeat center;
+	background-size:contain ;
+}
+
+#tire{
+	background: url("../src/img/knowledge/tire.png") no-repeat center;
+	background-size:contain ;
+}
+#roof{
+	background: url("../src/img/knowledge/roof.png") no-repeat center;
+	background-size:contain ;
+}
+#bucket{
+	background: url("../src/img/knowledge/bucket.png") no-repeat center;
+	background-size:contain ;
+}
+#styrofoam{
+	background: url("../src/img/knowledge/styrofoam.png") no-repeat center;
+	background-size:contain ;
+}
+#vase{
+	background: url("../src/img/knowledge/vase.png") no-repeat center;
+	background-size:contain ;
+}
+
+#laundry{
+	background: url("../src/img/knowledge/laundry.png") no-repeat center;
+	background-size:contain ;
+}
+#drinking{
+	background: url("../src/img/knowledge/drinking.png") no-repeat center;
+	background-size:contain ;
+}
+#refrigerator{
+	background: url("../src/img/knowledge/refrigerator.png") no-repeat center;
+	background-size:contain ;
+}
+#toilet{
+	background: url("../src/img/knowledge/toilet.png") no-repeat center;
+	background-size:contain ;
+}
+
+
+// 
+// section-video
 .section-video {
   width:100% ;
   background-color: $yellow-color;
@@ -321,6 +428,42 @@ body {
 
 	}
 
+	.section2-bot-horizon{
+		display:flex ;
+		flex-direction:column;
+		align-items:center ;
+
+		> .section2-box{
+			width:80% ;
+			justify-content:space-around;
+			flex-wrap:wrap;
+			background-color:transparent ;
+
+		}
+	}
+
+	.mosquito-img{
+		top:0px ;
+		left:0px ;
+		margin:10px 0px ;
+		width:215px;
+	}
+	
+	.section2-bot-horizonContent{
+		width:80% ;
+		margin-left: 0px;
+	}
+
+	.section-breedingSource-div{
+		display:flex ;
+		flex-direction :column;
+		align-items:center ;
+
+		> .section-breedingSource-h{
+			width:90% ;
+			margin:20px 0px;
+		}
+	}
 }
 
 @media screen and (max-width: 750px) {

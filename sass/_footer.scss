@@ -36,3 +36,9 @@
 	background:url("../src/img/footer/facebook.svg") no-repeat center;
 	background-size:115%;
 }
+
+@media screen and (max-width: 940px) {
+	.footer{
+		display:none ;
+	}
+}

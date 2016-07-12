@@ -92,6 +92,21 @@ $nav-font-size:16px;
 .nav-small-bar{
 	display:none ;
 	margin:20px 20px 0px 20px ;
+
+	height:90% ;
+	overflow-y:scroll ;
+}
+
+.icon-h{
+	display:inline-flex ;
+	list-style:none ;
+	justify-content:space-around ;
+	width:100% ;
+	margin-top:20px ;
+	> .footer_icon{
+		@include setSize(60px , 61px);
+	}
+
 }
 
 .back-black{
@@ -102,6 +117,16 @@ $nav-font-size:16px;
 	position:fixed ;
 	background-color:rgba(0,0,0,0.8);
 	z-index:99 ;
+}
+
+#nav_aboutUs{
+	background:url("../src/img/footer/aboutUs_blue.svg") no-repeat center;
+	background-size:100%;
+}
+
+#nav_facebook{
+	background:url("../src/img/footer/facebook_blue.svg") no-repeat center;
+	background-size:105%;
 }
 
 
@@ -208,6 +233,13 @@ $nav-font-size:16px;
 		> .navbar_li_a{
 			font-size:18px ;
 		}
+	}
+
+	.icon-h{
+		> .footer_icon{
+			@include setSize(46px , 50px);
+		}
+
 	}
 
 }
