@@ -946,13 +946,13 @@ table {
 }
 /* line 252, ../sass/home2.scss */
 .mainTitle {
-  width: 45%;
-  left: 40%;
-  top: 23%;
+  width: 50%;
+  left: 34%;
+  top: 20%;
 }
 /* line 261, ../sass/home2.scss */
 .mainTitle > .logo-title {
-  width: 100%;
+  width: 102%;
   cursor: pointer;
   z-index: 20;
 }
@@ -965,9 +965,9 @@ table {
 /* line 271, ../sass/home2.scss */
 .mainTitle > .section1-text {
   position: absolute;
-  width: 80%;
-  bottom: 0%;
-  left: -24%;
+  width: 68%;
+  bottom: 10%;
+  left: -16%;
   z-index: 21;
 }
 
@@ -1104,11 +1104,11 @@ table {
 /* line 317, ../sass/home2.scss */
 #mosss {
   top: 11%;
-  left: -50%;
+  left: -100%;
   width: 34%;
 }
 
-/* line 327, ../sass/home2.scss */
+/* line 325, ../sass/home2.scss */
 #section2-text {
   top: 43%;
   left: -100%;
@@ -1116,27 +1116,27 @@ table {
   display: none;
 }
 
-/* line 334, ../sass/home2.scss */
+/* line 332, ../sass/home2.scss */
 #bottle {
   bottom: -100%;
   width: 70%;
   left: 5%;
 }
 
-/* line 340, ../sass/home2.scss */
+/* line 338, ../sass/home2.scss */
 #bottle-2 {
   width: 50%;
   bottom: -100%;
   left: 50%;
 }
 
-/* line 349, ../sass/home2.scss */
+/* line 347, ../sass/home2.scss */
 #tsunami {
   width: 100%;
   bottom: -100%;
 }
 
-/* line 354, ../sass/home2.scss */
+/* line 352, ../sass/home2.scss */
 #section3-text {
   top: 19%;
   left: 11%;
@@ -1144,18 +1144,18 @@ table {
   opacity: 0;
 }
 
-/* line 361, ../sass/home2.scss */
+/* line 359, ../sass/home2.scss */
 .bone {
   bottom: -100%;
   width: 80%;
 }
 
-/* line 366, ../sass/home2.scss */
+/* line 364, ../sass/home2.scss */
 #bone1 {
   left: 5%;
 }
 
-/* line 373, ../sass/home2.scss */
+/* line 371, ../sass/home2.scss */
 #theMosquitoMan {
   width: 5%;
   left: 50%;
@@ -1163,25 +1163,25 @@ table {
   opacity: 0;
 }
 
-/* line 380, ../sass/home2.scss */
+/* line 378, ../sass/home2.scss */
 .section4-text {
   width: 45%;
   bottom: 62%;
   left: 15%;
   opacity: 0;
 }
-/* line 390, ../sass/home2.scss */
+/* line 388, ../sass/home2.scss */
 .section4-text > #section4-text_1 {
   width: 100%;
 }
-/* line 394, ../sass/home2.scss */
+/* line 392, ../sass/home2.scss */
 .section4-text > #section4-text_2 {
   width: 60%;
   left: 50%;
   opacity: 0;
 }
 
-/* line 401, ../sass/home2.scss */
+/* line 399, ../sass/home2.scss */
 .cloud {
   left: 13%;
   width: 100%;
@@ -1193,7 +1193,7 @@ table {
   animation: cloud-move 300s linear infinite forwards;
 }
 
-/* line 412, ../sass/home2.scss */
+/* line 410, ../sass/home2.scss */
 .cloud-move {
   -moz-animation: cloud-move 300s linear forwards;
   -webkit-animation: cloud-move 300s linear forwards;
@@ -1224,61 +1224,61 @@ table {
     left: -80%;
   }
 }
-/* line 425, ../sass/home2.scss */
+/* line 423, ../sass/home2.scss */
 .cloud-col {
   display: flex;
   flex-direction: column;
   width: 50%;
   height: 100%;
 }
-/* line 430, ../sass/home2.scss */
+/* line 428, ../sass/home2.scss */
 .cloud-col > img {
   width: 40%;
 }
-/* line 437, ../sass/home2.scss */
+/* line 435, ../sass/home2.scss */
 .cloud-col > .cloud02 {
   left: -10%;
   top: -5%;
 }
-/* line 441, ../sass/home2.scss */
+/* line 439, ../sass/home2.scss */
 .cloud-col > .cloud03 {
   left: 30%;
 }
-/* line 445, ../sass/home2.scss */
+/* line 443, ../sass/home2.scss */
 .cloud-col > .cloud04 {
   top: 25%;
   left: -10%;
 }
-/* line 449, ../sass/home2.scss */
+/* line 447, ../sass/home2.scss */
 .cloud-col > .cloud05 {
   top: -7%;
   left: 30%;
 }
-/* line 453, ../sass/home2.scss */
+/* line 451, ../sass/home2.scss */
 .cloud-col > .cloud06 {
   left: 50%;
 }
-/* line 456, ../sass/home2.scss */
+/* line 454, ../sass/home2.scss */
 .cloud-col > .cloud07 {
   left: 20%;
 }
-/* line 460, ../sass/home2.scss */
+/* line 458, ../sass/home2.scss */
 .cloud-col > .cloud-button_1 {
   top: 25%;
   left: -10%;
   cursor: pointer;
 }
-/* line 466, ../sass/home2.scss */
+/* line 464, ../sass/home2.scss */
 .cloud-col > .cloud-button_2 {
   left: 20%;
   cursor: pointer;
 }
 
-/* line 472, ../sass/home2.scss */
+/* line 470, ../sass/home2.scss */
 .cloud-button {
   width: 40%;
 }
-/* line 476, ../sass/home2.scss */
+/* line 474, ../sass/home2.scss */
 .cloud-button > p {
   opacity: 0;
   color: #575555;
@@ -1291,20 +1291,20 @@ table {
   box-shadow: 0px 0px 7px 7px rgba(255, 235, 59, 0.1);
   cursor: pointer;
 }
-/* line 490, ../sass/home2.scss */
+/* line 488, ../sass/home2.scss */
 .cloud-button > #button-p_2 {
   top: 10px;
   left: 15%;
 }
 
-/* line 499, ../sass/home2.scss */
+/* line 497, ../sass/home2.scss */
 .man-run-container {
   bottom: 35%;
   left: -30%;
   display: none;
 }
 
-/* line 506, ../sass/home2.scss */
+/* line 504, ../sass/home2.scss */
 .man-run-container-animation {
   -moz-animation: run 8s linear infinite forwards;
   -webkit-animation: run 8s linear infinite forwards;
@@ -1315,6 +1315,7 @@ table {
   0% {
     left: -8%;
     bottom: 35%;
+    opacity: 1;
   }
   10% {
     bottom: 40%;
@@ -1325,12 +1326,16 @@ table {
     left: 20%;
   }
   55% {
-    left: 50%;
+    left: 60%;
     bottom: 22%;
+  }
+  68% {
+    opacity: 1;
   }
   70% {
     bottom: 28%;
     left: 65%;
+    opacity: 0;
   }
   80% {
     bottom: 7%;
@@ -1339,12 +1344,14 @@ table {
   100% {
     bottom: 5%;
     left: 150%;
+    opacity: 0;
   }
 }
 @-webkit-keyframes run {
   0% {
     left: -8%;
     bottom: 35%;
+    opacity: 1;
   }
   10% {
     bottom: 40%;
@@ -1355,12 +1362,16 @@ table {
     left: 20%;
   }
   55% {
-    left: 50%;
+    left: 60%;
     bottom: 22%;
+  }
+  68% {
+    opacity: 1;
   }
   70% {
     bottom: 28%;
     left: 65%;
+    opacity: 0;
   }
   80% {
     bottom: 7%;
@@ -1369,12 +1380,14 @@ table {
   100% {
     bottom: 5%;
     left: 150%;
+    opacity: 0;
   }
 }
 @keyframes run {
   0% {
     left: -8%;
     bottom: 35%;
+    opacity: 1;
   }
   10% {
     bottom: 40%;
@@ -1385,12 +1398,16 @@ table {
     left: 20%;
   }
   55% {
-    left: 50%;
+    left: 60%;
     bottom: 22%;
+  }
+  68% {
+    opacity: 1;
   }
   70% {
     bottom: 28%;
     left: 65%;
+    opacity: 0;
   }
   80% {
     bottom: 7%;
@@ -1399,9 +1416,10 @@ table {
   100% {
     bottom: 5%;
     left: 150%;
+    opacity: 0;
   }
 }
-/* line 541, ../sass/home2.scss */
+/* line 545, ../sass/home2.scss */
 .man-run {
   position: relative;
   background: url("../src/img/5-run-all.png") no-repeat right;
@@ -1437,24 +1455,105 @@ table {
   }
 }
 @media screen and (max-width: 900px) {
-  /* line 561, ../sass/home2.scss */
+  /* line 565, ../sass/home2.scss */
   #mosquito {
     top: 9%;
   }
 
-  /* line 564, ../sass/home2.scss */
+  /* line 568, ../sass/home2.scss */
   #logo-title {
     top: 18%;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 570, ../sass/home2.scss */
+  /* line 574, ../sass/home2.scss */
   #mosquito {
     top: 6%;
   }
 
-  /* line 573, ../sass/home2.scss */
+  /* line 577, ../sass/home2.scss */
   #logo-title {
     top: 10%;
+  }
+}
+@media screen and (max-height: 1025px) {
+  /* line 585, ../sass/home2.scss */
+  .mainTitle {
+    width: 80%;
+    left: 16%;
+    top: 30%;
+  }
+
+  /* line 590, ../sass/home2.scss */
+  #mosss {
+    width: 63%;
+  }
+
+  /* line 594, ../sass/home2.scss */
+  #section2-text {
+    width: 65%;
+    top: 55%;
+    left: 20%;
+  }
+
+  /* line 600, ../sass/home2.scss */
+  #theMosquitoMan {
+    width: 15%;
+  }
+
+  /* line 604, ../sass/home2.scss */
+  #bottle {
+    width: 90%;
+  }
+
+  /* line 607, ../sass/home2.scss */
+  #bottle-2 {
+    display: none;
+  }
+
+  /* line 611, ../sass/home2.scss */
+  #section3-text {
+    width: 73%;
+  }
+
+  /* line 614, ../sass/home2.scss */
+  .bone {
+    width: 95%;
+  }
+
+  /* line 618, ../sass/home2.scss */
+  .section4-text {
+    width: 62%;
+  }
+}
+@media screen and (max-width: 500px) and (max-height: 750px) {
+  /* line 624, ../sass/home2.scss */
+  .mainTitle {
+    width: 80%;
+  }
+
+  /* line 627, ../sass/home2.scss */
+  #section2-text {
+    width: 75%;
+  }
+
+  /* line 630, ../sass/home2.scss */
+  #section3-text {
+    width: 82%;
+  }
+
+  /* line 633, ../sass/home2.scss */
+  .section4-text {
+    width: 67%;
+  }
+
+  /* line 637, ../sass/home2.scss */
+  .cloud-button > p {
+    width: 150%;
+  }
+
+  /* line 642, ../sass/home2.scss */
+  #mosss {
+    width: 63%;
   }
 }

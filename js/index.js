@@ -111,6 +111,58 @@ $('.logo-title').click(function(){
 })
 
 
+// //////
+// nav 部分（為了不要讓他在滑下來時變白色，所以分開）
+// //////
+// //////////
+// 小icon
+// //////////
+$('.nav-small-icon').click(function(){
+  $('.navbar').toggleClass("nav-small-show");
+  $('.back-black').toggleClass("display-block");
+  $('.nav-small-bar').toggleClass("display-block");
+  $('.nav-small-icon').toggleClass("nav-small-icon-show");
+
+  if (toggle == 1){
+    $('#bar1').css("transform","skew")
+  }
+  else {
+
+  }
+})
+
+// /////////////////
+// Mosquito-Router!!
+$('.mosquito-knowledge').click(function(){
+  window.location.href = "main/knowledge.html";
+});
+
+$('.mosquito-killer').click(function(){
+  window.location.href = "main/killer.html";
+});
+
+$('.mosquito-realTime').click(function(){
+  window.location.href = "main/realTime.html";
+});
+
+$('.mosquito-content').click(function(){
+  window.location.href = "main/content.html";
+});
+
+$('.mosquito-interacting').click(function(){
+  window.location.href = "main/interacting.html";
+});
+
+$('.mosquito-qa').click(function(){
+  window.location.href = "main/qa.html";
+})
+
+$('#sub-logo').click(function(){
+  window.location.reload();
+})
+// 
+// ///////////////////////
+
 // $(document).ready(function(){
 // 	//img-logo
 // 	imgLogoShow();

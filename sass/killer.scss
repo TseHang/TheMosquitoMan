@@ -189,6 +189,7 @@ body {
 			font-size:$font-size;
 			font-weight:bold;
 			color:$li-color ;
+			line-height:$fontSize-line-height - 3px ;
 		}
 
 		> .ps{
@@ -392,6 +393,12 @@ body {
 		width:100% ;
 		padding:50px 0px ;
 		margin-top:25px ;
+
+		> .page-ul-list{
+			> li{
+				margin-bottom:10px ;
+			}
+		}
 	}
 
 	.bar-close{

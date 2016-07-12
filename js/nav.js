@@ -33,27 +33,27 @@ $('.nav-small-icon').click(function(){
 
 // /////////////////
 // Mosquito-Router!!
-$('#mosquito-knowledge').click(function(){
+$('.mosquito-knowledge').click(function(){
 	window.location.href = "knowledge.html";
 });
 
-$('#mosquito-killer').click(function(){
+$('.mosquito-killer').click(function(){
 	window.location.href = "killer.html";
 });
 
-$('#mosquito-realTime').click(function(){
+$('.mosquito-realTime').click(function(){
 	window.location.href = "realTime.html";
 });
 
-$('#mosquito-content').click(function(){
+$('.mosquito-content').click(function(){
 	window.location.href = "content.html";
 });
 
-$('#mosquito-interacting').click(function(){
+$('.mosquito-interacting').click(function(){
 	window.location.href = "interacting.html";
 });
 
-$('#mosquito-qa').click(function(){
+$('.mosquito-qa').click(function(){
 	window.location.href = "qa.html";
 })
 

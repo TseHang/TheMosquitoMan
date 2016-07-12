@@ -658,25 +658,26 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: #666666;
+  line-height: 20px;
 }
-/* line 194, ../sass/killer.scss */
+/* line 195, ../sass/killer.scss */
 .bar-page > .page-ul-list > .ps {
   color: #666666;
   font-size: 15px;
   margin-top: 20px;
   line-height: 18px;
 }
-/* line 201, ../sass/killer.scss */
+/* line 202, ../sass/killer.scss */
 .bar-page > .page-ul-list a {
   color: rgba(89, 35, 35, 0.8);
   text-decoration: underline;
 }
-/* line 207, ../sass/killer.scss */
+/* line 208, ../sass/killer.scss */
 .bar-page p {
   font-size: 12px;
   color: #999999;
 }
-/* line 212, ../sass/killer.scss */
+/* line 213, ../sass/killer.scss */
 .bar-page h1 {
   font-size: 45px;
   color: #666666;
@@ -684,7 +685,7 @@ body {
   margin: 10px 0px 45px 0px;
 }
 
-/* line 220, ../sass/killer.scss */
+/* line 221, ../sass/killer.scss */
 .bar-close {
   height: 340px;
   width: 24px;
@@ -693,183 +694,187 @@ body {
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
 }
-/* line 229, ../sass/killer.scss */
+/* line 230, ../sass/killer.scss */
 .bar-close > .page-close-title {
   text-align: left;
 }
-/* line 232, ../sass/killer.scss */
+/* line 233, ../sass/killer.scss */
 .bar-close > .page-close-title > h1 {
   font-size: 28px;
   margin: 0px;
 }
-/* line 237, ../sass/killer.scss */
+/* line 238, ../sass/killer.scss */
 .bar-close > .page-close-title .font-sub-to-big {
   opacity: 0;
   letter-spacing: 0px;
   transition: all 0.2s ease-out;
 }
-/* line 244, ../sass/killer.scss */
+/* line 245, ../sass/killer.scss */
 .bar-close > .page-title, .bar-close > .page-ul-list {
   display: none;
 }
-/* line 252, ../sass/killer.scss */
+/* line 253, ../sass/killer.scss */
 .bar-close:hover {
   background-color: #e6e6e6;
   padding: 0px 5px;
   height: 380px;
 }
-/* line 255, ../sass/killer.scss */
+/* line 256, ../sass/killer.scss */
 .bar-close:hover > .page-title, .bar-close:hover > .page-ul-list {
   opacity: 1;
 }
-/* line 259, ../sass/killer.scss */
+/* line 260, ../sass/killer.scss */
 .bar-close:hover > .page-close-title {
   text-align: center;
 }
-/* line 262, ../sass/killer.scss */
+/* line 263, ../sass/killer.scss */
 .bar-close:hover > .page-close-title > h1 {
   font-size: 38px;
   color: #666666;
 }
-/* line 267, ../sass/killer.scss */
+/* line 268, ../sass/killer.scss */
 .bar-close:hover > .page-close-title .font-sub-to-big {
   opacity: 1;
   margin: 0px;
   color: #666666;
 }
 
-/* line 278, ../sass/killer.scss */
+/* line 279, ../sass/killer.scss */
 .bar-open {
   align-self: stretch;
 }
-/* line 281, ../sass/killer.scss */
+/* line 282, ../sass/killer.scss */
 .bar-open > .page-close-title {
   display: none;
 }
 
-/* line 288, ../sass/killer.scss */
+/* line 289, ../sass/killer.scss */
 .bar-color-reverse > .page-close-title > h1 {
   color: #cccccc;
 }
-/* line 291, ../sass/killer.scss */
+/* line 292, ../sass/killer.scss */
 .bar-color-reverse > .page-close-title .font-sub-to-big {
   color: #e6e6e6;
 }
-/* line 296, ../sass/killer.scss */
+/* line 297, ../sass/killer.scss */
 .bar-color-reverse > .page-ul-list {
   list-style-image: url("../src/img/killer/white-diamond.svg");
 }
-/* line 298, ../sass/killer.scss */
+/* line 299, ../sass/killer.scss */
 .bar-color-reverse > .page-ul-list > li {
   color: #e6e6e6;
 }
-/* line 302, ../sass/killer.scss */
+/* line 303, ../sass/killer.scss */
 .bar-color-reverse > .page-ul-list > .ps {
   color: #e6e6e6;
 }
-/* line 306, ../sass/killer.scss */
+/* line 307, ../sass/killer.scss */
 .bar-color-reverse > .page-ul-list a {
   color: #d8d6c3;
 }
-/* line 310, ../sass/killer.scss */
+/* line 311, ../sass/killer.scss */
 .bar-color-reverse p, .bar-color-reverse h1 {
   color: #e6e6e6;
 }
 
-/* line 315, ../sass/killer.scss */
+/* line 316, ../sass/killer.scss */
 .color-back1 {
   color: #fbf5f5  !important;
 }
 
-/* line 319, ../sass/killer.scss */
+/* line 320, ../sass/killer.scss */
 .box-bar1 {
   background-color: #666666;
 }
 
-/* line 322, ../sass/killer.scss */
+/* line 323, ../sass/killer.scss */
 .box-bar2 {
   background-color: #808080;
 }
 
-/* line 325, ../sass/killer.scss */
+/* line 326, ../sass/killer.scss */
 .box-bar3 {
   background-color: #b3b3b3;
 }
 
-/* line 328, ../sass/killer.scss */
+/* line 329, ../sass/killer.scss */
 .box-bar4 {
   background-color: #cccccc;
 }
 
-/* line 331, ../sass/killer.scss */
+/* line 332, ../sass/killer.scss */
 .box-bar5 {
   background-color: #e6e6e6;
 }
 
-/* line 334, ../sass/killer.scss */
+/* line 335, ../sass/killer.scss */
 .box-bar6 {
   background-color: #cccccc;
 }
 
-/* line 337, ../sass/killer.scss */
+/* line 338, ../sass/killer.scss */
 .box-bar7 {
   background-color: #b3b3b3;
 }
 
-/* line 340, ../sass/killer.scss */
+/* line 341, ../sass/killer.scss */
 .box-bar8 {
   background-color: #808080;
 }
 
-/* line 343, ../sass/killer.scss */
+/* line 344, ../sass/killer.scss */
 .box-bar9 {
   background-color: #666666;
 }
 
 @media screen and (min-width: 1380px) {
-  /* line 353, ../sass/killer.scss */
+  /* line 354, ../sass/killer.scss */
   .bar-page > .page-ul-list {
     margin-left: 18%;
     width: 60%;
   }
 }
 @media screen and (max-width: 1090px) {
-  /* line 363, ../sass/killer.scss */
+  /* line 364, ../sass/killer.scss */
   .bar-page > .page-ul-list {
     margin-left: 10%;
     width: 80%;
   }
 }
 @media screen and (max-width: 940px) {
-  /* line 370, ../sass/killer.scss */
+  /* line 371, ../sass/killer.scss */
   .select-page {
     display: flex;
     flex-direction: column;
   }
-  /* line 374, ../sass/killer.scss */
+  /* line 375, ../sass/killer.scss */
   .select-page .page-box {
     width: 80%;
     margin-bottom: 48px;
   }
 
-  /* line 381, ../sass/killer.scss */
+  /* line 382, ../sass/killer.scss */
   .page > ul {
     display: flex;
     flex-direction: column;
   }
-  /* line 386, ../sass/killer.scss */
+  /* line 387, ../sass/killer.scss */
   .page > .select-top-box {
     display: none;
   }
 
-  /* line 391, ../sass/killer.scss */
+  /* line 392, ../sass/killer.scss */
   .bar-page {
     width: 100%;
     padding: 50px 0px;
     margin-top: 25px;
   }
+  /* line 398, ../sass/killer.scss */
+  .bar-page > .page-ul-list > li {
+    margin-bottom: 10px;
+  }
 
-  /* line 397, ../sass/killer.scss */
+  /* line 404, ../sass/killer.scss */
   .bar-close {
     margin-top: 25px;
     padding: 0px;
@@ -878,69 +883,69 @@ body {
     -webkit-writing-mode: horizontal-tb;
     writing-mode: horizontal-tb;
   }
-  /* line 407, ../sass/killer.scss */
+  /* line 414, ../sass/killer.scss */
   .bar-close > .page-close-title {
     margin: 10px 20%;
   }
-  /* line 409, ../sass/killer.scss */
+  /* line 416, ../sass/killer.scss */
   .bar-close > .page-close-title .font-sub-to-big {
     opacity: 1;
     margin-left: 20px;
   }
-  /* line 416, ../sass/killer.scss */
+  /* line 423, ../sass/killer.scss */
   .bar-close > .page-title > h1, .bar-close > .page-ul-list > h1 {
     width: 95%;
     margin: 10px auto 45px auto;
   }
-  /* line 423, ../sass/killer.scss */
+  /* line 430, ../sass/killer.scss */
   .bar-close:hover {
     height: 60px;
     padding: 0px;
   }
-  /* line 427, ../sass/killer.scss */
+  /* line 434, ../sass/killer.scss */
   .bar-close:hover > .page-close-title {
     text-align: left;
     margin: 10px 20%;
   }
-  /* line 430, ../sass/killer.scss */
+  /* line 437, ../sass/killer.scss */
   .bar-close:hover > .page-close-title .font-sub-to-big {
     margin: 0px 0px 0px 20px;
   }
 }
 @media screen and (max-width: 730px) {
-  /* line 440, ../sass/killer.scss */
+  /* line 447, ../sass/killer.scss */
   .bar-close > .page-close-title {
     margin: 10px 10%;
   }
-  /* line 442, ../sass/killer.scss */
+  /* line 449, ../sass/killer.scss */
   .bar-close > .page-close-title .font-sub-to-big {
     margin-left: 10px;
   }
-  /* line 449, ../sass/killer.scss */
+  /* line 456, ../sass/killer.scss */
   .bar-close:hover > .page-close-title {
     margin: 10px 10%;
   }
-  /* line 451, ../sass/killer.scss */
+  /* line 458, ../sass/killer.scss */
   .bar-close:hover > .page-close-title .font-sub-to-big {
     margin-left: 10px;
   }
 }
 @media screen and (max-width: 540px) {
-  /* line 461, ../sass/killer.scss */
+  /* line 468, ../sass/killer.scss */
   .bar-page > .page-ul-list {
     margin-left: 5%;
     width: 85%;
   }
 
-  /* line 468, ../sass/killer.scss */
+  /* line 475, ../sass/killer.scss */
   .bar-close > .page-close-title {
     text-align: center;
   }
-  /* line 470, ../sass/killer.scss */
+  /* line 477, ../sass/killer.scss */
   .bar-close > .page-close-title .font-sub-to-big {
     display: none;
   }
-  /* line 477, ../sass/killer.scss */
+  /* line 484, ../sass/killer.scss */
   .bar-close:hover > .page-close-title {
     text-align: center;
   }
