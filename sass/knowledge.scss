@@ -91,6 +91,53 @@ body {
 	}
 }
 
+#rect1{
+	@include animation(twinkling 4s steps(4) 0s infinite );
+}
+
+#rect2{
+	@include animation(twinkling 4s steps(4) 0.25s infinite );	
+}
+
+#rect3{
+	@include animation(twinkling 4s steps(4) 0.5s infinite );	
+}
+
+#rect4{
+	@include animation(twinkling 4s steps(4) 0.75s infinite );	
+}
+
+#rect5{
+	@include animation(twinkling 4s steps(4) 1s infinite );	
+}
+
+#rect6{
+	@include animation(twinkling 4s steps(4) 1.25s infinite );	
+}
+
+#rect7{
+	@include animation(twinkling 4s steps(4) 1.5s infinite );	
+}
+
+#triangle8{
+	@include animation(twinkling 4s steps(4) 1.75s infinite);		
+}
+
+@include keyframes(twinkling) {
+	0%{
+		opacity:1;
+	}
+	25%{
+		opacity:0.2;
+	}
+	50%{
+		opacity:1;
+	}
+	100%{
+		opacity:1;
+	}
+}
+
 
 #button_killMosquito{
 	@include setSize(70% , 65px);
@@ -131,6 +178,7 @@ body {
 .section2-top{
 	width:100%;
 	background-color:$yellow-color ;
+	@extend %position_relative ;
 
 	> #section2-mainTitle{
 		margin-top:10%;
@@ -139,6 +187,47 @@ body {
 		bottom:-20px;
 	}
 }
+
+.man-run{
+	background: url('../src/img/5-run-all.png') no-repeat right;
+	width:214px;
+	height:91px;
+
+	@include animation(man-run 0.5s steps(9) infinite);
+}
+@include keyframes(man-run){
+	from{
+		background-position-x: 0px;
+	}
+	to{
+		background-position-x: -1926px;
+	}
+}
+
+.man-run-container-animation{
+	bottom:0px;
+	left:50%;
+	position:absolute;
+
+	@include animation(run 8s linear infinite);
+}
+@include keyframes(run){
+	from{
+		opacity:1;
+		left:30%;
+	}
+	40%{
+		opacity:1;
+	}
+	80%{
+		opacity:0;
+		left:100%;
+	}
+	100%{
+		opacity:0;
+	}
+}
+
 
 .section2-bot{
 	display:flex ;
@@ -174,12 +263,17 @@ body {
 	}
 }
 
-.mosquito-img{
-	position:relative ;
-	top:-32px ;
-	left:20px ;
-	margin-right:10% ;
+.box-mosquito{
 	width:50%;
+	position:relative ;
+	top:-20px ;
+	left:20px ;
+	text-align:center ;
+
+	> p{
+		color:white ;
+		margin-top:8px ;
+	}
 }
 
 .section2-bot-horizonContent{
@@ -202,6 +296,7 @@ body {
 	width:55%;
 	margin:14% 0px 0px 10% ;
 	border-bottom:4px solid $yellow-color ;
+	@extend %position_relative;
 }
 
 #section3-mainTitle{
@@ -442,11 +537,16 @@ body {
 		}
 	}
 
-	.mosquito-img{
+	.box-mosquito{
 		top:0px ;
 		left:0px ;
 		margin:10px 0px ;
 		width:215px;
+		text-align:center;
+
+		> p {
+			color: $blue-color;
+		}
 	}
 	
 	.section2-bot-horizonContent{

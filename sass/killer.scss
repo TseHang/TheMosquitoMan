@@ -33,11 +33,18 @@ body {
 // //////////////
 // intro-killer
 // //////////////
+
+.section1-h{
+	display:inline-flex ;
+	margin-top:7%;
+	width:100% ;
+	background-color: $yellow-color ;
+}
+
 .intro-killer{
 	@extend %all_center ;
-	margin-top:8% ;
+	width:60%;
 	color:$blue-color ;
-	background-color: $yellow-color ;
 
 
 	> .intro-killer-content{
@@ -53,6 +60,105 @@ body {
 		font-size:$font-size ;
 		padding: 15px 0px 25px 20px ;
 		line-height:$font-large-size + 7px ;
+	}
+}
+.svgYa{
+	width:45px;
+	transform:rotateZ(-90deg);
+	position:absolute ;
+	bottom:0px ;
+	left:-60px;
+
+	> rect , polygon{
+		fill:$blue-color ;
+	}
+}
+
+.button{
+	width:40%;
+	@extend %position_relative;
+}
+
+#rect1{
+	@include animation(twinkling 4s steps(4) 0s infinite );
+}
+
+#rect2{
+	@include animation(twinkling 4s steps(4) 0.25s infinite );	
+}
+
+#rect3{
+	@include animation(twinkling 4s steps(4) 0.5s infinite );	
+}
+
+#rect4{
+	@include animation(twinkling 4s steps(4) 0.75s infinite );	
+}
+
+#rect5{
+	@include animation(twinkling 4s steps(4) 1s infinite );	
+}
+
+#rect6{
+	@include animation(twinkling 4s steps(4) 1.25s infinite );	
+}
+
+#rect7{
+	@include animation(twinkling 4s steps(4) 1.5s infinite );	
+}
+
+#triangle8{
+	@include animation(twinkling 4s steps(4) 1.75s infinite);		
+}
+
+@include keyframes(twinkling) {
+	0%{
+		opacity:1;
+	}
+	25%{
+		opacity:0.2;
+	}
+	50%{
+		opacity:1;
+	}
+	100%{
+		opacity:1;
+	}
+}
+
+
+#button_knowledge{
+	@include setSize(50% , 65px);
+	@extend %all_center ;
+
+	position:absolute ;
+	bottom:45px;
+	left:70px;
+	
+	margin:auto;
+
+	background-color:$red-color;	
+	border-radius:15px;
+	box-shadow:5px 5px 8px 0px rgba(0,0,0,0.8) ;
+	font-weight:bold;
+	font-size:$subTitle-font - 5px;
+	color:$yellow-color ;
+
+	transition: all 0.1s ease-in ;
+
+	&:hover {
+		@include animation(bling 0.8s ease-in-out 0s infinite alternate);
+		transform:scale(0.9);
+		cursor:pointer;
+	}
+}
+
+@include keyframes(bling) {
+	0% {
+		box-shadow: 0 0 5px 2px rgba(92, 95, 99, 0.7);
+	}
+	100% {
+		box-shadow: 0 0 11px  2px rgba(0,0,0,0.3) , 0 0 13px 5px $green-color;
 	}
 }
 

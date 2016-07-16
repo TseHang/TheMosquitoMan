@@ -139,7 +139,7 @@ table {
 }
 
 /* line 6, ../sass/_module.scss */
-.mainTitleBox > .leftBar, .whats-dengue-text, .how-can-do, .svgYa, .section2-top > #section2-mainTitle, .section3-horizon, .section3-horizon > .section3-h-right {
+.mainTitleBox > .leftBar, .whats-dengue-text, .how-can-do, .svgYa, .section2-top, .section2-top > #section2-mainTitle, .section3-top, .section3-horizon, .section3-horizon > .section3-h-right {
   position: relative;
 }
 
@@ -551,7 +551,105 @@ body {
   margin-top: 2px;
 }
 
-/* line 95, ../sass/knowledge.scss */
+/* line 94, ../sass/knowledge.scss */
+#rect1 {
+  -moz-animation: twinkling 4s steps(4) 0s infinite;
+  -webkit-animation: twinkling 4s steps(4) 0s infinite;
+  animation: twinkling 4s steps(4) 0s infinite;
+}
+
+/* line 98, ../sass/knowledge.scss */
+#rect2 {
+  -moz-animation: twinkling 4s steps(4) 0.25s infinite;
+  -webkit-animation: twinkling 4s steps(4) 0.25s infinite;
+  animation: twinkling 4s steps(4) 0.25s infinite;
+}
+
+/* line 102, ../sass/knowledge.scss */
+#rect3 {
+  -moz-animation: twinkling 4s steps(4) 0.5s infinite;
+  -webkit-animation: twinkling 4s steps(4) 0.5s infinite;
+  animation: twinkling 4s steps(4) 0.5s infinite;
+}
+
+/* line 106, ../sass/knowledge.scss */
+#rect4 {
+  -moz-animation: twinkling 4s steps(4) 0.75s infinite;
+  -webkit-animation: twinkling 4s steps(4) 0.75s infinite;
+  animation: twinkling 4s steps(4) 0.75s infinite;
+}
+
+/* line 110, ../sass/knowledge.scss */
+#rect5 {
+  -moz-animation: twinkling 4s steps(4) 1s infinite;
+  -webkit-animation: twinkling 4s steps(4) 1s infinite;
+  animation: twinkling 4s steps(4) 1s infinite;
+}
+
+/* line 114, ../sass/knowledge.scss */
+#rect6 {
+  -moz-animation: twinkling 4s steps(4) 1.25s infinite;
+  -webkit-animation: twinkling 4s steps(4) 1.25s infinite;
+  animation: twinkling 4s steps(4) 1.25s infinite;
+}
+
+/* line 118, ../sass/knowledge.scss */
+#rect7 {
+  -moz-animation: twinkling 4s steps(4) 1.5s infinite;
+  -webkit-animation: twinkling 4s steps(4) 1.5s infinite;
+  animation: twinkling 4s steps(4) 1.5s infinite;
+}
+
+/* line 122, ../sass/knowledge.scss */
+#triangle8 {
+  -moz-animation: twinkling 4s steps(4) 1.75s infinite;
+  -webkit-animation: twinkling 4s steps(4) 1.75s infinite;
+  animation: twinkling 4s steps(4) 1.75s infinite;
+}
+
+@-moz-keyframes twinkling {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes twinkling {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes twinkling {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* line 142, ../sass/knowledge.scss */
 #button_killMosquito {
   width: 70%;
   height: 65px;
@@ -564,7 +662,7 @@ body {
   color: #fdf5db;
   transition: all 0.1s ease-in;
 }
-/* line 110, ../sass/knowledge.scss */
+/* line 157, ../sass/knowledge.scss */
 #button_killMosquito:hover {
   -moz-animation: bling 0.8s ease-in-out 0s infinite alternate;
   -webkit-animation: bling 0.8s ease-in-out 0s infinite alternate;
@@ -597,25 +695,117 @@ body {
     box-shadow: 0 0 11px 2px rgba(0, 0, 0, 0.3), 0 0 13px 5px #ceeae1;
   }
 }
-/* line 131, ../sass/knowledge.scss */
+/* line 178, ../sass/knowledge.scss */
 .section2-top {
   width: 100%;
   background-color: #fdf5db;
 }
-/* line 135, ../sass/knowledge.scss */
+/* line 183, ../sass/knowledge.scss */
 .section2-top > #section2-mainTitle {
   margin-top: 10%;
   bottom: -20px;
 }
 
-/* line 143, ../sass/knowledge.scss */
+/* line 191, ../sass/knowledge.scss */
+.man-run {
+  background: url("../src/img/5-run-all.png") no-repeat right;
+  width: 214px;
+  height: 91px;
+  -moz-animation: man-run 0.5s steps(9) infinite;
+  -webkit-animation: man-run 0.5s steps(9) infinite;
+  animation: man-run 0.5s steps(9) infinite;
+}
+
+@-moz-keyframes man-run {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
+@-webkit-keyframes man-run {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
+@keyframes man-run {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
+/* line 207, ../sass/knowledge.scss */
+.man-run-container-animation {
+  bottom: 0px;
+  left: 50%;
+  position: absolute;
+  -moz-animation: run 8s linear infinite;
+  -webkit-animation: run 8s linear infinite;
+  animation: run 8s linear infinite;
+}
+
+@-moz-keyframes run {
+  from {
+    opacity: 1;
+    left: 30%;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    left: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes run {
+  from {
+    opacity: 1;
+    left: 30%;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    left: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes run {
+  from {
+    opacity: 1;
+    left: 30%;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    left: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* line 232, ../sass/knowledge.scss */
 .section2-bot {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #ceeae1;
 }
-/* line 149, ../sass/knowledge.scss */
+/* line 238, ../sass/knowledge.scss */
 .section2-bot > .section2-bot-subText {
   width: 46%;
   padding: 50px 0px 60px 10%;
@@ -623,18 +813,18 @@ body {
   line-height: 23px;
   font-size: 15px;
 }
-/* line 157, ../sass/knowledge.scss */
+/* line 246, ../sass/knowledge.scss */
 .section2-bot > .section2-bot-subText > p {
   margin-bottom: 10px;
 }
 
-/* line 163, ../sass/knowledge.scss */
+/* line 252, ../sass/knowledge.scss */
 .section2-bot-horizon {
   display: inline-flex;
   justify-content: center;
   color: #292c77;
 }
-/* line 168, ../sass/knowledge.scss */
+/* line 257, ../sass/knowledge.scss */
 .section2-bot-horizon > .section2-box {
   width: 30%;
   height: 90%;
@@ -643,41 +833,46 @@ body {
   background-color: #292c77;
 }
 
-/* line 177, ../sass/knowledge.scss */
-.mosquito-img {
-  position: relative;
-  top: -32px;
-  left: 20px;
-  margin-right: 10%;
+/* line 266, ../sass/knowledge.scss */
+.box-mosquito {
   width: 50%;
+  position: relative;
+  top: -20px;
+  left: 20px;
+  text-align: center;
+}
+/* line 273, ../sass/knowledge.scss */
+.box-mosquito > p {
+  color: white;
+  margin-top: 8px;
 }
 
-/* line 185, ../sass/knowledge.scss */
+/* line 279, ../sass/knowledge.scss */
 .section2-bot-horizonContent {
   width: 55%;
   margin: 10px 0px 20px 45px;
   font-size: 18px;
   line-height: 25px;
 }
-/* line 191, ../sass/knowledge.scss */
+/* line 285, ../sass/knowledge.scss */
 .section2-bot-horizonContent > p {
   margin-bottom: 20px;
   letter-spacing: 2px;
 }
 
-/* line 201, ../sass/knowledge.scss */
+/* line 295, ../sass/knowledge.scss */
 .section3-top {
   width: 55%;
   margin: 14% 0px 0px 10%;
   border-bottom: 4px solid #fdf5db;
 }
 
-/* line 207, ../sass/knowledge.scss */
+/* line 302, ../sass/knowledge.scss */
 #section3-mainTitle {
   padding-top: 30px;
 }
 
-/* line 211, ../sass/knowledge.scss */
+/* line 306, ../sass/knowledge.scss */
 .section3-horizon {
   width: 90%;
   left: 10%;
@@ -686,47 +881,47 @@ body {
   color: #666666;
   font-size: 18px;
 }
-/* line 221, ../sass/knowledge.scss */
+/* line 316, ../sass/knowledge.scss */
 .section3-horizon > .section3-h-left {
   width: 50%;
 }
-/* line 225, ../sass/knowledge.scss */
+/* line 320, ../sass/knowledge.scss */
 .section3-horizon > .section3-h-right {
   top: -70px;
   width: 50%;
 }
-/* line 231, ../sass/knowledge.scss */
+/* line 326, ../sass/knowledge.scss */
 .section3-horizon > .section3-h-right > img {
   width: 70%;
 }
-/* line 236, ../sass/knowledge.scss */
+/* line 331, ../sass/knowledge.scss */
 .section3-horizon p {
   margin-bottom: 20px;
   line-height: 28px;
 }
 
-/* line 246, ../sass/knowledge.scss */
+/* line 341, ../sass/knowledge.scss */
 .section-breedingSource {
   width: 100%;
 }
-/* line 249, ../sass/knowledge.scss */
+/* line 344, ../sass/knowledge.scss */
 .section-breedingSource > #section-breedingSource-mainTitle {
   margin: 5% 0px 20px 0px;
 }
-/* line 253, ../sass/knowledge.scss */
+/* line 348, ../sass/knowledge.scss */
 .section-breedingSource > p {
   line-height: 23px;
   color: #666666;
   padding: 0px 5% 0px 10%;
 }
 
-/* line 260, ../sass/knowledge.scss */
+/* line 355, ../sass/knowledge.scss */
 .section-breedingSource-div {
   display: inline-flex;
   width: 90%;
   margin: 20px 5%;
 }
-/* line 265, ../sass/knowledge.scss */
+/* line 360, ../sass/knowledge.scss */
 .section-breedingSource-div > .section-breedingSource-h {
   width: 50%;
   display: inline-flex;
@@ -734,7 +929,7 @@ body {
   flex-wrap: wrap;
   margin-right: 2%;
 }
-/* line 273, ../sass/knowledge.scss */
+/* line 368, ../sass/knowledge.scss */
 .section-breedingSource-div .section-breedingSource-box {
   width: 30%;
   height: 150px;
@@ -746,11 +941,11 @@ body {
   font-weight: bold;
   font-size: 21px;
 }
-/* line 283, ../sass/knowledge.scss */
+/* line 378, ../sass/knowledge.scss */
 .section-breedingSource-div .section-breedingSource-box > p {
   display: none;
 }
-/* line 287, ../sass/knowledge.scss */
+/* line 382, ../sass/knowledge.scss */
 .section-breedingSource-div .section-breedingSource-box > .back-gray {
   width: 100%;
   height: 100%;
@@ -758,81 +953,81 @@ body {
   background-color: rgba(204, 204, 204, 0.8);
   transition: opacity 0.1s ease-in;
 }
-/* line 293, ../sass/knowledge.scss */
+/* line 388, ../sass/knowledge.scss */
 .section-breedingSource-div .section-breedingSource-box > .back-gray:hover {
   opacity: 1;
 }
 
-/* line 300, ../sass/knowledge.scss */
+/* line 395, ../sass/knowledge.scss */
 #bottle {
   background: url("../src/img/knowledge/bottle.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 305, ../sass/knowledge.scss */
+/* line 400, ../sass/knowledge.scss */
 #tire {
   background: url("../src/img/knowledge/tire.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 309, ../sass/knowledge.scss */
+/* line 404, ../sass/knowledge.scss */
 #roof {
   background: url("../src/img/knowledge/roof.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 313, ../sass/knowledge.scss */
+/* line 408, ../sass/knowledge.scss */
 #bucket {
   background: url("../src/img/knowledge/bucket.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 317, ../sass/knowledge.scss */
+/* line 412, ../sass/knowledge.scss */
 #styrofoam {
   background: url("../src/img/knowledge/styrofoam.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 321, ../sass/knowledge.scss */
+/* line 416, ../sass/knowledge.scss */
 #vase {
   background: url("../src/img/knowledge/vase.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 326, ../sass/knowledge.scss */
+/* line 421, ../sass/knowledge.scss */
 #laundry {
   background: url("../src/img/knowledge/laundry.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 330, ../sass/knowledge.scss */
+/* line 425, ../sass/knowledge.scss */
 #drinking {
   background: url("../src/img/knowledge/drinking.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 334, ../sass/knowledge.scss */
+/* line 429, ../sass/knowledge.scss */
 #refrigerator {
   background: url("../src/img/knowledge/refrigerator.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 338, ../sass/knowledge.scss */
+/* line 433, ../sass/knowledge.scss */
 #toilet {
   background: url("../src/img/knowledge/toilet.png") no-repeat center;
   background-size: contain;
 }
 
-/* line 346, ../sass/knowledge.scss */
+/* line 441, ../sass/knowledge.scss */
 .section-video {
   width: 100%;
   background-color: #fdf5db;
 }
-/* line 350, ../sass/knowledge.scss */
+/* line 445, ../sass/knowledge.scss */
 .section-video > #section-video-mainTitle {
   margin-top: 50px;
 }
-/* line 354, ../sass/knowledge.scss */
+/* line 449, ../sass/knowledge.scss */
 .section-video > .mosquito-video {
   background-color: #fdf5db;
   display: inline-flex;
@@ -842,14 +1037,14 @@ body {
   padding: 50px 10%;
 }
 
-/* line 369, ../sass/knowledge.scss */
+/* line 464, ../sass/knowledge.scss */
 .video > p {
   color: #666666;
   font-size: 15px;
   text-align: center;
   padding: 10px 0px 20px 0px;
 }
-/* line 376, ../sass/knowledge.scss */
+/* line 471, ../sass/knowledge.scss */
 .video > iframe {
   width: 300px;
   height: 200px;
@@ -857,30 +1052,30 @@ body {
 }
 
 @media screen and (max-width: 1090px) {
-  /* line 387, ../sass/knowledge.scss */
+  /* line 482, ../sass/knowledge.scss */
   .title-bar {
     margin-top: 10%;
   }
 
-  /* line 391, ../sass/knowledge.scss */
+  /* line 486, ../sass/knowledge.scss */
   .section2-bot > .section2-bot-subText {
     width: 80%;
   }
 }
 @media screen and (max-width: 940px) {
-  /* line 398, ../sass/knowledge.scss */
+  /* line 493, ../sass/knowledge.scss */
   .whats-dengue-text {
     width: 84%;
   }
 
-  /* line 402, ../sass/knowledge.scss */
+  /* line 497, ../sass/knowledge.scss */
   .how-can-do {
     width: 100%;
     top: 0px;
     margin: 15% auto auto auto;
   }
 
-  /* line 409, ../sass/knowledge.scss */
+  /* line 504, ../sass/knowledge.scss */
   .section3-horizon {
     width: 80%;
     display: flex;
@@ -888,27 +1083,27 @@ body {
     flex-direction: column;
     align-items: center;
   }
-  /* line 416, ../sass/knowledge.scss */
+  /* line 511, ../sass/knowledge.scss */
   .section3-horizon > .section3-h-left {
     width: 100%;
   }
-  /* line 420, ../sass/knowledge.scss */
+  /* line 515, ../sass/knowledge.scss */
   .section3-horizon > .section3-h-right {
     width: 60%;
     top: 0px;
   }
-  /* line 424, ../sass/knowledge.scss */
+  /* line 519, ../sass/knowledge.scss */
   .section3-horizon > .section3-h-right > img {
     width: 100%;
   }
 
-  /* line 431, ../sass/knowledge.scss */
+  /* line 526, ../sass/knowledge.scss */
   .section2-bot-horizon {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  /* line 436, ../sass/knowledge.scss */
+  /* line 531, ../sass/knowledge.scss */
   .section2-bot-horizon > .section2-box {
     width: 80%;
     justify-content: space-around;
@@ -916,65 +1111,70 @@ body {
     background-color: transparent;
   }
 
-  /* line 445, ../sass/knowledge.scss */
-  .mosquito-img {
+  /* line 540, ../sass/knowledge.scss */
+  .box-mosquito {
     top: 0px;
     left: 0px;
     margin: 10px 0px;
     width: 215px;
+    text-align: center;
+  }
+  /* line 547, ../sass/knowledge.scss */
+  .box-mosquito > p {
+    color: #292c77;
   }
 
-  /* line 452, ../sass/knowledge.scss */
+  /* line 552, ../sass/knowledge.scss */
   .section2-bot-horizonContent {
     width: 80%;
     margin-left: 0px;
   }
 
-  /* line 457, ../sass/knowledge.scss */
+  /* line 557, ../sass/knowledge.scss */
   .section-breedingSource-div {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  /* line 462, ../sass/knowledge.scss */
+  /* line 562, ../sass/knowledge.scss */
   .section-breedingSource-div > .section-breedingSource-h {
     width: 90%;
     margin: 20px 0px;
   }
 }
 @media screen and (max-width: 750px) {
-  /* line 472, ../sass/knowledge.scss */
+  /* line 572, ../sass/knowledge.scss */
   .section-video > .mosquito-video {
     justify-content: center;
   }
 
-  /* line 477, ../sass/knowledge.scss */
+  /* line 577, ../sass/knowledge.scss */
   .section3-horizon > .section3-h-right {
     width: 75%;
   }
 }
 @media screen and (max-width: 500px) {
-  /* line 484, ../sass/knowledge.scss */
+  /* line 584, ../sass/knowledge.scss */
   .whats-dengue-text {
     text-align: center;
   }
-  /* line 487, ../sass/knowledge.scss */
+  /* line 587, ../sass/knowledge.scss */
   .whats-dengue-text > .topic-title {
     padding: 20px 0px;
     display: block;
   }
-  /* line 492, ../sass/knowledge.scss */
+  /* line 592, ../sass/knowledge.scss */
   .whats-dengue-text p {
     margin: auto;
     padding: 0px 0px 20px 0px;
   }
 
-  /* line 498, ../sass/knowledge.scss */
+  /* line 598, ../sass/knowledge.scss */
   .how-can-do {
     margin-top: 22%;
   }
 
-  /* line 502, ../sass/knowledge.scss */
+  /* line 602, ../sass/knowledge.scss */
   #whats-dengue-text-p1, #section2-bot-subText-p1 {
     display: none;
   }
