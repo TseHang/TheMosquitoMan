@@ -1152,29 +1152,34 @@ body {
   .section3-horizon > .section3-h-right {
     width: 75%;
   }
+
+  /* line 582, ../sass/knowledge.scss */
+  .man-run-container-animation {
+    display: none;
+  }
 }
 @media screen and (max-width: 500px) {
-  /* line 584, ../sass/knowledge.scss */
+  /* line 588, ../sass/knowledge.scss */
   .whats-dengue-text {
     text-align: center;
   }
-  /* line 587, ../sass/knowledge.scss */
+  /* line 591, ../sass/knowledge.scss */
   .whats-dengue-text > .topic-title {
     padding: 20px 0px;
     display: block;
   }
-  /* line 592, ../sass/knowledge.scss */
+  /* line 596, ../sass/knowledge.scss */
   .whats-dengue-text p {
     margin: auto;
     padding: 0px 0px 20px 0px;
   }
 
-  /* line 598, ../sass/knowledge.scss */
+  /* line 602, ../sass/knowledge.scss */
   .how-can-do {
     margin-top: 22%;
   }
 
-  /* line 602, ../sass/knowledge.scss */
+  /* line 606, ../sass/knowledge.scss */
   #whats-dengue-text-p1, #section2-bot-subText-p1 {
     display: none;
   }
