@@ -827,7 +827,7 @@ body {
 /* line 257, ../sass/knowledge.scss */
 .section2-bot-horizon > .section2-box {
   width: 30%;
-  height: 90%;
+  height: auto;
   margin: 10px;
   display: inline-flex;
   background-color: #292c77;

@@ -1,0 +1,117 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+	background-color:$green-color;
+}
+
+.title-bar {
+  @include setSize(200px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+#contextTitle{
+	letter-spacing:10px ;
+	text-align:center ;
+	font-size:$subTitle-font - 5px;
+	margin:15px 0px ;
+}
+
+.context{
+	margin:20px 0px 60px 0px;
+}
+
+.line{
+	width:2px ;
+	height:190px ;
+	position:absolute ;
+	top:-39px ;
+	left:45px ;
+	@include rotateZ(50deg);
+	background-color:$content-blue ;
+}
+
+.content{
+	text-align: left ;
+	background-color:$yellow-color ;
+	width:73%;
+	// 加入小人後 width = 58%
+	margin:25px auto ;
+	position:relative;
+
+	padding:60px 20px 20px 75px;
+
+	> h2{
+		color: #0c68b1;
+		font-size:$font-dlarge-size ;
+		letter-spacing:5px ;
+		margin-bottom:20px ;
+	}
+}
+
+.content-inner{
+
+	> .content-p{
+		font-size:$font-size ;
+		width:100% ;
+		height:54px ;
+		overflow:hidden;
+		text-overflow: ellipsis;
+	}
+
+	> .content-note{
+		color: $sub-li-color ;
+		font-size:$font-size ;
+		margin:15px 0px 0px 20px ;
+	}
+}
+
+.read-more{
+	margin-top:20px ;
+	color: $content-blue;
+	cursor:pointer ;
+}
+
+// 
+// 
+// catagory 
+// 
+.catagory{
+	background-color:$yellow-color ;
+	width:15% ;
+	position:fixed ;
+	right:10% ;
+	top:220px;
+}
+
+#man{
+	width:30px ;
+}
+
+
+@media screen and (max-width: 800px) {
+	.line{
+		display:none ;
+	}
+
+	.content{
+		padding:40px ;
+	}
+}
+
+@media screen and (max-width: 500px) {
+
+	.content{
+		padding:20px ;
+	}
+}

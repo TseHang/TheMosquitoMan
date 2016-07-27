@@ -1,0 +1,131 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+	background-color:$green-color;
+}
+
+.title-bar {
+  @include setSize(230px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+#contextTitle{
+	letter-spacing:10px ;
+	text-align:center ;
+	font-size:$subTitle-font - 5px;
+	margin:15px 0px ;
+}
+
+.open-all{
+	font-size: $sub-font-size ;
+	letter-spacing:0px ;
+	cursor:pointer ;
+	border-radius:10px ;
+
+	&:hover{
+		box-shadow:0px 0px 10px 5px $yellow-color ;
+		background-color:$yellow-color ;
+	}
+}
+
+.context{
+	margin:20px 0px 40px 0px;
+	@include transform-style(preserve-3d);
+	@include perspective(1000px) ;
+}
+
+.question{
+	@include rotateX(-13deg);
+
+	text-align: left ;
+	background-color:$yellow-color ;
+	width:75%;
+	// 加入小人後 width = 58%
+	margin:20px auto 2px auto;
+
+	padding:20px 40px;
+
+	> h2{
+		@include rotateX(-8deg);
+		color: #0c68b1;
+		font-size:$font-dlarge-size ;
+		letter-spacing:5px ;
+		margin-bottom:20px ;
+	}
+}
+
+.questionE{
+	font-size:$font-dlarge-size + 10px ;
+}
+
+.open-answer{
+	color: $content-blue;
+	cursor:pointer ;
+}
+
+.answer-box{
+	background-color: $yellow-color ;
+	margin:auto ;
+	width:74% ;
+	padding:10px 40px;
+
+	@include rotateX(193deg);
+	height:0px ;
+	opacity:0 ;
+	transform-origin: top; 
+
+	transition:all 0.2s ease-in ;
+}
+
+.open{
+	height: 80px ;
+	opacity:1 ;
+	@include rotateX(3deg);
+}
+
+.answer{
+	font-size: $font-size ;
+}
+
+.back-yellow{
+	box-shadow:0px 0px 10px 5px $yellow-color ;
+	background-color:$yellow-color ;
+}
+
+// /////////////
+// 
+// /////////////
+@media screen and (max-width: 940px) {
+	.open-all{
+		display:none ;
+	}
+	.open-answer{
+		display:none ;
+	}
+
+	.answer-box{
+		height: auto ;
+		opacity:1 ;
+		@include rotateX(3deg);
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.question{
+		padding:20px ;
+	}
+	.answer-box{
+		padding:10px 20px;
+	}
+}

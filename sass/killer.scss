@@ -474,6 +474,31 @@ body {
 	}
 }
 @media screen and (max-width: 940px) {
+
+	.section1-h{
+		display:flex ;
+		flex-direction:column ;
+	}
+
+	.intro-killer{
+		width:100% ;
+	}
+
+	.button{
+		margin:10px 0px 20px 0px ;
+		width:100% ;
+	}
+
+	.svgYa {
+		display:none ;
+	}
+
+	#button_knowledge{
+		position:initial ;
+		margin:auto ;
+	}
+
+
 	.select-page{
 		display:flex ;
 		flex-direction:column ;
@@ -549,9 +574,16 @@ body {
 }
 
 @media screen and (max-width: 730px){
+	.section{
+		height:auto ;
+	}
 	.bar-close{
 		> .page-close-title{
 			margin:10px 10%;
+
+			> h1{
+				font-size:$subTitle-font - 18px;
+			}
 			.font-sub-to-big{
 				margin-left:10px ;
 			}
@@ -561,10 +593,20 @@ body {
 
 			> .page-close-title {
 				margin:10px 10%;
+				> h1{
+					font-size:$subTitle-font - 18px;
+				}
+				
 				.font-sub-to-big{
 					margin-left:10px ;
 				}
 			}
+		}
+	}
+
+	.bar-page{
+		h1 {
+			font-size:$subTitle-font ;
 		}
 	}
 }

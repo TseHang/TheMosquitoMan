@@ -46,7 +46,7 @@ $('.mosquito-realTime').click(function(){
 });
 
 $('.mosquito-content').click(function(){
-	window.location.href = "content.html";
+	window.location.href = "context.html";
 });
 
 $('.mosquito-interacting').click(function(){
