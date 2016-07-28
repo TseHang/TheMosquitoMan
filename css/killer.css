@@ -103,37 +103,42 @@ table {
 /********************
  reset OVER!
 *********************/
-/* line 32, ../sass/_color.scss */
+/* line 36, ../sass/_color.scss */
 .red {
   color: #F44336;
 }
 
-/* line 36, ../sass/_color.scss */
+/* line 40, ../sass/_color.scss */
 .yellow {
   color: #fdf5db;
 }
 
-/* line 40, ../sass/_color.scss */
+/* line 44, ../sass/_color.scss */
 .blue {
   color: #292c77;
 }
 
-/* line 61, ../sass/_color.scss */
+/* line 48, ../sass/_color.scss */
+.content-blue {
+  color: #0c68b1;
+}
+
+/* line 69, ../sass/_color.scss */
 .font-bold, .font-sub-to-big, .font-normal-to-big, .font-big-to-dbig {
   font-weight: bold;
 }
 
-/* line 65, ../sass/_color.scss */
+/* line 73, ../sass/_color.scss */
 .font-sub-to-big {
   font-size: 18px;
 }
 
-/* line 70, ../sass/_color.scss */
+/* line 78, ../sass/_color.scss */
 .font-normal-to-big {
   font-size: 21px;
 }
 
-/* line 75, ../sass/_color.scss */
+/* line 83, ../sass/_color.scss */
 .font-big-to-dbig {
   font-size: 25px;
 }
@@ -418,16 +423,17 @@ table {
   float: right;
   position: relative;
   top: 6%;
+  cursor: pointer;
 }
 
-/* line 28, ../sass/_footer.scss */
+/* line 30, ../sass/_footer.scss */
 #aboutUs {
   margin-right: 10px;
   background: url("../src/img/footer/aboutUs.svg") no-repeat center;
   background-size: 100%;
 }
 
-/* line 34, ../sass/_footer.scss */
+/* line 36, ../sass/_footer.scss */
 #facebook {
   margin-right: 10%;
   background: url("../src/img/footer/facebook.svg") no-repeat center;
@@ -435,7 +441,7 @@ table {
 }
 
 @media screen and (max-width: 940px) {
-  /* line 41, ../sass/_footer.scss */
+  /* line 43, ../sass/_footer.scss */
   .footer {
     display: none;
   }

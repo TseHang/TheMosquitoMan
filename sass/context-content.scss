@@ -1,0 +1,131 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+	background-color: rgba(206,234,225,0.8);
+
+}
+
+.title-bar {
+  @include setSize(200px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+.context{
+	text-align:center ;
+	margin:50px 0px ;
+}
+
+.line{
+	width:2px ;
+	height:190px ;
+	position:absolute ;
+	top:-39px ;
+	left:45px ;
+	@include rotateZ(50deg);
+	background-color:$content-blue ;
+}
+
+.content{
+	text-align:center ;
+	background-color:$yellow-color ;
+	width:73%;
+	// 加入小人後 width = 58%
+	margin:25px auto ;
+	position:relative;
+
+	padding:30px 40px;
+
+	> h2{
+		color: #0c68b1;
+		font-size:$font-dlarge-size ;
+		letter-spacing:5px ;
+
+	}
+}
+
+#img1{
+	width:50% ;
+	margin:20px 0px  ;
+}
+
+.inner-content{
+
+	> .inner-p{
+		font-size:$font-size;
+		width:70% ;
+		margin:15px auto ;
+		letter-spacing:3px ;
+		text-align: left;
+		line-height:$font-size + 10px ;
+	}
+
+	a {
+		color:$leftBar-color ;
+	}
+}
+
+.note{
+	width:70% ;
+	text-align: left ;
+	color: $li-color ;
+	font-size:$font-size ;
+	margin:30px auto ;
+	line-height:$font-size + 5px ;
+}
+
+.icon-box{
+	display: inline-flex ;
+	width:20% ;
+	justify-content:space-between ;
+
+	> img {
+		width:20% ;
+		cursor:pointer ;
+		transition: all 0.15s ease-in ;
+
+		&:hover{
+			opacity:0.5 ;
+			transform:scale(0.8);
+		}
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.line{
+		display:none ;
+	}
+
+	.content{
+		padding:30px ;
+	}
+
+	#img1{
+		width:80% ;
+	}
+
+	.icon-box{
+		width:40% ;
+	}
+}
+
+@media screen and (max-width: 500px) {
+
+	.content{
+		padding:20px ;
+	}
+
+	.icon-box{
+		width:60% ;
+	}
+}

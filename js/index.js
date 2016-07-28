@@ -88,7 +88,9 @@ $('.logo-title').click(function(){
             $('.mos3').toggleClass('mos-after-animation-3');
             $('.mos4').toggleClass('mos-after-animation-4');
             $('.section1-text').toggleClass('shake-crazy shake-constant shake-constant--hover');
-            $('.logo-title').toggleClass('logo-title-animation');
+
+            // 讓logo動
+            // $('.logo-title').toggleClass('logo-title-animation');
           });
         });
      });
@@ -97,8 +99,9 @@ $('.logo-title').click(function(){
     isShowMos = 1;
   }
   else {
+    // 讓logo動
+    // $('.logo-title').toggleClass('logo-title-animation');
     $('.mos-main').toggleClass('mosquito-container-animation-main');
-    $('.logo-title').toggleClass('logo-title-animation');
     $('.section1-text').toggleClass('shake-crazy shake-constant shake-constant--hover');
 
     for (i = 1 ; i < 5 ; i++){
@@ -146,7 +149,7 @@ $('.mosquito-realTime').click(function(){
 });
 
 $('.mosquito-content').click(function(){
-  window.location.href = "main/content.html";
+  window.location.href = "main/context.html";
 });
 
 $('.mosquito-interacting').click(function(){

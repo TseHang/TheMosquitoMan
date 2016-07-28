@@ -1,6 +1,6 @@
 var open_toggle = 0 ;
 
-$('.open-answer').click(function(){
+$('.context').click(function(){
 	id = this.id.split("q")[1] ;
 	console.log(id);
 	$('#a'+id).toggleClass("open");
