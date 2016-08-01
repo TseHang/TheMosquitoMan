@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lan="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- normalize.css -->
+  <link type="text/css" rel="stylesheet" href="../../src/normalize.css">
+
+  <title> 打磚塊 || The Mosquito Man </title>
+
+  <style>
+  	#myCanvas{
+  		border:2px solid #0095DD;
+  		display:none;
+  	}
+
+  	#guide{
+  		background-color: #0095DD ;
+  		display: flex ;
+  		justify-content: center ;
+  		align-items: center ;
+  		flex-direction: column ;
+  		position: relative ;
+
+  		width:480px ;
+  		height: 320px ;
+  	}
+
+  	button{
+  		width:50%;
+  		height:30%;
+  		border-radius: 20px ;
+  		background-color: white ;
+  		font-size: 25px ;
+			
+			cursor:pointer;
+  		transition: all 0.1s ease-in;
+  	}
+
+  	p{
+  		color:white ;
+  		font-weight:800;
+  	}
+
+  	button:hover{
+			transform: scale(0.9);
+
+			background-color: black ;
+			color:white;
+  	}
+  </style>
+</head>
+
+<body style= "overflow-x:hidden;">
+
+	<canvas id="myCanvas" width="480" height="320"></canvas>
+
+	<div id ="guide" >
+		<button id = "button"> start </button>
+		<p>用滑鼠或是左右鍵操控板塊ㄛ</p>
+	</div>
+
+</body>
+
+<!-- jquery -->
+<script src ="../../src/jquery-2.2.4.min.js"></script>
+<script src = "index.js"></script>
+
+</html>
