@@ -1,6 +1,4 @@
-var deviceWidth = $(window).width(),
-  deviceHeight = $(window).height(),
-  errorDistance = 40,
+var errorDistance = 40,
   //控制第一頁動畫開關
   isShowMos = 0 ;
 
@@ -58,13 +56,12 @@ var s = skrollr.init({
 });
 
 function navbarShow(){
-  $('.navbar').css("top","0px");
+  $('.navbar').css("transform","translateY(0px)");
 }
 function navbarHidden(){
-  $('.navbar').css("top","-76px");
+  $('.navbar').css("transform","translateY(-76px)");
 }
 
-// 
 //蚊子出來的動畫
 $('.logo-title').click(function(){
 
