@@ -4,6 +4,7 @@ var url = require('url');
 route = [
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/index.hbs",
@@ -11,6 +12,7 @@ route = [
   },
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/context.hbs",
@@ -18,6 +20,7 @@ route = [
   },
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/killer.hbs",
@@ -25,6 +28,7 @@ route = [
   },
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/realTime.hbs",
@@ -32,6 +36,7 @@ route = [
   },
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/knowledge.hbs",
@@ -39,6 +44,7 @@ route = [
   },
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/qa.hbs",
@@ -46,6 +52,7 @@ route = [
   },
   {
     data: {
+      path: './'
     },
     partials: './partials.js',
     layout:  "./layout/knowledge.hbs",
@@ -53,6 +60,7 @@ route = [
   },
   {
     data: {
+      path: '../'
     },
     partials: './partials.js',
     layout:  "./layout/content.hbs",
