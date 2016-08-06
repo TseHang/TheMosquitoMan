@@ -1,5 +1,8 @@
 @import 'reset';
 @import 'nav';
+@import 'vendor/shake/csshake-little.min';
+@import 'vendor/shake/csshake-crazy.min';
+@import 'vendor/shake/csshake-vertical.min';
 
 $background-color:white;
 $logo-title-zindex:20;
