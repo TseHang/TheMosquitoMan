@@ -52,6 +52,7 @@ $logo-title-zindex:20;
 }
 
 .mosquito-container-animation-main{
+  will-change: transform;
 	@include animation(mosquito-animation-main 2s linear infinite alternate) ;
 }
 @include keyframes(mosquito-animation-main){
@@ -404,11 +405,14 @@ $logo-title-zindex:20;
 	left:13%;
 	width:100%;
 	height:80%;
-	display:none;
+	display:flex;
 
 	opacity:0;
 
+	will-change: transform;
 	@include animation(cloud-move 300s linear infinite forwards);
+	-webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+	    animation-play-state: paused;
 }
 
 .cloud-move{
@@ -417,10 +421,12 @@ $logo-title-zindex:20;
 
 @include keyframes(cloud-move){
 	0%{
-		left:10%;
+		//left:10%;
+    @include transform(translateX(-10%));
 	}
 	100%{
-		left:-80%;
+    @include transform(translateX(-80%));
+		//left:-80%;
 	}
 }
 
@@ -501,8 +507,9 @@ $logo-title-zindex:20;
 .man-run-container{
 	bottom:35%;
 	left:-30%;
+	will-change: transform;
 
-	display:none;
+	display:block;
 }
 
 .man-run-container-animation{

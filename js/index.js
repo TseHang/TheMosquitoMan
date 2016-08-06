@@ -29,12 +29,12 @@ var s = skrollr.init({
 
     // 判斷雲出來的時機
     if (parseInt($('.background').css("left")) < 0){
-      $('.cloud').css("display","flex");
-      $('.man-run-container').css("display","block");
+      $('.cloud, .man-run-container').css('-webkit-animation-play-state', 'running')
+                .css('animation-play-state', 'running');
     }
     else{
-      $('.cloud').css("display","none");
-      $('.man-run-container').css("display","none");
+      $('.cloud, .man-run-container').css('-webkit-animation-play-state', 'paused')
+                .css('animation-play-state', 'paused');
     }
 
     // 讓bar不見
