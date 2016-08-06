@@ -55,7 +55,7 @@ route = [
       path: './'
     },
     partials: './partials.js',
-    layout:  "./layout/knowledge.hbs",
+    layout:  "./layout/interacting.hbs",
     filename: "./public/interacting.html"
   },
   {
