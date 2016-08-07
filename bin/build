@@ -21,7 +21,10 @@ doc.getInfo(function(err, info) {
   if (err) console.log(err);
 
   sheet = info.worksheets[0];
-  console.log('sheet 1: '+sheet.title+' '+sheet.rowCount+'x'+sheet.colCount);
+  sheet2 = info.worksheets[1];
+  console.log(sheet.title);
+  console.log(sheet2.title);
+
   sheet.getRows(function(err, rows) {
     if (err) console.log(err);
 
@@ -60,7 +63,19 @@ doc.getInfo(function(err, info) {
       filename: "./public/context.html"
     });
 
-    build(load, w);
+
+    sheet2.getRows(function(err, rows) {
+      pages.push({
+        data: {
+          path: './',
+          questions: rows
+        },
+        partials: './partials.js',
+        layout:  "./layout/qa.hbs",
+        filename: "./public/qa.html"
+      });
+      build(load, w);
+    });
   });
 });
 

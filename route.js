@@ -40,14 +40,6 @@ var route = [
         path: './'
       },
       partials: './partials.js',
-      layout:  "./layout/qa.hbs",
-      filename: "./public/qa.html"
-    },
-    {
-      data: {
-        path: './'
-      },
-      partials: './partials.js',
       layout:  "./layout/interacting.hbs",
       filename: "./public/interacting.html"
     }
