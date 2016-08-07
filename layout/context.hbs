@@ -26,68 +26,23 @@
 	<div class = "context">
 
 		<!-- 一個content是一個文章 -->
-
+    {{#each posts}}
 		<div class = "content">
 			<div class = "line"></div>
-			<h2>豪雨登革熱恐加溫？巡邏倒清十分鐘一起來</h2>
-			
-			<div class = "content-inner">
-				<!-- <img class = "content-img" src = "../src/img/context/1.jpg"> -->
-				<p class = "content-p">傳播， 被蚊子叮咬時才會將病毒傳播入人體，需要注意的是沒有帶有病毒的斑蚊，若叮到了得登革熱的病患，則會使蚊子帶入病毒進而叮咬更多人。
-				</p>
-
-				<a href = "./content/1.html"><p class = "read-more">☛ read more ... </p></a>
-
-				<p class = "content-note"><span class = "editor">行政院環保處</span> ▪︎ <span class = "time">2016 . 06 . 11</span></p>
-			</div>
-
-		</div>
-
-		<div class = "content">
-			<div class = "line"></div>
-			<h2>豪雨登革熱恐加溫？巡邏倒清十分鐘一起來</h2>
+      <h2><a href="./content/{{url}}">{{title}}</a></h2>
 
 			<div class = "content-inner">
 				<!-- <img class = "content-img" src = "../src/img/context/1.jpg"> -->
-				<p class = "content-p">傳播， 被蚊子叮咬時才會將病毒傳播入人體，需要注意的是沒有帶有病毒的斑蚊，若叮到了得登革熱的病患，則會使蚊子帶入病毒進而叮咬更多人。
+        <p class = "content-p">{{description}}
 				</p>
-				<a href = "./content/1.html"><p class = "read-more">☛ read more ... </p></a>
 
-				<p class = "content-note"><span class = "editor">行政院環保處</span> ▪︎ <span class = "time">2016 . 06 . 11</span></p>
+        <a href = "./content/{{url}}"><p class = "read-more">☛ read more ... </p></a>
+
+        <p class = "content-note"><span class = "editor">{{author}}</span> ▪︎ <span class = "time">{{date}}</span></p>
 			</div>
 
-		</div>
-
-		<div class = "content">
-			<div class = "line"></div>
-			<h2>豪雨登革熱恐加溫？巡邏倒清十分鐘一起來</h2>
-
-			<div class = "content-inner">
-				<!-- <img class = "content-img" src = "../src/img/context/1.jpg"> -->
-				<p class = "content-p">傳播， 被蚊子叮咬時才會將病毒傳播入人體，需要注意的是沒有帶有病毒的斑蚊，若叮到了得登革熱的病患，則會使蚊子帶入病毒進而叮咬更多人。
-				</p>
-				<a href = "./content/1.html"><p class = "read-more">☛ read more ... </p></a>
-
-				<p class = "content-note"><span class = "editor">行政院環保處</span> ▪︎ <span class = "time">2016 . 06 . 11</span></p>
-			</div>
-
-		</div>
-
-		<div class = "content">
-			<div class = "line"></div>
-			<h2>豪雨登革熱恐加溫？巡邏倒清十分鐘一起來</h2>
-
-			<div class = "content-inner">
-				<!-- <img class = "content-img" src = "../src/img/context/1.jpg"> -->
-				<p class = "content-p">傳播， 被蚊子叮咬時才會將病毒傳播入人體，需要注意的是沒有帶有病毒的斑蚊，若叮到了得登革熱的病患，則會使蚊子帶入病毒進而叮咬更多人。
-				</p>
-				<a href = "./content/1.html"><p class = "read-more">☛ read more ... </p></a>
-
-				<p class = "content-note"><span class = "editor">行政院環保處</span> ▪︎ <span class = "time">2016 . 06 . 11</span></p>
-			</div>
-
-		</div>
-
+    </div>
+    {{/each}}
 	</div>
 	
 	<!--

@@ -10,13 +10,61 @@ var project = argv._[1];
 var minify = argv.m || true;
 var w = argv.w;
 var i;
+var json_root = path.dirname(load);
+var pages = require(path.resolve(process.cwd(), load));
 
-build(load, w);
+// GET posts from google spreadsheet
+var GoogleSpreadsheet = require('google-spreadsheet');
+var doc = new GoogleSpreadsheet('1ZBbjtWv2whO4JLQN-3cYYFXu1J086MEGn_lMuzjOpzE');
+var sheet;
+doc.getInfo(function(err, info) {
+  if (err) console.log(err);
+
+  sheet = info.worksheets[0];
+  console.log('sheet 1: '+sheet.title+' '+sheet.rowCount+'x'+sheet.colCount);
+  sheet.getRows(function(err, rows) {
+    if (err) console.log(err);
+
+    var count = 0;
+    var len = rows.length;
+    var posts = [];
+    rows.forEach(function(row) {
+      posts.push({
+        path: '../',
+        title: row.title,
+        author: row.author,
+        content: row.content,
+        date: row.date,
+        prev: count > 0 ? rows[count-1].path : '',
+        next: (count+1) < len ? rows[count+1].path : '',
+        description: row.description,
+        url: row.path
+      });
+
+      pages.push({
+        data: posts[posts.length-1],
+        partials: './partials.js',
+        layout: './layout/content.hbs',
+        filename: './public/content/' + row.path
+      });
+      count++;
+    });
+
+    pages.push({
+      data: {
+        path: './',
+        posts: posts
+      },
+      partials: './partials.js',
+      layout:  "./layout/context.hbs",
+      filename: "./public/context.html"
+    });
+
+    build(load, w);
+  });
+});
 
 function build(load, w) {
-
-  var json_root = path.dirname(load);
-  var pages = require(path.resolve(process.cwd(), load));
 
   if(!w) {
 
@@ -40,4 +88,4 @@ function build(load, w) {
       }
     });
   }
-};
+}

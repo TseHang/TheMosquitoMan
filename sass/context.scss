@@ -51,12 +51,15 @@ body {
 
 	padding:60px 20px 20px 75px;
 
-	> h2{
+	h2 {
 		color: #0c68b1;
 		font-size:$font-dlarge-size ;
 		letter-spacing:5px ;
 		margin-bottom:20px ;
 	}
+	a {
+		color: #0c68b1;
+  }
 }
 
 .content-inner{
