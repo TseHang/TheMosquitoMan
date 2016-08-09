@@ -1,19 +1,17 @@
 (function(window) {
 
   var toggle = 0;
-  var colorIndex = 0;
+
   $(document).scroll(function() {
-    if ( $(window).scrollTop() < 80 && colorIndex === 1){
+    if ($(window).scrollTop() < 80){
       $('.navbar').css({
         "backgroundColor":"rgba(2555,255,255,0)"
       });
-      colorIndex = 2;
     }
-    else if (colorIndex === 2) {
+    else {
       $('.navbar').css({
         "backgroundColor":"rgba(2555,255,255,0.9)"
       });
-      colorIndex = 1;
     }
   });
 
