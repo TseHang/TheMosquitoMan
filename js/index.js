@@ -102,3 +102,15 @@ $('.logo-title').click(function(){
     isShowMos = 0;
   }
 });
+
+
+$('.nav-small-icon').click(function(){
+    $('.navbar').toggleClass("nav-small-show");
+    $('.back-black').toggleClass("display-block");
+    $('.nav-small-bar').toggleClass("display-block");
+    $('.nav-small-icon').toggleClass("nav-small-icon-show");
+    if (toggle == 1){
+      $('#bar1').css("transform","skew");
+    }
+});
+
