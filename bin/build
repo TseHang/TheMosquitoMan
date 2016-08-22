@@ -48,7 +48,7 @@ doc.getInfo(function(err, info) {
         data: posts[posts.length-1],
         partials: './partials.js',
         layout: './layout/content.hbs',
-        filename: './public/content/' + row.path
+        filename: './content/' + row.path
       });
       count++;
     });
@@ -60,7 +60,7 @@ doc.getInfo(function(err, info) {
       },
       partials: './partials.js',
       layout:  "./layout/context.hbs",
-      filename: "./public/context.html"
+      filename: "./context.html"
     });
 
 
@@ -72,7 +72,7 @@ doc.getInfo(function(err, info) {
         },
         partials: './partials.js',
         layout:  "./layout/qa.hbs",
-        filename: "./public/qa.html"
+        filename: "./qa.html"
       });
       build(load, w);
     });

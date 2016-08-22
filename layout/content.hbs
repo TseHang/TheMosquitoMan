@@ -3,7 +3,7 @@
 
   <head>
     {{> head }}
-    <link type="text/css" rel="stylesheet" href="../css/context-content.css" >
+    <link type="text/css" rel="stylesheet" href="../dist/css/context-content.css" >
 
     <title> 蚊言文 || The Mosquito Man </title>
   </head>
@@ -31,26 +31,22 @@
 
       <div class = "icon-box">
         {{#if prev}}
-          <a href="./{{prev}}"><img src = "../src/img/context/back.svg" title="上一篇文章" alt="上一篇文章"></a>
+          <a href="./{{prev}}"><img src = "../dist/src/img/context/back.svg" title="上一篇文章" alt="上一篇文章"></a>
         {{/if}}
-        <a href="../context"><img src = "../src/img/context/list.svg" title="回目錄列表" alt="回目錄列表"></a>
+        <a href="../context"><img src = "../dist/src/img/context/list.svg" title="回目錄列表" alt="回目錄列表"></a>
         {{#if next}}
-          <a href="./{{next}}"><img src = "../src/img/context/next.svg" title="下一篇文章" alt="下一篇文章"></a>
+          <a href="./{{next}}"><img src = "../dist/src/img/context/next.svg" title="下一篇文章" alt="下一篇文章"></a>
         {{/if}}
       </div>
     </div>
 
     <!-- footer -->
-    <footer class = "footer">
-    <p> <span>©</span> ALL RIGHT RESERVED TO THE MOSQUITO MAN</p>
-    <li id = "facebook"></li>
-    <li id = "aboutUs"></li>
-    </footer>
+    {{> footer}}
 
 
 
   </body>
 
-  <script src ="../src/jquery-2.2.4.min.js"></script>
-  <script src ="../js/nav.js"></script>
+  <script src ="../dist/src/jquery-2.2.4.min.js"></script>
+  <script src ="../dist/js/nav.js"></script>
 </html>

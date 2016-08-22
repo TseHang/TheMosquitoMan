@@ -9,7 +9,7 @@ var route = [
       },
       partials: './partials.js',
       layout:  "./layout/index.hbs",
-      filename: "./public/index.html"
+      filename: "./index.html"
     },
    {
       data: {
@@ -17,7 +17,7 @@ var route = [
       },
       partials: './partials.js',
       layout:  "./layout/killer.hbs",
-      filename: "./public/killer.html"
+      filename: "./killer.html"
     },
     {
       data: {
@@ -25,7 +25,7 @@ var route = [
       },
       partials: './partials.js',
       layout:  "./layout/realTime.hbs",
-      filename: "./public/realTime.html"
+      filename: "./realTime.html"
     },
     {
       data: {
@@ -33,7 +33,7 @@ var route = [
       },
       partials: './partials.js',
       layout:  "./layout/knowledge.hbs",
-      filename: "./public/knowledge.html"
+      filename: "./knowledge.html"
     },
     {
       data: {
@@ -41,7 +41,7 @@ var route = [
       },
       partials: './partials.js',
       layout:  "./layout/interacting.hbs",
-      filename: "./public/interacting.html"
+      filename: "./interacting.html"
     }
   ];
 module.exports = route;
