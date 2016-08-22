@@ -42,6 +42,14 @@ var route = [
       partials: './partials.js',
       layout:  "./layout/interacting.hbs",
       filename: "./interacting.html"
+    },
+    {
+      data: {
+        path: './'
+      },
+      partials: './partials.js',
+      layout:  "./layout/about.hbs",
+      filename: './about.html'
     }
   ];
 module.exports = route;

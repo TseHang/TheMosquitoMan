@@ -3,38 +3,49 @@
 	height: 14%;
 	position:relative ;
 	background-color:$blue-color ;
+	padding-top: 30px;
 
-	> p{
-		position:relative ;
-		margin-left:10%;
-		color:white ;
-		top:33% ;
+	.f-left {
+	  margin-top: 5px;
+		margin-left: 7%;
+		float: left;
+		color: #fff;
 		font-size:$sub-font-size - 2px;
+		width: 55%;
+		min-width: 400px;
+		line-height: 1.7;
+
+    img {
+      margin-right: 5px;
+    }
+
+		a {
+		  color: #fff;
+    }
 	}
 
-	span {
-		font-size:$sub-font-size + 1px;
-	}
+	.f-right {
+    float: right;
+		margin-right: 10%;
+    a {
+      float: right;
+    }
+  }
 
-	> li{
+	li {
 		@include setSize(60px , 60px);
+		margin-right: 10px;
 		list-style:none ;
-		float: right;
-		position:relative;
-		top:6%;
-
-		cursor:pointer ;
-	}
+		display: inline-block;
+  }
 }
 
 #aboutUs{
-	margin-right:10px;
 	background:url("../src/img/footer/aboutUs.svg") no-repeat center;
 	background-size:100%;
 }
 
 #facebook{
-	margin-right:10%;
 	background:url("../src/img/footer/facebook.svg") no-repeat center;
 	background-size:115%;
 }

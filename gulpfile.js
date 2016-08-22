@@ -22,17 +22,17 @@ gulp.task('sass', function() {
   return gulp.src(['./sass/**/*.scss'])
   .pipe(compass({
     config_file: './config.rb',
-    css: './public/css',
+    css: './dist/css',
     sass: 'sass'
   }))
     .pipe(minifyCSS())
-    .pipe(gulp.dest('./public/css/'));
+    .pipe(gulp.dest('./dist/css/'));
 });
 
 gulp.task('js', function() {
   gulp.src(['./js/**/*.js'])
   .pipe(uglify())
-  .pipe(gulp.dest('./public/js/'));
+  .pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('watch', function () {
