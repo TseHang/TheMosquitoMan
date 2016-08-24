@@ -50,6 +50,7 @@ doc.getInfo(function(err, info) {
         layout: './layout/content.hbs',
         filename: './content/' + row.path
       });
+      console.log(row.path);
       count++;
     });
 
