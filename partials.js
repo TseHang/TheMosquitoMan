@@ -3,6 +3,7 @@ var fs = require("fs");
 module.exports= function (hbs) {
   // register partials
   hbs.registerPartial('head', getPartials('head'));
+  hbs.registerPartial('head_content', getPartials('head_content'));
   hbs.registerPartial('header', getPartials('header'));
   hbs.registerPartial('footer', getPartials('footer'));
 };

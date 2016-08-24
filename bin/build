@@ -32,6 +32,8 @@ doc.getInfo(function(err, info) {
     var len = rows.length;
     var posts = [];
     rows.forEach(function(row) {
+      if (!row.path)
+        return;
       posts.push({
         path: '../',
         title: row.title,
