@@ -52,7 +52,7 @@ window.addEventListener('load',function(){
 			Q.stageScene("title");
 		})
 
-	Q.debug = true ;
+	// Q.debug = true ;
 
 	window.Q = Q ;
 } , true);
