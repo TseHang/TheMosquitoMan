@@ -23,11 +23,21 @@
       margin:0 ;
       padding:0;
     }
+    @media (min-width: 641px) {
+      #quintus_container {
+        position: absolute !important;
+        height: 416px;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto !important;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <canvas id = "myGame" width = "300" height = "300"></canvas>
   <script src='scripts/game.js'></script>
 </body>
 
