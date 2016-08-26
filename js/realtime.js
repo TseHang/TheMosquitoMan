@@ -27,6 +27,7 @@
   info.update = onInfoUpdate;
   window.initData = initData;
   initMap();
+  var isBar = false;
 
   function initData(dengueUrl, drugUrl, barUrl, villageUrl, topoUrl) {
 
@@ -64,9 +65,14 @@
         return y.value - x.value;
       });
 
-      drawChart(barData, function(d) {
-        return '病例數：<span style="color:red">' + d.value + '</span>';
-      }, false);
+      window.onscroll = function() {
+        if (isBar) return;
+
+        isBar = true;
+        drawChart(barData, function(d) {
+          return '病例數：<span style="color:red">' + d.value + '</span>';
+        }, false);
+      };
     });
 
 

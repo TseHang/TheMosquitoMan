@@ -93,12 +93,23 @@
         }
         return '';
       })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("x", function(d) { return x(d.city); })
       .attr("width", barWidth)
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+      .attr("y", function(d) { return height; })
+      .attr("height", 0)
+      .transition()
+      .duration(400)
+      .delay(function (d, i) {
+          return i * 50;
+      })
+      .attr("y", function (d, i) {
+          return y(d.value);
+      })
+      .attr("height", function (d, i) {
+          return height - y(d.value);
+      });
   }
 
   function addAxis() {
