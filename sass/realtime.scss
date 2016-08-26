@@ -1,0 +1,45 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+	background-color:$green-color;
+}
+
+.title-bar {
+  @include setSize(190px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+.main {
+  height: 100%;
+  width: 90%;
+  padding-top: 50px;
+  margin: auto;
+  color: #292c77;
+}
+
+#map {
+  height: 70%;
+  width: 100%;
+  margin: 10px auto;
+}
+
+a {
+  color: #292c77;
+  font-weight: bold;
+}
+
+.seven-days {
+  color: #F44336;
+  margin-right: 10px;
+}
