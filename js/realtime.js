@@ -104,7 +104,7 @@
 
     var url = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
     var attrib = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>';
-    var osm = new L.TileLayer(url, {minZoom: 8,  maxZoom: 19, attribution: attrib});
+    var osm = new L.TileLayer(url, {minZoom: 6,  maxZoom: 19, attribution: attrib});
 
     var accessToken = 'pk.eyJ1IjoiYWJ6NTMzNzgiLCJhIjoiUkRleEgwVSJ9.rWFItANcHAZQ2U0ousK4cA',
     mapID = 'abz53378.0klc153h';
@@ -113,9 +113,9 @@
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a><a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/nl/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/3.0/nl/80x15.png" /></a>.'
     }).addTo(map);
 
-    map.setView(new L.LatLng(22.86, 120.5), 10);
+    map.setView(new L.LatLng(23.6, 120.9), 7);
     //osm.addTo(map);
-    info.addTo(map);
+    //info.addTo(map);
   }
 
   function drawCircle(data, argvs) {
@@ -157,6 +157,10 @@
       map.removeLayer(circle);
     });
   }
+
+  $('.poly').click(function() {
+    $('html, body').animate({scrollTop:$('#info').position().top}, 'slow');
+  });
 
 
 })(window);
