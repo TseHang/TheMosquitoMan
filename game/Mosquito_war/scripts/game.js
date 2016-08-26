@@ -21,6 +21,7 @@ window.addEventListener('load',function(){
 		"intro_bg.png","intro_man.png","intro_text.png","player_man_bg.png","player_mosking_bg.png",
 		"katha_1_bg.png","animate_sprites.png","player_mos_rotate.png",
 		"player_mos_bg.png","player_mos.png","katha_1_text.png","katha_close.png",
+		"player_man_text1.png","player_man_text2.png","player_man_text3.png","player_man_text4.png",
 
 		// Sound
 		"brickDeath.ogg",
@@ -39,7 +40,7 @@ window.addEventListener('load',function(){
         default: { frames: [ 0,1,2,3 ], rate: 1,  trigger:"startRotate",loop: false }
       });
 			Q.animations("player_man_rotate", { 
-        rotate: { frames: [ 0,1,2 ], rate: 0.3,  loop: true }
+        rotate: { frames: [ 2,1,0 ], rate: 0.3,  loop: true }
       });
       Q.animations("player_mos_rotate", { 
         rotate: { frames: [ 0,1,2,3,4,5,6,7,8 ], rate: 0.3,  loop: true }
@@ -47,6 +48,12 @@ window.addEventListener('load',function(){
       Q.animations("mosking_anim", { 
         default: { frames: [ 0,1,2,3 ], rate: 0.3,  loop: true }
       });
+      Q.animations("pre_power" , {
+      	shoot: { frames: [0,1] , rate:0.3 , loop: false}
+      })
+      Q.animations("pre_power_up" , {
+      	shoot: { frames: [0,1,2,3] , rate:0.5 , loop: false}
+      })
 
 			// Go Time
 			Q.stageScene("title");
