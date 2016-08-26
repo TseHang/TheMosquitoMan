@@ -115,7 +115,7 @@
 
     map.setView(new L.LatLng(23.6, 120.9), 7);
     //osm.addTo(map);
-    //info.addTo(map);
+    info.addTo(map);
   }
 
   function drawCircle(data, argvs) {
@@ -142,8 +142,8 @@
   }
 
   function onInfoAdd(map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this._div.innerHTML = '';
+    this._div = L.DomUtil.create('div', 'map-info'); // create a div with a class "info"
+    this._div.innerHTML = '圖示：確診病例數';
     return this._div;
   }
 
@@ -158,7 +158,7 @@
     });
   }
 
-  $('.poly').click(function() {
+  $('.arrow').click(function() {
     $('html, body').animate({scrollTop:$('#info').position().top}, 'slow');
   });
 
