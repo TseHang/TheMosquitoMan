@@ -5,7 +5,8 @@ var fs = require('fs');
 var route = [
     {
       data: {
-        path: './'
+        path: './',
+        title: ''
       },
       partials: './partials.js',
       layout:  "./layout/index.hbs",
@@ -13,7 +14,8 @@ var route = [
     },
    {
       data: {
-        path: './'
+        path: './',
+        title: '降蚊十八招'
       },
       partials: './partials.js',
       layout:  "./layout/killer.hbs",
@@ -21,6 +23,7 @@ var route = [
     },
     {
       data: {
+        title: '即時疫情',
         path: './'
       },
       partials: './partials.js',
@@ -29,6 +32,7 @@ var route = [
     },
     {
       data: {
+        title: '蚊風喪膽',
         path: './'
       },
       partials: './partials.js',
@@ -37,6 +41,7 @@ var route = [
     },
     {
       data: {
+        title: '練武功',
         path: './'
       },
       partials: './partials.js',
@@ -45,6 +50,7 @@ var route = [
     },
     {
       data: {
+        title: '關於我們',
         path: './'
       },
       partials: './partials.js',

@@ -59,7 +59,8 @@ doc.getInfo(function(err, info) {
     pages.push({
       data: {
         path: './',
-        posts: posts
+        posts: posts,
+        title: '蚊言文'
       },
       partials: './partials.js',
       layout:  "./layout/context.hbs",
@@ -71,7 +72,8 @@ doc.getInfo(function(err, info) {
       pages.push({
         data: {
           path: './',
-          questions: rows
+          questions: rows,
+          title: '有蚊必答'
         },
         partials: './partials.js',
         layout:  "./layout/qa.hbs",
