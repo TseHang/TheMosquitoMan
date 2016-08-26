@@ -7,7 +7,7 @@
 
   var margin = {top: 20, right: 20, bottom: 70, left: 40},
       width = barDivWidth - margin.left - margin.right,
-      height = 200;
+      height = 250;
 
   var x,
       y,
@@ -30,29 +30,20 @@
             "translate(" + margin.left + "," + margin.top + ")")
       .call(tip);
 
-    data.forEach(function(d) {
-      if (typeof d.date === 'string')  {
-        d.date = parseDate(d.date);
-      }
-      d.value = +d.value;
-    });
-
-    xDomain =d3.extent(data, function(d) { return d.date; } );
-    x = d3.time.scale().domain(xDomain).range([0, width]);
+    x = d3.scale.ordinal().rangeRoundBands([0, width], 0.55);
     y = d3.scale.linear().range([height, 0]);
 
     xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
-      .ticks(30)
-      .tickFormat(d3.time.format("%m/%d"));
+      .ticks(30);
 
     yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
     .ticks(10);
 
-    //x.domain(data.map(function(d) { return d.date; }));
+    x.domain(data.map(function(d) { return d.city; }));
     y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
     addAxis();
@@ -87,16 +78,13 @@
   }
 
   function addBar(data) {
-    barWidth = width / getDiffDays(xDomain[0], xDomain[1]);
+    barWidth = width / 26;
     if (barWidth < 0) barWidth = 1;
 
     svg.selectAll("bar")
       .data(data)
     .enter().append("rect")
       .style("fill", function(d) {
-        if (d['降水量'] > 0) {
-          return 'orange';
-        }
         return 'steelblue';
       })
       .attr('class', function(d) {
@@ -105,21 +93,29 @@
         }
         return '';
       })
-      .attr("x", function(d) { return x(d.date); })
+      .attr("x", function(d) { return x(d.city); })
       .attr("width", barWidth)
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
-      .attr('id', function(d) {
-        var _d = new Date(d.date.getTime()+86400000);
-        var id = 'bar-'+_d.toISOString().substring(0, 10).replace(/-/g, '-');
-        return id;
-      })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide);
   }
 
   function addAxis() {
+    if (barDivWidth > 500) {
     svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(5.5," + height + ")")
+      .call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "1.5em")
+      .attr("dy", "1em")
+      .attr("transform", "rotate(0)" );
+    }
+    else {
+
+   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
@@ -127,7 +123,10 @@
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("dy", "-.55em")
-      .attr("transform", "rotate(-65)" );
+      .attr("transform", "rotate(-65)" )
+      .style('font-size', 10);
+    }
+
 
     svg.append("g")
         .attr("class", "y axis")
@@ -137,7 +136,7 @@
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("當日病例數（人）");
+        .text("7日內病例數（人）");
   }
 
   function movingAvg(n) {

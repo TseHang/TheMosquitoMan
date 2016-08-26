@@ -30,13 +30,43 @@
 
   function initData(dengueUrl, drugUrl, barUrl, villageUrl, topoUrl) {
 
-    d3.csv(dengueUrl, function(d) {
-      data = d;
+    d3.csv(dengueUrl, function(data) {
       var pivot = new Date(data[data.length-1].date);
       var key = pivot.toISOString().substring(0, 10).replace(/-/g, '/');
       $('.current').text(key);
-      $('.number').text(d.length);
+      $('.number').text(data.length);
       drawCircle(data, defaultCircleParams);
+
+      var citys = ['台北市', '新北市', '桃園市', '台中市', '台南市', '高雄市',
+      '基隆市', '新竹市', '嘉義市', '新竹縣', '苗栗縣', '彰化縣', '南投縣', '雲林縣',
+      '嘉義縣', '屏東縣', '宜蘭縣', '花蓮縣', '台東縣', '澎湖縣'];
+
+      var barData = [];
+      var barObj = {};
+      data.forEach(function(d) {
+        if (!barObj.hasOwnProperty(d.city)) {
+          barObj[d.city] = 0;
+        }
+        barObj[d.city] += 1;
+      });
+
+      citys.forEach(function(d) {
+        if (!barObj.hasOwnProperty(d)) {
+          barObj[d] = 0;
+        }
+      });
+
+      for (var k in barObj) {
+        barData.push({city: k, value: barObj[k]});
+      }
+
+      barData.sort(function(x, y) {
+        return y.value - x.value;
+      });
+
+      drawChart(barData, function(d) {
+        return '病例數：<span style="color:red">' + d.value + '</span>';
+      }, false);
     });
 
 
@@ -97,7 +127,6 @@
       if (!point.Longitude || latlngs[point.Longitude] && latlngs[point.Longitude][point.Latitude]) {
         return;
       }
-      console.log(point);
       var circle = L.circle([point.Latitude, point.Longitude], argvs.size,
         {fillColor: argvs.fillColor, color: argvs.color, opacity: argvs.opacity,
           clickable: false})
