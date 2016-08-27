@@ -4,8 +4,9 @@ STATE:
 1: score分數！
 2: lives 生命！
 3: level 關卡
-4: katha 指吃到哪一個奧義的編號
+4: katha 指吃到哪一個奧義的編號（用來顯示捲軸）
 5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子） 
+6: power_up 控制攻擊泡泡，有沒有變大
 -
  */
 ;Quintus.WarScenes = function(Q) {
@@ -16,7 +17,7 @@ STATE:
 		console.log("Scene: title");
 
 		// Set up the game state
-    Q.state.reset({ score: 0, lives: 3, level: 0 , katha: 0 , player_state: 1 });
+    Q.state.reset({ score: 0, lives: 3, level: 0 , katha: 0 , player_state: 1 , power_up: 0});
 
 		// Clear the hud out
 		Q.clearStage(1) ;
@@ -98,9 +99,9 @@ STATE:
 		stage.insert(new Q.PlayerManBg()) ;
 		stage.insert(new Q.PlayerManRotate());
 		stage.insert(new Q.PlayerManMan());
+		stage.insert(new Q.PlayerManText1());
 
 		Q.stageScene("playerFooter") ;
-		// var player_man = stage.insert(new Q.Player_mosking_bg) ;
 
 	});
 
@@ -170,7 +171,6 @@ STATE:
 	Q.scene("katha" , function(stage){                  
 		// kathaNum 會再吃到捲軸的時候被設定！
 		var kathaNum = Q.state.get("katha");
-		console.log(Q.select("Power")) ;
 
 		if (kathaNum == 1){
 			stage.insert(new Q.Katha_1_bg());
@@ -186,6 +186,12 @@ STATE:
 
 			Q.state.set("katha" , 0);
 			Q.stage().paused = false;
+
+			// 讓大球失效
+			window.setTimeout(function(){
+				Q("Power").trigger("power_recover");
+			},10000);
+			
 			// Clear the katha
 			Q.clearStage(2) ;
 		})

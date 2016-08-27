@@ -159,6 +159,8 @@
     }
   })
 
+  // 
+  // 人
   Q.Sprite.extend("PlayerManBg",{
     init: function(p) {
       this._super(p,{
@@ -198,7 +200,6 @@
         x: Q.width/2 ,
         y: Q.height/2 - 10
       });
-
       this.add("animation");
       this.play("default");
       this.on("startRotate");
@@ -209,6 +210,126 @@
     }
   })
 
+  // 
+  // 四步殺蚊
+  Q.Sprite.extend("PlayerManText1" , {
+    init: function(p){
+      this._super(p,{
+        asset: "player_man_text1.png",
+        x: Q.width/2 - 140,
+        y: Q.height/2 - 70,
+        type: Q.SPRITE_UI,
+        scale: 4,
+        opacity: 1
+      });
+
+      // 因為在setTimeout裡，function 的 this 為 window，所以在這裡先記錄
+      text1 = this ;
+
+      this.add("tween");
+      this.animate({ scale: 1 },0.2, Q.Easing.Quadratic.InOut , {
+        callback: function(){
+          window.setTimeout(function(){
+            text1.stage.insert(new Q.PlayerManText2());
+          } , 300)
+          this.animate({opacity: 0} , 0.4 , Q.Linear , {
+            delay: 0.6,
+            callback: function(){
+              this.destroy();
+            }
+          })
+        }
+      });
+    }
+  })
+
+  Q.Sprite.extend("PlayerManText2" , {
+    init: function(p){
+      this._super(p,{
+        asset: "player_man_text2.png",
+        x: Q.width/2 + 150,
+        y: Q.height/2 - 40,
+        type: Q.SPRITE_UI,
+        scale: 4,
+        opacity: 1
+      });
+
+      text2 = this ;
+
+      this.add("tween");
+      this.animate({ scale: 1 },0.2, Q.Easing.Quadratic.InOut , {
+        callback: function(){
+          window.setTimeout(function(){
+            text2.stage.insert(new Q.PlayerManText3());
+          } , 300)
+          this.animate({opacity: 0} , 0.4 , Q.Linear , {
+            delay: 0.6,
+            callback: function(){
+              this.destroy();
+            }
+          })
+        }
+      });
+    }
+  })
+
+  Q.Sprite.extend("PlayerManText3" , {
+    init: function(p){
+      this._super(p,{
+        asset: "player_man_text3.png",
+        x: Q.width/2 - 120,
+        y: Q.height/2 + 10,
+        type: Q.SPRITE_UI,
+        scale: 4,
+        opacity: 1
+      });
+
+      text3 = this ;
+
+      this.add("tween");
+      this.animate({ scale: 1 },0.2, Q.Easing.Quadratic.InOut , {
+        callback: function(){
+          window.setTimeout(function(){
+            text3.stage.insert(new Q.PlayerManText4());
+          } , 300)
+          this.animate({opacity: 0} , 0.4 , Q.Linear , {
+            delay: 0.6,
+            callback: function(){
+              this.destroy();
+            }
+          })
+        }
+      });
+    }
+  })
+
+  Q.Sprite.extend("PlayerManText4" , {
+    init: function(p){
+      this._super(p,{
+        asset: "player_man_text4.png",
+        x: Q.width/2 + 100,
+        y: Q.height/2 + 70,
+        type: Q.SPRITE_UI,
+        scale: 4,
+        opacity: 1
+      });
+
+      this.add("tween");
+      this.animate({ scale: 1 },0.2, Q.Easing.Quadratic.InOut , {
+        callback: function(){
+          this.animate({opacity: 0} , 0.4 , Q.Linear , {
+            delay: 0.6,
+            callback: function(){
+              this.destroy();
+            }
+          })
+        }
+      });
+    }
+  })
+
+  // 
+  // 蚊子王
   Q.Sprite.extend("PlayerMoskingBg",{
     init: function(p) {
       this._super(p,{
@@ -262,6 +383,9 @@
     }
   })
 
+
+  // 
+  // 蚊子
   Q.Sprite.extend("PlayerMosBg",{
     init: function(p) {
       this._super(p,{

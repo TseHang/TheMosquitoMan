@@ -46,14 +46,28 @@
       // (2) atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
       angle = Math.atan2( dy , dx)/Math.PI*180
 
+      // 看一下有沒有吃到奧義
+      is_power_up = Q.state.get("power_up");
+      if(is_power_up>0) {
+        sheet = 'power_up';
+        this.stage.insert(new Q.PrePowerUp({
+          x: power_x + 20
+        }));
+
+      }else{
+        sheet = 'power';
+        this.stage.insert(new Q.PrePower({
+          x: power_x + 20
+        }));
+      }
+
       this.stage.insert(new Q.Power({
+        sheet: sheet ,
+        x: power_x,
         vx: dx,
         vy: dy,
         angle: angle + 90
       }));
-
-
-
     }
   });
 

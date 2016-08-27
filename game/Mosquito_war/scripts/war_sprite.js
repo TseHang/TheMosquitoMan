@@ -227,14 +227,11 @@
 
 	Q.Sprite.extend("Power" , {
 		init: function(p){
-
-			var player_x = Q.select('Player').items[0].p.x;
-
+			// player_x = Q.select('Player').items[0].p.x;
 			this._super(p,{
-				sheet: 'power' ,
 				sprite: "power",
 				collisionMask: Q.SPRITE_DEFAULT ,
-				x: player_x,
+				// x: player_x,
 				y: 380,
 				angle:0
 
@@ -243,8 +240,8 @@
 			// Wait til we are inserted, then listen for events on the stage
 			this.on("hit" , this , "collide");
 
-
-			// this.on("katha_1");
+			this.on("power_up");
+			this.on("power_recover");
 		},
 
 		step: function(dt) {
@@ -261,12 +258,58 @@
         col.obj.destroyed();
         this.destroy();
       }
-    }
+    },
 
-  //  	katha_1: function(){
-		// 	this.p.sheet = "katha_1_power";
-		// }
+   	power_up: function(){
+   		console.log("power_up");
+			Q.state.set("power_up",1);
+		},
+
+		power_recover: function(){
+			console.log("power_recover");
+			Q.state.set("power_up",0);
+		}
 	});
+
+	Q.Sprite.extend("PrePower" , {
+		init: function(p){
+
+			this._super(p , {
+				sheet: "pre_power",
+				sprite: "pre_power",
+				y: 370,
+				opacity:1
+			})
+
+			this.add("animation,tween");
+			this.play("shoot");
+			this.animate({opacity:0} , 0.3 , Q.Linear , {
+				callback: function(){
+					this.destroy();
+				}
+			});
+		}
+	})
+
+	Q.Sprite.extend("PrePowerUp" , {
+		init: function(p){
+
+			this._super(p , {
+				sheet: "pre_power_up",
+				sprite: "pre_power_up",
+				y: 370,
+				opacity:1
+			})
+
+			this.add("animation,tween");
+			this.play("shoot");
+			this.animate({opacity:0} , 0.5 , Q.Linear , {
+				callback: function(){
+					this.destroy();
+				}
+			});
+		}
+	})
 
 	// 載入大蚊子
 	Q.Sprite.extend("MosKing",{
@@ -364,7 +407,7 @@
       	Q.stageScene("katha");
 
       	// 啟動Katha_1
-      	Q("Power").trigger("katha_1");
+      	Q("Power").trigger("power_up");
       }
     },
 
