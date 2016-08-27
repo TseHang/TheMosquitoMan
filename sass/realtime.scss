@@ -139,6 +139,15 @@ text {
   padding: 10px;
 }
 
+.trans-panel {
+  width: 40%;
+  height: 57%;
+  position: absolute;
+  top: 37%;
+  right: 0;
+  z-index: 999999;
+}
+
 @include keyframes(bounce) {
   0%, 20%, 50%, 80%, 100% {
   @include transform(translateY(0));
