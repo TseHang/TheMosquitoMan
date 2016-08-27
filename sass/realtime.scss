@@ -152,8 +152,11 @@ text {
 }
 
 @media screen and (max-width: 1024px){
-  .arrow {
+  #map, .arrow {
     display: none;
+  }
+  .related {
+    height: 60px;
   }
 }
 
