@@ -11,7 +11,7 @@
 		float: left;
 		color: #fff;
 		font-size:$sub-font-size - 2px;
-		width: 55%;
+		width: 40%;
 		min-width: 400px;
 		line-height: 1.7;
 
@@ -27,9 +27,6 @@
 	.f-right {
     float: right;
 		margin-right: 10%;
-    a {
-      float: right;
-    }
   }
 
 	li {
@@ -48,6 +45,22 @@
 #facebook{
 	background:url("../src/img/footer/facebook.svg") no-repeat center;
 	background-size:115%;
+}
+
+.android {
+  float: left;
+  height: 50px;
+}
+.ios {
+  float: left;
+  height: 70px;
+  margin-top: -8px;
+}
+
+@media screen and (max-width: 1100px) {
+  .android, .ios {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 940px) {
