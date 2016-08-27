@@ -145,7 +145,7 @@
 
   function onInfoAdd(map) {
     this._div = L.DomUtil.create('div', 'map-info'); // create a div with a class "info"
-    this._div.innerHTML = '圖示：確診病例數';
+    this._div.innerHTML = '圖示：一週確診病例數';
     return this._div;
   }
 
