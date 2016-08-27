@@ -15,8 +15,8 @@
 
     touch : function(touch){
 
-      power_x =  Q.select('Player').items[0].p.x ;
-      power_y = 380 ;
+      power_x = Q.select('Player').items[0].p.x ;
+      power_y = Q.select('Player').items[0].p.y - 80 ;
 
       dx = touch.x - power_x;
       dy = touch.y - power_y;
@@ -51,19 +51,22 @@
       if(is_power_up>0) {
         sheet = 'power_up';
         this.stage.insert(new Q.PrePowerUp({
-          x: power_x + 20
+          x: power_x + 20,
+          y: power_y + 5
         }));
 
       }else{
         sheet = 'power';
         this.stage.insert(new Q.PrePower({
-          x: power_x + 20
+          x: power_x + 20,
+          y: power_y + 5
         }));
       }
 
       this.stage.insert(new Q.Power({
-        sheet: sheet ,
-        x: power_x,
+        sheet: sheet , // sheet 決定弄出哪一張圖
+        x: power_x + 20,
+        y: power_y,
         vx: dx,
         vy: dy,
         angle: angle + 90

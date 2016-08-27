@@ -1,4 +1,7 @@
 ;Quintus.WarLevels = function(Q) {
+  
+  var k_m = 6 // 血泡ex
+  var k_s = 5 // 血泡
 
   var z = 4; // 爆
 	var y = 3; // 狂
@@ -20,8 +23,12 @@
     [X,s,s,s,s,X]
   ];
 
-  Q.assets['addRow'] = [
+  Q.assets['addMos_s'] = [
     [s,s,s,s,s,s],
     [s,s,s,s,s,s]
   ];
+
+  Q.assets['addKingattack_s'] = [
+    [X,k_s,X,k_s,k_s,X,X,k_s,k_s,X,k_s,X]
+  ]
 };

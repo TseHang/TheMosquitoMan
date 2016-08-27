@@ -7,6 +7,7 @@ STATE:
 4: katha 指吃到哪一個奧義的編號（用來顯示捲軸）
 5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子） 
 6: power_up 控制攻擊泡泡，有沒有變大
+7: player_h 主角的身長
 -
  */
 ;Quintus.WarScenes = function(Q) {
@@ -17,7 +18,7 @@ STATE:
 		console.log("Scene: title");
 
 		// Set up the game state
-    Q.state.reset({ score: 0, lives: 3, level: 0 , katha: 0 , player_state: 1 , power_up: 0});
+    Q.state.reset({ player_h: 0 , score: 0, lives: 3, level: 0 , katha: 0 , player_state: 1 , power_up: 0});
 
 		// Clear the hud out
 		Q.clearStage(1) ;
@@ -215,12 +216,8 @@ STATE:
     } else {
       stage.insert(new Q.Level_bg());
     }
-
-    stage.insert(new Q.MosquitoTracker({ data: Q.asset(levelAsset) }));
-
-    // stage.insert(new Q.Ball({ x: 50, y: 250 }));
-    // stage.insert(new Q.Countdown());
     stage.insert(new Q.Player());
+    stage.insert(new Q.MosquitoTracker({ data: Q.asset(levelAsset) }));
 
     // 每一秒設一次球
     // powerTimeInterval = window.setInterval(function(){
