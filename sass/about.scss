@@ -41,13 +41,13 @@ body {
   h2 {
     float: right;
     color: #9b9c9c;
-  }
-  .about-h2 {
-    font-size: 24px;
-  }
-  .team-h2 {
-    font-size: 28px;
-  }
+}
+.about-h2 {
+  font-size: 24px;
+}
+.team-h2 {
+  font-size: 28px;
+}
 }
 
 strong {
@@ -60,7 +60,7 @@ strong {
   p {
     color: #666;
     line-height: 1.5;
-  }
+}
 }
 
 h3 {
@@ -89,14 +89,16 @@ h4 {
     position: absolute;
     right: 0;
     margin-top: 35px;
-  }
+}
 }
 
 .left-sidebar {
   z-index: 99;
   color: #fff;
   width: 45px;
-  position: absolute;
+  position: fixed;
+  left: 0;
+  top: 10%;
   margin-top: 100px;
   li {
     list-style: none;
@@ -107,8 +109,8 @@ h4 {
     cursor: pointer;
     &:hover {
       opacity: 0.65;
-    }
   }
+}
 }
 
 .main {
@@ -134,26 +136,68 @@ h4 {
   background-image: url(../src/img/about-us/aboutus-04.png);
 }
 
+.member-title {
+  text-align: center;
+}
+
+.members {
+  width: 87%;
+  margin: auto;
+}
+
+.member {
+  display: inline-block;
+  margin: 50px 1.8%;
+  width: 150px;
+  height: 180px;
+  img {
+    position: absolute;
+    width: 150px;
+}
+}
+
+.bg {
+  background-color: #fdf5db;
+  width: 150px;
+  height: 140px;
+}
+
+.name {
+  font-size: 18px;
+  color: #292c77;
+  margin: 10px 0;
+  text-align: right;
+}
+
+.qoute {
+  font-size: 12px;
+  color: #2a2d78;
+  position: absolute;
+  width: 150px;
+  font-weight: bold;
+}
+
+
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @media screen and (max-width: 690px){
   .h-content {
     float: none;
     width: 100%;
+}
+.headline {
+  float: none;
+  padding: 10px 10px 40px;
+  margin-bottom: 30px;
+  h2 {
+    font-size: 16px !important;
   }
-  .headline {
-    float: none;
-    padding: 10px 10px 40px;
-    margin-bottom: 30px;
-    h2 {
-      font-size: 16px !important;
-    }
-  }
-  .content {
-    padding: 60px;
-  }
+}
+.content {
+  padding: 60px;
+}
 }
 
