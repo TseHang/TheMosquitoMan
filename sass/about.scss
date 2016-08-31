@@ -1,0 +1,159 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+  background-color: #fff;
+}
+
+.green {
+  background-color:$green-color;
+}
+
+
+.display-none{
+  display:none !important ;
+}
+
+.section{
+  height:100%;
+}
+// //////////////
+// section1
+// //////////////
+.title-bar {
+  @include setSize(245px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+}
+}
+
+.headline {
+  margin-top: 40px;
+  padding: 40px 95px;
+  h2 {
+    float: right;
+    color: #9b9c9c;
+  }
+  .about-h2 {
+    font-size: 24px;
+  }
+  .team-h2 {
+    font-size: 28px;
+  }
+}
+
+strong {
+  color: #333;
+}
+
+.content {
+  font-family: 'ヒラギノ明朝 Pro';
+  padding: 40px 95px;
+  p {
+    color: #666;
+    line-height: 1.5;
+  }
+}
+
+h3 {
+  font-size: 26px;
+  color: #262B70;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+
+h4 {
+  letter-spacing: 1.7;
+  margin: 30px 0 5px;
+  font-size: 20px;
+  color: #595757;
+}
+
+.p1 {
+  margin-bottom: 50px;
+}
+
+.h-content {
+  width: 480px;
+  float: right;
+  img {
+    position: absolute;
+    right: 0;
+    margin-top: 35px;
+  }
+}
+
+.left-sidebar {
+  z-index: 999;
+  color: #fff;
+  width: 45px;
+  position: absolute;
+  margin-top: 100px;
+  li {
+    list-style: none;
+    background: #292c77;
+    height: 92px;
+    margin-bottom: 30px;
+    padding: 8px 25px 8px 20px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.65;
+    }
+  }
+}
+
+.main {
+  display: none;
+}
+
+.active {
+  display: block;
+  @include animation(fadein .3s ease 0s forwards);
+}
+
+.footerline {
+  height: 150px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.f1 {
+  background-image: url(../src/img/about-us/aboutus-02.png);
+}
+.f2 {
+  background-image: url(../src/img/about-us/aboutus-04.png);
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media screen and (max-width: 690px){
+  .h-content {
+    float: none;
+    width: 100%;
+  }
+  .headline {
+    float: none;
+    padding: 10px 10px 40px;
+    margin-bottom: 30px;
+    h2 {
+      font-size: 16px !important;
+    }
+  }
+  .content {
+    padding: 60px;
+  }
+}
+
