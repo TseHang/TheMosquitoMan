@@ -187,17 +187,32 @@ h4 {
   .h-content {
     float: none;
     width: 100%;
-}
-.headline {
-  float: none;
-  padding: 10px 10px 40px;
-  margin-bottom: 30px;
-  h2 {
-    font-size: 16px !important;
   }
-}
-.content {
-  padding: 60px;
-}
+  .headline {
+    float: none;
+    padding: 10px 10px 40px;
+    margin-bottom: 30px;
+    h2 {
+      font-size: 16px !important;
+    }
+  }
+  .content {
+    padding: 60px;
+  }
+  .member {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .bg {
+    margin: auto;
+  }
+  .name {
+    width: 80%;
+  }
+  .qoute {
+    width: 55%;
+    margin: auto;
+    text-align: right;
+  }
 }
 
