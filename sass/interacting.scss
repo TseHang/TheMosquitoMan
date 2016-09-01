@@ -1,0 +1,93 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+  background-color:$green-color;
+}
+
+.display-none{
+  display:none !important ;
+}
+
+.section{
+  height:100%;
+}
+// //////////////
+// section1
+// //////////////
+.title-bar {
+  @include setSize(245px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+}
+}
+
+.notBuildBox {
+  height: 60%;
+  background: url(../src/img/interact/interact-26.png);
+  background-size: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.section {
+  h2 {
+    font-size: 24px;
+    line-height: 1.4em;
+}
+}
+
+.sub-h {
+  margin-left: 130px;
+}
+
+.man {
+  position: absolute;
+  bottom: 65px;
+  right: 32%;
+  height: 90px;
+}
+
+.q {
+  position: absolute;
+  bottom: 170px;
+  background: #fdf5db;
+  padding: 20px 20px;
+  right: 10%;
+  border-radius: 10px;
+  line-height: 1.3;
+}
+
+.btn {
+  background-color: #F44336;
+  color: #fff;
+  width: 66px;
+  padding: 7px;
+  border-radius: 5px;
+  float: right;
+  margin-top: 2px;
+}
+
+.arrow {
+  position:absolute;
+  color: #fdf5db;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border-width: 30px 15px 0px;
+  border-style: solid dashed dashed;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  bottom: -17px;
+  left: -8px;
+  transform: rotate(31deg);
+  -webkit-transform: rotate(31deg);
+}
