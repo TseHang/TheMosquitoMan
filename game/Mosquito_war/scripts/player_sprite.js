@@ -21,18 +21,17 @@
 			}) ;
 
 			Q.state.set("player_h" , this.p.h) ;
-			console.log(Q.state.get("player_h"));
 		},
 
 		step: function(dt){
 			// 控制人物
 			var player_w = this.p.w/2 ;
-			if (Q.inputs['left']){
+			if (Q.inputs['A']){
 				this.p.x -= 5 ;
 
 				if ( this.p.x < player_w)
 					this.p.x = player_w ;
-			}else if (Q.inputs['right']){
+			}else if (Q.inputs['D']){
 				this.p.x += 5 ;
 
 				if ( this.p.x > (Q.width - player_w))

@@ -16,7 +16,8 @@ window.addEventListener('load',function(){
 				upsampleWidth: 318,  // Double the pixel density of the 
   			upsampleHeight: 330 , 
 				downsampleWidth: 901,
-				downsampleHeight: 935
+				downsampleHeight: 935,
+				scaleToFit: true
 			})
 			.touch();
 
