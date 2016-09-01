@@ -89,8 +89,12 @@ body {
 	width:20% ;
 	justify-content:space-between ;
 
+	> a{
+		width:50%;
+	}
+
 	img {
-		width:40% ;
+		width:55% ;
 		cursor:pointer ;
 		transition: all 0.15s ease-in ;
 
