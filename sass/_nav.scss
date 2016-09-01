@@ -103,7 +103,7 @@ $nav-font-size:16px;
 	justify-content:space-around ;
 	width:100% ;
 	margin-top:20px ;
-	> .footer_icon{
+	.footer_icon{
 		@include setSize(60px , 61px);
 	}
 
@@ -236,7 +236,7 @@ $nav-font-size:16px;
 	}
 
 	.icon-h{
-		> .footer_icon{
+		.footer_icon{
 			@include setSize(46px , 50px);
 		}
 
