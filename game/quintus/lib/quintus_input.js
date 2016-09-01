@@ -63,7 +63,9 @@ Quintus.Input = function(Q) {
     ENTER: 'confirm',
     ESC: 'esc',
     P: 'P',
-    S: 'S'
+    S: 'S',
+    A: 'A',
+    D: 'D'
   };
 
   var DEFAULT_TOUCH_CONTROLS  = [ ['left','<' ],
