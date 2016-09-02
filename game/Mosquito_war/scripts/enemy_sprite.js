@@ -1,13 +1,26 @@
+/*
+因為針是用 setInterval 設置的，所以設為全域，在war_scene.js 裡
+每gameOver一次時reset，增進效能，但要特別注意
+
+目前Bug:
+因為可以不殺死血泡，直接殺死魔王，所以會有血泡的timer還在跑的情況
+（但要注意的是還必須想要怎麼打魔王，才能解決）
+*/
+
+// 蚊子的attackTimer
+var attackTimer = [] ;
+var mosId = 0 ;
+
+// 血泡的放針Timer
+var k_attackTimer = [] ;
+var k_attackId = 0 ;
+
 ;Quintus.EnemySprites = function(Q){
 	Q.gravityY = 0;
   Q.gravityX = 0;
 
-  // 蚊子的attackTimer
-  var attackTimer = [] ;
+  // 算數量
   var mosId = 0 ;
-
-  // 血泡的放針數量
-  var k_attackTimer = [] ;
   var k_attackId = 0 ;
 
   var attackTimeInterval = 900 ;
@@ -252,6 +265,7 @@
 
 			if(this.p.life == 0){
 				this.destroy();
+
 				this.stage.trigger("complete");
 			}
 		}

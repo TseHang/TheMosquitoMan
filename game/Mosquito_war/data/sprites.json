@@ -1,8 +1,12 @@
 {
   "all": { "tilew": 10 , "tileh": 10 , "sx": 0 , "sy": 0 , "w": 570 , "h": 870 },
+  
   "player_right":{"tilew":40 , "tileh":40 , "sx":150 , "sy":410 , "w":40 , "h":40},
   "player_left":{"tilew":40 , "tileh":40 , "sx":100 , "sy":410 , "w":40 , "h":40},
   "player_back":{"tilew":80 , "tileh":30 , "sx":250 , "sy":430 , "w":80 , "h":30},
+  "level_stop":{"tilew":60 , "tileh": 20 , "sx":150 , "sy": 710 , "w":60 , "h":20},
+  "level_continue":{"tilew":90 , "tileh": 30 , "sx":150 , "sy": 740 , "w":90 , "h":30},
+
   "mos1": {"tilew": 70 , "tileh": 40 , "sx": 220 , "sy":250 , "w":70 , "h":40  },
   "enemy_death":{ "tilew":50 , "tileh": 40 , "sx":300 , "sy":250 , "w":50 , "h":40},
   "player": { "tilew": 90 , "tileh": 150 , "sx": 0 , "sy": 310 , "w": 90 , "h": 150 },
@@ -12,6 +16,12 @@
   "pre_power_up":{"tilew":140 , "tileh":20 , "sx":0 , "sy":660 , "w":560 , "h":20},
   "mosattack": { "tilew":10 , "tileh": 40 , "sx":200 , "sy": 250 , "w":10 , "h":40} ,
   "mosking": { "tilew": 430 , "tileh": 240 , "sx": 0 , "sy": 0 , "w": 430 ,"h":240 },
+  
   "moskingattack_5": {"tilew":30 , "tileh":40 , "sx": 0 ,"sy":250 , "w":30 , "h": 40} ,
-  "katha_1":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 310 , "w":80 , "h":20 }
+  
+  "katha_1":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 310 , "w":80 , "h":20 },
+
+  "life_text": {"tilew":50 , "tileh":20 , "sx":150 ,"sy":690 , "w":50 , "h": 20},
+  "life": {"tilew":20 , "tileh":20 , "sx":200 ,"sy":690 , "w":20 , "h": 20}
+
 }

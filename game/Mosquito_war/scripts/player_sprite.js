@@ -16,8 +16,7 @@
 				sprite: 'player',
 				type: Q.SPRITE_ENEMY ,
 				x: Q.width/2,
-				y: 450,
-				katha: 0
+				y: 450
 			}) ;
 
 			Q.state.set("player_h" , this.p.h) ;
@@ -38,7 +37,7 @@
 					this.p.x = (Q.width - player_w) ;
 			}
 
-			if(Q("Enemy").length < 5 ){
+			if(Q("Enemy").length < 3 ){
 				if(addCount > 0){
 					this.stage.insert(new Q.MosquitoTracker({
 	    			data: Q.asset("addMos_s") ,
@@ -57,6 +56,7 @@
 	    			scale:1
 	    		}));
 
+					// 使addCount = -1 不繼續動
 	    		addCount-- ;
 				}	
 			}

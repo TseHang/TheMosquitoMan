@@ -3,7 +3,6 @@
 (1)那麼攻擊到底要用空白鍵?
 (2)還是繼續點擊呢？
 
-
 */
 window.addEventListener('load',function(){
 	var Q = Quintus().include('Sprites , Scenes , Input , Anim , 2D , Audio , Touch , UI')

@@ -1,5 +1,8 @@
 ;Quintus.LevelUI = function(Q) {
 
+  var lives_state ;
+  var life = [];
+
   Q.Sprite.extend("Level_bg",{
     init: function(p) {
       this._super(p,{
@@ -20,28 +23,6 @@
 
       dx = touch.x - power_x;
       dy = touch.y - power_y;
-      /*
-       (1) 用asin來算 --> 因為出來是角度，需判斷象限
-        dz = Math.sqrt(dx*dx + dy*dy);
-        angle = Math.asin( Math.abs(dy)/Math.abs(dz) )/Math.PI*180
-
-        // 第一象限
-        if (dx > 0 && dy > 0) {
-          angle = angle ;
-        }
-        // 第二象限
-        else if ( dx < 0 && dy > 0) {
-          angle = 180 - angle ;
-        }
-        // 第三象限
-        else if (dx < 0 && dy < 0) {
-            angle = angle + 180 ;
-        }
-        // 第四象限
-        else if( dx > 0 && dy < 0){
-            angle = 360 - angle ;
-        }
-      */
 
       // (2) atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
       angle = Math.atan2( dy , dx)/Math.PI*180
@@ -74,6 +55,87 @@
     }
   });
 
+  Q.Sprite.extend("Life" , {
+    init: function(p){
+      this._super(p,{
+        sheet: "life",
+        sprite: "life",
+        y: Q.height - 15,
+        type: Q.SPRITE_UI
+      })
+    }
+  })
+
+  Q.Sprite.extend("Lives_text" , {
+    init: function(){
+      this._super({
+        sheet: "life_text",
+        sprite: "life_text" ,
+        x: 70 ,
+        y: Q.height - 15 
+      })
+
+      lives_state = Q.state.get("lives");
+
+      this.on("inserted",this,"initLives");
+      Q.state.on("change.lives" , this ,"setLives") ;
+    },
+
+    initLives: function(){
+      d = 20 ;
+
+      for (i = 1 ; i <= lives_state ; i++ )
+        life.push( this.stage.insert(new Q.Life({x: 90 + d*i })) );
+    },
+
+    setLives: function(){
+      lives_state = Q.state.get("lives");
+
+      // 消掉球球
+      life[lives_state].destroy();
+      // 把陣列清空
+      life.pop();
+
+      if (lives_state <= 0){
+        Q.stageScene("gameOver") ;
+      }
+    }
+  });
+
+  Q.Sprite.extend("LevelStop_btn" , {
+    init : function(p){
+      this._super(p,{
+        sheet: "level_stop",
+        x: Q.width -70  ,
+        y: Q.height -15 ,
+        type: Q.SPRITE_UI
+      })
+      
+      this.on("touch");
+    },
+
+    touch : function(){
+      Q.stage().paused = true ;
+
+      var container = this.stage.insert(new Q.UI.Container({
+        fill: "rgba(0,0,0,0.6)" ,
+        border: "5",
+        shadowColor: "rgba(0,0,0,0.5)",
+        w: Q.width,
+        h: Q.height,
+        x: Q.width/2,
+        y: Q.height/2
+      }));
+
+        // 塞到container 這個容器
+        this.stage.insert(new Q.Sprite({
+          sheet : "level_continue",
+          x: 0,
+          y: 0
+        }),container);
+    }
+  })
+
   Q.UI.Text.extend("Level" , {
   	init: function(){
   		this._super({
@@ -94,28 +156,6 @@
   	level: function(level) {
       this.p.label = "level: " + level;
     }
-  });
-
-  Q.UI.Text.extend("Lives" , {
-
-  	init: function(){
-  		var lives = Q.state.get("lives");
-
-  		this._super({
-  			label: "Lives: "+ lives,
-  			align: "left" ,
-  			x: 70 ,
-  			y: Q.height - 10 ,
-  			weight: "normal" ,
-  			size: 18
-  		})
-
-  		Q.state.on("change.lives" , this ,"lives") ;
-  	},
-
-  	lives: function(lives){
-  		this.p.label = "lives: "+lives;
-  	}
   });
 
   Q.UI.Text.extend("Score" , {

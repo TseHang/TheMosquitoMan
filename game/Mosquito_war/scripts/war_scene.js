@@ -11,14 +11,13 @@ STATE:
 -
  */
 ;Quintus.WarScenes = function(Q) {
-	var powerTimeInterval ;
 
 	// 第一頁面
 	Q.scene("title" , function(stage){
 		console.log("Scene: title");
 
 		// Set up the game state
-    Q.state.reset({ player_h: 0 , score: 0, lives: 3, level: 0 , katha: 0 , player_state: 1 , power_up: 0});
+    Q.state.reset({ player_h: 0 , score: 0, lives: 4, level: 0 , katha: 0 , player_state: 1 , power_up: 0});
 
 		// Clear the hud out
 		Q.clearStage(1) ;
@@ -76,7 +75,6 @@ STATE:
 
 		intro_bg.on("touch" , function(){
 			
-			// console.log("11");
 			intro_bg.animate({opacity: 0} , 1 , Q.Easing.Linear ) ;
 			intro_text.animate({opacity: 0} , 0.5 , Q.Easing.Linear , {
 				callback: function(){Q.stageScene("level1")}
@@ -204,8 +202,10 @@ STATE:
 
 		// 去 UI 那邊找
 		stage.insert(new Q.Score()) ;
-		stage.insert(new Q.Lives()) ;
-		stage.insert(new Q.Level()) ;
+		stage.insert(new Q.Lives_text()) ;
+
+		stop_btn = stage.insert(new Q.LevelStop_btn()) ;
+
 	} , {stage : 1 });
 
 	function setupLevel(levelAsset,stage) {
@@ -218,12 +218,6 @@ STATE:
     }
     stage.insert(new Q.Player());
     stage.insert(new Q.MosquitoTracker({ data: Q.asset(levelAsset) }));
-
-    // 每一秒設一次球
-    // powerTimeInterval = window.setInterval(function(){
-    // 	stage.insert(new Q.Power());
-    // },1000)
-
   }
 
 	// 第一關
@@ -286,13 +280,26 @@ STATE:
 	Q.scene("gameOver" , function(stage){
 		console.log("Scene: gameOver");
 
+		// 把沒打死的蚊子，所有計時器停掉
+		for ( i = 0 ; i < attackTimer.length ; i ++)
+			clearInterval( attackTimer[i] );
+		for ( i = 0 ; i < k_attackTimer.length ; i ++)
+			clearInterval( k_attackTimer[i] );
+
+		// 初始化 attackTimer(射蚊子的針用的)、k_attackTimer
+		attackTimer = [];	
+		k_attackTimer = [];	
+		mosId = 0;
+		k_attackId = 0 ;
+
+		// 消除level 下面那條
+		Q.clearStage(1) ;
 		var bg = stage.insert(new Q.Background({ type: Q.SPRITE_UI})) ;
 		bg.on("touch", function() {
 			Q.stageScene("title") ;
 		});
 
 		stage.insert(new Q.Logo()) ;
-
 		stage.insert(new Q.UI.Text({
 			label : "Game Over" ,
 			align: "center" ,
