@@ -8,7 +8,7 @@
 */
 
 // 蚊子的attackTimer
-var attackTimer = [] ;
+var attackTimer = [];
 var mosId = 0 ;
 
 // 血泡的放針Timer
