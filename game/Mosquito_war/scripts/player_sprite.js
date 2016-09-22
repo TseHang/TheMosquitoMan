@@ -1,12 +1,16 @@
 /*
 1. 查一下怎麼讓人變成 [Ａ] [Ｄ] 動
 */
+
+// 計算救兵 蚊子出來次數
+var mos_addCount = 0 ;
+
 ;Quintus.PlayerSprites = function(Q){
 	Q.gravityY = 0;
   Q.gravityX = 0;
 
-  // 計算蚊子出來次數
-	var addCount = 0 ;
+	// 紀錄被 power 打到的上一個
+	var lastCollide = null;
 
 	// 載入玩家
 	Q.Sprite.extend("Player",{
@@ -38,17 +42,17 @@
 			}
 
 			if(Q("Enemy").length < 3 ){
-				if(addCount > 0){
+				if(mos_addCount > 0){
 					this.stage.insert(new Q.MosquitoTracker({
 	    			data: Q.asset("addMos_s") ,
 	    			y: 40,
 	    			scale:1
 	    		}));
 
-					addCount-- ;
+					mos_addCount-- ;
 				} 
 
-				if(addCount == 0 && Q("Enemy").length == 0){
+				if(mos_addCount == 0 && Q("Enemy").length == 0){
 					this.stage.insert(new Q.MosKing());
 					this.stage.insert(new Q.MosquitoTracker({
 	    			data: Q.asset("addKingattack_s") ,
@@ -56,8 +60,11 @@
 	    			scale:1
 	    		}));
 
-					// 使addCount = -1 不繼續動
-	    		addCount-- ;
+					// 使mos_addCount = -1 不繼續動
+	    		mos_addCount-- ;
+
+	    		// Play video_mosking_appear
+	    		playVideo(video_mosking_appear);
 				}	
 			}
 		}
@@ -88,12 +95,12 @@
     },
 
     collide: function(col) {
-    	if(col.obj.isA("Enemy") || col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
+    	if( col.obj.isA("Enemy") || col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
         Q.play("brickDeath.ogg");
         
         // 消掉蚊子 or 針
-        col.obj.destroyed();
         this.destroy();
+        col.obj.trigger("destroy");
       }
     },
 

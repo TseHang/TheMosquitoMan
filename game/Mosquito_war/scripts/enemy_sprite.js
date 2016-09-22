@@ -19,13 +19,10 @@ var k_attackId = 0 ;
 	Q.gravityY = 0;
   Q.gravityX = 0;
 
-  // 算數量
-  var mosId = 0 ;
-  var k_attackId = 0 ;
-
   var attackTimeInterval = 900 ;
   var player_h ;
 
+  var k_die_timer ;
 
   // 載入整個場景
 	// TileLayer --> GameTiles 
@@ -74,8 +71,6 @@ var k_attackId = 0 ;
 	});
 
 	// 載入蚊子
-	// ＠＠＠＠ 有點搞不懂他在幹嘛 ＠＠＠＠
-	// ！！好像是在設置方塊！！
 	Q.Sprite.extend("MosquitoTracker" , {
 		init: function(p){
 			this._super(p,{
@@ -132,6 +127,7 @@ var k_attackId = 0 ;
 				count: 0
 			});
 			this.add("tween");
+			this.on("destroy"); // will just call destroy()
 
 			mosId++ ;
 
@@ -166,6 +162,7 @@ var k_attackId = 0 ;
 		},
 
 		destroyed: function(col){
+
 			// 換成死掉的sheet
 			this.p.sheet = "enemy_death";
 
@@ -202,7 +199,6 @@ var k_attackId = 0 ;
       	this.p.count = 0;
       }
     }
-
 	});
 
 	Q.Sprite.extend("MosAttack" , {
@@ -215,6 +211,7 @@ var k_attackId = 0 ;
 
 			this.add("2d");
 			this.on("hit" , this ,"collide");
+			this.on("destroy"); // will just call destroy()
 		},
 
 		step: function(dt) {
@@ -228,16 +225,11 @@ var k_attackId = 0 ;
     },
 
 		collide: function(col) {
-
       // 扣血
     	if(col.obj.isA("Player")) {
       	this.destroy();
         Q.state.dec("lives" , 1) ;
       }
-    },
-
-    destroyed: function(){
-    	this.destroy();
     }
 	})
 
@@ -245,29 +237,102 @@ var k_attackId = 0 ;
 	Q.Sprite.extend("MosKing",{
 		init: function(p){
 			this._super(p,{
-				// sheet: 'mosking_anim' ,
-				// sprite: 'mosking_anim',
-				sheet: 'mosking',
-				sprite: 'mosking',
+				sheet: 'mosking_anim' ,
+				sprite: 'mosking_anim',
 				collisionMask: Q.SPRITE_ENEMY ,
 				x: Q.width/2,
-				y: 120,
+				y: 110,
 				scale: 0.1,
-				life: 20
+				opacity:1 ,
+				life: Q.state.get("mosking_life")
+			}) ;
+			
+			this.on("destroy"); // will just call destroy()
+
+			this.add("tween,animation") ;
+			this.animate({scale:1}, 0.4 , Q.Easing.Quadratic.InOut);
+
+			this.fly_up();
+			this.play("default");
+
+			console.log("mosking_life: " + this.p.life);
+		},
+
+		// 就是指蚊子王被打到後的動作
+		destroyed: function(){
+			mosking_x = this.p.x ;
+      mosking_y = this.p.y ;
+
+			if(this.p.life == 0){
+				this.stage.trigger("complete");
+			}else{
+				this.stage.insert(new Q.MosKing_die({
+					x:mosking_x ,
+					y:mosking_y
+				}));
+
+				this.animate({opacity:0} , 0.1 , Q.Easing.Linear);
+			}
+
+			this.destroy() ;
+		},
+
+		fly_up: function(){
+      this.animate({y: 100 } ,1 , Q.Easing.Quadratic.InOut , {
+        callback: function(){ this.fly_down();}
+      }) ;
+    },
+
+    fly_down: function(){
+      this.animate({y: 115 } ,0.7 , Q.Easing.Quadratic.InOut , {
+        callback: function(){ this.fly_up();}
+      }) ;
+    }
+	})
+
+	// 被打到後的蚊子王
+	Q.Sprite.extend("MosKing_die",{
+		init: function(p){
+			this._super(p,{
+				sheet: 'mosking_die' ,
+				sprite: 'mosking_die',
+				collisionMask: Q.SPRITE_ENEMY ,
+				opacity:1 
 			}) ;
 
 			this.add("tween") ;
-			this.animate({scale:1}, 0.4 , Q.Easing.Quadratic.InOut);
+			this.opacity_0();
+
+			// 蚊子王的生命減ㄧ
+			Q.state.dec("mosking_life" , 1);
+
+			// 把 Mosking_die 指向 this
+			mosking_die = this ;
+
+			// 1.5秒後變回蚊子王
+			this.animate({y:this.p.y + 30} , 1.5 , Q.Easing.Linear , {
+				callback: function(){
+					mosking_die.stage.insert(new Q.MosKing({
+						x: mosking_die.p.x,
+						y: mosking_die.p.y,
+						scale: 1
+					}))
+
+					mosking_die.destroy();
+				}
+			});
 		},
 
-		destroyed: function(){
-			this.p.life -- ;
+		opacity_0: function(){
+			this.animate({opacity:0} , 0.1 , Q.Easing.Quadratic.InOut , {
+				callback: function(){ this.opacity_1(); }
+			})
+		},
 
-			if(this.p.life == 0){
-				this.destroy();
-
-				this.stage.trigger("complete");
-			}
+		opacity_1: function(){
+			this.animate({opacity:1} , 0.1 , Q.Easing.Linear , {
+				callback: function(){ this.opacity_0(); }
+			})
 		}
 	})
 
@@ -279,6 +344,7 @@ var k_attackId = 0 ;
 				k_attackId: k_attackId ,
 				live: 5 
 			})
+
 			this.on("hit" , this ,"collide");
 
 			k_attackId++ ;
@@ -317,12 +383,9 @@ var k_attackId = 0 ;
       // 扣血
     	if(col.obj.isA("Power")) {
         this.p.live-- ; 
-        console.log(this.p.live);
    		}
-    },
 
-    destroyed: function(){
-			if(this.p.live == 0){
+   		if(this.p.live == 0){
         this.destroy();
         
         // 消掉針

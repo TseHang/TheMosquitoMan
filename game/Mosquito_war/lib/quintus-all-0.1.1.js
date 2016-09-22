@@ -1,3 +1,4 @@
+var vid ;
 /*! Quintus - v0.0.5 - 2013-02-02
 * Copyright (c) 2013 Pascal Rettig; Licensed MIT, GPLv2 */
 
@@ -1075,6 +1076,26 @@ var Quintus = function Quintus(opts) {
     img.src = Q.options.imagePath + src;
   };
 
+  // // Add Video
+  // Q.assetTypes['mp4'] = 'Video' ;
+  
+  // // Q.loadAssetVideo = function(key,src,callback,errorCallback) {
+  // //   vid = document.createElement("Video");
+  // //   vid.onload = function(){ console.log("11");}
+  // //   // vid.addEventListener("canplaythrough",function() {  callback(key,vid); });
+  // //   vid.onerror = errorCallback;
+  // //   // vid.src = Q.options.imagePath + src;
+  // //   vid.setAttribute("src", "./images/video.mp4");
+  // // };
+  // Q.loadAssetVideo = function(key,src,callback,errorCallback) {
+  //   vid = document.createElement('VIDEO');
+  //   vid.src = "images/video.mp4" ;
+  //   vid.addEventListener("canplay",function() {  
+  //     console.log("11");
+  //     callback(key,vid); 
+  //   });
+  //   vid.onerror = errorCallback;
+  // };
 
   // List of mime types given an audio file extension, used to 
   // determine what sound types the browser can play using the 

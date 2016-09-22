@@ -8,31 +8,32 @@ STATE:
 5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子） 
 6: power_up 控制攻擊泡泡，有沒有變大
 7: player_h 主角的身長
+8: mosking_life 蚊子王的生命 預設20
 -
  */
 ;Quintus.WarScenes = function(Q) {
 
 	// 第一頁面
 	Q.scene("title" , function(stage){
-		console.log("Scene: title");
+		console.log("Scene: titleFirst");
 
 		// Set up the game state
-    Q.state.reset({ player_h: 0 , score: 0, lives: 4, level: 0 , katha: 0 , player_state: 1 , power_up: 0});
+    Q.state.reset({ player_h: 0 , score: 0, lives: 4, level: 0 , katha: 0 , player_state: 1 , power_up: 0 , mosking_life: 10});
 
 		// Clear the hud out
 		Q.clearStage(1) ;
 
-		var bg = stage.insert(new Q.Background()) ;
-		var landing_logo = stage.insert(new Q.Logo()) ;
-		var landing_play = stage.insert(new Q.Landing_play());
-		var landing_story = stage.insert(new Q.Landing_story());
+		bg = stage.insert(new Q.Background()) ;
+		landing_logo = stage.insert(new Q.Logo()) ;
+		landing_play = stage.insert(new Q.Landing_start());
+		landing_player = stage.insert(new Q.Landing_player());
 
 		// ＊＊＊＊＊＊
 		// 開始玩遊戲!!
 		// ＊＊＊＊＊＊
 		landing_play.on('touch' , function(){
 			
-			// 移動背景
+			// animate BG!
 			bg.animate({ cy: Q.height/2 }, 1, Q.Easing.Quadratic.InOut , {
 				callback: function(){Q.stageScene("introStory");}
 			});
@@ -42,13 +43,13 @@ STATE:
 
 			// 消失按鍵
 			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
-			landing_story.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
+			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
 		});
 
 		// ＊＊＊＊＊＊
 		// 角色說明!!
 		// ＊＊＊＊＊＊
-		landing_story.on('touch' , function(){
+		landing_player.on('touch' , function(){
 			
 			// 消失背景
 			bg.animate({ opacity: 0 }, 1, Q.Easing.Quadratic.InOut);
@@ -60,33 +61,100 @@ STATE:
 
 			// 消失按鍵
 			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
-			landing_story.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
+			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
 		});
+
+		// loadAllVideo
+		loadAllVideo();
 	})
 
 	Q.scene("introStory" , function(stage){
 
 		// 介紹故事
 		console.log("Scene: introStory");
-		var intro_bg = stage.insert(new Q.IntroBg()) ;
-		var intro_man = stage.insert(new Q.IntroMan()) ;
-		var intro_text = stage.insert(new Q.IntroText()) ;
-		var intro_txet_click = stage.insert(new Q.IntroTextClick());
+		
+		intro_bg = stage.insert(new Q.IntroBg()) ;
+		intro_man = stage.insert(new Q.IntroMan()) ;
+		intro_text = stage.insert(new Q.IntroText()) ;
+		intro_howplay = stage.insert(new Q.IntroHowplay());
+		intro_go = stage.insert(new Q.IntroGo());
+		
+		intro_howplay.on("touch" , function(){
+			Q.stageScene("gameDescription");
+		});
 
-		intro_bg.on("touch" , function(){
+		// start game!
+		intro_go.on('touch' , function(){
 			
 			intro_bg.animate({opacity: 0} , 1 , Q.Easing.Linear ) ;
 			intro_text.animate({opacity: 0} , 0.5 , Q.Easing.Linear , {
 				callback: function(){Q.stageScene("level1")}
 			}) ;
-			intro_txet_click.animate({opacity: 0 }, 0.5 ,  Q.Easing.Linear);
+			intro_go.animate({opacity: 0 }, 0.5 ,  Q.Easing.Linear);
+			intro_howplay.animate({opacity: 0 }, 0.5 ,  Q.Easing.Linear);
 
 			intro_man.animate({scale: 0} , 0.3 , Q.Easing.Quadratic.InOut , {
 				callback: function(){ this.destroy(); }
 			}) ;
 		})
 
-	} );
+	});
+
+	Q.scene("gameDescription" , function(stage){
+
+		stage.insert(new Q.GameDescription_bg());
+		stage.insert(new Q.UI.Text({
+			label: "白線斑蚊將以「血刺」攻擊\n玩家，須不斷閃躲或用攻擊\n抵消。",
+			color: "black",
+			x: Q.width/2 + 85 ,
+			y: Q.height/2 - 140,
+			weight: "normal",
+			align: "left",
+			size: 16
+		}))
+
+		stage.insert(new Q.UI.Text({
+			label: "神秘魔王現身，必須要小心\n以防血泡突破護體真氣。",
+			color: "black",
+			x: Q.width/2 + 85 ,
+			y: Q.height/2 - 40,
+			weight: "normal",
+			align: "left",
+			size: 16
+		}))
+
+		stage.insert(new Q.UI.Text({
+			label: "玩家操控主角，\nA鍵向左、D鍵向右。",
+			color: "black",
+			x: Q.width/2 + 60 ,
+			y: Q.height/2 + 60 ,
+			weight: "normal",
+			align: "left",
+			size: 15
+		}))
+
+		stage.insert(new Q.UI.Text({
+			label: "以滑鼠控制方向發出氣功，\n攻擊蚊子。",
+			color: "black",
+			x: Q.width/2 + 80 ,
+			y: Q.height/2 + 140 ,
+			weight: "normal",
+			align: "left",
+			size: 15
+		}))
+
+		close_btn = stage.insert(new Q.Sprite({
+			x: Q.width - 120,
+      y: Q.height/2 + 170,
+			asset: 'katha/katha_close.png',
+      type: Q.SPRITE_UI
+		}))
+
+		close_btn.on("touch", function(){
+			Q.clearStage(2);
+		})
+
+	} , {stage : 2 });
 
 	Q.scene("introPlayerMan" , function(stage){
 		// 介紹故事
@@ -108,7 +176,7 @@ STATE:
 		// 介紹故事
 		console.log("Scene: introPlayerMosking");
 
-		// SET player_state = 1
+		// SET player_state = 2
 		Q.state.set('player_state' , 2);
 
 		stage.insert(new Q.PlayerMoskingBg()) ;
@@ -173,7 +241,9 @@ STATE:
 
 		if (kathaNum == 1){
 			stage.insert(new Q.Katha_1_bg());
+			stage.insert(new Q.Katha_1_title());
 			stage.insert(new Q.Katha_1_text());
+			stage.insert(new Q.Katha_1_function());
 			btn = stage.insert(new Q.Katha_close_btn());
 		}
 		else{
@@ -280,24 +350,7 @@ STATE:
 	Q.scene("gameOver" , function(stage){
 		console.log("Scene: gameOver");
 
-		// 把沒打死的蚊子，所有計時器停掉
-		for ( i = 0 ; i < attackTimer.length ; i ++)
-			clearInterval( attackTimer[i] );
-		for ( i = 0 ; i < k_attackTimer.length ; i ++)
-			clearInterval( k_attackTimer[i] );
-
-		// 初始化 attackTimer(射蚊子的針用的)、k_attackTimer
-		attackTimer = [];	
-		k_attackTimer = [];	
-		mosId = 0;
-		k_attackId = 0 ;
-
-		// 消除level 下面那條
-		Q.clearStage(1) ;
-		var bg = stage.insert(new Q.Background({ type: Q.SPRITE_UI})) ;
-		bg.on("touch", function() {
-			Q.stageScene("title") ;
-		});
+		reset(stage);
 
 		stage.insert(new Q.Logo()) ;
 		stage.insert(new Q.UI.Text({
@@ -314,13 +367,9 @@ STATE:
 	Q.scene("winner" , function(stage){
 		console.log("Scene: winner");
 
-		var bg = stage.insert(new Q.Background({ type: Q.SPRITE_UI})) ;
-		bg.on("touch", function() {
-			Q.stageScene("title") ;
-		});
+		reset(stage);
 
 		stage.insert(new Q.Logo()) ;
-
 		stage.insert(new Q.UI.Text({
 			label : "You Win~" ,
 			align: "center" ,
@@ -330,5 +379,29 @@ STATE:
 			size: 40
 		}))
 	})
+}
 
+function reset(stage) {
+  // 把沒打死的蚊子，所有計時器停掉
+  for (i = 0; i < attackTimer.length; i++)
+    clearInterval(attackTimer[i]);
+  for (i = 0; i < k_attackTimer.length; i++)
+    clearInterval(k_attackTimer[i]);
+
+  // 初始化 attackTimer(射蚊子的針用的)、k_attackTimer
+  attackTimer = [];
+  k_attackTimer = [];
+  mosId = 0;
+  k_attackId = 0;
+
+  // 消除level 下面那條
+	Q.clearStage(1) ;
+
+  var bg = stage.insert(new Q.Background({ type: Q.SPRITE_UI})) ;
+	bg.on("touch", function() {
+		Q.stageScene("title") ;
+	});
+
+	Q.state.set("mosking_life" , 10);
+	mos_addCount = 0;
 }

@@ -1,5 +1,5 @@
 {
   "player_man_rotate": { "tilew": 500 , "tileh": 220 , "sx": 0 , "sy": 0 , "w": 2000 , "h": 220 },
   "player_man_man": {"tilew":210 , "tileh":230 , "sx":0 , "sy":230 , "w":840 , "h":230},
-  "mosking_anim":{"tilew": 350 , "tileh":200 , "sx":850 , "sy":260 , "w":1400, "h":200}
+  "mosking_anim":{"tilew": 360 , "tileh":200 , "sx":840 , "sy":230 , "w":1440, "h":200}
 }

@@ -15,9 +15,28 @@
   <script src='scripts/level_ui.js'></script>
   <script src='scripts/war_level.js'></script>
   <style>
+  	html{
+  		height: 100%;
+  	}
 		body {
 			background-color: black;
 			padding:0px; margin: 0px;
+			height: 100%;
+		}
+
+		.video_container{
+			height: 100% ;
+			display: flex ;
+			z-index: 1 ;
+			justify-content: center ;
+			align-items: center ;
+
+		}
+
+		.video{
+			opacity: 0 ;
+			z-index: 0 ;
+			transition: opacity 0.2s ease-in;
 		}
 
 		@media (min-width: 641px) {
@@ -34,5 +53,10 @@
 	</style>
 </head>
 <body>
+	<div class = "video_container">
+		<video class = "video" id = "video_mosking_appear" preload="none" src = "video/mosking_appear.mp4"></video>
+	</div>
 </body>
+<!-- videoＪＳ -->
+<script src='scripts/controlVideo.js'></script>
 </html>

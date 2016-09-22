@@ -2,13 +2,14 @@
 
   var lives_state ;
   var life = [];
+  var container ;
 
   Q.Sprite.extend("Level_bg",{
     init: function(p) {
       this._super(p,{
         x: Q.width/2,
         y: Q.height/2,
-        asset: 'level_bg.png',
+        asset: 'level/level_bg.png',
         type: Q.SPRITE_UI
       });
 
@@ -24,7 +25,7 @@
       dx = touch.x - power_x;
       dy = touch.y - power_y;
 
-      // (2) atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
+      // atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
       angle = Math.atan2( dy , dx)/Math.PI*180
 
       // 看一下有沒有吃到奧義
@@ -93,7 +94,7 @@
 
       // 消掉球球
       life[lives_state].destroy();
-      // 把陣列清空
+      // 把陣列清掉
       life.pop();
 
       if (lives_state <= 0){
@@ -115,9 +116,10 @@
     },
 
     touch : function(){
+      // 暫停
       Q.stage().paused = true ;
 
-      var container = this.stage.insert(new Q.UI.Container({
+      container = this.stage.insert(new Q.UI.Container({
         fill: "rgba(0,0,0,0.6)" ,
         border: "5",
         shadowColor: "rgba(0,0,0,0.5)",
@@ -127,12 +129,28 @@
         y: Q.height/2
       }));
 
-        // 塞到container 這個容器
-        this.stage.insert(new Q.Sprite({
-          sheet : "level_continue",
-          x: 0,
-          y: 0
-        }),container);
+      // 塞到container 這個容器
+      this.stage.insert(new Q.LevelContinue_btn(),container);
+    }
+  })
+  
+
+  Q.Sprite.extend("LevelContinue_btn" , {
+    init: function(p){
+      this._super(p,{
+        sheet : "level_continue",
+        x: 0,
+        y: 0,
+        type: Q.SPRITE_UI
+      })
+
+      this.on("touch");
+    },
+
+    touch : function(){
+      Q.stage().paused = false ;
+
+      container.destroy();
     }
   })
 
@@ -148,8 +166,7 @@
   			size: 18 
   		});
 
-  		// 只要有人呼叫到 Q.state.set("level" , 2) 
-  		// 就會call 這個 function
+  		// If Q.state.state("level",2) is called --> this onchanged
   		Q.state.on("change.level",this,"level");
   	},
 
@@ -182,7 +199,7 @@
       this._super(p,{
         x: Q.width/2,
         y: -300,
-        asset: 'katha_1_bg.png',
+        asset: 'katha/katha_1_bg.png',
         type: 0
       });
 
@@ -191,12 +208,12 @@
     }
   });
 
-  Q.Sprite.extend("Katha_1_text",{
+  Q.Sprite.extend("Katha_1_title",{
     init: function(p) {
       this._super(p,{
         x: Q.width/2 + 10,
-        y: Q.height/2,
-        asset: 'katha_1_text.png',
+        y: Q.height/2 - 60,
+        asset: 'katha/katha_1_title.png',
         type: 0,
         opacity: 0
       });
@@ -208,13 +225,40 @@
     }
   });
 
+  Q.UI.Text.extend("Katha_1_text" , {
+    init: function(p){
+      this._super(p,{
+        label: "功法：\n1. 在家中裝紗窗、紗門，不讓蚊蟲進屋，睡覺時掛蚊帳。\n2. 使用捕蚊燈電蚊拍，陰暗處或是地下室定期巡邏。\n3. 若有放在戶外的廢棄輪胎、積水容器等物品馬上清除。" ,
+        align: "left",
+        x: Q.width/2 + 20,
+        y: Q.height/2 ,
+        weight: "normal",
+        size: 16
+      })
+    }
+  });
+
+  Q.UI.Text.extend("Katha_1_function" , {
+    init: function(p){
+      this._super(p,{
+        label: "效果：\n    攻擊範圍變成兩倍，持續20秒。" ,
+        align: "left",
+        x: Q.width/2 - 60,
+        y: Q.height/2 + 70 ,
+        weight: "normal",
+        size: 16,
+        color: "darkred"
+      })
+    }
+  });
+
 
   Q.Sprite.extend("Katha_close_btn",{
     init: function(p) {
       this._super(p,{
         x: Q.width - 100,
         y: Q.height/2 + 70,
-        asset: 'katha_close.png',
+        asset: 'katha/katha_close.png',
         type: Q.SPRITE_UI
       });
 
