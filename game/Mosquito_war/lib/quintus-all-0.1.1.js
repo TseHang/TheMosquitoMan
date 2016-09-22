@@ -1,3 +1,4 @@
+var vid ;
 /*! Quintus - v0.0.5 - 2013-02-02
 * Copyright (c) 2013 Pascal Rettig; Licensed MIT, GPLv2 */
 
@@ -1075,6 +1076,26 @@ var Quintus = function Quintus(opts) {
     img.src = Q.options.imagePath + src;
   };
 
+  // // Add Video
+  // Q.assetTypes['mp4'] = 'Video' ;
+  
+  // // Q.loadAssetVideo = function(key,src,callback,errorCallback) {
+  // //   vid = document.createElement("Video");
+  // //   vid.onload = function(){ console.log("11");}
+  // //   // vid.addEventListener("canplaythrough",function() {  callback(key,vid); });
+  // //   vid.onerror = errorCallback;
+  // //   // vid.src = Q.options.imagePath + src;
+  // //   vid.setAttribute("src", "./images/video.mp4");
+  // // };
+  // Q.loadAssetVideo = function(key,src,callback,errorCallback) {
+  //   vid = document.createElement('VIDEO');
+  //   vid.src = "images/video.mp4" ;
+  //   vid.addEventListener("canplay",function() {  
+  //     console.log("11");
+  //     callback(key,vid); 
+  //   });
+  //   vid.onerror = errorCallback;
+  // };
 
   // List of mime types given an audio file extension, used to 
   // determine what sound types the browser can play using the 
@@ -2830,14 +2851,26 @@ Quintus.DOM = function(Q) {
 Quintus.Input = function(Q) {
   var KEY_NAMES = { LEFT: 37, RIGHT: 39, SPACE: 32,
                     UP: 38, DOWN: 40,
-                    Z: 90, X: 88   
+
+                    A : 65, B : 66, C : 67,
+                    D : 68, E : 69, F : 70, 
+                    G : 71, H : 72, I : 73,
+                    J : 74, K : 75, L : 76, 
+                    M : 77, N : 78, O : 79,
+                    P : 80, Q : 81, R : 82,
+                    S : 83, T : 84, U : 85,
+                    V : 86, W : 87, X : 88,
+                    Y : 89, Z : 90, 
                   };
   
   var DEFAULT_KEYS = { LEFT: 'left', RIGHT: 'right',
                        UP: 'up',     DOWN: 'down',
                        SPACE: 'fire',
                        Z: 'fire',
-                       X: 'action' };
+                       X: 'action' ,
+                       A: 'A',
+                       D: 'D'
+                     };
 
   var DEFAULT_TOUCH_CONTROLS  = [ ['left','<' ],
                             ['right','>' ],

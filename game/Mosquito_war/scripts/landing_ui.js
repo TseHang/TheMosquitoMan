@@ -3,7 +3,7 @@
 	Q.Sprite.extend("Logo" , {
 		init: function(p){
 			this._super({
-				x: Q.width/2 ,
+				x: Q.width/2 + 10 ,
 				y: 150 ,
         opacity: 1 ,
 				asset: "logo.png"
@@ -20,7 +20,7 @@
         y: Q.height/2,
         cx: Q.width/2  ,
         cy: (Q.height/2)*3 ,
-        asset: 'landing_bg_long.png',
+        asset: 'landing/landing_bg_long.png',
         opacity: 1 ,
         type: 0
       });
@@ -29,10 +29,10 @@
     }
   });
 
-  Q.Sprite.extend("Landing_play", {
+  Q.Sprite.extend("Landing_start", {
     init: function(p){
       this._super(p,{
-        asset: 'landing_play.png' ,
+        asset: 'landing/landing_btn_start.png' ,
         x: Q.width/2 ,
         y: 300,
         opacity: 1 ,
@@ -43,10 +43,10 @@
     }
   });
 
-  Q.Sprite.extend("Landing_story", {
+  Q.Sprite.extend("Landing_player", {
     init: function(p){
       this._super(p,{
-        asset: 'landing_story.png' ,
+        asset: 'landing/landing_btn_player.png' ,
         x: Q.width/2 ,
         y: 360,
         opacity: 1 ,
@@ -65,9 +65,8 @@
       this._super(p,{
         x: Q.width/2,
         y: Q.height/2,
-        asset: 'intro_bg.png',
-        opacity: 1,
-        type: Q.SPRITE_UI
+        asset: 'landing/intro_bg.png',
+        opacity: 1
       });
 
       this.add("tween");
@@ -77,9 +76,9 @@
   Q.Sprite.extend("IntroMan",{
     init: function(p) {
       this._super(p,{
-        x: 67,
-        y: Q.height - 140,
-        asset: 'intro_man.png',
+        x: Q.width/2 + 5 ,
+        y: Q.height - 100,
+        asset: 'landing/intro_man.png',
         scale: 0.1
       });
 
@@ -93,11 +92,11 @@
       this._super({
         label : "               天地不仁，以萬物為芻狗。\n吾號掌蚊人，生逢亂世，慘遭「登革熱」\n危害，為了傷其根，斬其源，吾闖入終極之地\n將自己逼進死關，若不修煉至降蚊十八招大成\n，難以除害，誓死不出。\n戰友們！請幫助我一起修煉降蚊十八招吧！" ,
         align: "left" ,
-        x: 295  ,
-        y: 390 ,
+        x: Q.width/2 - 40 ,
+        y: Q.height/2 - 50 ,
         weight: "normal" ,
         color: "white",
-        size: 17,
+        size: 20,
         opacity: 0
       });
 
@@ -106,13 +105,29 @@
     }
   });
 
-  Q.Sprite.extend("IntroTextClick",{
+  Q.Sprite.extend("IntroGo",{
     init: function(p) {
       this._super(p,{
-        x: 330,
-        y: Q.height - 75,
-        asset: 'intro_text.png',
-        opacity: 0
+        x: Q.width/2 + 70,
+        y: Q.height/2 + 55 ,
+        opacity:0,
+        asset: 'landing/intro_btn_go.png',
+        type:Q.SPRITE_UI
+      });
+
+      this.add("tween");
+      this.animate({opacity:1} , 0.5 , Q.Easing.Quadratic.InOut);
+    }
+  }); 
+
+  Q.Sprite.extend("IntroHowplay",{
+    init: function(p) {
+      this._super(p,{
+        x: Q.width/2 - 70,
+        y: Q.height/2 + 55 ,
+        opacity:0,
+        asset: 'landing/intro_btn_howplay.png',
+        type:Q.SPRITE_UI
       });
 
       this.add("tween");
@@ -166,7 +181,7 @@
       this._super(p,{
         x: Q.width/2,
         y: Q.height/2,
-        asset: 'player_man_bg.png',
+        asset: 'player/player_man_bg.png',
         type: Q.SPRITE_UI,
       });
 
@@ -210,12 +225,11 @@
     }
   })
 
-  // 
   // 四步殺蚊
   Q.Sprite.extend("PlayerManText1" , {
     init: function(p){
       this._super(p,{
-        asset: "player_man_text1.png",
+        asset: "player/player_man_text1.png",
         x: Q.width/2 - 140,
         y: Q.height/2 - 70,
         type: Q.SPRITE_UI,
@@ -246,7 +260,7 @@
   Q.Sprite.extend("PlayerManText2" , {
     init: function(p){
       this._super(p,{
-        asset: "player_man_text2.png",
+        asset: "player/player_man_text2.png",
         x: Q.width/2 + 150,
         y: Q.height/2 - 40,
         type: Q.SPRITE_UI,
@@ -276,7 +290,7 @@
   Q.Sprite.extend("PlayerManText3" , {
     init: function(p){
       this._super(p,{
-        asset: "player_man_text3.png",
+        asset: "player/player_man_text3.png",
         x: Q.width/2 - 120,
         y: Q.height/2 + 10,
         type: Q.SPRITE_UI,
@@ -306,7 +320,7 @@
   Q.Sprite.extend("PlayerManText4" , {
     init: function(p){
       this._super(p,{
-        asset: "player_man_text4.png",
+        asset: "player/player_man_text4.png",
         x: Q.width/2 + 100,
         y: Q.height/2 + 70,
         type: Q.SPRITE_UI,
@@ -328,14 +342,13 @@
     }
   })
 
-  // 
   // 蚊子王
   Q.Sprite.extend("PlayerMoskingBg",{
     init: function(p) {
       this._super(p,{
         x: Q.width/2,
         y: Q.height/2,
-        asset: 'player_mosking_bg.png',
+        asset: 'player/player_mosking_bg.png',
         type: Q.SPRITE_UI,
       });
 
@@ -383,15 +396,13 @@
     }
   })
 
-
-  // 
   // 蚊子
   Q.Sprite.extend("PlayerMosBg",{
     init: function(p) {
       this._super(p,{
         x: Q.width/2,
         y: Q.height/2,
-        asset: 'player_mos_bg.png'
+        asset: 'player/player_mos_bg.png'
       });
     }
   });
@@ -401,12 +412,12 @@
       this._super(p,{
         x: Q.width/2 ,
         y: Q.height/2 - 10,
-        asset: 'player_mos.png',
+        asset: 'player/player_mos.png',
         type: Q.SPRITE_UI
       })
 
       this.add("tween");
-      this.fly_up()
+      this.fly_up();
     },
 
     fly_up: function(){
@@ -420,5 +431,23 @@
         callback: function(){ this.fly_up();}
       }) ;
     }
+  })
+
+  // 
+  // GameDescription
+  Q.Sprite.extend("GameDescription_bg",{
+    init: function(p){
+      this._super(p,{
+        x: Q.width/2 ,
+        y: Q.height/2 ,
+        opacity:0 ,
+        scale:0.1,
+        asset: 'landing/game_description_bg.png'
+      })
+
+      this.add('tween');
+      this.animate({scale:1 , opacity:1},0.3 , Q.Easing.Quadratic.InOut)
+    }
+
   })
 }

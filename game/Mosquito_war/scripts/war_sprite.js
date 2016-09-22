@@ -122,7 +122,6 @@
 			var obj = this ;
 			attackTimer.push( setInterval(function(){
 
-				// console.log(Q.select('Player'));
 				// 決定是否掉落
 				var rand = Math.round(Math.random()*6);
 				
@@ -139,8 +138,8 @@
 					obj.stage.insert(new Q.MosAttack({
 						x: obj.c.x ,
 						y: obj.c.y ,
-						vx: vx>0? 8 : (-8),
-						vy: (vx>0? 8: (-8))*vy/vx,
+						vx: (vx>0)? 10 : (-10),
+						vy: ((vx>0)? 10: (-10))*vy/vx,
 						angle: angle - 90
 					}));
 				}
@@ -194,18 +193,18 @@
 
 		step: function(dt){
 			// 控制人物
-			// var player_w = this.p.w/2 ;
-			// if (Q.inputs['left']){
-			// 	this.p.x -= 5 ;
+			var player_w = this.p.w/2 ;
+			if (Q.inputs['left']){
+				this.p.x -= 5 ;
 
-			// 	if ( this.p.x < player_w)
-			// 		this.p.x = player_w ;
-			// }else if (Q.inputs['right']){
-			// 	this.p.x += 5 ;
+				if ( this.p.x < player_w)
+					this.p.x = player_w ;
+			}else if (Q.inputs['right']){
+				this.p.x += 5 ;
 
-			// 	if ( this.p.x > (Q.width - player_w))
-			// 		this.p.x = (Q.width - player_w) ;
-			// }
+				if ( this.p.x > (Q.width - player_w))
+					this.p.x = (Q.width - player_w) ;
+			}
 
 			if(Q("Enemy").length < 5 ){
 				if(addCount > 0){
@@ -227,12 +226,11 @@
 
 	Q.Sprite.extend("Power" , {
 		init: function(p){
-			// player_x = Q.select('Player').items[0].p.x;
+			
+			// x , y 在發射出去的時候依照人物位置決定
 			this._super(p,{
 				sprite: "power",
 				collisionMask: Q.SPRITE_DEFAULT ,
-				// x: player_x,
-				y: 380,
 				angle:0
 
 			}) ;
@@ -277,7 +275,6 @@
 			this._super(p , {
 				sheet: "pre_power",
 				sprite: "pre_power",
-				y: 370,
 				opacity:1
 			})
 
@@ -415,7 +412,6 @@
     	this.destroy();
     }
 	})
-
 
 
 }

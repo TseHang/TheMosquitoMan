@@ -7,15 +7,36 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <script src='lib/quintus-all-0.1.1.js'></script>  
   <script src='scripts/game.js'></script> 
-  <script src='scripts/war_sprite.js'></script>
+  <script src='scripts/player_sprite.js'></script>
+  <script src='scripts/enemy_sprite.js'></script>
+  <script src='scripts/katha_sprite.js'></script>
   <script src='scripts/war_scene.js'></script>
   <script src='scripts/landing_ui.js'></script>
   <script src='scripts/level_ui.js'></script>
   <script src='scripts/war_level.js'></script>
   <style>
+  	html{
+  		height: 100%;
+  	}
 		body {
 			background-color: black;
 			padding:0px; margin: 0px;
+			height: 100%;
+		}
+
+		.video_container{
+			height: 100% ;
+			display: flex ;
+			z-index: 1 ;
+			justify-content: center ;
+			align-items: center ;
+
+		}
+
+		.video{
+			opacity: 0 ;
+			z-index: 0 ;
+			transition: opacity 0.2s ease-in;
 		}
 
 		@media (min-width: 641px) {
@@ -32,5 +53,10 @@
 	</style>
 </head>
 <body>
+	<div class = "video_container">
+		<video class = "video" id = "video_mosking_appear" preload="none" src = "video/mosking_appear.mp4"></video>
+	</div>
 </body>
+<!-- videoＪＳ -->
+<script src='scripts/controlVideo.js'></script>
 </html>
