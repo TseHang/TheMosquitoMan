@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
   <title>MosquitoWar || 掌蚊人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="The Mosquito Man" content="yes" />
   <script src='lib/quintus-all-0.1.1.js'></script>  
   <script src='scripts/game.js'></script> 
   <script src='scripts/player_sprite.js'></script>
@@ -14,6 +14,7 @@
   <script src='scripts/landing_ui.js'></script>
   <script src='scripts/level_ui.js'></script>
   <script src='scripts/war_level.js'></script>
+
   <style>
   	html{
   		height: 100%;
@@ -26,17 +27,53 @@
 
 		.video_container{
 			height: 100% ;
+			width: 100% ;
 			display: flex ;
 			z-index: 1 ;
 			justify-content: center ;
 			align-items: center ;
-
 		}
 
 		.video{
+			display:none;
 			opacity: 0 ;
 			z-index: 0 ;
 			transition: opacity 0.2s ease-in;
+		}
+
+		.bar {
+			display: none;
+			z-index: 1 ;
+	    width: 130px;
+	    height: 17px;
+	    position: relative;
+	    left:330px;
+	    top:-23px;
+
+	    /* Styles */
+	    border-radius: .5em; /* Height/2 */
+	    box-shadow: 
+	      0 0 0 .05em rgba(100,100,100,0.075), 
+	      0 0 0 .25em rgba(0,0,0,0.25),
+	      inset .1em .1em .05em rgba(0,0,0,0.1), 
+	      2px 1px rgba(0,0,0,0.3);	   /* Slight reflection */
+		}
+
+		#inner_bar{
+			width: 100%;
+			height:96%;
+			position: relative ;
+			top: 2%;
+			background-color: rgba(154, 135, 107, 0.8);
+			border-radius: 0.5em ;
+		}
+
+		#result{
+			color: white;
+    	position: relative;
+    	top: -14px;
+    	text-align: center;
+    	text-shadow: 0 0 5px rgba(238, 239, 180, 0.7);
 		}
 
 		@media (min-width: 641px) {
@@ -55,8 +92,12 @@
 <body>
 	<div class = "video_container">
 		<video class = "video" id = "video_mosking_appear" preload="none" src = "video/mosking_appear.mp4"></video>
+
+		<video class = "video" id = "video_fight" preload="none" src = "video/fight.mp4"></video>
 	</div>
+
 </body>
 <!-- videoＪＳ -->
+<script src='scripts/controlTimeBar.js'></script>
 <script src='scripts/controlVideo.js'></script>
 </html>

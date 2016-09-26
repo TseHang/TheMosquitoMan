@@ -147,6 +147,8 @@
         y: Q.height -25,
         type: Q.SPRITE_UI
       });
+
+      this.add("animation");
     }
   })
 
@@ -159,6 +161,8 @@
         y: Q.height -25,
         type: Q.SPRITE_UI
       });
+
+      this.add("animation");
     }
   })
 

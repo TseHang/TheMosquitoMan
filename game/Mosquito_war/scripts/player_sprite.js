@@ -3,7 +3,7 @@
 */
 
 // 計算救兵 蚊子出來次數
-var mos_addCount = 0 ;
+var mos_addCount = 1 ;
 
 ;Quintus.PlayerSprites = function(Q){
 	Q.gravityY = 0;
@@ -11,6 +11,8 @@ var mos_addCount = 0 ;
 
 	// 紀錄被 power 打到的上一個
 	var lastCollide = null;
+	var moveSpeed = 3;
+	var twinkle_count = 10 ;
 
 	// 載入玩家
 	Q.Sprite.extend("Player",{
@@ -19,41 +21,46 @@ var mos_addCount = 0 ;
 				sheet: 'player' ,
 				sprite: 'player',
 				type: Q.SPRITE_ENEMY ,
+				opacity: 1 ,
 				x: Q.width/2,
-				y: 450
+				y: 470
 			}) ;
 
 			Q.state.set("player_h" , this.p.h) ;
+			this.add("tween");
+			this.on("player_speedUp");
+			this.on("player_invincible");
+			this.on("player_recover");
 		},
 
 		step: function(dt){
 			// 控制人物
 			var player_w = this.p.w/2 ;
 			if (Q.inputs['A']){
-				this.p.x -= 5 ;
+				this.p.x -= moveSpeed ;
 
 				if ( this.p.x < player_w)
 					this.p.x = player_w ;
 			}else if (Q.inputs['D']){
-				this.p.x += 5 ;
+				this.p.x += moveSpeed ;
 
 				if ( this.p.x > (Q.width - player_w))
 					this.p.x = (Q.width - player_w) ;
 			}
 
-			if(Q("Enemy").length < 3 ){
+			if(Q("Enemy").length < 1 ){
 				if(mos_addCount > 0){
 					this.stage.insert(new Q.MosquitoTracker({
 	    			data: Q.asset("addMos_s") ,
-	    			y: 40,
-	    			scale:1
+	    			y: 5,
+	    			scale:0.1
 	    		}));
 
 					mos_addCount-- ;
 				} 
 
 				if(mos_addCount == 0 && Q("Enemy").length == 0){
-					this.stage.insert(new Q.MosKing());
+					this.stage.insert(new Q.MosKing()); // 加入魔王
 					this.stage.insert(new Q.MosquitoTracker({
 	    			data: Q.asset("addKingattack_s") ,
 	    			y: 250,
@@ -67,7 +74,101 @@ var mos_addCount = 0 ;
 	    		playVideo(video_mosking_appear);
 				}	
 			}
+		},
+
+		player_speedUp: function(){
+			var player_x = this.p.x ;
+      var player_y = this.p.y ;
+
+      moveSpeed = 9;
+
+      this.stage.insert(new Q.PlayerSpeedUP({
+      	x: player_x,
+      	y: player_y + 40
+      }))
+		},
+
+		player_invincible: function(){
+			var player_x = this.p.x ;
+      var player_y = this.p.y ;
+
+      this.stage.insert(new Q.PlayerInvincible({
+      	x: player_x ,
+      	y: player_y + 15
+      }))
+		},
+
+		player_recover : function(){
+			moveSpeed = 3;
+			Q("PlayerSpeedUP").trigger("hidden_destroy");
 		}
+
+	})
+
+	Q.Sprite.extend("PlayerSpeedUP",{
+		init: function(p){
+			this._super(p,{
+				sheet: "player_speedup",
+				sprite: "player_speedup",
+				scale: 0.1,
+				opacity: 0.1
+			})
+
+			this.add("animation,tween");
+			this.animate({scale: 1 , opacity: 1} , 0.2 , Q.Easing.Linear);
+			this.play("default");
+
+			this.on("hidden_destroy");
+		},
+		step: function(){
+			this.p.x = Q.select('Player').items[0].p.x ;
+		},
+		hidden_destroy: function(){
+			this.animate({opacity: 0} , 1 , Q.Easing.Linear , {
+				callback: function(){ this.destroy()}
+			});
+		}
+	})
+
+	Q.Sprite.extend("PlayerInvincible" , {
+		init: function(p){
+			this._super(p,{
+				sheet: "player_invincible",
+				sprite: "player_invincible",
+				opacity: 0 ,
+				type: Q.SPRITE_ENEMY ,
+			})
+
+			this.add("tween");
+			this.on("twinkle_show");
+			this.on("twinkle_hidden");
+			this.on("hidden_destroy");
+
+			this.animate({opacity: 1} , 0.3 , Q.Easing.Linear);
+		},
+		step: function(){
+			this.p.x = Q.select('Player').items[0].p.x ;
+		},
+		hidden_destroy: function(){
+			twinkle_count = 20 ;
+			this.twinkle_hidden();
+		},
+		twinkle_hidden: function(){
+			twinkle_count-- ;
+			this.animate({opacity:0},0.1,Q.Easing.Linear,{
+				callback: function(){ this.twinkle_show();}
+			})
+		},
+		twinkle_show: function(){
+			if(twinkle_count > 0){
+				this.animate({opacity:1},0.1,Q.Easing.Linear,{
+					callback: function(){ this.twinkle_hidden();}
+				})
+			}else{
+				this.destroy();
+			}
+		}
+
 	})
 
 	Q.Sprite.extend("Power" , {
@@ -105,12 +206,10 @@ var mos_addCount = 0 ;
     },
 
    	power_up: function(){
-   		console.log("power_up");
 			Q.state.set("power_up",1);
 		},
 
 		power_recover: function(){
-			console.log("power_recover");
 			Q.state.set("power_up",0);
 		}
 	});
@@ -126,7 +225,7 @@ var mos_addCount = 0 ;
 
 			this.add("animation,tween");
 			this.play("shoot");
-			this.animate({opacity:0} , 0.3 , Q.Linear , {
+			this.animate({opacity:0} , 0.3 , Q.Easing.Linear , {
 				callback: function(){
 					this.destroy();
 				}
@@ -146,7 +245,7 @@ var mos_addCount = 0 ;
 
 			this.add("animation,tween");
 			this.play("shoot");
-			this.animate({opacity:0} , 0.5 , Q.Linear , {
+			this.animate({opacity:0} , 0.5 , Q.Easing.Linear , {
 				callback: function(){
 					this.destroy();
 				}

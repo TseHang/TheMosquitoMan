@@ -9,8 +9,13 @@ videoArray = [] ;
 
 // List All Video
 videoArray.push(video_mosking_appear = document.getElementById("video_mosking_appear") );
+videoArray.push(video_fight = document.getElementById("video_fight") );
 
 function playVideo(video){
+	
+	// Q.stage().paused = true;
+
+	video.style.display="block";
 	video.style.zIndex=1;
 	video.style.opacity=1;
 
@@ -18,8 +23,10 @@ function playVideo(video){
 }
 
 function hidden(video){
+
+	video.style.display="none";
 	video.style.zIndex=0;
-	video.style.opacity=0;
+	video.style.opacity=0
 }
 
 function loadAllVideo(){

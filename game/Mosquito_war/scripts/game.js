@@ -41,6 +41,8 @@ window.addEventListener('load',function(){
 
 		// katha
 		"katha/katha_1_bg.png","katha/katha_1_title.png","katha/katha_close.png",
+		"katha/katha_2_bg.png","katha/katha_2_title.png",
+		"katha/katha_3_bg.png","katha/katha_3_title.png",
 
 		// Sound
 		"brickDeath.ogg",
@@ -65,8 +67,14 @@ window.addEventListener('load',function(){
       Q.animations("player_mos_rotate", { 
         rotate: { frames: [ 0,1,2,3,4,5,6,7,8 ], rate: 0.3,  loop: true }
       });
+      Q.animations("player_right" , {
+      	click: {frames:[0,1,0] , rate: 0.2 , loop:false }
+      })
+      Q.animations("player_left" , {
+      	click: {frames:[0,1,0] , rate: 0.2 , loop:false }
+      })
       Q.animations("mosking_anim", { 
-        default: { frames: [ 0,1,2,3 ], rate: 0.5,  loop: true }
+        default: { frames: [ 0,1,2,3,4,5,6,4,2,1], rate: 0.3,  loop: true }
       });
       Q.animations("pre_power" , {
       	shoot: { frames: [0,1] , rate:0.3 , loop: false}
@@ -75,11 +83,30 @@ window.addEventListener('load',function(){
       	shoot: { frames: [0,1,2,3] , rate:0.5 , loop: false}
       })
 
+      Q.animations("player_speedup" , {
+      	default: {frames:[0,1,2,3] , rate:0.4 , loop:true}
+      })
+
 			// Go Time
 			Q.stageScene("title");
 		})
 
-	// Q.debug = true ;
+	// Q.debug =  true ;
+
+	// Add time bar
+	var quintus_container = document.getElementById("quintus_container");
+	bar = document.createElement("DIV") ;
+	result = document.createElement("DIV");// Global 
+	inner_bar = document.createElement("DIV") ;// Global
+
+	bar.setAttribute("class", "bar");
+	inner_bar.setAttribute("id" , "inner_bar")
+	result.setAttribute("id","result");
+
+	bar.appendChild(inner_bar);
+	bar.appendChild(result);
+
+	quintus_container.appendChild(bar);
 
 	window.Q = Q ;
 } , true);

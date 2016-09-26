@@ -24,11 +24,13 @@
   ];
 
   Q.assets['addMos_s'] = [
+    [X,X,s,s,X,X],
     [s,s,s,s,s,s],
     [s,s,s,s,s,s]
+
   ];
 
   Q.assets['addKingattack_s'] = [
-    [X,k_s,X,k_s,k_s,X,X,k_s,k_s,X,k_s,X]
+    [X,k_s,X,k_s,k_s,k_s,k_s,k_s,k_s,X,k_s,X]
   ]
 };

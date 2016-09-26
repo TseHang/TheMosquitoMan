@@ -180,6 +180,16 @@ var k_attackId = 0 ;
 					x: this.c.x ,
 					y: this.c.y 
 				}));
+			}else if (rand == 2 && Q('Katha_2').length == 0){
+				this.stage.insert(new Q.Katha_2({
+					x: this.c.x ,
+					y: this.c.y 
+				}));
+			}else if (rand == 3 && Q('Katha_3').length == 0){
+				this.stage.insert(new Q.Katha_3({
+					x: this.c.x ,
+					y: this.c.y 
+				}));
 			}
 
 			// 死掉，destroy
@@ -229,6 +239,8 @@ var k_attackId = 0 ;
     	if(col.obj.isA("Player")) {
       	this.destroy();
         Q.state.dec("lives" , 1) ;
+      }else if (col.obj.isA("PlayerInvincible")){
+      	this.destroy(); // When bump into Invincible Mask , destroy()
       }
     }
 	})
@@ -247,21 +259,35 @@ var k_attackId = 0 ;
 				life: Q.state.get("mosking_life")
 			}) ;
 			
-			this.on("destroy"); // will just call destroy()
+			var obj = this ;
 
+			this.on("destroy"); // will just call destroy()
 			this.add("tween,animation") ;
 			this.animate({scale:1}, 0.4 , Q.Easing.Quadratic.InOut);
 
 			this.fly_up();
 			this.play("default");
+			window.setTimeout(function(){ obj.walk("right") ;} , 10000);
 
 			console.log("mosking_life: " + this.p.life);
+		},
+		walk: function(test){
+			var obj = this ;
+			var mosking_w = this.p.w/2 ;
+			if (test == "right"){
+				window.setTimeout(function(){ obj.walk("left") ;} , 6000);
+				this.animate({x:(Q.width - mosking_w)}, 0.6 , Q.Easing.Quadratic.InOut );
+			}
+			else if(test == "left"){
+				window.setTimeout(function(){ obj.walk("right") ;}, 6000);
+				this.animate({x:mosking_w} , 0.6 , Q.Easing.Quadratic.InOut );
+			}
 		},
 
 		// 就是指蚊子王被打到後的動作
 		destroyed: function(){
-			mosking_x = this.p.x ;
-      mosking_y = this.p.y ;
+			var mosking_x = this.p.x ;
+      var mosking_y = this.p.y ;
 
 			if(this.p.life == 0){
 				this.stage.trigger("complete");
@@ -284,7 +310,7 @@ var k_attackId = 0 ;
     },
 
     fly_down: function(){
-      this.animate({y: 115 } ,0.7 , Q.Easing.Quadratic.InOut , {
+      this.animate({y: 115 } ,0.5 , Q.Easing.Quadratic.InOut , {
         callback: function(){ this.fly_up();}
       }) ;
     }
@@ -310,7 +336,7 @@ var k_attackId = 0 ;
 			mosking_die = this ;
 
 			// 1.5秒後變回蚊子王
-			this.animate({y:this.p.y + 30} , 1.5 , Q.Easing.Linear , {
+			this.animate({y:this.p.y + 20} , 1.5 , Q.Easing.Linear , {
 				callback: function(){
 					mosking_die.stage.insert(new Q.MosKing({
 						x: mosking_die.p.x,

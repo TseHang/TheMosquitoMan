@@ -4,12 +4,13 @@
   "player_right":{"tilew":40 , "tileh":40 , "sx":150 , "sy":780 , "w":80 , "h":40},
   "player_left":{"tilew":40 , "tileh":40 , "sx":150 , "sy":820 , "w":80 , "h":40},
   "player_back":{"tilew":80 , "tileh":30 , "sx":250 , "sy":430 , "w":80 , "h":30},
-  "level_stop":{"tilew":60 , "tileh": 20 , "sx":150 , "sy": 710 , "w":60 , "h":20},
-  "level_continue":{"tilew":100 , "tileh": 40 , "sx":100 , "sy": 400 , "w":100 , "h":40},
+  "level_stop":{"tilew":40 , "tileh": 30 , "sx":150 , "sy": 710 , "w":40 , "h":30},
+  "level_continue":{"tilew":110 , "tileh": 40 , "sx":150 , "sy": 740 , "w":110 , "h":40},
+  "level_goTitle":{"tilew":110 , "tileh": 40 , "sx":260 , "sy": 700 , "w":110 , "h":40},
 
   "mos1": {"tilew": 70 , "tileh": 40 , "sx": 220 , "sy":250 , "w":70 , "h":40  },
   "enemy_death":{ "tilew":50 , "tileh": 40 , "sx":300 , "sy":250 , "w":50 , "h":40},
-  "player": { "tilew": 90 , "tileh": 150 , "sx": 0 , "sy": 310 , "w": 90 , "h": 150 },
+  "player": { "tilew": 70 , "tileh": 110 , "sx": 0 , "sy": 300 , "w": 70 , "h": 110 },
   "power": { "tilew": 40 , "tileh": 50 , "sx": 150 , "sy": 250 , "w":40 , "h":50  } ,
   "power_up":{"tilew": 80 , "tileh":90 , "sx": 100 , "sy":310 , "w":80 , "h":90},
   "pre_power":{"tilew":100 , "tileh":10 , "sx":0 , "sy":630 , "w":200 , "h":10},
@@ -17,10 +18,16 @@
   "mosattack": { "tilew":10 , "tileh": 40 , "sx":200 , "sy": 250 , "w":10 , "h":40} ,
   "mosking": { "tilew": 430 , "tileh": 240 , "sx": 0 , "sy": 0 , "w": 430 ,"h":240 },
   "mosking_die":{"tilew":310 , "tileh":160 , "sx":430 , "sy":0 , "w": 310 , "h":160},
+
+  "player_speedup":{"tilew":130 , "tileh":20,"sx":0 , "sy":600 , "w":520 , "h":20},
+  "player_invincible":{"tilew":120 , "tileh":160,"sx":0 , "sy":680 , "w":120 , "h":160},
   
   "moskingattack_5": {"tilew":30 , "tileh":40 , "sx": 0 ,"sy":250 , "w":30 , "h": 40} ,
   
   "katha_1":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 310 , "w":80 , "h":20 },
+  "katha_2":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 340 , "w":80 , "h":20 },
+  "katha_3":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 370 , "w":80 , "h":20 },
+  "katha_4":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 400 , "w":80 , "h":20 },
 
   "life_text": {"tilew":50 , "tileh":20 , "sx":150 ,"sy":690 , "w":50 , "h": 20},
   "life": {"tilew":20 , "tileh":20 , "sx":200 ,"sy":690 , "w":20 , "h": 20}

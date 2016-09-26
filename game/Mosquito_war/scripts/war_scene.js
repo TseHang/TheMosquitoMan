@@ -9,6 +9,7 @@ STATE:
 6: power_up 控制攻擊泡泡，有沒有變大
 7: player_h 主角的身長
 8: mosking_life 蚊子王的生命 預設20
+9: isLevelStop : if level stop
 -
  */
 ;Quintus.WarScenes = function(Q) {
@@ -18,16 +19,15 @@ STATE:
 		console.log("Scene: titleFirst");
 
 		// Set up the game state
-    Q.state.reset({ player_h: 0 , score: 0, lives: 4, level: 0 , katha: 0 , player_state: 1 , power_up: 0 , mosking_life: 10});
+    Q.state.reset({ player_h: 0 , score: 0, lives: 4, level: 0 , katha: 0 , player_state: 1 , power_up: 0 , mosking_life: 10 , isStop: false});
 
 		// Clear the hud out
 		Q.clearStage(1) ;
 
-		bg = stage.insert(new Q.Background()) ;
-		landing_logo = stage.insert(new Q.Logo()) ;
-		landing_play = stage.insert(new Q.Landing_start());
-		landing_player = stage.insert(new Q.Landing_player());
-
+		var bg = stage.insert(new Q.Background()) ;
+		var landing_logo = stage.insert(new Q.Logo()) ;
+		var landing_play = stage.insert(new Q.Landing_start());
+		var landing_player = stage.insert(new Q.Landing_player());
 		// ＊＊＊＊＊＊
 		// 開始玩遊戲!!
 		// ＊＊＊＊＊＊
@@ -72,12 +72,12 @@ STATE:
 
 		// 介紹故事
 		console.log("Scene: introStory");
-		
-		intro_bg = stage.insert(new Q.IntroBg()) ;
-		intro_man = stage.insert(new Q.IntroMan()) ;
-		intro_text = stage.insert(new Q.IntroText()) ;
-		intro_howplay = stage.insert(new Q.IntroHowplay());
-		intro_go = stage.insert(new Q.IntroGo());
+
+		var intro_bg = stage.insert(new Q.IntroBg()) ;
+		var intro_man = stage.insert(new Q.IntroMan()) ;
+		var intro_text = stage.insert(new Q.IntroText()) ;
+		var intro_howplay = stage.insert(new Q.IntroHowplay());
+		var intro_go = stage.insert(new Q.IntroGo());
 		
 		intro_howplay.on("touch" , function(){
 			Q.stageScene("gameDescription");
@@ -134,7 +134,7 @@ STATE:
 		}))
 
 		stage.insert(new Q.UI.Text({
-			label: "以滑鼠控制方向發出氣功，\n攻擊蚊子。",
+			label: "以滑鼠控制方向，點擊左鍵\n發出氣功，勇猛殺敵。",
 			color: "black",
 			x: Q.width/2 + 80 ,
 			y: Q.height/2 + 140 ,
@@ -143,7 +143,7 @@ STATE:
 			size: 15
 		}))
 
-		close_btn = stage.insert(new Q.Sprite({
+		var close_btn = stage.insert(new Q.Sprite({
 			x: Q.width - 120,
       y: Q.height/2 + 170,
 			asset: 'katha/katha_close.png',
@@ -203,11 +203,10 @@ STATE:
 	});
 
 	Q.scene("playerFooter", function(stage){
-		player_state = Q.state.get("player_state");
-
+		var player_state = Q.state.get("player_state");
+		var back = stage.insert(new Q.PlayerBack());
 		right = stage.insert(new Q.PlayerRight());
 		left = stage.insert(new Q.PlayerLeft());
-		back = stage.insert(new Q.PlayerBack());
 
 		right.on("touch" , function(){
 			if(player_state == 1){
@@ -217,6 +216,9 @@ STATE:
 			}else if (player_state == 3){
 				Q.stageScene("introPlayerMan")
 			}
+
+			right.play("click");
+			// Ｑ：why 'this.play("click")' didn't work;
 		})
 
 		left.on("touch" , function(){
@@ -227,6 +229,8 @@ STATE:
 			}else if (player_state == 3){
 				Q.stageScene("introPlayerMosking")
 			}
+
+			left.play("click");
 		})
 
 		back.on("touch" , function(){
@@ -246,20 +250,32 @@ STATE:
 			stage.insert(new Q.Katha_1_function());
 			btn = stage.insert(new Q.Katha_close_btn());
 		}
-		else{
-			console.log("You Wrong");
+		else if(kathaNum == 2 ) {
+			stage.insert(new Q.Katha_2_bg());
+			stage.insert(new Q.Katha_2_title());
+			stage.insert(new Q.Katha_2_text());
+			stage.insert(new Q.Katha_2_function());
+			btn = stage.insert(new Q.Katha_close_btn());
+		}else if (kathaNum == 3){
+			stage.insert(new Q.Katha_3_bg());
+			stage.insert(new Q.Katha_3_title());
+			stage.insert(new Q.Katha_3_text());
+			stage.insert(new Q.Katha_3_function());
+			btn = stage.insert(new Q.Katha_close_btn());
 		}
 
 		// 按鈕
 		btn.on("touch" , function(){
+			if (kathaNum == 1){
+				window.setTimeout(function(){ Q("Power").trigger("power_recover"); },10000);
+			}else if (kathaNum == 2){
+				window.setTimeout(function(){ Q("Player").trigger("player_recover");} , 10000);
+			}else if( kathaNum == 3){
+				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy");} , 8000);
+			}
 
 			Q.state.set("katha" , 0);
 			Q.stage().paused = false;
-
-			// 讓大球失效
-			window.setTimeout(function(){
-				Q("Power").trigger("power_recover");
-			},10000);
 			
 			// Clear the katha
 			Q.clearStage(2) ;
@@ -270,11 +286,10 @@ STATE:
 	// hud --> 下面的分數狀態列
 	Q.scene("hud" , function(stage){
 
-		// 去 UI 那邊找
+		// landing UI
 		stage.insert(new Q.Score()) ;
 		stage.insert(new Q.Lives_text()) ;
-
-		stop_btn = stage.insert(new Q.LevelStop_btn()) ;
+		stage.insert(new Q.LevelStop_btn()) ;
 
 	} , {stage : 1 });
 
@@ -292,9 +307,14 @@ STATE:
 
 	// 第一關
 	Q.scene("level1" , function(stage){
+		
+		// show timeBar
+		showBar();
+		starClock();
 
 		// Set up the game state
     Q.state.set("level" , 1);
+    Q.state.set("isLevelStop" , false);
 
     // Add in hud
     Q.stageScene("hud") ;
@@ -302,6 +322,9 @@ STATE:
     // Call the helper methods to get the level all set up with blocks, a ball and a paddle
     setupLevel("level1", stage);
     
+    // Play fight video
+    // playVideo(video_fight);
+
     // Set up a listener for when the stage is complete to load the next level
     stage.on("complete",function() {  Q.stageScene("winner");  });
 	})
@@ -323,26 +346,6 @@ STATE:
 		// 更改 UI.Text
 		Q.state.set("level" , 3);
 		setupLevel("level3" , stage) ;
-		stage.on("complete" , function(){ Q.stageScene("level4"); });
-	})
-
-	// 第四關
-	Q.scene("level4" , function(stage){
-		console.log("level4");
-
-		// 更改 UI.Text
-		Q.state.set("level" , 4);
-		setupLevel("level4" , stage) ;
-		stage.on("complete" , function(){ Q.stageScene("level5"); });
-	})
-
-	// 第五關
-	Q.scene("level5" , function(stage){
-		console.log("level5");
-
-		// 更改 UI.Text
-		Q.state.set("level" , 5);
-		setupLevel("level5" , stage) ;
 		stage.on("complete" , function(){ Q.stageScene("winner"); });
 	})
 
@@ -381,6 +384,15 @@ STATE:
 	})
 }
 
+
+function showBar(){
+	bar.style.display="block";
+}
+
+function hiddenBar(){
+	bar.style.display="none";
+}
+
 function reset(stage) {
   // 把沒打死的蚊子，所有計時器停掉
   for (i = 0; i < attackTimer.length; i++)
@@ -402,6 +414,9 @@ function reset(stage) {
 		Q.stageScene("title") ;
 	});
 
-	Q.state.set("mosking_life" , 10);
-	mos_addCount = 0;
+	Q.state.set("mosking_life" , 10);// reset mosking life
+	mos_addCount = 0; 
+
+	allSecs = 120 ; //reset timeBar timer
+	bar.style.display="none";
 }
