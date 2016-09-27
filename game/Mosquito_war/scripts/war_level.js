@@ -30,7 +30,13 @@
 
   ];
 
-  Q.assets['addKingattack_s'] = [
+  Q.assets['addKingattack_s_1'] = [
     [X,k_s,X,k_s,k_s,k_s,k_s,k_s,k_s,X,k_s,X]
-  ]
+  ];
+  Q.assets['addKingattack_s_2'] = [
+    [k_s,X,k_s,X,X,k_s,X,k_s,k_s,X,k_s,k_s]
+  ];
+  Q.assets['addKingattack_s_3'] = [
+    [X,k_s,k_s,k_s,X,X,k_s,X,X,k_s,k_s,k_s]
+  ];
 };

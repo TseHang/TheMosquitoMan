@@ -3,7 +3,8 @@
 */
 
 // 計算救兵 蚊子出來次數
-var mos_addCount = 1 ;
+var mos_addCount = 0 ;
+var k_attack_5 = [];
 
 ;Quintus.PlayerSprites = function(Q){
 	Q.gravityY = 0;
@@ -48,12 +49,13 @@ var mos_addCount = 1 ;
 					this.p.x = (Q.width - player_w) ;
 			}
 
-			if(Q("Enemy").length < 1 ){
+			if(Q("Enemy").length < 3 ){
 				if(mos_addCount > 0){
 					this.stage.insert(new Q.MosquitoTracker({
 	    			data: Q.asset("addMos_s") ,
-	    			y: 5,
-	    			scale:0.1
+	    			y: 20,
+	    			scale:0.1,
+	    			opacity:1
 	    		}));
 
 					mos_addCount-- ;
@@ -61,11 +63,14 @@ var mos_addCount = 1 ;
 
 				if(mos_addCount == 0 && Q("Enemy").length == 0){
 					this.stage.insert(new Q.MosKing()); // 加入魔王
-					this.stage.insert(new Q.MosquitoTracker({
-	    			data: Q.asset("addKingattack_s") ,
-	    			y: 250,
-	    			scale:1
-	    		}));
+					k_attack_5.push(
+						this.stage.insert(new Q.MosquitoTracker({
+	    				data: Q.asset("addKingattack_s_1") ,
+	    				y: 250,
+	    				scale:1,
+	    				opacity:1
+	    			}))
+	    		);
 
 					// 使mos_addCount = -1 不繼續動
 	    		mos_addCount-- ;
@@ -173,7 +178,6 @@ var mos_addCount = 1 ;
 
 	Q.Sprite.extend("Power" , {
 		init: function(p){
-			
 			// x , y 在發射出去的時候依照人物位置決定
 			this._super(p,{
 				sprite: "power",

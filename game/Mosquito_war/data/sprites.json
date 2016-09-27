@@ -7,6 +7,13 @@
   "level_stop":{"tilew":40 , "tileh": 30 , "sx":150 , "sy": 710 , "w":40 , "h":30},
   "level_continue":{"tilew":110 , "tileh": 40 , "sx":150 , "sy": 740 , "w":110 , "h":40},
   "level_goTitle":{"tilew":110 , "tileh": 40 , "sx":260 , "sy": 700 , "w":110 , "h":40},
+  
+  "three_dark":{"tilew":40 , "tileh":60,"sx":380,"sy":700,"w":40,"h":60},
+  "three_bright":{"tilew":40 , "tileh":60,"sx":380,"sy":760,"w":40,"h":60},
+  "two_dark":{"tilew":40 , "tileh":60,"sx":420,"sy":700,"w":40,"h":60},
+  "two_bright":{"tilew":40 , "tileh":60,"sx":420,"sy":760,"w":40,"h":60},
+  "one_dark":{"tilew":40 , "tileh":60,"sx":460,"sy":700,"w":40,"h":60},
+  "one_bright":{"tilew":40 , "tileh":60,"sx":460,"sy":760,"w":40,"h":60},
 
   "mos1": {"tilew": 70 , "tileh": 40 , "sx": 220 , "sy":250 , "w":70 , "h":40  },
   "enemy_death":{ "tilew":50 , "tileh": 40 , "sx":300 , "sy":250 , "w":50 , "h":40},

@@ -1,5 +1,5 @@
 var now  = new Date() ;
-var allSecs = 120 ; // add 1 sec to wait 
+var allSecs = 300 ; // add 1 sec to wait 
 var remainSecs = 120;
 var timeBarFlag ;
 

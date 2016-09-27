@@ -19,41 +19,43 @@
     },
 
     touch : function(touch){
+      if(Q.state.get("is_countdown_over")){
+        
+        var power_x = Q.select('Player').items[0].p.x ;
+        var power_y = Q.select('Player').items[0].p.y - 70 ;
 
-      var power_x = Q.select('Player').items[0].p.x ;
-      var power_y = Q.select('Player').items[0].p.y - 70 ;
+        var dx = touch.x - power_x;
+        var dy = touch.y - power_y;
 
-      var dx = touch.x - power_x;
-      var dy = touch.y - power_y;
+        // atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
+        var angle = Math.atan2( dy , dx)/Math.PI*180
 
-      // atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
-      var angle = Math.atan2( dy , dx)/Math.PI*180
+        // 看一下有沒有吃到奧義
+        var is_power_up = Q.state.get("power_up");
+        if(is_power_up>0) {
+          sheet = 'power_up';
+          this.stage.insert(new Q.PrePowerUp({
+            x: power_x + 15,
+            y: power_y + 20
+          }));
 
-      // 看一下有沒有吃到奧義
-      var is_power_up = Q.state.get("power_up");
-      if(is_power_up>0) {
-        sheet = 'power_up';
-        this.stage.insert(new Q.PrePowerUp({
-          x: power_x + 15,
-          y: power_y + 20
-        }));
+        }else{
+          sheet = 'power';
+          this.stage.insert(new Q.PrePower({
+            x: power_x + 15,
+            y: power_y + 10
+          }));
+        }
 
-      }else{
-        sheet = 'power';
-        this.stage.insert(new Q.PrePower({
-          x: power_x + 15,
-          y: power_y + 10
+        this.stage.insert(new Q.Power({
+          sheet: sheet , // sheet 決定弄出哪一張圖
+          x: power_x + 20,
+          y: power_y,
+          vx: dx,
+          vy: dy,
+          angle: angle + 90
         }));
       }
-
-      this.stage.insert(new Q.Power({
-        sheet: sheet , // sheet 決定弄出哪一張圖
-        x: power_x + 20,
-        y: power_y,
-        vx: dx,
-        vy: dy,
-        angle: angle + 90
-      }));
     }
   });
 
@@ -104,6 +106,54 @@
     }
   });
 
+  Q.Sprite.extend("Countdown_three" , {
+    init: function(p){
+      this._super(p,{
+        x: -100 ,
+        y: 0,
+        sheet: "three_dark"
+      })
+      var obj = this ;
+      window.setTimeout(function(){obj.light()} ,1000)
+    },
+    light: function(){
+      this.p.sheet = "three_bright";
+    }
+  });
+  Q.Sprite.extend("Countdown_two" , {
+    init: function(p){
+      this._super(p,{
+        x: 0,
+        y: 0,
+        sheet: "two_dark"
+      })
+      var obj = this ;
+      window.setTimeout(function(){obj.light()} ,2000)
+    },
+    light: function(){
+      this.p.sheet = "two_bright";
+    }
+  });
+  Q.Sprite.extend("Countdown_one" , {
+    init: function(p){
+      this._super(p,{
+        x: 100,
+        y: 0,
+        sheet: "one_dark"
+      })
+      var obj = this ;
+      window.setTimeout(function(){obj.light()} ,3000)
+    },
+    light: function(){
+      var obj = this ;
+      this.p.sheet = "one_bright";
+
+      window.setTimeout(function(){
+        obj.stage.trigger("countdown_over");
+      } ,1000)
+    }
+  });
+
   Q.Sprite.extend("LevelStop_btn" , {
     init : function(p){
       this._super(p,{
@@ -117,7 +167,6 @@
     },
 
     touch : function(){
-      console.log(Q.state.get("isLevelStop"));
       if(Q.state.get("isLevelStop") == false ){
         // Stop
         Q.state.set("isLevelStop",true) ;

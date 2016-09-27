@@ -18,23 +18,20 @@
 			this.add("2d");
 			this.on("hit" , this ,"collide");
       this.on("destroy");
-
-			// 偵測人的高度，判斷他啥時要消失
-			// player_h = Q.state.get("player_h");
 		},
 
 		step: function(dt) {
       this.p.y += this.p.vy * dt;
       this.stage.collide(this);
 
-			// if(this.p.y > (Q.height - player_h +20))
-			// 	this.destroy();
+			if(this.p.y > Q.height)
+				this.destroy();
     },
 
 		collide: function(col) {
       
       // 應該要吃到才對
-    	if(col.obj.isA("Power") || col.obj.isA("Player")) {
+    	if(col.obj.isA("Power") || col.obj.isA("Player") || col.obj.isA("PlayerInvincible")) {
       	this.destroy();
 
       	// 暫停
@@ -68,12 +65,15 @@
     step: function(dt) {
       this.p.y += this.p.vy * dt;
       this.stage.collide(this);
+
+      if(this.p.y > Q.height)
+        this.destroy();
     },
 
     collide: function(col) {
       
       // 應該要吃到才對
-      if(col.obj.isA("Power") || col.obj.isA("Player")) {
+      if(col.obj.isA("Power") || col.obj.isA("Player") || col.obj.isA("PlayerInvincible")) {
         this.destroy();
 
         // 暫停
@@ -107,12 +107,15 @@
     step: function(dt) {
       this.p.y += this.p.vy * dt;
       this.stage.collide(this);
+
+      if(this.p.y > Q.height)
+        this.destroy();
     },
 
     collide: function(col) {
       
       // 應該要吃到才對
-      if(col.obj.isA("Power") || col.obj.isA("Player")) {
+      if(col.obj.isA("Power") || col.obj.isA("Player") || col.obj.isA("PlayerInvincible")) {
         this.destroy();
 
         // 暫停

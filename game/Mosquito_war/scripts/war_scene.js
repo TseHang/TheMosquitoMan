@@ -10,7 +10,16 @@ STATE:
 7: player_h 主角的身長
 8: mosking_life 蚊子王的生命 預設20
 9: isLevelStop : if level stop
+10:iskatha1 : if katha_1 ING?
+11:isKatha2 : if katha_2 ING?
+12:isKatha3 : if katha_3 ING?
+13:is_countdown_over: if countdown over?
+14:is_video_over: if video over?
 -
+gameDescription: stage-2
+hud: stage-1
+katha: stage-2
+
  */
 ;Quintus.WarScenes = function(Q) {
 
@@ -19,7 +28,22 @@ STATE:
 		console.log("Scene: titleFirst");
 
 		// Set up the game state
-    Q.state.reset({ player_h: 0 , score: 0, lives: 4, level: 0 , katha: 0 , player_state: 1 , power_up: 0 , mosking_life: 10 , isStop: false});
+    Q.state.reset({ 
+    	player_h: 0 ,
+    	score: 0,
+    	lives: 4,
+    	level: 0 ,
+    	katha: 0 ,
+    	player_state: 1 ,
+    	power_up: 0 ,
+    	mosking_life: 10 ,
+    	isStop: false,
+    	iskatha1: false ,
+    	iskatha2: false ,
+    	iskatha3: false ,
+    	is_countdown_over: false,
+    	is_video_over: false
+    });
 
 		// Clear the hud out
 		Q.clearStage(1) ;
@@ -69,7 +93,6 @@ STATE:
 	})
 
 	Q.scene("introStory" , function(stage){
-
 		// 介紹故事
 		console.log("Scene: introStory");
 
@@ -249,6 +272,8 @@ STATE:
 			stage.insert(new Q.Katha_1_text());
 			stage.insert(new Q.Katha_1_function());
 			btn = stage.insert(new Q.Katha_close_btn());
+
+			Q.state.set("iskatha1",true);
 		}
 		else if(kathaNum == 2 ) {
 			stage.insert(new Q.Katha_2_bg());
@@ -256,22 +281,26 @@ STATE:
 			stage.insert(new Q.Katha_2_text());
 			stage.insert(new Q.Katha_2_function());
 			btn = stage.insert(new Q.Katha_close_btn());
+
+			Q.state.set("iskatha2",true);
 		}else if (kathaNum == 3){
 			stage.insert(new Q.Katha_3_bg());
 			stage.insert(new Q.Katha_3_title());
 			stage.insert(new Q.Katha_3_text());
 			stage.insert(new Q.Katha_3_function());
 			btn = stage.insert(new Q.Katha_close_btn());
+
+			Q.state.set("iskatha3",true);
 		}
 
 		// 按鈕
 		btn.on("touch" , function(){
 			if (kathaNum == 1){
-				window.setTimeout(function(){ Q("Power").trigger("power_recover"); },10000);
+				window.setTimeout(function(){ Q("Power").trigger("power_recover"); Q.state.set("iskatha1",false);},10000);
 			}else if (kathaNum == 2){
-				window.setTimeout(function(){ Q("Player").trigger("player_recover");} , 10000);
+				window.setTimeout(function(){ Q("Player").trigger("player_recover"); Q.state.set("iskatha2",false);} , 10000);
 			}else if( kathaNum == 3){
-				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy");} , 8000);
+				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 8000);
 			}
 
 			Q.state.set("katha" , 0);
@@ -293,6 +322,30 @@ STATE:
 
 	} , {stage : 1 });
 
+	Q.scene("countdown", function(stage){
+
+		var container = stage.insert(new Q.UI.Container({
+			fill: "rgba(90,88,92,0.85)" ,
+      shadowColor: "rgba(0,0,0,0.5)",
+      w: Q.width,
+      h: 120,
+      x: - Q.width/2,
+      y: Q.height/2 - 30
+		}))
+		container.add("tween");
+		container.animate({x:Q.width/2},0.2 ,Q.Easing.Quadratic.InOut);
+
+		stage.insert(new Q.Countdown_three(),container);
+		stage.insert(new Q.Countdown_two(),container);
+		stage.insert(new Q.Countdown_one(),container);
+
+		stage.on("countdown_over",function() {  
+			Q.state.set("is_countdown_over",true) ;
+			Q.clearStage(3)
+		});
+
+	} , {stage: 3});
+
 	function setupLevel(levelAsset,stage) {
 
 		// ASK!!  Q.useTiles --> 不知道要幹嗎(可能是用bg.tmx的意思)
@@ -307,23 +360,20 @@ STATE:
 
 	// 第一關
 	Q.scene("level1" , function(stage){
-		
+
 		// show timeBar
 		showBar();
-		starClock();
 
 		// Set up the game state
     Q.state.set("level" , 1);
     Q.state.set("isLevelStop" , false);
 
-    // Add in hud
     Q.stageScene("hud") ;
 
-    // Call the helper methods to get the level all set up with blocks, a ball and a paddle
     setupLevel("level1", stage);
     
     // Play fight video
-    // playVideo(video_fight);
+    playVideo(video_fight);
 
     // Set up a listener for when the stage is complete to load the next level
     stage.on("complete",function() {  Q.stageScene("winner");  });
@@ -415,8 +465,8 @@ function reset(stage) {
 	});
 
 	Q.state.set("mosking_life" , 10);// reset mosking life
-	mos_addCount = 0; 
+	mos_addCount = 1; 
 
-	allSecs = 120 ; //reset timeBar timer
+	allSecs = 300 ; //reset timeBar timer
 	bar.style.display="none";
 }

@@ -76,11 +76,12 @@ var k_attackId = 0 ;
 			this._super(p,{
 				x: Q.width/2 ,
 				y: 30 ,
-				scale: 0.1
+				scale: 0.1,
+				opacity: 0.1
 			})
 
 			this.add("tween");
-			this.animate({ scale: 1 },0.4, Q.Easing.Quadratic.InOut);
+			this.animate({ scale: 1 },0.3, Q.Easing.Quadratic.InOut);
 
 			// 被insert 的時候 call 它
 			this.on("inserted",this,"setupBlocks");
@@ -128,37 +129,39 @@ var k_attackId = 0 ;
 			});
 			this.add("tween");
 			this.on("destroy"); // will just call destroy()
+			this.on("start_attack");
 
 			mosId++ ;
 
-			// 掉針！！
-			var obj = this ;
+			var obj = this ; // 掉針
 			attackTimer.push( setInterval(function(){
 
-				// 決定是否掉落
-				var rand = Math.round(Math.random()*6);
-				
-				player_x =  Q.select('Player').items[0].p.x ;
-      	player_y =  Q.select('Player').items[0].p.y ;
-      	vx = player_x - obj.c.x ;
-      	vy = player_y - obj.c.y ;
+				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over")){
+					// 決定是否掉落
+					var rand = Math.round(Math.random()*6);
+					
+					player_x =  Q.select('Player').items[0].p.x ;
+	      	player_y =  Q.select('Player').items[0].p.y ;
+	      	vx = player_x - obj.c.x ;
+	      	vy = player_y - obj.c.y ;
 
-      	angle = Math.atan2( vy , vx)/Math.PI*180
+	      	angle = Math.atan2( vy , vx)/Math.PI*180
 
-				// 要判定場中有沒有出現相同的
-				// 因為原倍速太快，所以用比例調整速度
-				// if(rand == 1 && Q("MosAttack").length < 20
-				if(rand == 1){
-					obj.stage.insert(new Q.MosAttack({
-						x: obj.c.x ,
-						y: obj.c.y ,
-						vx: (vx>0)? 15 : (-15),
-						vy: ((vx>0)? 15: (-15))*vy/vx,
-						angle: angle - 90
-					}));
+					// 要判定場中有沒有出現相同的，因為原倍速太快，所以用比例調整速度
+					// if(rand == 1 && Q("MosAttack").length < 20
+					if(rand == 1){
+						obj.stage.insert(new Q.MosAttack({
+							x: obj.c.x ,
+							y: obj.c.y ,
+							vx: (vx>0)? 15 : (-15),
+							vy: ((vx>0)? 15: (-15))*vy/vx,
+							angle: angle - 90
+						}));
+					}
 				}
 
 			} , attackTimeInterval) );
+
 		},
 
 		destroyed: function(col){
@@ -173,19 +176,19 @@ var k_attackId = 0 ;
 			Q.state.inc("score" , 100) ;
 
 			// 掉寶物(記得調備率)
-			var rand = Math.round(Math.random()* 15);
+			var rand = Math.round(Math.random()* 10);
 
-			if( rand == 1 && Q("Katha_1").length == 0){
+			if( rand == 1 && Q("Katha_1").length == 0 && !Q.state.get("iskatha1")){
 				this.stage.insert(new Q.Katha_1({
 					x: this.c.x ,
 					y: this.c.y 
 				}));
-			}else if (rand == 2 && Q('Katha_2').length == 0){
+			}else if (rand == 2 && Q('Katha_2').length == 0 && !Q.state.get("iskatha2")){
 				this.stage.insert(new Q.Katha_2({
 					x: this.c.x ,
 					y: this.c.y 
 				}));
-			}else if (rand == 3 && Q('Katha_3').length == 0){
+			}else if (rand == 3 && Q('Katha_3').length == 0 && !Q.state.get("iskatha3")){
 				this.stage.insert(new Q.Katha_3({
 					x: this.c.x ,
 					y: this.c.y 
@@ -199,15 +202,19 @@ var k_attackId = 0 ;
 		},
 
 		step: function(dt) {
-			// 
-			// 利用計數器，讓蚊子前進
-      this.p.count++ ;
+			if(Q.state.get("is_countdown_over")){
+				// use counter and that mos walk
+	      this.p.count++ ;
 
-      if(this.p.count % 120 == 0){
-      	this.p.y += 20
-      	this.c.y += 20
-      	this.p.count = 0;
-      }
+	      if(this.p.count % 100 == 0){
+	      	this.p.y += 20
+	      	this.c.y += 20
+	      	this.p.count = 0;
+	      }
+			}
+
+			if(this.p.y > Q.height)
+				this.destroy();
     }
 	});
 
@@ -229,9 +236,8 @@ var k_attackId = 0 ;
       this.p.y += this.p.vy * dt ;
       this.stage.collide(this);
 
-      // 控制它超出一條線會自動消失， player_h 在 MosquitoTracker 設定
-			// if(this.p.y > (Q.height - player_h +20))
-			// 	this.destroy();
+			if(this.p.y > Q.height)
+				this.destroy();
     },
 
 		collide: function(col) {
@@ -337,12 +343,29 @@ var k_attackId = 0 ;
 
 			// 1.5秒後變回蚊子王
 			this.animate({y:this.p.y + 20} , 1.5 , Q.Easing.Linear , {
+
 				callback: function(){
 					mosking_die.stage.insert(new Q.MosKing({
 						x: mosking_die.p.x,
-						y: mosking_die.p.y,
+						y: mosking_die.p.y, //recover to not drop's "y"
 						scale: 1
-					}))
+					}));
+
+					for(var i = 0 ; i < k_attack_5.length ; i ++){
+						k_attack_5[i].animate({ y:k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
+					}
+
+					var random = Math.round(Math.random()*2 + 1);
+
+					k_attack_5.push(
+						mosking_die.stage.insert(new Q.MosquitoTracker({
+	    				data: Q.asset("addKingattack_s_"+random) ,
+	    				x: mosking_die.p.x,
+							y: mosking_die.p.y,
+	    				scale:0.1
+	    			}))
+	    		);
+	    		k_attack_5[(k_attack_5.length-1)].animate({x:Q.width/2 , y:250 , opacity:1} , 0.8 , Q.Easing.Quadratic.InOut);
 
 					mosking_die.destroy();
 				}
@@ -378,30 +401,30 @@ var k_attackId = 0 ;
 			// 掉針！！
 			var k_obj = this ;
 			k_attackTimer.push( setInterval(function(){
-				
-				random = Math.round(Math.random()*4);
+				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over")){
+					var random = Math.round(Math.random()*5);
 
-				player_x =  Q.select('Player').items[0].p.x ;
-      	player_y =  Q.select('Player').items[0].p.y ;
-      	vx = player_x - k_obj.c.x ;
-      	vy = player_y - k_obj.c.y ;
+					var player_x =  Q.select('Player').items[0].p.x ;
+	      	var player_y =  Q.select('Player').items[0].p.y ;
+	      	var vx = player_x - k_obj.c.x ;
+	      	var vy = player_y - k_obj.c.y ;
 
-      	angle = Math.atan2( vy , vx)/Math.PI*180
+	      	var angle = Math.atan2( vy , vx)/Math.PI*180
 
-				// 要判定場中有沒有出現相同的
-				// 因為原倍速太快，所以用比例調整速度
-				// if(rand == 1 && Q("MosAttack").length < 20
+					// 要判定場中有沒有出現相同的，因為原倍速太快，所以用比例調整速度
+					// if(rand == 1 && Q("MosAttack").length < 20
 
-				if ( random == 1){
-					k_obj.stage.insert(new Q.MosAttack({
-						x: k_obj.c.x ,
-						y: k_obj.c.y ,
-						vx: (vx>0)? 10 : (-10),
-						vy: ((vx>0)? 10: (-10))*vy/vx,
-						angle: angle - 90
-					}));
+					if ( random == 1){
+						k_obj.stage.insert(new Q.MosAttack({
+							x: k_obj.c.x ,
+							y: k_obj.c.y ,
+							vx: (vx>0)? 10 : (-10),
+							vy: ((vx>0)? 10: (-10))*vy/vx,
+							angle: angle - 90
+						}));
+					}
 				}
-			} , 800 ) );
+			} , attackTimeInterval-100 ) );
 		},
 
 		collide: function(col) {
@@ -411,12 +434,21 @@ var k_attackId = 0 ;
         this.p.live-- ; 
    		}
 
+   		if(col.obj.isA("Player")) {
+        this.p.live = 0 ; 
+   		}
+
    		if(this.p.live == 0){
         this.destroy();
-        
-        // 消掉針
+
+        // clear attack timer
 				clearInterval( k_attackTimer[this.p.k_attackId] );
       }	
+    },
+
+    step: function(){
+    	if(this.p.y > Q.height)
+				this.destroy();
     }
 	}) ;
 }
