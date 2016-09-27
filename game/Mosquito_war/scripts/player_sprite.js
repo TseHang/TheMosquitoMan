@@ -3,7 +3,7 @@
 */
 
 // 計算救兵 蚊子出來次數
-var mos_addCount = 0 ;
+var mos_addCount = 1 ;
 var k_attack_5 = [];
 
 ;Quintus.PlayerSprites = function(Q){

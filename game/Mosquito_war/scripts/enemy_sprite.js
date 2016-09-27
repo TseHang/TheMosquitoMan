@@ -424,7 +424,7 @@ var k_attackId = 0 ;
 						}));
 					}
 				}
-			} , attackTimeInterval-100 ) );
+			} , attackTimeInterval ) );
 		},
 
 		collide: function(col) {
