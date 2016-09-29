@@ -7,7 +7,11 @@
   "level_stop":{"tilew":40 , "tileh": 30 , "sx":150 , "sy": 710 , "w":40 , "h":30},
   "level_continue":{"tilew":110 , "tileh": 40 , "sx":150 , "sy": 740 , "w":110 , "h":40},
   "level_goTitle":{"tilew":110 , "tileh": 40 , "sx":260 , "sy": 700 , "w":110 , "h":40},
-  
+  "level_goTitle_gameover":{"tilew":110 , "tileh":40 , "sx":260, "sy":750 , "w":110 ,"h":40},
+  "level_goAgain_gameover":{"tilew":110 , "tileh":40 , "sx":260, "sy":790 , "w":110 ,"h":40},
+  "level_goTitle_winner":{"tilew":140 , "tileh":40 , "sx":250, "sy":460 , "w":140 ,"h":40},
+  "level_goFanspage_winner":{"tilew":140 , "tileh":40 , "sx":250, "sy":500 , "w":140 ,"h":40},
+
   "three_dark":{"tilew":40 , "tileh":60,"sx":380,"sy":700,"w":40,"h":60},
   "three_bright":{"tilew":40 , "tileh":60,"sx":380,"sy":760,"w":40,"h":60},
   "two_dark":{"tilew":40 , "tileh":60,"sx":420,"sy":700,"w":40,"h":60},
@@ -15,7 +19,17 @@
   "one_dark":{"tilew":40 , "tileh":60,"sx":460,"sy":700,"w":40,"h":60},
   "one_bright":{"tilew":40 , "tileh":60,"sx":460,"sy":760,"w":40,"h":60},
 
+  "man_life_3":{"tilew":60 , "tileh":120, "sx":0 , "sy":460 ,"w":60 , "h":120},
+  "man_life_2":{"tilew":70 , "tileh":120 , "sx":70 , "sy":460 , "w":70 , "h":120},
+  "man_life_1":{"tilew":80 , "tileh":120 , "sx":150, "sy":460 , "w":80 , "h":120},
+
+  "mosking_talk":{"tilew":350 , "tileh":180 , "sx":350,"sy":250,"w":350,"h":180},
+  "mosking_talk_frame":{"tilew":330 , "tileh":150,"sx":400 ,"sy":430 , "w":330 ,"h":150},
+
   "mos1": {"tilew": 70 , "tileh": 40 , "sx": 220 , "sy":250 , "w":70 , "h":40  },
+  "mos2": {"tilew": 60 , "tileh": 40 , "sx": 70 , "sy":400 , "w":60 , "h":40  },
+  "mos3": {"tilew": 60 , "tileh": 40 , "sx": 70 , "sy":400 , "w":60 , "h":40  },
+  
   "enemy_death":{ "tilew":50 , "tileh": 40 , "sx":300 , "sy":250 , "w":50 , "h":40},
   "player": { "tilew": 70 , "tileh": 110 , "sx": 0 , "sy": 300 , "w": 70 , "h": 110 },
   "power": { "tilew": 40 , "tileh": 50 , "sx": 150 , "sy": 250 , "w":40 , "h":50  } ,
@@ -29,7 +43,7 @@
   "player_speedup":{"tilew":130 , "tileh":20,"sx":0 , "sy":600 , "w":520 , "h":20},
   "player_invincible":{"tilew":120 , "tileh":160,"sx":0 , "sy":680 , "w":120 , "h":160},
   
-  "moskingattack_5": {"tilew":30 , "tileh":40 , "sx": 0 ,"sy":250 , "w":30 , "h": 40} ,
+  "moskingattack_5": {"tilew":40 , "tileh":50 , "sx": 450 ,"sy":170 , "w":200 , "h": 50} ,
   
   "katha_1":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 310 , "w":80 , "h":20 },
   "katha_2":{ "tilew": 80 , "tileh": 20 , "sx":250 , "sy": 340 , "w":80 , "h":20 },

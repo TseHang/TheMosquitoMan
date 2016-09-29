@@ -3,7 +3,7 @@
 */
 
 // 計算救兵 蚊子出來次數
-var mos_addCount = 1 ;
+var mos_addCount = 0 ;
 var k_attack_5 = [];
 
 ;Quintus.PlayerSprites = function(Q){
@@ -28,10 +28,9 @@ var k_attack_5 = [];
 			}) ;
 
 			Q.state.set("player_h" , this.p.h) ;
+			
 			this.add("tween");
-			this.on("player_speedUp");
-			this.on("player_invincible");
-			this.on("player_recover");
+			this.on("player_speedUp , player_invincible , player_recover, hurt");
 		},
 
 		step: function(dt){
@@ -49,36 +48,75 @@ var k_attack_5 = [];
 					this.p.x = (Q.width - player_w) ;
 			}
 
-			if(Q("Enemy").length < 3 ){
-				if(mos_addCount > 0){
-					this.stage.insert(new Q.MosquitoTracker({
-	    			data: Q.asset("addMos_s") ,
-	    			y: 20,
-	    			scale:0.1,
-	    			opacity:1
-	    		}));
+			if(Q("Enemy").length == 0 ){
+				if(Q.state.get("isMosenter")) ;
+				else{
+					if(mos_addCount > 0){
+						Q.state.inc("isMosenterScene",1); // according to "isMosenterScene" NUM
+						Q.stageScene("mosEnter"); // 召喚蚊子
+						mos_addCount-- ;
+					} 
+					else if(mos_addCount == 0 && Q("Enemy").length == 0){
+						this.stage.insert(new Q.MosKing()); // 加入魔王
+						
+						mosEnter(this.stage,1,220);
 
-					mos_addCount-- ;
-				} 
+						// 使mos_addCount = -1 不繼續動
+		    		mos_addCount-- ;
 
-				if(mos_addCount == 0 && Q("Enemy").length == 0){
-					this.stage.insert(new Q.MosKing()); // 加入魔王
-					k_attack_5.push(
-						this.stage.insert(new Q.MosquitoTracker({
-	    				data: Q.asset("addKingattack_s_1") ,
-	    				y: 250,
-	    				scale:1,
-	    				opacity:1
-	    			}))
-	    		);
-
-					// 使mos_addCount = -1 不繼續動
-	    		mos_addCount-- ;
-
-	    		// Play video_mosking_appear
-	    		playVideo(video_mosking_appear);
-				}	
+		    		// Play video_mosking_appear
+		    		playVideo(video_mosking_appear);
+					}	
+				}
 			}
+		},
+
+		hurt: function(){
+			var count = 8;
+			Q.state.set("isPlayerAttack",true);
+			this.twinkle_opacity_0(count);
+		},
+
+		twinkle_opacity_0: function(count){
+
+			if( count > 0 ){
+				count -- ; // when count = 1 , --> 0.2sec
+				this.animate({opacity:0},0.1,Q.Easing.Quadratic.InOut,{
+					callback: function(){
+						this.twinkle_opacity_1(count);
+					}
+				})
+			}else{
+				Q.state.set("isPlayerAttack",false);
+
+				switch(Q.state.get("lives"))
+				{
+					case 3:
+						this.p.sheet = "man_life_3";
+						this.p.h = 120 ;
+						this.p.cy= 60; // update center "Y" ; 
+						break ;
+					case 2:
+						this.p.sheet = "man_life_2";
+						break;
+					case 1:
+						this.p.sheet = "man_life_1";
+						this.p.cx=40;
+						this.p.w = 80;
+						this.p.h = 120 ;
+						break;
+					default:
+						Q.stageScene("gameOver");
+				}
+			}
+		},
+
+		twinkle_opacity_1: function(count){
+			this.animate({opacity:1},0.1,Q.Easing.Quadratic.InOut,{
+				callback: function(){
+					this.twinkle_opacity_0(count);
+				}
+			})
 		},
 
 		player_speedUp: function(){
@@ -155,7 +193,7 @@ var k_attack_5 = [];
 			this.p.x = Q.select('Player').items[0].p.x ;
 		},
 		hidden_destroy: function(){
-			twinkle_count = 20 ;
+			twinkle_count = 15 ;
 			this.twinkle_hidden();
 		},
 		twinkle_hidden: function(){

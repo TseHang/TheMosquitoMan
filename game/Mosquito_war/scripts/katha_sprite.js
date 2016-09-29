@@ -1,5 +1,5 @@
 /**
-到底要人吃到就好，還是砲也可以打到？
+Katha_3: 共10秒，剩下1.5秒時開始閃爍！（這時候可以再吃到第二個katha_3，用來延續！)
 **/
 ;Quintus.KathaSprites = function(Q){
 	Q.gravityY = 0;

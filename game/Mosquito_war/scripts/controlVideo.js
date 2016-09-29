@@ -46,6 +46,7 @@ function loadAllVideo(){
 		videoArray[i].addEventListener("ended",function() {
 			
 			hidden(this); 
+			
 			if (this == video_fight){
 				Q.stageScene("countdown");
 				Q.state.set("is_countdown_over",false);

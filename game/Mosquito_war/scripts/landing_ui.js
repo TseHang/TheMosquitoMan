@@ -452,6 +452,5 @@
       this.add('tween');
       this.animate({scale:1 , opacity:1},0.3 , Q.Easing.Quadratic.InOut)
     }
-
   })
 }

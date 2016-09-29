@@ -1,48 +1,52 @@
 /*
 
 STATE: 
-1: score分數！
+1: player_h 主角的身長
 2: lives 生命！
 3: level 關卡
 4: katha 指吃到哪一個奧義的編號（用來顯示捲軸）
 5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子） 
 6: power_up 控制攻擊泡泡，有沒有變大
-7: player_h 主角的身長
-8: mosking_life 蚊子王的生命 預設20
+7: mosking_life 蚊子王的生命 預設20
+8: isPlayerAttack: if player attack?
 9: isLevelStop : if level stop
 10:iskatha1 : if katha_1 ING?
 11:isKatha2 : if katha_2 ING?
 12:isKatha3 : if katha_3 ING?
 13:is_countdown_over: if countdown over?
 14:is_video_over: if video over?
+15:isMosenter: if Mosenter ?
+16:isMosenterScene: if MosenterScene ?
 -
 gameDescription: stage-2
 hud: stage-1
 katha: stage-2
+countdown: stage-3
+mosEnter: stage-4
 
  */
 ;Quintus.WarScenes = function(Q) {
 
 	// 第一頁面
 	Q.scene("title" , function(stage){
-		console.log("Scene: titleFirst");
-
 		// Set up the game state
     Q.state.reset({ 
     	player_h: 0 ,
-    	score: 0,
     	lives: 4,
     	level: 0 ,
     	katha: 0 ,
     	player_state: 1 ,
     	power_up: 0 ,
     	mosking_life: 10 ,
+    	isPlayerAttack: false ,
     	isStop: false,
     	iskatha1: false ,
     	iskatha2: false ,
     	iskatha3: false ,
     	is_countdown_over: false,
-    	is_video_over: false
+    	is_video_over: false,
+    	isMosenter: false ,
+    	isMosenterScene: 0
     });
 
 		// Clear the hud out
@@ -262,6 +266,47 @@ katha: stage-2
 
 	} , {stage: 1});
 
+	Q.scene("mosEnter" , function(stage){
+
+		Q.state.set("isMosenter",true);
+
+		stage.insert(new Q.Mosking_talk());
+		stage.insert(new Q.Mosking_talk_frame());
+
+		if(Q.state.get("isMosenterScene")==2)
+			var text = stage.insert(new Q.Mosking_talk_text_2());
+		else if(Q.state.get("isMosenterScene")==3)
+			var text = stage.insert(new Q.Mosking_talk_text_3());
+
+		text.animate({opacity:1},0.3,Q.Easing.Quadratic.InOut,{
+			delay:0.6,
+			callback: function(){
+				level.on("touch",function(){
+					Q.clearStage(4);
+
+					var circle = Q.stage().insert(new Q.Mos_magic_circle());
+					circle.animate({scale:1 , opacity:1},0.3,Q.Easing.Quadratic.InOut , {
+						callback: function(){
+							this.stage.insert(new Q.MosquitoTracker({
+	    					data: Q.asset("addMos_s") ,
+	    					y: 70,
+	    					scale: 1,
+	    					direct:"up"
+	    				}));
+
+	    				this.animate({opacity:0},0.5,Q.Easing.Linear,{
+	    					delay:0.5,
+	    					callback:function(){ this.destroy(); Q.state.set("isMosenter",false);}
+	    				})
+						}
+					});
+
+					level.listeners.touch.pop(); // pop "touch" Event ;
+				})
+			}
+		});
+	},{stage: 4});
+
 	Q.scene("katha" , function(stage){                  
 		// kathaNum 會再吃到捲軸的時候被設定！
 		var kathaNum = Q.state.get("katha");
@@ -300,7 +345,7 @@ katha: stage-2
 			}else if (kathaNum == 2){
 				window.setTimeout(function(){ Q("Player").trigger("player_recover"); Q.state.set("iskatha2",false);} , 10000);
 			}else if( kathaNum == 3){
-				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 8000);
+				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 8500);
 			}
 
 			Q.state.set("katha" , 0);
@@ -316,7 +361,7 @@ katha: stage-2
 	Q.scene("hud" , function(stage){
 
 		// landing UI
-		stage.insert(new Q.Score()) ;
+		// stage.insert(new Q.Score()) ;
 		stage.insert(new Q.Lives_text()) ;
 		stage.insert(new Q.LevelStop_btn()) ;
 
@@ -352,10 +397,23 @@ katha: stage-2
     if(Q.useTiles) {
       stage.collisionLayer(new Q.GameTiles());
     } else {
-      stage.insert(new Q.Level_bg());
+      level = stage.insert(new Q.Level_bg());
     }
     stage.insert(new Q.Player());
-    stage.insert(new Q.MosquitoTracker({ data: Q.asset(levelAsset) }));
+    
+    Q.state.inc("isMosenterScene",1) ;
+    Q.state.set("isMosenter",true);
+
+    var circle = Q.stage().insert(new Q.Mos_magic_circle());
+    circle.animate({ scale: 1, opacity: 1 }, 0.3, Q.Easing.Quadratic.InOut, {
+      callback: function() {
+        this.stage.insert(new Q.MosquitoTracker({ data: Q.asset(levelAsset) , direct: "up" , y: 70}));
+        this.animate({ opacity: 0 }, 0.5, Q.Easing.Linear, {
+          delay: 0.5,
+          callback: function() { this.destroy(); Q.state.set("isMosenter", false); }
+        })
+      }
+    });
   }
 
 	// 第一關
@@ -371,7 +429,7 @@ katha: stage-2
     Q.stageScene("hud") ;
 
     setupLevel("level1", stage);
-    
+
     // Play fight video
     playVideo(video_fight);
 
@@ -404,16 +462,29 @@ katha: stage-2
 		console.log("Scene: gameOver");
 
 		reset(stage);
+		
+		stage.insert(new Q.Sprite({
+			asset:"level/gameover_bg.png",
+			x: Q.width/2,
+			y: Q.height/2
+		})) ;
 
-		stage.insert(new Q.Logo()) ;
-		stage.insert(new Q.UI.Text({
-			label : "Game Over" ,
-			align: "center" ,
-			x: Q.width/2 ,
-			y: 350 ,
-			weight: "normal" ,
-			size: 20
-		}))
+		var goTitle = stage.insert(new Q.Sprite({
+			sheet:"level_goTitle_gameover",
+			x: Q.width/2,
+			y: Q.height/2 - 15,
+			type: Q.SPRITE_UI
+		})) ;
+
+		var goAgain = stage.insert(new Q.Sprite({
+			sheet:"level_goAgain_gameover",
+			x: Q.width/2,
+			y: Q.height/2 + 35,
+			type: Q.SPRITE_UI
+		})) ;
+
+		goTitle.on("touch",function(){ Q.stageScene("title")});
+		goAgain.on("touch",function(){ Q.stageScene("level1")});
 	})
 
 	// 遊戲贏家畫面
@@ -422,15 +493,34 @@ katha: stage-2
 
 		reset(stage);
 
-		stage.insert(new Q.Logo()) ;
-		stage.insert(new Q.UI.Text({
-			label : "You Win~" ,
-			align: "center" ,
-			x: Q.width/2 ,
-			y: 300 ,
-			weight: "bold" ,
-			size: 40
-		}))
+		stage.insert(new Q.Sprite({
+			asset:"level/winner_bg.png",
+			x: Q.width/2,
+			y: Q.height/2
+		})) ;
+
+		var goTitle = stage.insert(new Q.Sprite({
+			sheet:"level_goTitle_winner",
+			x: Q.width/2,
+			y: Q.height/2 + 100,
+			type: Q.SPRITE_UI
+		})) ;
+
+		var goFanspage = stage.insert(new Q.Sprite({
+			sheet:"level_goFanspage_winner",
+			x: Q.width/2,
+			y: Q.height/2 + 150,
+			type: Q.SPRITE_UI
+		})) ;
+
+		goTitle.on("touch",function(){
+			Q.stageScene("title") ;
+		})
+
+		goFanspage.on("touch",function(){
+			Q.stageScene("title") ;
+			window.open('https://www.facebook.com/themosquitoman/', '_blank');
+		})
 	})
 }
 
@@ -451,22 +541,66 @@ function reset(stage) {
     clearInterval(k_attackTimer[i]);
 
   // 初始化 attackTimer(射蚊子的針用的)、k_attackTimer
-  attackTimer = [];
-  k_attackTimer = [];
+  // 把length = 0 是清空同一個記憶體，若是指定為 [] ，其實舊有資料還是存在，只是另外配給一段記憶體給新陣列
+  attackTimer.length = 0; 
+  k_attackTimer.length = 0;
   mosId = 0;
   k_attackId = 0;
 
   // 消除level 下面那條
 	Q.clearStage(1) ;
 
-  var bg = stage.insert(new Q.Background({ type: Q.SPRITE_UI})) ;
-	bg.on("touch", function() {
-		Q.stageScene("title") ;
-	});
+	// Update Q.state
+	Q.state.set({
+		mosking_life: 10,
+		lives: 4,
+		isPlayerAttack:false ,
+		isMosenter:false,
+		isMosenterScene:0
+	});// reset mosking life
 
-	Q.state.set("mosking_life" , 10);// reset mosking life
-	mos_addCount = 1; 
+	mos_addCount = 2; 
 
 	allSecs = 300 ; //reset timeBar timer
 	bar.style.display="none";
 }
+
+
+function mosEnter(stage, random , y) {
+
+  var circle = stage.insert(new Q.Mos_magic_circle({y:220}));
+
+  circle.animate({ scale: 1, opacity: 1 }, 0.3, Q.Easing.Quadratic.InOut, {
+    callback: function() {
+      k_attack_5.push(this.stage.insert(new Q.MosquitoTracker({ data: Q.asset("addKingattack_s_"+random), y: y ,direct: "down"})));
+
+      this.animate({ opacity: 0 }, 0.5, Q.Easing.Linear, {
+        delay: 0.5,
+        callback: function() { this.destroy(); }
+      })
+    }
+  });
+}
+
+function dropKatha(stage,obj,rate) {
+  // 掉寶物(記得調倍率)
+  var rand = Math.round(Math.random() * rate);
+
+  if (rand == 1 && Q("Katha_1").length == 0 && !Q.state.get("iskatha1")) {
+    stage.insert(new Q.Katha_1({
+      x: obj.c.x,
+      y: obj.c.y
+    }));
+  } else if (rand == 2 && Q('Katha_2').length == 0 && !Q.state.get("iskatha2")) {
+    stage.insert(new Q.Katha_2({
+      x: obj.c.x,
+      y: obj.c.y
+    }));
+  } else if (rand == 3 && Q('Katha_3').length == 0 && !Q.state.get("iskatha3")) {
+    stage.insert(new Q.Katha_3({
+      x: obj.c.x,
+      y: obj.c.y
+    }));
+  }
+}
+

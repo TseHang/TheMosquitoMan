@@ -37,7 +37,8 @@ window.addEventListener('load',function(){
 		"player/player_man_text1.png","player/player_man_text2.png","player/player_man_text3.png","player/player_man_text4.png",
 
 		// level
-		"level/level_bg.png",
+		"level/level_bg.png","level/gameover_bg.png","level/winner_bg.png",
+		"level/mosking_talk_2.png","level/mosking_talk_3.png","level/mos_magic_circle.png",
 
 		// katha
 		"katha/katha_1_bg.png","katha/katha_1_title.png","katha/katha_close.png",
@@ -87,14 +88,17 @@ window.addEventListener('load',function(){
       	default: {frames:[0,1,2,3] , rate:0.4 , loop:true}
       })
 
-			// Go Time
+      Q.animations("moskingattack",{
+      	disappear: {frames:[0,1,2,3,4], rate:0.1 ,loop:false,trigger:"disappear"}
+      })
+
 			Q.stageScene("title");
 		})
 
 	// Q.debug =  true ;
 
 	// Add time bar
-	var quintus_container = document.getElementById("quintus_container");
+	quintus_container = document.getElementById("quintus_container");
 	bar = document.createElement("DIV") ;
 	result = document.createElement("DIV");// Global 
 	inner_bar = document.createElement("DIV") ;// Global

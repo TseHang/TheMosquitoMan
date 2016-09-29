@@ -95,10 +95,8 @@
     setLives: function(){
       lives_state = Q.state.get("lives");
 
-      // 消掉球球
-      life[lives_state].destroy();
-      // 把陣列清掉
-      life.pop();
+      life[lives_state].destroy(); // destroy LIFE BALL()
+      life.pop(); // Clear Pop array
 
       if (lives_state <= 0){
         Q.stageScene("gameOver") ;
@@ -256,6 +254,8 @@
     }
   });
 
+  /* comment out the Score ;
+
   Q.UI.Text.extend("Score" , {
   	init: function(){
   		this._super({
@@ -274,6 +274,8 @@
   		this.p.label = "Score: "+ score ;
   	}
   })
+
+  */
 
   Q.Sprite.extend("Katha_1_bg",{
     init: function(p) {
