@@ -269,13 +269,14 @@ mosEnter: stage-4
 	Q.scene("mosEnter" , function(stage){
 
 		Q.state.set("isMosenter",true);
+		var mosEnterScene = Q.state.get("isMosenterScene");
 
 		stage.insert(new Q.Mosking_talk());
 		stage.insert(new Q.Mosking_talk_frame());
 
-		if(Q.state.get("isMosenterScene")==2)
+		if(mosEnterScene ==2)
 			var text = stage.insert(new Q.Mosking_talk_text_2());
-		else if(Q.state.get("isMosenterScene")==3)
+		else if(mosEnterScene ==3)
 			var text = stage.insert(new Q.Mosking_talk_text_3());
 
 		text.animate({opacity:1},0.3,Q.Easing.Quadratic.InOut,{
@@ -288,7 +289,7 @@ mosEnter: stage-4
 					circle.animate({scale:1 , opacity:1},0.3,Q.Easing.Quadratic.InOut , {
 						callback: function(){
 							this.stage.insert(new Q.MosquitoTracker({
-	    					data: Q.asset("addMos_s") ,
+	    					data: Q.asset("addMos_"+ mosEnterScene) ,
 	    					y: 70,
 	    					scale: 1,
 	    					direct:"up"
@@ -573,7 +574,6 @@ function mosEnter(stage, random , y) {
   circle.animate({ scale: 1, opacity: 1 }, 0.3, Q.Easing.Quadratic.InOut, {
     callback: function() {
       k_attack_5.push(this.stage.insert(new Q.MosquitoTracker({ data: Q.asset("addKingattack_s_"+random), y: y ,direct: "down"})));
-
       this.animate({ opacity: 0 }, 0.5, Q.Easing.Linear, {
         delay: 0.5,
         callback: function() { this.destroy(); }

@@ -15,19 +15,18 @@
     [X,s,s,s,s,X]
   ];
 
-  Q.assets['level2'] = [
-    [X,X,s,s,X,X],
-    [s,s,s,s,s,s],
-    [X,s,s,s,s,X],
-    [X,s,s,s,s,X],
-    [X,s,s,s,s,X]
+  Q.assets['addMos_2'] = [
+    [X,z,X,X,z,X],
+    [y,X,m,m,X,y],
+    [m,m,s,s,m,m],
+    [s,s,s,s,s,s]
   ];
 
-  Q.assets['addMos_s'] = [
-    [X,X,s,s,X,X],
-    [s,s,s,s,s,s],
-    [s,s,s,s,s,s]
-
+  Q.assets['addMos_3'] = [
+    [z,X,z,z,X,z],
+    [y,m,y,m,y,m],
+    [m,z,m,y,z,y],
+    [X,s,m,m,s,X]
   ];
 
   Q.assets['addKingattack_s_1'] = [

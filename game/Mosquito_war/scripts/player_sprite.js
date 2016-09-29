@@ -3,7 +3,7 @@
 */
 
 // 計算救兵 蚊子出來次數
-var mos_addCount = 0 ;
+var mos_addCount = 2 ;
 var k_attack_5 = [];
 
 ;Quintus.PlayerSprites = function(Q){
@@ -238,12 +238,15 @@ var k_attack_5 = [];
     },
 
     collide: function(col) {
-    	if( col.obj.isA("Enemy") || col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
-        Q.play("brickDeath.ogg");
-        
-        // 消掉蚊子 or 針
-        this.destroy();
+    	if(col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
+    		Q.play("brickDeath.ogg");
+      	this.destroy(); // Power destroy() ;
         col.obj.trigger("destroy");
+      }
+      else if( col.obj.isA("Enemy")){
+      	Q.play("brickDeath.ogg");
+      	this.destroy(); // Power destroy() ;
+      	col.obj.trigger("attacked");
       }
     },
 

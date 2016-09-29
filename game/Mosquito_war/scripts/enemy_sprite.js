@@ -112,7 +112,6 @@ var k_attackId = 0 ;
             }), this);
 
           } else if (mosType >= 5){
-
           	// Add onto the stage, MosKingAttack
             this.stage.insert(new Q.MosKingAttack({
               mosType: mosType,
@@ -141,11 +140,11 @@ var k_attackId = 0 ;
 				collisionMask: Q.SPRITE_ENEMY ,
 				mosId: mosId,
 				opacity: 0.1,
+				life: p.mosType,
 				count: 0
 			});
 			this.add("tween");
-			this.on("destroy"); // will just call destroy()
-			this.on("start_attack");
+			this.on("attacked"); 
 			this.animate({opacity:1},0.6,Q.Easing.Quadratic.InOut);
 
 			mosId++ ;
@@ -176,27 +175,24 @@ var k_attackId = 0 ;
 						}));
 					}
 				}
-
 			} , attackTimeInterval) );
 
 		},
 
-		destroyed: function(col){
-			// inicrement the score
-			// Q.state.inc("score" , 100) ;
+		attacked: function(){
+			this.p.life = this.p.life - 1 ;
 
-			// 換成死掉的sheet
-			this.p.sheet = "enemy_death";
+			if (this.p.life <= 0){
+				this.p.sheet = "enemy_death";
+				// 消掉針
+				clearInterval( attackTimer[this.p.mosId] );
+				dropKatha(this.stage,this,10);
 
-			// 消掉針
-			clearInterval( attackTimer[this.p.mosId] );
-
-			dropKatha(this.stage,this,10);
-
-			// 死掉，destroy
-			this.animate({y: this.p.y + 15 , opacity: 0} , 0.3 , Q.Easing.Linear , {
-				callback: function(){ this.destroy(); }
-			});
+				// 死掉，destroy
+				this.animate({y: this.p.y + 15 , opacity: 0} , 0.2 , Q.Easing.Linear , {
+					callback: function(){ this.destroy(); }
+				});
+			}
 		},
 
 		step: function(dt) {
