@@ -183,13 +183,27 @@ var k_attackId = 0 ;
 			this.p.life = this.p.life - 1 ;
 
 			if (this.p.life <= 0){
-				this.p.sheet = "enemy_death";
+				var sheet = this.p.sheet ;
+				switch(sheet){
+					case "mos1":
+						this.p.sheet = "enemy_death";
+						break ;
+					case "mos2":
+						this.p.sheet = "mos2_death" ;
+						break ;
+					case "mos4":
+						this.p.sheet = "mos4_death";
+						break ;
+					default :
+						this.p.sheet = "enemy_death";
+				};
+
 				// 消掉針
 				clearInterval( attackTimer[this.p.mosId] );
-				dropKatha(this.stage,this,10);
+				dropKatha(this.stage,this,15);
 
 				// 死掉，destroy
-				this.animate({y: this.p.y + 15 , opacity: 0} , 0.2 , Q.Easing.Linear , {
+				this.animate({y: this.p.y + 15 , opacity: 0} , 0.15 , Q.Easing.Linear , {
 					callback: function(){ this.destroy(); }
 				});
 			}
@@ -394,13 +408,16 @@ var k_attackId = 0 ;
 			// 把 Mosking_die 指向 this
 			mosking_die = this ;
 
-			// 1.5秒後變回蚊子王
+			// 0.8秒後變回蚊子王
 			this.animate({y:this.p.y + 15} , 0.8 , Q.Easing.Linear , {
 
 				callback: function(){
+					var sheet = (Q.state.get("mosking_life")>=4)? "mosking_anim":"mosking_hurt";
+
 					mosking_die.stage.insert(new Q.MosKing({
 						x: mosking_die.p.x,
 						y: mosking_die.p.y, //recover to not drop's "y"
+						sheet:sheet,
 						scale: 1
 					}));
 
@@ -411,7 +428,7 @@ var k_attackId = 0 ;
 						}
 
 						var random = Math.round(Math.random()*2 + 1);
-						mosEnter(mosking_die.stage,random,220);
+						mosBloodEnter(mosking_die.stage,random,220);
 
 					}
 

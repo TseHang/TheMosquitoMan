@@ -115,6 +115,7 @@
       window.setTimeout(function(){obj.light()} ,1000)
     },
     light: function(){
+      Q.play("countdown.mp3");
       this.p.sheet = "three_bright";
     }
   });
@@ -129,6 +130,7 @@
       window.setTimeout(function(){obj.light()} ,2000)
     },
     light: function(){
+      Q.play("countdown.mp3");
       this.p.sheet = "two_bright";
     }
   });
@@ -144,10 +146,12 @@
     },
     light: function(){
       var obj = this ;
+      Q.play("countdown.mp3");
       this.p.sheet = "one_bright";
 
       window.setTimeout(function(){
         obj.stage.trigger("countdown_over");
+        Q.play("countdown_final.mp3");
       } ,1000)
     }
   });
@@ -166,6 +170,8 @@
 
     touch : function(){
       if(Q.state.get("isLevelStop") == false ){
+
+        stopBGM(bgm_level1 , 'continue') ;
         // Stop
         Q.state.set("isLevelStop",true) ;
         Q.stage().paused = true ;
@@ -201,7 +207,9 @@
     },
 
     touch : function(){
-      console.log(Q.state.get("isLevelStop"));
+      
+      playBGM(bgm_level1);
+
       if (Q.state.get("isLevelStop") == true){
         Q.state.set("isLevelStop", false);
         Q.stage().paused = false ;
@@ -224,8 +232,12 @@
     },
 
     touch : function(){
-      Q.stageScene("title");
       
+      stopBGM(bgm_level1) ;
+
+      Q.stageScene("title");
+      Q.clearStage(3); // 若是3.2.1還有的話，要清掉。
+
       // reset mos attack and mosking attack TIMER
       reset(this.stage);
 

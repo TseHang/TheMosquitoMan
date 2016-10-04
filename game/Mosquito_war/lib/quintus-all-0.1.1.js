@@ -1745,6 +1745,7 @@ Quintus.Audio = function(Q) {
 
   // Dummy methods
   Q.play = function() {};
+  Q.stop = function() {} ;
   Q.audioSprites = function() {};
 
   Q.audio.enableDesktopSound = function() {
@@ -1770,6 +1771,19 @@ Quintus.Audio = function(Q) {
           Q.audio.channels[i]['channel'].load();
           Q.audio.channels[i]['channel'].play();
           break;
+        }
+      }
+    };
+
+    // Stop a single sound asset or stop all sounds currently playing
+    Q.stop = function(s) {
+      var src = s ? Q.asset(s).src : null;
+      var tm = new Date().getTime();
+      for (var i=0;i<Q.audio.channels.length;i++) {
+        if ((!src || Q.audio.channels[i]['channel'].src === src) && 
+            (Q.audio.channels[i]['loop'] || Q.audio.channels[i]['finished'] >= tm)) {
+          Q.audio.channels[i]['channel'].pause();
+          Q.audio.channels[i]['loop'] = false;
         }
       }
     };
@@ -1836,6 +1850,15 @@ Quintus.Audio = function(Q) {
 
         clearTimeout(Q.audio.silenceTimer);
         Q.audio.silenceTimer = setTimeout(Q.audio.timer,endDelay*1000 + 500);
+      }
+    };
+
+    Q.stop = function(s) {
+      for(var key in Q.audio.playingSounds) {
+        var snd = Q.audio.playingSounds[key];
+        if(!s || s === snd.assetName) {
+          if(snd.stop) { snd.stop(0);  } else {  snd.noteOff(0); }
+        }
       }
     };
 

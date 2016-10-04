@@ -28,8 +28,9 @@
 
   "mos1": {"tilew": 70 , "tileh": 40 , "sx": 220 , "sy":250 , "w":70 , "h":40  },
   "mos2": {"tilew": 60 , "tileh": 40 , "sx": 70 , "sy":400 , "w":60 , "h":40  },
-  "mos3": {"tilew": 60 , "tileh": 40 , "sx": 130 , "sy":400 , "w":60 , "h":40  },
-  "mos4": {"tilew": 60 , "tileh": 40 , "sx": 190 , "sy":400 , "w":60 , "h":40  },
+  "mos4": {"tilew": 100 , "tileh": 50 , "sx": 130 , "sy":400 , "w":100 , "h":50  },
+  "mos2_death": {"tilew": 60 , "tileh": 50 , "sx": 520 , "sy":600 , "w":60 , "h":50  },
+  "mos4_death": {"tilew": 60 , "tileh": 50 , "sx": 580 , "sy":600 , "w":60 , "h":50  },
 
   "enemy_death":{ "tilew":50 , "tileh": 40 , "sx":300 , "sy":250 , "w":50 , "h":40},
   "player": { "tilew": 70 , "tileh": 110 , "sx": 0 , "sy": 300 , "w": 70 , "h": 110 },

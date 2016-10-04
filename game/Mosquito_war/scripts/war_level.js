@@ -4,7 +4,7 @@
   var k_s = 5 // 血泡
 
   var z = 4; // 爆
-	var y = 3; // 狂
+	// var y = 3; // 狂
 	var m = 2; // 中
 	var s = 1; // 小
 	var X = 0; // null
@@ -17,16 +17,17 @@
 
   Q.assets['addMos_2'] = [
     [X,z,X,X,z,X],
-    [y,X,m,m,X,y],
-    [m,m,s,s,m,m],
-    [s,s,s,s,s,s]
+    [m,X,m,m,X,m],
+    [X,m,s,s,m,X],
+    [s,m,X,X,m,s]
   ];
 
   Q.assets['addMos_3'] = [
-    [z,X,z,z,X,z],
-    [y,m,y,m,y,m],
-    [m,z,m,y,z,y],
-    [X,s,m,m,s,X]
+    [z,X,m,m,X,z],
+    [m,z,s,s,z,m],
+    [X,m,X,X,m,X],
+    [z,s,m,m,s,z],
+    [X,s,s,s,s,X]
   ];
 
   Q.assets['addKingattack_s_1'] = [

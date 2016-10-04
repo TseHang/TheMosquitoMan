@@ -57,15 +57,17 @@ var k_attack_5 = [];
 						mos_addCount-- ;
 					} 
 					else if(mos_addCount == 0 && Q("Enemy").length == 0){
-						this.stage.insert(new Q.MosKing()); // 加入魔王
 						
-						mosEnter(this.stage,1,220);
+						stopBGM(bgm_mosG_appear);
+						this.stage.insert(new Q.MosKing()); // 加入魔王
+
+						mosBloodEnter(this.stage,1,220);
 
 						// 使mos_addCount = -1 不繼續動
 		    		mos_addCount-- ;
 
-		    		// Play video_mosking_appear
-		    		playVideo(video_mosking_appear);
+		    		Q.state.set("video_num",2);
+		    		playVideo(video_mosking_appear); // Play video_mosking_appear
 					}	
 				}
 			}
@@ -239,12 +241,12 @@ var k_attack_5 = [];
 
     collide: function(col) {
     	if(col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
-    		Q.play("brickDeath.ogg");
+    		Q.play("brickDeath.ogg",true);
       	this.destroy(); // Power destroy() ;
         col.obj.trigger("destroy");
       }
       else if( col.obj.isA("Enemy")){
-      	Q.play("brickDeath.ogg");
+      	Q.play("brickDeath.ogg",true);
       	this.destroy(); // Power destroy() ;
       	col.obj.trigger("attacked");
       }

@@ -1,7 +1,7 @@
 /*
-如果讓人動的話，
-(1)那麼攻擊到底要用空白鍵?
-(2)還是繼續點擊呢？
+BUG!!
+
+SKIP_BUTTON:第一次總是跳不過？ 還不知道原因。
 
 */
 window.addEventListener('load',function(){
@@ -24,7 +24,7 @@ window.addEventListener('load',function(){
 
 	Q.load([
 		// Images
-		"sprite.png","logo.png","animate_sprites.png","player_mos_rotate_sprite.png",
+		"sprite.png","logo.png","animate_sprite.png","player_mos_rotate_sprite.png",
 
 		// landing
 		"landing/landing_bg_long.png","landing/landing_btn_start.png", "landing/landing_btn_player.png" ,
@@ -46,7 +46,8 @@ window.addEventListener('load',function(){
 		"katha/katha_3_bg.png","katha/katha_3_title.png",
 
 		// Sound
-		"brickDeath.ogg",
+		"brickDeath.ogg","click.mp3","countdown.mp3","countdown_final.mp3",
+		"callMos.mp3","mos_scream.mp3","mosking_scream.mp3","mosG_scream.mp3",
 		
 		// Data
 		"level.tmx" , "sprites.json","animate.json","player_mos_rotate.json"
@@ -55,7 +56,7 @@ window.addEventListener('load',function(){
 
 			// Set all sprites sheets
 			Q.compileSheets("sprite.png" , "sprites.json") ;
-			Q.compileSheets("animate_sprites.png" , "animate.json") ;
+			Q.compileSheets("animate_sprite.png" , "animate.json") ;
 			Q.compileSheets("player_mos_rotate_sprite.png" , "player_mos_rotate.json") ;
 
 			// Now add in the animations for the various sprites
@@ -98,19 +99,32 @@ window.addEventListener('load',function(){
 	// Q.debug =  true ;
 
 	// Add time bar
-	quintus_container = document.getElementById("quintus_container");
-	bar = document.createElement("DIV") ;
+	var quintus_container = document.getElementById("quintus_container");
+	bar = document.createElement("DIV") ; // Global
 	result = document.createElement("DIV");// Global 
 	inner_bar = document.createElement("DIV") ;// Global
+	skip_btn = document.createElement("DIV") ;
 
 	bar.setAttribute("class", "bar");
 	inner_bar.setAttribute("id" , "inner_bar")
 	result.setAttribute("id","result");
-
+	skip_btn.setAttribute("class","skip_btn") ;
+	skip_btn.innerHTML = "⥤";
+	
 	bar.appendChild(inner_bar);
 	bar.appendChild(result);
 
 	quintus_container.appendChild(bar);
+	quintus_container.appendChild(skip_btn);
+
+	skip_btn.addEventListener("mouseover",function(){ skip_btn.innerHTML = "SKIP";})
+	skip_btn.addEventListener("mouseout",function(){ skip_btn.innerHTML = "⥤";})
+	
+	skip_btn.addEventListener("click",function(){
+
+		var num = Q.state.get("video_num");
+		videoArray[num - 1].currentTime = videoArray[num - 1].duration; // skip button 
+	})
 
 	window.Q = Q ;
 } , true);

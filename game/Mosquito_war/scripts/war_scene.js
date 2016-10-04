@@ -7,7 +7,7 @@ STATE:
 4: katha 指吃到哪一個奧義的編號（用來顯示捲軸）
 5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子） 
 6: power_up 控制攻擊泡泡，有沒有變大
-7: mosking_life 蚊子王的生命 預設20
+7: mosking_life 蚊子王的生命 預設10
 8: isPlayerAttack: if player attack?
 9: isLevelStop : if level stop
 10:iskatha1 : if katha_1 ING?
@@ -15,8 +15,9 @@ STATE:
 12:isKatha3 : if katha_3 ING?
 13:is_countdown_over: if countdown over?
 14:is_video_over: if video over?
-15:isMosenter: if Mosenter ?
-16:isMosenterScene: if MosenterScene ?
+15:video_num: video NUM ;
+16:isMosenter: if Mosenter ?
+17:isMosenterScene: if MosenterScene NUMBER (蚊子第幾次出現）?
 -
 gameDescription: stage-2
 hud: stage-1
@@ -27,8 +28,11 @@ mosEnter: stage-4
  */
 ;Quintus.WarScenes = function(Q) {
 
-	// 第一頁面
+	// The Main MenuBar
 	Q.scene("title" , function(stage){
+
+		playBGM(bgm_opening ,1);
+
 		// Set up the game state
     Q.state.reset({ 
     	player_h: 0 ,
@@ -45,6 +49,7 @@ mosEnter: stage-4
     	iskatha3: false ,
     	is_countdown_over: false,
     	is_video_over: false,
+    	video_num: 1,
     	isMosenter: false ,
     	isMosenterScene: 0
     });
@@ -60,7 +65,9 @@ mosEnter: stage-4
 		// 開始玩遊戲!!
 		// ＊＊＊＊＊＊
 		landing_play.on('touch' , function(){
-			
+			Q.play("click.mp3");
+			stopBGM(bgm_opening);
+
 			// animate BG!
 			bg.animate({ cy: Q.height/2 }, 1, Q.Easing.Quadratic.InOut , {
 				callback: function(){Q.stageScene("introStory");}
@@ -78,7 +85,9 @@ mosEnter: stage-4
 		// 角色說明!!
 		// ＊＊＊＊＊＊
 		landing_player.on('touch' , function(){
-			
+			Q.play("click.mp3");
+			stopBGM(bgm_opening);
+
 			// 消失背景
 			bg.animate({ opacity: 0 }, 1, Q.Easing.Quadratic.InOut);
 
@@ -92,11 +101,14 @@ mosEnter: stage-4
 			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
 		});
 
-		// loadAllVideo
-		loadAllVideo();
+		loadAllVideo();// loadAllVideo
+		loadAllAudio();// loadAllaudio
 	})
 
 	Q.scene("introStory" , function(stage){
+
+		playBGM(bgm_ready_start,0.4);
+
 		// 介紹故事
 		console.log("Scene: introStory");
 
@@ -107,12 +119,15 @@ mosEnter: stage-4
 		var intro_go = stage.insert(new Q.IntroGo());
 		
 		intro_howplay.on("touch" , function(){
+			Q.play("click.mp3");
 			Q.stageScene("gameDescription");
 		});
 
 		// start game!
 		intro_go.on('touch' , function(){
-			
+			Q.play("click.mp3");
+			stopBGM(bgm_ready_start) ;
+
 			intro_bg.animate({opacity: 0} , 1 , Q.Easing.Linear ) ;
 			intro_text.animate({opacity: 0} , 0.5 , Q.Easing.Linear , {
 				callback: function(){Q.stageScene("level1")}
@@ -178,12 +193,15 @@ mosEnter: stage-4
 		}))
 
 		close_btn.on("touch", function(){
+			Q.play("click.mp3");
 			Q.clearStage(2);
 		})
 
 	} , {stage : 2 });
 
 	Q.scene("introPlayerMan" , function(stage){
+
+		playBGM(bgm_player_man);
 		// 介紹故事
 		console.log("Scene: introPlayerMan");
 
@@ -200,6 +218,9 @@ mosEnter: stage-4
 	});
 
 	Q.scene("introPlayerMosking" , function(stage){
+
+		playBGM(bgm_player_mosking);
+
 		// 介紹故事
 		console.log("Scene: introPlayerMosking");
 
@@ -215,6 +236,9 @@ mosEnter: stage-4
 	});
 
 	Q.scene("introPlayerMos" , function(stage){
+
+		playBGM(bgm_player_mos);
+
 		// 介紹故事
 		console.log("Scene: introPlayerMos");
 
@@ -236,11 +260,16 @@ mosEnter: stage-4
 		left = stage.insert(new Q.PlayerLeft());
 
 		right.on("touch" , function(){
+			Q.play("click.mp3");
+
 			if(player_state == 1){
+				stopBGM(bgm_player_man);
 				Q.stageScene("introPlayerMosking");
 			}else if(player_state == 2){
+				stopBGM(bgm_player_mosking);
 				Q.stageScene("introPlayerMos");
 			}else if (player_state == 3){
+				stopBGM(bgm_player_mos);
 				Q.stageScene("introPlayerMan")
 			}
 
@@ -249,11 +278,16 @@ mosEnter: stage-4
 		})
 
 		left.on("touch" , function(){
+			Q.play("click.mp3");
+
 			if(player_state == 1){
+				stopBGM(bgm_player_man);
 				Q.stageScene("introPlayerMos");
 			}else if(player_state == 2){
+				stopBGM(bgm_player_mosking);
 				Q.stageScene("introPlayerMan");
 			}else if (player_state == 3){
+				stopBGM(bgm_player_mos);
 				Q.stageScene("introPlayerMosking")
 			}
 
@@ -261,6 +295,16 @@ mosEnter: stage-4
 		})
 
 		back.on("touch" , function(){
+			Q.play("click.mp3");
+
+			if(player_state == 1){
+				stopBGM(bgm_player_man);
+			}else if(player_state == 2){
+				stopBGM(bgm_player_mosking);
+			}else if (player_state == 3){
+				stopBGM(bgm_player_mos);
+			}
+
 			Q.stageScene("title") ;
 		})
 
@@ -274,15 +318,23 @@ mosEnter: stage-4
 		stage.insert(new Q.Mosking_talk());
 		stage.insert(new Q.Mosking_talk_frame());
 
-		if(mosEnterScene ==2)
+		if(mosEnterScene ==2){
+			stopBGM(bgm_level1);
+			playBGM(bgm_mos_appear);
 			var text = stage.insert(new Q.Mosking_talk_text_2());
-		else if(mosEnterScene ==3)
+		}
+		else if(mosEnterScene ==3){
+			stopBGM(bgm_mos_appear);
+			playBGM(bgm_mosG_appear);
 			var text = stage.insert(new Q.Mosking_talk_text_3());
+		}
 
 		text.animate({opacity:1},0.3,Q.Easing.Quadratic.InOut,{
 			delay:0.6,
 			callback: function(){
 				level.on("touch",function(){
+
+					Q.play("click.mp3");
 					Q.clearStage(4);
 
 					var circle = Q.stage().insert(new Q.Mos_magic_circle());
@@ -297,7 +349,15 @@ mosEnter: stage-4
 
 	    				this.animate({opacity:0},0.5,Q.Easing.Linear,{
 	    					delay:0.5,
-	    					callback:function(){ this.destroy(); Q.state.set("isMosenter",false);}
+	    					callback:function(){ 
+	    						if(mosEnterScene == 2)
+	    							Q.play("mos_scream.mp3");
+	    						else if (mosEnterScene == 3)
+	    							Q.play("mosG_scream.mp3");
+
+	    						this.destroy();
+	    						Q.state.set("isMosenter",false);
+	    					;}
 	    				})
 						}
 					});
@@ -352,6 +412,7 @@ mosEnter: stage-4
 			Q.state.set("katha" , 0);
 			Q.stage().paused = false;
 			
+			Q.play("click.mp3");
 			// Clear the katha
 			Q.clearStage(2) ;
 		})
@@ -361,7 +422,6 @@ mosEnter: stage-4
 	// hud --> 下面的分數狀態列
 	Q.scene("hud" , function(stage){
 
-		// landing UI
 		// stage.insert(new Q.Score()) ;
 		stage.insert(new Q.Lives_text()) ;
 		stage.insert(new Q.LevelStop_btn()) ;
@@ -387,7 +447,7 @@ mosEnter: stage-4
 
 		stage.on("countdown_over",function() {  
 			Q.state.set("is_countdown_over",true) ;
-			Q.clearStage(3)
+			Q.clearStage(3);
 		});
 
 	} , {stage: 3});
@@ -431,8 +491,8 @@ mosEnter: stage-4
 
     setupLevel("level1", stage);
 
-    // Play fight video
-    playVideo(video_fight);
+    Q.state.set("video_num",1)
+    playVideo(video_fight);// Play fight video
 
     // Set up a listener for when the stage is complete to load the next level
     stage.on("complete",function() {  Q.stageScene("winner");  });
@@ -484,8 +544,8 @@ mosEnter: stage-4
 			type: Q.SPRITE_UI
 		})) ;
 
-		goTitle.on("touch",function(){ Q.stageScene("title")});
-		goAgain.on("touch",function(){ Q.stageScene("level1")});
+		goTitle.on("touch",function(){ Q.play("click.mp3") ;Q.stageScene("title")});
+		goAgain.on("touch",function(){ Q.play("click.mp3") ;Q.stageScene("level1")});
 	})
 
 	// 遊戲贏家畫面
@@ -515,10 +575,12 @@ mosEnter: stage-4
 		})) ;
 
 		goTitle.on("touch",function(){
+			Q.play("click.mp3");
 			Q.stageScene("title") ;
 		})
 
 		goFanspage.on("touch",function(){
+			Q.play("click.mp3");
 			Q.stageScene("title") ;
 			window.open('https://www.facebook.com/themosquitoman/', '_blank');
 		})
@@ -557,7 +619,8 @@ function reset(stage) {
 		lives: 4,
 		isPlayerAttack:false ,
 		isMosenter:false,
-		isMosenterScene:0
+		isMosenterScene:0,
+		video_num:0
 	});// reset mosking life
 
 	mos_addCount = 2; 
@@ -567,7 +630,7 @@ function reset(stage) {
 }
 
 
-function mosEnter(stage, random , y) {
+function mosBloodEnter(stage, random , y) {
 
   var circle = stage.insert(new Q.Mos_magic_circle({y:220}));
 
@@ -576,7 +639,7 @@ function mosEnter(stage, random , y) {
       k_attack_5.push(this.stage.insert(new Q.MosquitoTracker({ data: Q.asset("addKingattack_s_"+random), y: y ,direct: "down"})));
       this.animate({ opacity: 0 }, 0.5, Q.Easing.Linear, {
         delay: 0.5,
-        callback: function() { this.destroy(); }
+        callback: function() { Q.play("mosking_scream.mp3"); this.destroy(); }
       })
     }
   });
