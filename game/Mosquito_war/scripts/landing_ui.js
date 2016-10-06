@@ -207,6 +207,7 @@
     },
 
     rotate: function(){
+      Q.play("player_ha3.mp3");
       this.play("rotate");
     }
   })
@@ -241,6 +242,7 @@
         opacity: 1
       });
 
+      Q.play("kick.mp3");
       // 因為在setTimeout裡，function 的 this 為 window，所以在這裡先記錄
       text1 = this ;
 
@@ -250,6 +252,7 @@
           window.setTimeout(function(){
             text1.stage.insert(new Q.PlayerManText2());
           } , 300)
+
           this.animate({opacity: 0} , 0.4 , Q.Linear , {
             delay: 0.6,
             callback: function(){
@@ -272,6 +275,7 @@
         opacity: 1
       });
 
+      Q.play("kick.mp3");
       text2 = this ;
 
       this.add("tween");
@@ -280,6 +284,7 @@
           window.setTimeout(function(){
             text2.stage.insert(new Q.PlayerManText3());
           } , 300)
+
           this.animate({opacity: 0} , 0.4 , Q.Linear , {
             delay: 0.6,
             callback: function(){
@@ -302,6 +307,7 @@
         opacity: 1
       });
 
+      Q.play("kick.mp3");
       text3 = this ;
 
       this.add("tween");
@@ -309,7 +315,8 @@
         callback: function(){
           window.setTimeout(function(){
             text3.stage.insert(new Q.PlayerManText4());
-          } , 300)
+          } , 300);
+
           this.animate({opacity: 0} , 0.4 , Q.Linear , {
             delay: 0.6,
             callback: function(){
@@ -332,9 +339,14 @@
         opacity: 1
       });
 
+      Q.play("kick.mp3");
       this.add("tween");
       this.animate({ scale: 1 },0.2, Q.Easing.Quadratic.InOut , {
         callback: function(){
+          // window.setTimeout(function(){
+          //   Q.play("player_ha.mp3");
+          // } , 300)
+
           this.animate({opacity: 0} , 0.4 , Q.Linear , {
             delay: 0.6,
             callback: function(){
@@ -395,6 +407,43 @@
 
     fly_down: function(){
       this.animate({y: Q.height/2 - 8} ,0.5 , Q.Easing.Linear , {
+        callback: function(){ this.fly_up();}
+      }) ;
+    }
+  })
+
+  // 將軍蚊
+  Q.Sprite.extend("PlayerMosGBg",{
+    init: function(p) {
+      this._super(p,{
+        x: Q.width/2,
+        y: Q.height/2,
+        asset: 'player/player_mosG_bg.png'
+      });
+    }
+  });
+
+  Q.Sprite.extend("PlayerMosG" , {
+    init: function(p){
+      this._super(p,{
+        x: Q.width/2 ,
+        y: Q.height/2 - 10,
+        asset: 'player/player_mos.png',
+        type: Q.SPRITE_UI
+      })
+
+      this.add("tween");
+      this.fly_up();
+    },
+
+    fly_up: function(){
+      this.animate({y: Q.height/2 - 18} ,0.5 , Q.Easing.Quadratic.InOut , {
+        callback: function(){ this.fly_down();}
+      }) ;
+    },
+
+    fly_down: function(){
+      this.animate({y: Q.height/2 - 5} ,0.5 , Q.Easing.Quadratic.InOut , {
         callback: function(){ this.fly_up();}
       }) ;
     }

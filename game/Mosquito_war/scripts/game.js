@@ -33,7 +33,7 @@ window.addEventListener('load',function(){
 
 		// player
 		"player/player_mos_bg.png","player/player_mosking_bg.png","player/player_man_bg.png",
-		"player/player_mos.png",
+		"player/player_mos.png","player/player_mosG_bg.png",
 		"player/player_man_text1.png","player/player_man_text2.png","player/player_man_text3.png","player/player_man_text4.png",
 
 		// level
@@ -46,8 +46,11 @@ window.addEventListener('load',function(){
 		"katha/katha_3_bg.png","katha/katha_3_title.png",
 
 		// Sound
-		"brickDeath.ogg","click.mp3","countdown.mp3","countdown_final.mp3",
-		"callMos.mp3","mos_scream.mp3","mosking_scream.mp3","mosG_scream.mp3",
+		"power_collide.ogg","click.mp3","countdown.mp3","countdown_final.mp3",
+		"mos_scream.mp3","mosking_scream.mp3","mosG_scream.mp3","change_scene.mp3","speedup.mp3",
+		"player_invincible_attack.mp3","player_invincible.mp3","player_powerup.mp3","powerUp.mp3",
+		"damage.mp3","player_hurt.mp3","blood_bubble_broken.mp3","katha_drop.mp3",
+		"kick.mp3","player_ha3.mp3",
 		
 		// Data
 		"level.tmx" , "sprites.json","animate.json","player_mos_rotate.json"

@@ -57,7 +57,7 @@ var k_attack_5 = [];
 						mos_addCount-- ;
 					} 
 					else if(mos_addCount == 0 && Q("Enemy").length == 0){
-						
+						stopBGM(bgm_level1);
 						stopBGM(bgm_mosG_appear);
 						this.stage.insert(new Q.MosKing()); // 加入魔王
 
@@ -74,6 +74,8 @@ var k_attack_5 = [];
 		},
 
 		hurt: function(){
+			Q.play("player_hurt.mp3");
+
 			var count = 8;
 			Q.state.set("isPlayerAttack",true);
 			this.twinkle_opacity_0(count);
@@ -122,6 +124,7 @@ var k_attack_5 = [];
 		},
 
 		player_speedUp: function(){
+
 			var player_x = this.p.x ;
       var player_y = this.p.y ;
 
@@ -147,7 +150,6 @@ var k_attack_5 = [];
 			moveSpeed = 3;
 			Q("PlayerSpeedUP").trigger("hidden_destroy");
 		}
-
 	})
 
 	Q.Sprite.extend("PlayerSpeedUP",{
@@ -165,9 +167,11 @@ var k_attack_5 = [];
 
 			this.on("hidden_destroy");
 		},
+
 		step: function(){
 			this.p.x = Q.select('Player').items[0].p.x ;
 		},
+
 		hidden_destroy: function(){
 			this.animate({opacity: 0} , 1 , Q.Easing.Linear , {
 				callback: function(){ this.destroy()}
@@ -241,12 +245,12 @@ var k_attack_5 = [];
 
     collide: function(col) {
     	if(col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
-    		Q.play("brickDeath.ogg",true);
+    		Q.play("power_collide.ogg",true);
       	this.destroy(); // Power destroy() ;
         col.obj.trigger("destroy");
       }
       else if( col.obj.isA("Enemy")){
-      	Q.play("brickDeath.ogg",true);
+      	Q.play("power_collide.ogg",true);
       	this.destroy(); // Power destroy() ;
       	col.obj.trigger("attacked");
       }

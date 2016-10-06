@@ -5,7 +5,7 @@ STATE:
 2: lives 生命！
 3: level 關卡
 4: katha 指吃到哪一個奧義的編號（用來顯示捲軸）
-5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子） 
+5: player_state 角色介紹編號（1:掌蚊人，2:蚊子王，3:蚊子將軍，4:蚊子） 
 6: power_up 控制攻擊泡泡，有沒有變大
 7: mosking_life 蚊子王的生命 預設10
 8: isPlayerAttack: if player attack?
@@ -235,6 +235,23 @@ mosEnter: stage-4
 
 	});
 
+	Q.scene("introPlayerMosG" , function(stage){
+
+		playBGM(bgm_player_mosG);
+		// 介紹故事
+		console.log("Scene: introPlayerMosG");
+
+		// SET player_state = 3
+		Q.state.set('player_state' , 3);
+
+		stage.insert(new Q.PlayerMosGBg()) ;
+		stage.insert(new Q.PlayerMoskingRotate());
+		stage.insert(new Q.PlayerMosG());
+
+		Q.stageScene("playerFooter") ;
+
+	});
+
 	Q.scene("introPlayerMos" , function(stage){
 
 		playBGM(bgm_player_mos);
@@ -242,8 +259,8 @@ mosEnter: stage-4
 		// 介紹故事
 		console.log("Scene: introPlayerMos");
 
-		// SET player_state = 1
-		Q.state.set('player_state' , 3);
+		// SET player_state = 4
+		Q.state.set('player_state' , 4);
 
 		stage.insert(new Q.PlayerMosBg()) ;
 		stage.insert(new Q.PlayerMoskingRotate());
@@ -267,8 +284,11 @@ mosEnter: stage-4
 				Q.stageScene("introPlayerMosking");
 			}else if(player_state == 2){
 				stopBGM(bgm_player_mosking);
-				Q.stageScene("introPlayerMos");
+				Q.stageScene("introPlayerMosG");
 			}else if (player_state == 3){
+				stopBGM(bgm_player_mosG);
+				Q.stageScene("introPlayerMos")
+			}else if (player_state == 4){
 				stopBGM(bgm_player_mos);
 				Q.stageScene("introPlayerMan")
 			}
@@ -287,8 +307,11 @@ mosEnter: stage-4
 				stopBGM(bgm_player_mosking);
 				Q.stageScene("introPlayerMan");
 			}else if (player_state == 3){
-				stopBGM(bgm_player_mos);
+				stopBGM(bgm_player_mosG);
 				Q.stageScene("introPlayerMosking")
+			}else if (player_state == 4){
+				stopBGM(bgm_player_mos);
+				Q.stageScene("introPlayerMosG")
 			}
 
 			left.play("click");
@@ -321,11 +344,13 @@ mosEnter: stage-4
 		if(mosEnterScene ==2){
 			stopBGM(bgm_level1);
 			playBGM(bgm_mos_appear);
+			
 			var text = stage.insert(new Q.Mosking_talk_text_2());
 		}
 		else if(mosEnterScene ==3){
 			stopBGM(bgm_mos_appear);
 			playBGM(bgm_mosG_appear);
+
 			var text = stage.insert(new Q.Mosking_talk_text_3());
 		}
 
@@ -347,13 +372,14 @@ mosEnter: stage-4
 	    					direct:"up"
 	    				}));
 
+	    				if (mosEnterScene == 3)
+	    					Q.play("mosG_scream.mp3");
+
 	    				this.animate({opacity:0},0.5,Q.Easing.Linear,{
 	    					delay:0.5,
 	    					callback:function(){ 
 	    						if(mosEnterScene == 2)
 	    							Q.play("mos_scream.mp3");
-	    						else if (mosEnterScene == 3)
-	    							Q.play("mosG_scream.mp3");
 
 	    						this.destroy();
 	    						Q.state.set("isMosenter",false);
@@ -371,6 +397,9 @@ mosEnter: stage-4
 	Q.scene("katha" , function(stage){                  
 		// kathaNum 會再吃到捲軸的時候被設定！
 		var kathaNum = Q.state.get("katha");
+		
+		Q.state.set("isLevelStop",true);
+		Q.play("katha_drop.mp3")
 
 		if (kathaNum == 1){
 			stage.insert(new Q.Katha_1_bg());
@@ -402,14 +431,19 @@ mosEnter: stage-4
 		// 按鈕
 		btn.on("touch" , function(){
 			if (kathaNum == 1){
+				Q.play("player_powerup.mp3");
 				window.setTimeout(function(){ Q("Power").trigger("power_recover"); Q.state.set("iskatha1",false);},10000);
 			}else if (kathaNum == 2){
-				window.setTimeout(function(){ Q("Player").trigger("player_recover"); Q.state.set("iskatha2",false);} , 10000);
+				Q.play("speedup.mp3");
+				window.setTimeout(function(){ Q("Player").trigger("player_recover"); Q.state.set("iskatha2",false); } , 10000);
 			}else if( kathaNum == 3){
-				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 8500);
+				Q.play("player_invincible.mp3");
+				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 6666);
 			}
 
 			Q.state.set("katha" , 0);
+
+			Q.state.set("isLevelStop",false);
 			Q.stage().paused = false;
 			
 			Q.play("click.mp3");

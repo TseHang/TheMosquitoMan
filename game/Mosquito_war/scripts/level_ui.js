@@ -19,7 +19,7 @@
     },
 
     touch : function(touch){
-      if(Q.state.get("is_countdown_over")){
+      if(Q.state.get("is_countdown_over") && !Q.state.get("isLevelStop")){
         
         var power_x = Q.select('Player').items[0].p.x ;
         var power_y = Q.select('Player').items[0].p.y - 70 ;
@@ -38,6 +38,8 @@
             x: power_x + 15,
             y: power_y + 20
           }));
+
+          Q.play("powerUp.mp3");
 
         }else{
           sheet = 'power';
@@ -111,8 +113,12 @@
         y: 0,
         sheet: "three_dark"
       })
-      var obj = this ;
-      window.setTimeout(function(){obj.light()} ,1000)
+      this.add("tween");
+      this.animate({},1,Q.Easing.Linear,{
+        callback:function(){
+          this.light();
+        }
+      });
     },
     light: function(){
       Q.play("countdown.mp3");
@@ -126,8 +132,12 @@
         y: 0,
         sheet: "two_dark"
       })
-      var obj = this ;
-      window.setTimeout(function(){obj.light()} ,2000)
+      this.add("tween");
+      this.animate({},2,Q.Easing.Linear,{
+        callback:function(){
+          this.light();
+        }
+      });
     },
     light: function(){
       Q.play("countdown.mp3");
@@ -141,18 +151,24 @@
         y: 0,
         sheet: "one_dark"
       })
-      var obj = this ;
-      window.setTimeout(function(){obj.light()} ,3000)
+      this.add("tween");
+      this.animate({},3,Q.Easing.Linear,{
+        callback:function(){
+          this.light();
+        }
+      });
     },
     light: function(){
       var obj = this ;
       Q.play("countdown.mp3");
       this.p.sheet = "one_bright";
 
-      window.setTimeout(function(){
-        obj.stage.trigger("countdown_over");
-        Q.play("countdown_final.mp3");
-      } ,1000)
+      this.animate({},1,Q.Easing.Linear,{
+        callback:function(){
+          this.stage.trigger("countdown_over");
+          Q.play("countdown_final.mp3");
+        }
+      });
     }
   });
 
@@ -169,7 +185,12 @@
     },
 
     touch : function(){
-      if(Q.state.get("isLevelStop") == false ){
+      if(!Q.state.get("isLevelStop")){
+        if(!Q.state.get('is_countdown_over')){
+          Q.clearStage(3); // clear countdown
+        }
+
+        Q.play("click.mp3");
 
         stopBGM(bgm_level1 , 'continue') ;
         // Stop
@@ -207,7 +228,12 @@
     },
 
     touch : function(){
-      
+      if(!Q.state.get('is_countdown_over')){
+        Q.stageScene("countdown");
+      }
+
+      Q.play("click.mp3");
+
       playBGM(bgm_level1);
 
       if (Q.state.get("isLevelStop") == true){
@@ -232,11 +258,11 @@
     },
 
     touch : function(){
-      
-      stopBGM(bgm_level1) ;
+
+      Q.play("click.mp3");
+      stopBGM(bgm_level1) ; // reset 'bgm_level1' time
 
       Q.stageScene("title");
-      Q.clearStage(3); // 若是3.2.1還有的話，要清掉。
 
       // reset mos attack and mosking attack TIMER
       reset(this.stage);
@@ -496,7 +522,7 @@
   Q.UI.Text.extend("Katha_3_function" , {
     init: function(p){
       this._super(p,{
-        label: "效果：\n    就是「無敵」，持續 6.6 秒。" ,
+        label: "效果：\n    就是「無敵」，持續 6.666 秒。" ,
         align: "left",
         x: Q.width/2 - 70,
         y: Q.height/2 + 70 ,

@@ -183,6 +183,8 @@ var k_attackId = 0 ;
 			this.p.life = this.p.life - 1 ;
 
 			if (this.p.life <= 0){
+				Q.play('damage.mp3');
+
 				var sheet = this.p.sheet ;
 				switch(sheet){
 					case "mos1":
@@ -312,6 +314,7 @@ var k_attackId = 0 ;
         	Q.state.dec("lives" , 1) ;
     		}
       }else if (col.obj.isA("PlayerInvincible")){
+      	Q.play("player_invincible_attack.mp3");
       	this.destroy(); // When bump into Invincible Mask , destroy()
       }
     }
@@ -365,6 +368,8 @@ var k_attackId = 0 ;
 			if(this.p.life == 0){
 				this.stage.trigger("complete");
 			}else{
+				Q.play('blood_bubble_broken.mp3');
+
 				this.stage.insert(new Q.MosKing_die({
 					x:mosking_x ,
 					y:mosking_y
@@ -507,6 +512,8 @@ var k_attackId = 0 ;
    		}
 
    		if(this.p.live == 0){
+   			Q.play("blood_bubble_broken.mp3");
+
    			this.play("disappear");
    			dropKatha(this.stage,this,10);
 				clearInterval( k_attackTimer[this.p.k_attackId] ); // clear attack timer

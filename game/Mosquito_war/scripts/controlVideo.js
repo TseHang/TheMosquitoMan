@@ -12,7 +12,8 @@ videoArray.push(video_fight = document.getElementById("video_fight") );
 videoArray.push(video_mosking_appear = document.getElementById("video_mosking_appear") );
 
 function playVideo(video){
-	
+	Q.play("change_scene.mp3");
+
 	Q.stage().paused = true;
 
 	video.style.display="block";
