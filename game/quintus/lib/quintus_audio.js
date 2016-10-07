@@ -6,7 +6,8 @@ Quintus.Audio = function(Q) {
     channels: [],
     channelMax:  Q.options.channelMax || 10,
     active: {},
-    play: function() {}
+    play: function() {},
+    stop: function() {}
   };
 
 

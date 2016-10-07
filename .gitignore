@@ -3,3 +3,4 @@ node_modules
 *.log
 *.swp
 .sass-cache
+server.js
