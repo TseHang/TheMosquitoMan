@@ -44,7 +44,7 @@ mosEnter: stage-4
     	katha: 0 ,
     	player_state: 1 ,
     	power_up: 0 ,
-    	mosking_life: 4 ,
+    	mosking_life: 10 ,
     	isPlayerAttack: false ,
     	isStop: false,
     	iskatha1: false ,
