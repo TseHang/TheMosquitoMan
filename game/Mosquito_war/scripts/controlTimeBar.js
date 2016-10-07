@@ -1,6 +1,6 @@
 var now  = new Date() ;
 var allSecs = 300 ; // add 1 sec to wait 
-var remainSecs = 120;
+var remainSecs = 300; // remainSeconds
 var timeBarFlag ;
 
 function afterTime(){
@@ -10,8 +10,8 @@ function afterTime(){
   return (timeDiff/1000); // Return SECONDS after start time
 }
 
-function resultGetTimes(){
-  remainSecs = allSecs - afterTime() ; // remain secends
+function resultGetTimes(lastUsedTime){
+  remainSecs = allSecs - afterTime() - lastUsedTime; // remain secends
 
   var min = Math.floor(remainSecs/60) +"" ; //--> String 
   var sec = parseInt( remainSecs - (min*60))+""; //--> String
@@ -25,7 +25,7 @@ function resultGetTimes(){
     result.innerHTML= min + " : "+sec;
     updateBar();
 
-    timeBarFlag = window.setTimeout('resultGetTimes()',1000);
+    timeBarFlag = window.setTimeout('resultGetTimes('+lastUsedTime +')',1000);
   }
 }
 
@@ -34,10 +34,18 @@ function updateBar(){
   inner_bar.style.width = usedTime*100 +"%";
 }
 
-function starClock(){
+function stopTimeBar(){
+  clearInterval(timeBarFlag);
+}
+
+/*
+  the 'startClock' fun. will start TimeBar(),
+  and this is called ahfter trigger "countdown_over" first time
+*/
+function startClock(lastUsedTime){
   // update now time
   now  = new Date() ;
-  resultGetTimes();
+  resultGetTimes(lastUsedTime);
   bar.style.display="block";
 }
 

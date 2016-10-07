@@ -34,8 +34,8 @@ Katha_3: 共10秒，剩下1.5秒時開始閃爍！（這時候可以再吃到第
     	if(col.obj.isA("Power") || col.obj.isA("Player") || col.obj.isA("PlayerInvincible")) {
       	this.destroy();
 
-      	// 暫停
-      	this.stage.pause();
+        // Must to stop stage first, then stageScene('katha')
+        stageStop();
       	
       	// 更改 state.set
       	Q.state.set("katha" , 1) ;
@@ -76,8 +76,8 @@ Katha_3: 共10秒，剩下1.5秒時開始閃爍！（這時候可以再吃到第
       if(col.obj.isA("Power") || col.obj.isA("Player") || col.obj.isA("PlayerInvincible")) {
         this.destroy();
 
-        // 暫停
-        this.stage.pause();
+        // Must to stop stage first, then stageScene('katha')
+        stageStop();
         
         // 更改 state.set
         Q.state.set("katha" , 2) ;
@@ -118,8 +118,8 @@ Katha_3: 共10秒，剩下1.5秒時開始閃爍！（這時候可以再吃到第
       if(col.obj.isA("Power") || col.obj.isA("Player") || col.obj.isA("PlayerInvincible")) {
         this.destroy();
 
-        // 暫停
-        this.stage.pause();
+        // Must to stop stage first, then stageScene('katha')
+        stageStop();
         
         // 更改 state.set
         Q.state.set("katha" , 3) ;

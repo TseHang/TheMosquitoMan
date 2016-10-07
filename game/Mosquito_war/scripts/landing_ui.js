@@ -36,10 +36,15 @@
         x: Q.width/2 ,
         y: 300,
         opacity: 1 ,
+        scale:1,
         type: Q.SPRITE_UI
       });
 
       this.add("tween");
+      this.on("touch");
+    },
+    touch: function(){
+      button_click(this);
     }
   });
 
@@ -50,10 +55,15 @@
         x: Q.width/2 ,
         y: 360,
         opacity: 1 ,
+        scale:1 ,
         type: Q.SPRITE_UI
       });
 
       this.add("tween");
+      this.on("touch");
+    },
+    touch: function(){
+      button_click(this);
     }
   })
 
@@ -110,13 +120,18 @@
       this._super(p,{
         x: Q.width/2 + 70,
         y: Q.height/2 + 55 ,
-        opacity:0,
         asset: 'landing/intro_btn_go.png',
+        opacity:0,
+        scale:1 ,
         type:Q.SPRITE_UI
       });
 
       this.add("tween");
+      this.on("touch");
       this.animate({opacity:1} , 0.5 , Q.Easing.Quadratic.InOut);
+    },
+    touch: function(){
+      button_click(this);
     }
   }); 
 
@@ -125,13 +140,18 @@
       this._super(p,{
         x: Q.width/2 - 70,
         y: Q.height/2 + 55 ,
-        opacity:0,
         asset: 'landing/intro_btn_howplay.png',
+        opacity:0,
+        scale:1,
         type:Q.SPRITE_UI
       });
 
       this.add("tween");
+      this.on("touch");
       this.animate({opacity:1} , 0.5 , Q.Easing.Quadratic.InOut);
+    },
+    touch: function(){
+      button_click(this);
     }
   }); 
 
@@ -174,8 +194,17 @@
         x: Q.width - 60,
         y: Q.height - 20,
         type: Q.SPRITE_UI,
+        opacity:1,
+        scale:1
       });
+
+      this.add("tween");
+      this.on("touch");
+    },
+    touch: function(){
+      button_click(this);
     }
+
   })
 
   // 
@@ -207,7 +236,7 @@
     },
 
     rotate: function(){
-      Q.play("player_ha3.mp3");
+      Q.play("player_ha.mp3");
       this.play("rotate");
     }
   })

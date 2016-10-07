@@ -5,6 +5,7 @@
 // 計算救兵 蚊子出來次數
 var mos_addCount = 2 ;
 var k_attack_5 = [];
+var moveSpeed = 3;
 
 ;Quintus.PlayerSprites = function(Q){
 	Q.gravityY = 0;
@@ -12,7 +13,6 @@ var k_attack_5 = [];
 
 	// 紀錄被 power 打到的上一個
 	var lastCollide = null;
-	var moveSpeed = 3;
 	var twinkle_count = 10 ;
 
 	// 載入玩家
@@ -30,7 +30,7 @@ var k_attack_5 = [];
 			Q.state.set("player_h" , this.p.h) ;
 			
 			this.add("tween");
-			this.on("player_speedUp , player_invincible , player_recover, hurt");
+			this.on("player_speedUp , player_invincible , player_recover, hurt , destroy");
 		},
 
 		step: function(dt){
@@ -57,11 +57,10 @@ var k_attack_5 = [];
 						mos_addCount-- ;
 					} 
 					else if(mos_addCount == 0 && Q("Enemy").length == 0){
-						stopBGM(bgm_level1);
-						stopBGM(bgm_mosG_appear);
+						stopBGM(Q.state.get("whichBGM"));
 						this.stage.insert(new Q.MosKing()); // 加入魔王
 
-						mosBloodEnter(this.stage,1,220);
+						mosBloodEnter(this.stage,1,220); // blood bubble
 
 						// 使mos_addCount = -1 不繼續動
 		    		mos_addCount-- ;
@@ -70,6 +69,10 @@ var k_attack_5 = [];
 		    		playVideo(video_mosking_appear); // Play video_mosking_appear
 					}	
 				}
+			}
+
+			if(Q.state.get("mosking_life")<0){
+				this.destroy();
 			}
 		},
 
@@ -170,6 +173,10 @@ var k_attack_5 = [];
 
 		step: function(){
 			this.p.x = Q.select('Player').items[0].p.x ;
+
+			if(Q.state.get("mosking_life")<0){
+				this.destroy();
+			}
 		},
 
 		hidden_destroy: function(){
@@ -197,6 +204,10 @@ var k_attack_5 = [];
 		},
 		step: function(){
 			this.p.x = Q.select('Player').items[0].p.x ;
+
+			if(Q.state.get("mosking_life")<0){
+				this.destroy();
+			}
 		},
 		hidden_destroy: function(){
 			twinkle_count = 15 ;

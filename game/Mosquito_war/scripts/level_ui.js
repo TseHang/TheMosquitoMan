@@ -1,5 +1,5 @@
-;Quintus.LevelUI = function(Q) {
 
+;Quintus.LevelUI = function(Q) {
   var lives_state ;
   var life = [];
   var container ;
@@ -10,6 +10,7 @@
       this._super(p,{
         x: Q.width/2,
         y: Q.height/2,
+        opacity:1 ,
         asset: 'level/level_bg.png',
         type: Q.SPRITE_UI
       });
@@ -88,9 +89,9 @@
     },
 
     initLives: function(){
-      d = 20 ;
+      var d = 20 ;
 
-      for (i = 1 ; i <= lives_state ; i++ )
+      for (var i = 1 ; i <= lives_state ; i++ )
         life.push( this.stage.insert(new Q.Life({x: 90 + d*i })) );
     },
 
@@ -178,10 +179,13 @@
         sheet: "level_stop",
         x: Q.width - 30  ,
         y: Q.height -15 ,
+        opacity:1,
+        scale:1,
         type: Q.SPRITE_UI
       })
       
       this.on("touch");
+      this.add("tween");
     },
 
     touch : function(){
@@ -192,10 +196,11 @@
 
         Q.play("click.mp3");
 
-        stopBGM(bgm_level1 , 'continue') ;
+        button_click(this);
+        stopBGM(Q.state.get("whichBGM"), 'continue') ;
         // Stop
         Q.state.set("isLevelStop",true) ;
-        Q.stage().paused = true ;
+        stageStop();
 
         container = this.stage.insert(new Q.UI.Container({
           fill: "rgba(0,0,0,0.6)" ,
@@ -221,10 +226,13 @@
         sheet : "level_continue",
         x: 0,
         y: -30,
+        opacity:1,
+        scale:1,
         type: Q.SPRITE_UI
       })
 
       this.on("touch");
+      this.add("tween");
     },
 
     touch : function(){
@@ -234,13 +242,14 @@
 
       Q.play("click.mp3");
 
-      playBGM(bgm_level1);
+      button_click(this);
+      playBGM(Q.state.get("whichBGM"));
 
-      if (Q.state.get("isLevelStop") == true){
+      if (Q.state.get("isLevelStop") === true){
         Q.state.set("isLevelStop", false);
-        Q.stage().paused = false ;
-
+        
         container.destroy();
+        stageContinue();
       }
     }
   })
@@ -251,21 +260,26 @@
         sheet : "level_goTitle",
         x: 0,
         y: 30,
+        opacity:1,
+        scale:1,
         type: Q.SPRITE_UI
       })
 
       this.on("touch");
+      this.add("tween");
     },
 
     touch : function(){
 
       Q.play("click.mp3");
-      stopBGM(bgm_level1) ; // reset 'bgm_level1' time
+
+      button_click(this);
+      stopBGM(Q.state.get("whichBGM")) ; // reset 'bgm_level1' time
 
       Q.stageScene("title");
 
       // reset mos attack and mosking attack TIMER
-      reset(this.stage);
+      reset();
 
       this.container.destroy();
     }
@@ -396,6 +410,11 @@
       });
 
       this.add("tween");
+      this.on("touch");
+    },
+
+    touch: function(){
+      button_click(this);
     }
   });
 

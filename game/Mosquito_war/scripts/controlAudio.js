@@ -17,11 +17,21 @@ audioArray.push(bgm_level1 = document.getElementById("bgm_level1") );
 audioArray.push(bgm_mosking = document.getElementById("bgm_mosking") );
 audioArray.push(bgm_mos_appear = document.getElementById("bgm_mos_appear") );
 audioArray.push(bgm_mosG_appear = document.getElementById("bgm_mosG_appear") );
-audioArray.push(bgm_test = document.getElementById("bgm_test") );
+audioArray.push(bgm_heartbeat_slow = document.getElementById("bgm_heartbeat_slow") );
+// audioArray.push(bgm_heartbeat_quick = document.getElementById("bgm_heartbeat_quick") );
+audioArray.push(bgm_lose = document.getElementById("bgm_lose") );
+audioArray.push(bgm_winner = document.getElementById("bgm_winner") );
 
-function playBGM(audio , volume=1){
+function playBGM(audio , volume=1 , state=true){
+	/*
+		audio:  audio identifier
+		volum: control volumn
+		state: whether it is sub  bgm ( if sub , that set 'false')
+	*/
 	audio.play();
 	audio.volume = volume ;
+	if(state)
+		Q.state.set("whichBGM",audio);
 }
 
 function stopBGM(audio , state = 'restart'){

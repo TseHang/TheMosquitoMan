@@ -50,7 +50,7 @@ window.addEventListener('load',function(){
 		"mos_scream.mp3","mosking_scream.mp3","mosG_scream.mp3","change_scene.mp3","speedup.mp3",
 		"player_invincible_attack.mp3","player_invincible.mp3","player_powerup.mp3","powerUp.mp3",
 		"damage.mp3","player_hurt.mp3","blood_bubble_broken.mp3","katha_drop.mp3",
-		"kick.mp3","player_ha3.mp3",
+		"kick.mp3","player_ha.mp3","mosking_hurt.mp3","mosking_die_roar.mp3",
 		
 		// Data
 		"level.tmx" , "sprites.json","animate.json","player_mos_rotate.json"
@@ -112,6 +112,8 @@ window.addEventListener('load',function(){
 	inner_bar.setAttribute("id" , "inner_bar")
 	result.setAttribute("id","result");
 	skip_btn.setAttribute("class","skip_btn") ;
+
+	result.innerHTML= "05 : 00";
 	skip_btn.innerHTML = "⥤";
 	
 	bar.appendChild(inner_bar);

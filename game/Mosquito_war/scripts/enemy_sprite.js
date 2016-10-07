@@ -1,10 +1,7 @@
 /*
-因為針是用 setInterval 設置的，所以設為全域，在war_scene.js 裡
-每gameOver一次時reset，增進效能，但要特別注意
-
-目前Bug:
-因為可以不殺死血泡，直接殺死魔王，所以會有血泡的timer還在跑的情況
-（但要注意的是還必須想要怎麼打魔王，才能解決）
+Drop katha rate:
+(1) level: 1/15
+(2) mosking: 1/10
 */
 
 // 蚊子的attackTimer
@@ -306,13 +303,13 @@ var k_attackId = 0 ;
     },
 
 		collide: function(col) {
-      this.destroy(); // Mosattack will destroy();
 
     	if(col.obj.isA("Player")) {
     		if(!Q.state.get("isPlayerAttack")){
       		Q("Player").trigger("hurt");
         	Q.state.dec("lives" , 1) ;
     		}
+    		this.destroy(); 
       }else if (col.obj.isA("PlayerInvincible")){
       	Q.play("player_invincible_attack.mp3");
       	this.destroy(); // When bump into Invincible Mask , destroy()
@@ -365,19 +362,27 @@ var k_attackId = 0 ;
 			var mosking_x = this.p.x ;
       var mosking_y = this.p.y ;
 
-			if(this.p.life == 0){
-				this.stage.trigger("complete");
-			}else{
-				Q.play('blood_bubble_broken.mp3');
+			if(this.p.life <= 0){
+				Q.play('mosking_die_roar.mp3');
 
-				this.stage.insert(new Q.MosKing_die({
-					x:mosking_x ,
-					y:mosking_y
-				}));
-
-				this.animate({opacity:0} , 0.1 , Q.Easing.Linear);
+				for(var i = 0 ; i < Q('MosKingAttack').items.length ; i++){
+					Q('MosKingAttack').items[i].play('disappear');
+				}
+				for(var i = 0 ; i < Q('MosAttack').items.length ; i++ ){
+					Q('MosAttack').items[i].trigger('destroy');
+				}
+				resetAttackTimer();
+				this.stage.trigger("complete");	
 			}
 
+			Q.play('mosking_hurt.mp3');
+
+			this.stage.insert(new Q.MosKing_die({
+				x:mosking_x ,
+				y:mosking_y
+			}));
+
+			this.animate({opacity:0} , 0.1 , Q.Easing.Linear);
 			this.destroy() ;
 		},
 
@@ -397,6 +402,9 @@ var k_attackId = 0 ;
 	// 被打到後的蚊子王
 	Q.Sprite.extend("MosKing_die",{
 		init: function(p){
+			var life ;
+			var recoverY ;
+
 			this._super(p,{
 				sheet: 'mosking_die' ,
 				sprite: 'mosking_die',
@@ -407,39 +415,49 @@ var k_attackId = 0 ;
 			this.add("tween") ;
 			this.opacity_0();
 
-			// 蚊子王的生命減ㄧ
 			Q.state.dec("mosking_life" , 1);
+			life = Q.state.get("mosking_life");
+			recoverY = this.p.y ; // record the location , that the mosking_die didn't drop
 
-			// 把 Mosking_die 指向 this
-			mosking_die = this ;
+			if(life < 0){
+				this.animate({y:this.p.y + 200} , 2 , Q.Easing.Linear , {
+					callback: function(){ this.destroy(); }
+				})
+			}
+			else{
+				/*
+					When mosking_die drop 0.8sec , then recover Mosking.
+					But , its 'mosking_life' decs 1.
+				*/
+				this.animate({y:this.p.y + 15} , 0.8 , Q.Easing.Linear , {
+					callback: function(){
+						var sheet = (life >= 4)? "mosking_anim":"mosking_hurt";
 
-			// 0.8秒後變回蚊子王
-			this.animate({y:this.p.y + 15} , 0.8 , Q.Easing.Linear , {
-
-				callback: function(){
-					var sheet = (Q.state.get("mosking_life")>=4)? "mosking_anim":"mosking_hurt";
-
-					mosking_die.stage.insert(new Q.MosKing({
-						x: mosking_die.p.x,
-						y: mosking_die.p.y, //recover to not drop's "y"
-						sheet:sheet,
-						scale: 1
-					}));
-
-					if(Q.state.get("mosking_life")%2 == 0){
-
-						for(var i = 0 ; i < k_attack_5.length ; i ++){
-							k_attack_5[i].animate({ y:k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
+						if(life == 3){
+							playBGM(bgm_heartbeat_slow,1,false);
 						}
 
-						var random = Math.round(Math.random()*2 + 1);
-						mosBloodEnter(mosking_die.stage,random,220);
+						this.stage.insert(new Q.MosKing({
+							x: this.p.x,
+							y: recoverY, //recover to not drop's "y"
+							sheet:sheet,
+							scale: 1
+						}));
 
+						if(life %2 == 0){
+							Q.play("mosking_scream.mp3");
+							for(var i = 0 ; i < k_attack_5.length ; i ++){
+								k_attack_5[i].animate({ y:k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
+							}
+
+							var random = Math.round(Math.random()*2 + 1);
+							mosBloodEnter(this.stage,random,220);
+						}
+
+						this.destroy();
 					}
-
-					mosking_die.destroy();
-				}
-			});
+				});	
+			}
 		},
 
 		opacity_0: function(){
@@ -475,6 +493,7 @@ var k_attackId = 0 ;
 			var k_obj = this ;
 			k_attackTimer.push( setInterval(function(){
 				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over")){
+
 					var random = Math.round(Math.random()*5);
 
 					var player_x =  Q.select('Player').items[0].p.x ;
