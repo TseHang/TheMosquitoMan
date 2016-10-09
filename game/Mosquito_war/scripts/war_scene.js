@@ -34,9 +34,6 @@ mosEnter: stage-4
 
 	// The Main MenuBar
 	Q.scene("title" , function(stage){
-		
-		loadAllVideo();// loadAllVideo
-		loadAllAudio();// loadAllaudio
 
 		// Set up the game state
     Q.state.reset({ 
@@ -62,7 +59,7 @@ mosEnter: stage-4
     });
 
     if(isOpening === false){
-    	console.log("11");
+    	console.log("war opening");
     	playBGM(bgm_opening ,1);
     }
 

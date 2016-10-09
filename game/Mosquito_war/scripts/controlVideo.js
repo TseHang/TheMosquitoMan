@@ -15,14 +15,17 @@ videoArray.push(video_fight = document.getElementById("video_fight") );
 videoArray.push(video_mosking_appear = document.getElementById("video_mosking_appear") );
 
 video_opening.addEventListener("canplay",function(){
+	console.log("start opening video");
+	
 	this.style.display="block";
 	this.style.zIndex=1;
 	this.style.opacity=1;
-	skip_btn.style.display = "block";
 
 	isOpening = true ;
+	loadAllVideo();// loadAllVideo
+	loadAllAudio();// loadAllaudio
 
-	console.log("canplay");
+	console.log("All Audio Video LoadingOver");
 })
 
 video_opening.addEventListener("ended",function(){
