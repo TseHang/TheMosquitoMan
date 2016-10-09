@@ -1,9 +1,8 @@
 /*
-1. 查一下怎麼讓人變成 [Ａ] [Ｄ] 動
 */
 
 // 計算救兵 蚊子出來次數
-var mos_addCount = 0 ;
+var mos_addCount = 2 ;
 var k_attack_5 = [];
 var moveSpeed = 3;
 

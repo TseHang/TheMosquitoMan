@@ -7,14 +7,27 @@ video_mosking_appear : The mosking Appear!
 // Contro Video Input ;
 var videoArray = [] ;
 var isOpening = false ;
-
-// List All Video（ Don't push opening video , cuz it's will reloading , and errpr )
 var video_opening = document.getElementById("video_opening") ;
 
+// List All Video（ Don't push opening video , cuz it don't need to reload )
 videoArray.push(video_fight = document.getElementById("video_fight") );
 videoArray.push(video_mosking_appear = document.getElementById("video_mosking_appear") );
 
-video_opening.addEventListener("canplay",function(){
+// When video_opening canplay , then loading start !
+video_opening.addEventListener("canplay",canplayHandler,false);
+video_opening.addEventListener("ended",function(){
+
+	this.style.display="none";
+	this.style.zIndex=0;
+	this.style.opacity=0;
+	skip_btn.style.display = "none";
+
+	isOpening = false ;
+	playBGM(bgm_opening ,1);
+	console.log("video_opening_ended");
+},false)
+
+function canplayHandler(){
 	console.log("start opening video");
 	
 	this.style.display="block";
@@ -25,20 +38,9 @@ video_opening.addEventListener("canplay",function(){
 	loadAllVideo();// loadAllVideo
 	loadAllAudio();// loadAllaudio
 
-	console.log("All Audio Video LoadingOver");
-})
-
-video_opening.addEventListener("ended",function(){
-	this.style.display="none";
-	this.style.zIndex=0;
-	this.style.opacity=0;
-	skip_btn.style.display = "none";
-
-	isOpening = false ;
-	playBGM(bgm_opening ,1);
-
-	console.log("video_ended");
-})
+	console.log("All Audio Video Loading Over");
+	video_opening.removeEventListener("canplay",canplayHandler,false);
+}
 
 function playVideo(video){
 	Q.play("change_scene.mp3");

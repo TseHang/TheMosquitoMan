@@ -444,7 +444,7 @@ var k_attackId = 0 ;
 							scale: 1
 						}));
 
-						if(life %2 == 0){
+						if(life %2 == 0 && life >= 0){
 							Q.play("mosking_scream.mp3");
 							for(var i = 0 ; i < k_attack_5.length ; i ++){
 								k_attack_5[i].animate({ y:k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
