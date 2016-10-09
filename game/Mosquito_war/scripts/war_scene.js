@@ -83,11 +83,17 @@ mosEnter: stage-4
 			});
 
 			// 消失 LOGO
-			landing_logo.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
+			landing_logo.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut , {
+				callback: function(){ this.destroy(); }
+			}) ;
 
 			// 消失按鍵
-			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
-			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
+			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut , {
+				callback: function(){ this.destroy(); }
+			}) ;
+			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut , {
+				callback: function(){ this.destroy(); }
+			}) ;
 		});
 
 		// ＊＊＊＊＊＊
@@ -98,7 +104,12 @@ mosEnter: stage-4
 			stopBGM(Q.state.get("whichBGM"));
 
 			// 消失背景
-			bg.animate({ opacity: 0 }, 1, Q.Easing.Quadratic.InOut);
+			bg.animate({ opacity: 0 }, 1, Q.Easing.Quadratic.InOut , {
+				callback: function(){
+					this.destroy();landing_logo.destroy();
+					landing_play.destroy(); landing_player.destroy();
+				}
+			});
 
 			// 消失 LOGO
 			landing_logo.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut , {
@@ -134,16 +145,22 @@ mosEnter: stage-4
 			Q.play("click.mp3");
 			stopBGM(Q.state.get("whichBGM")) ;
 
-			intro_bg.animate({opacity: 0} , 1 , Q.Easing.Linear ) ;
+			intro_bg.animate({opacity: 0} , 1 , Q.Easing.Linear ,{
+				callback: function(){
+					intro_text.destroy();
+					intro_go.destroy();
+					intro_howplay.destroy();
+				}
+			}) ;
 			intro_text.animate({opacity: 0} , 0.5 , Q.Easing.Linear , {
 				callback: function(){Q.stageScene("level1")}
 			}) ;
 			intro_go.animate({opacity: 0 }, 0.5 ,  Q.Easing.Linear);
 			intro_howplay.animate({opacity: 0 }, 0.5 ,  Q.Easing.Linear);
-
 			intro_man.animate({scale: 0} , 0.3 , Q.Easing.Quadratic.InOut , {
 				callback: function(){ this.destroy(); }
 			}) ;
+			
 		})
 
 	});
@@ -624,7 +641,7 @@ mosEnter: stage-4
 	// 遊戲贏家畫面
 	Q.scene("winner" , function(stage){
 
-		stopBGM(Q.state.get("whichBGM"));
+		stopBGM(bgm_mosking);
 		stopBGM(bgm_heartbeat_slow);
 		playBGM(bgm_winner);
 

@@ -20,11 +20,14 @@ video_opening.addEventListener("ended",function(){
 	this.style.display="none";
 	this.style.zIndex=0;
 	this.style.opacity=0;
+
+	quintus_container.style.zIndex = 1 ;
 	skip_btn.style.display = "none";
 
 	isOpening = false ;
 	playBGM(bgm_opening ,1);
 	console.log("video_opening_ended");
+
 },false)
 
 function canplayHandler(){
@@ -49,6 +52,7 @@ function playVideo(video){
 	video.style.zIndex=1;
 	video.style.opacity=1;
 
+	quintus_container.style.zIndex = -1 ;
 	skip_btn.style.display = "block";
 
 	// hidden the timeBar
@@ -65,6 +69,7 @@ function hidden(video){
 	video.style.zIndex=0;
 	video.style.opacity=0;
 
+	quintus_container.style.zIndex = 1 ;
 	skip_btn.style.display = "none";
 
 	showBar(); // show the timeBar
@@ -78,14 +83,12 @@ function hidden(video){
 function loadAllVideo(){
 	console.log(videoArray);
 	for (i = 0 ; i < videoArray.length ; i++){
-		videoArray[i].load();
 		
+		videoArray[i].load();
 		videoArray[i].addEventListener("ended",function() {
-
+			
 			hidden(this); 
-
 			if (this == video_fight){
-
 				Q.stageScene("countdown");
 				Q.state.set("is_countdown_over",false);
 

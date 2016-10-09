@@ -20,7 +20,7 @@
     },
 
     touch : function(touch){
-      if(Q.state.get("is_countdown_over") && !Q.state.get("isLevelStop")){
+      if(Q.state.get("is_countdown_over") && !Q.state.get("isLevelStop") && Q.state.get("mosking_life")>=0){
         
         var power_x = Q.select('Player').items[0].p.x ;
         var power_y = Q.select('Player').items[0].p.y - 70 ;

@@ -1,9 +1,12 @@
 /*
-BUG!!
-
-SKIP_BUTTON:第一次總是跳不過？ 還不知道原因。
-
+	
 */
+var quintus_container ;
+var bar ; // Global
+var result ;// Global 
+var inner_bar ;// Global
+var skip_btn ;
+
 window.addEventListener('load',function(){
 	var Q = Quintus().include('Sprites , Scenes , Input , Anim , 2D , Audio , Touch , UI')
 			.include('EnemySprites , PlayerSprites , KathaSprites , WarScenes , LandingUI , LevelUI , WarLevels')
@@ -101,26 +104,23 @@ window.addEventListener('load',function(){
 
 	// Q.debug =  true ;
 
-	// Add time bar
-	var quintus_container = document.getElementById("quintus_container");
+	quintus_container = document.getElementById("quintus_container");
+	skip_btn = document.getElementById("skip_btn") ;
+
 	bar = document.createElement("DIV") ; // Global
 	result = document.createElement("DIV");// Global 
 	inner_bar = document.createElement("DIV") ;// Global
-	skip_btn = document.createElement("DIV") ;
 
 	bar.setAttribute("class", "bar");
 	inner_bar.setAttribute("id" , "inner_bar")
 	result.setAttribute("id","result");
-	skip_btn.setAttribute("class","skip_btn") ;
 
 	result.innerHTML= "05 : 00";
-	skip_btn.innerHTML = "⥤";
 	
 	bar.appendChild(inner_bar);
 	bar.appendChild(result);
 
 	quintus_container.appendChild(bar);
-	quintus_container.appendChild(skip_btn);
 
 	skip_btn.addEventListener("mouseover",function(){ skip_btn.innerHTML = "SKIP";})
 	skip_btn.addEventListener("mouseout",function(){ skip_btn.innerHTML = "⥤";})
@@ -138,5 +138,5 @@ window.addEventListener('load',function(){
 
 	window.Q = Q ;
 	
-	console.log("11");
+	console.log("gameJS Loading");
 } , true);

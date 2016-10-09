@@ -23,6 +23,11 @@
 			background-color: black;
 			padding:0px; margin: 0px;
 			height: 100%;
+			overflow: hidden;
+		}
+
+		#quintus_container{
+			z-index: -1 ;
 		}
 
 		.video_container{
@@ -77,14 +82,18 @@
     	text-shadow: 0 0 5px rgba(238, 239, 180, 0.7);
 		}
 
-		.skip_btn {
+		#skip_btn {
 			display: block;
-			position: absolute;
+			position: relative;
+			margin:auto ;
 			z-index: 2 ;
+
 			width: 30px; 
 			height: 30px;
-			right:30px;
-			bottom:15px;
+
+			left: 220px;
+			bottom: 17%;
+
 			text-align: center;
 			line-height: 30px;
 			color:white;
@@ -95,7 +104,7 @@
 			transition: all 0.2s ease-in;
 		}
 
-		.skip_btn:hover { 
+		#skip_btn:hover { 
 			width:60px;
 			border-radius: 5px ;
     	background: rgba(0, 0, 0, 0.57);
@@ -113,9 +122,33 @@
 				margin: auto !important;
 			}
 		}
+		@media (min-height: 740px) {
+			#skip_btn{
+				bottom:20%;
+			}
+		}
+
+		@media (min-height: 840px) {
+			#skip_btn{
+				bottom:23%;
+			}
+		}
+
+		@media (min-height: 930px) {
+			#skip_btn{
+				bottom:27%;
+			}
+		}
+
+		@media (min-height: 1080px) {
+			#skip_btn{
+				bottom:30%;
+			}
+		}
 	</style>
 </head>
 <body>
+
 	<div class = "video_container">
 		<video class = "video" id = "video_opening" src = "video/opening.mp4" autoplay></video>
 
@@ -123,7 +156,9 @@
 
 		<video class = "video" id = "video_mosking_appear" src = "video/mosking_appear.mp4" preload="none"></video>
 	</div>
-	
+
+	<div id="skip_btn">⥤</div>
+
 	<!-- MUSIC -->
 	<audio id="bgm_opening" preload = "none">
     <source src="audio/BGM/opening.mp3" type="audio/mp3">

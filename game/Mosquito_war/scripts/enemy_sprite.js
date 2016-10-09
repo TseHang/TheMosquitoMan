@@ -1,6 +1,6 @@
 /*
 Drop katha rate:
-(1) level: 1/15
+(1) level: 1/20
 (2) mosking: 1/10
 */
 
@@ -199,7 +199,7 @@ var k_attackId = 0 ;
 
 				// 消掉針
 				clearInterval( attackTimer[this.p.mosId] );
-				dropKatha(this.stage,this,15);
+				dropKatha(this.stage,this,20);
 
 				// 死掉，destroy
 				this.animate({y: this.p.y + 15 , opacity: 0} , 0.15 , Q.Easing.Linear , {
