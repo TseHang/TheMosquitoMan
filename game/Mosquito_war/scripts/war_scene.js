@@ -18,7 +18,8 @@ STATE:
 15:video_num: video NUM ;
 16:isMosenter: if Mosenter ?
 17:isMosenterScene: if MosenterScene NUMBER (蚊子第幾次出現）?
-18:whichBGM : which BGM player now in !
+18:isOpening: if opening video ING ?
+19:whichBGM : which BGM player now in !
 -
 gameDescription: stage-2
 hud: stage-1
@@ -33,8 +34,9 @@ mosEnter: stage-4
 
 	// The Main MenuBar
 	Q.scene("title" , function(stage){
-
-		playBGM(bgm_opening ,1);
+		
+		loadAllVideo();// loadAllVideo
+		loadAllAudio();// loadAllaudio
 
 		// Set up the game state
     Q.state.reset({ 
@@ -44,7 +46,7 @@ mosEnter: stage-4
     	katha: 0 ,
     	player_state: 1 ,
     	power_up: 0 ,
-    	mosking_life: 10 ,
+    	mosking_life: 2 ,
     	isPlayerAttack: false ,
     	isStop: false,
     	iskatha1: false ,
@@ -55,8 +57,14 @@ mosEnter: stage-4
     	video_num: 1,
     	isMosenter: false ,
     	isMosenterScene: 0,
+    	isOpening: false ,
     	whichBGM: bgm_opening
     });
+
+    if(isOpening === false){
+    	console.log("11");
+    	playBGM(bgm_opening ,1);
+    }
 
 		// Clear the hud out
 		Q.clearStage(1) ;
@@ -104,9 +112,6 @@ mosEnter: stage-4
 			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
 			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
 		});
-
-		loadAllVideo();// loadAllVideo
-		loadAllAudio();// loadAllaudio
 	})
 
 	Q.scene("introStory" , function(stage){
@@ -705,6 +710,7 @@ function reset() {
 
   // 消除level 下面那條
 	Q.clearStage(1) ;
+	Q.clearStage(4) ;
 
 	// Update Q.state
 	Q.state.set({

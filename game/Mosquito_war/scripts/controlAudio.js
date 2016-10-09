@@ -22,20 +22,31 @@ audioArray.push(bgm_heartbeat_slow = document.getElementById("bgm_heartbeat_slow
 audioArray.push(bgm_lose = document.getElementById("bgm_lose") );
 audioArray.push(bgm_winner = document.getElementById("bgm_winner") );
 
-function playBGM(audio , volume=1 , state=true){
+/*
+	Safari don't accept 默認參數，所以用另一種形式
+	ex: a = a || 1 ;
+*/
+
+function playBGM(audio , volume , state){
 	/*
 		audio:  audio identifier
 		volum: control volumn
 		state: whether it is sub  bgm ( if sub , that set 'false')
 	*/
+
+	volume = volume || 1 ;
+	state = state || true;
+
 	audio.play();
 	audio.volume = volume ;
 	if(state)
 		Q.state.set("whichBGM",audio);
 }
 
-function stopBGM(audio , state = 'restart'){
+function stopBGM(audio , state ){
+	state = state || 'restart';
 	audio.pause();
+
 	if(state == 'restart')
 		audio.currentTime = 0;
 	else if (state = 'continue')
@@ -44,11 +55,11 @@ function stopBGM(audio , state = 'restart'){
 
 function loadAllAudio(){
 	for(var i = 0 ; i < audioArray.length ; i ++){
-		// 已經preload
-		if(i == 0 || i == 1 || i == 2)
-			;
-		else
-			audioArray[i].load();
+		// // 已經preload
+		// if(i == 0 || i == 1 || i == 2)
+		// 	;
+		// else
+		audioArray[i].load();
 
 		audioArray[i].addEventListener("ended",function(){
 			this.currentTime = 0 ;

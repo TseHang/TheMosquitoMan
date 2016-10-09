@@ -5,11 +5,37 @@ video_mosking_appear : The mosking Appear!
 */
 
 // Contro Video Input ;
-videoArray = [] ;
+var videoArray = [] ;
+var isOpening = false ;
 
 // List All Video（ Don't push opening video , cuz it's will reloading , and errpr )
+var video_opening = document.getElementById("video_opening") ;
+
 videoArray.push(video_fight = document.getElementById("video_fight") );
 videoArray.push(video_mosking_appear = document.getElementById("video_mosking_appear") );
+
+video_opening.addEventListener("canplay",function(){
+	this.style.display="block";
+	this.style.zIndex=1;
+	this.style.opacity=1;
+	skip_btn.style.display = "block";
+
+	isOpening = true ;
+
+	console.log("canplay");
+})
+
+video_opening.addEventListener("ended",function(){
+	this.style.display="none";
+	this.style.zIndex=0;
+	this.style.opacity=0;
+	skip_btn.style.display = "none";
+
+	isOpening = false ;
+	playBGM(bgm_opening ,1);
+
+	console.log("video_ended");
+})
 
 function playVideo(video){
 	Q.play("change_scene.mp3");
@@ -47,10 +73,7 @@ function hidden(video){
 function loadAllVideo(){
 	console.log(videoArray);
 	for (i = 0 ; i < videoArray.length ; i++){
-		if(i==0)
-			; // video_fight 已經load
-		else
-			videoArray[i].load();
+		videoArray[i].load();
 		
 		videoArray[i].addEventListener("ended",function() {
 

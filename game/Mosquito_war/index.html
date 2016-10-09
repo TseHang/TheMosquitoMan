@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="The Mosquito Man" content="yes" />
   <script src='lib/quintus-all-0.1.1.js'></script>  
-  <script src='scripts/game.js'></script> 
-  <script src='scripts/player_sprite.js'></script>
-  <script src='scripts/enemy_sprite.js'></script>
-  <script src='scripts/katha_sprite.js'></script>
-  <script src='scripts/war_scene.js'></script>
-  <script src='scripts/landing_ui.js'></script>
-  <script src='scripts/level_ui.js'></script>
-  <script src='scripts/war_level.js'></script>
+  <script src='scripts/game.js' async></script> 
+  <script src='scripts/player_sprite.js' async></script>
+  <script src='scripts/enemy_sprite.js' async></script>
+  <script src='scripts/katha_sprite.js' async></script>
+  <script src='scripts/war_scene.js' async></script>
+  <script src='scripts/landing_ui.js' async></script>
+  <script src='scripts/level_ui.js' async></script>
+  <script src='scripts/war_level.js' async></script>
 
   <style>
   	html{
@@ -117,22 +117,23 @@
 </head>
 <body>
 	<div class = "video_container">
+		<video class = "video" id = "video_opening" src = "video/opening.mp4" autoplay></video>
 
-		<video class = "video" id = "video_fight" preload src = "video/fight.mp4"></video>
+		<video class = "video" id = "video_fight" src = "video/fight.mp4" preload="none"></video>
 
-		<video class = "video" id = "video_mosking_appear" preload="none" src = "video/mosking_appear.mp4"></video>
+		<video class = "video" id = "video_mosking_appear" src = "video/mosking_appear.mp4" preload="none"></video>
 	</div>
 	
 	<!-- MUSIC -->
-	<audio id="bgm_opening" preload>
+	<audio id="bgm_opening" preload = "none">
     <source src="audio/BGM/opening.mp3" type="audio/mp3">
 	</audio>
 
-	<audio id="bgm_ready_start" preload>
+	<audio id="bgm_ready_start" preload = "none">
     <source src="audio/BGM/ready_start.mp3" type="audio/mp3">
 	</audio>	
 
-	<audio id="bgm_player_man" preload>
+	<audio id="bgm_player_man" preload = "none">
     <source src="audio/BGM/player_man.mp3" type="audio/mp3">
 	</audio>
 
@@ -182,7 +183,9 @@
 
 </body>
 <!-- videoＪＳ -->
-<script src='scripts/controlTimeBar.js'></script>
-<script src='scripts/controlVideo.js'></script>
-<script src='scripts/controlAudio.js'></script>
+<script src='scripts/controlTimeBar.js' async></script>
+<script src='scripts/controlVideo.js' async></script>
+<script src='scripts/controlAudio.js' async></script>
+
+
 </html>

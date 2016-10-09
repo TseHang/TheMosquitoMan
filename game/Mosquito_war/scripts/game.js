@@ -127,9 +127,16 @@ window.addEventListener('load',function(){
 	
 	skip_btn.addEventListener("click",function(){
 
-		var num = Q.state.get("video_num");
-		videoArray[num - 1].currentTime = videoArray[num - 1].duration; // skip button 
+		if(isOpening){
+			video_opening.currentTime = video_opening.duration; // skip button 
+		}
+		else{
+			var num = Q.state.get("video_num");
+			videoArray[num - 1].currentTime = videoArray[num - 1].duration; // skip button 
+		}
 	})
 
 	window.Q = Q ;
+	
+	console.log("11");
 } , true);
