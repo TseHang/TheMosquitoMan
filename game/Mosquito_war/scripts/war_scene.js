@@ -222,7 +222,6 @@ mosEnter: stage-4
 
 	Q.scene("introPlayerMan" , function(stage){
 		// 介紹故事
-		console.log("Scene: introPlayerMan");
 		playBGM(bgm_player_man);
 
 		// SET player_state = 1
@@ -235,14 +234,12 @@ mosEnter: stage-4
 
 		Q.stageScene("playerFooter") ;
 
+		console.log("Scene: introPlayerMan");
 	});
 
 	Q.scene("introPlayerMosking" , function(stage){
 
 		playBGM(bgm_player_mosking);
-
-		// 介紹故事
-		console.log("Scene: introPlayerMosking");
 
 		// SET player_state = 2
 		Q.state.set('player_state' , 2);
@@ -252,14 +249,13 @@ mosEnter: stage-4
 		stage.insert(new Q.PlayerMosking());
 
 		Q.stageScene("playerFooter") ;
+		console.log("Scene: introPlayerMosking");
 
 	});
 
 	Q.scene("introPlayerMosG" , function(stage){
 
 		playBGM(bgm_player_mosG);
-		// 介紹故事
-		console.log("Scene: introPlayerMosG");
 
 		// SET player_state = 3
 		Q.state.set('player_state' , 3);
@@ -269,15 +265,13 @@ mosEnter: stage-4
 		stage.insert(new Q.PlayerMosG());
 
 		Q.stageScene("playerFooter") ;
+		console.log("Scene: introPlayerMosG");
 
 	});
 
 	Q.scene("introPlayerMos" , function(stage){
 
 		playBGM(bgm_player_mos);
-
-		// 介紹故事
-		console.log("Scene: introPlayerMos");
 
 		// SET player_state = 4
 		Q.state.set('player_state' , 4);
@@ -287,12 +281,14 @@ mosEnter: stage-4
 		stage.insert(new Q.PlayerMos());
 
 		Q.stageScene("playerFooter") ;
+		console.log("Scene: introPlayerMos");
 
 	});
 
 	Q.scene("playerFooter", function(stage){
 		var player_state = Q.state.get("player_state");
 		var back = stage.insert(new Q.PlayerBack());
+
 		right = stage.insert(new Q.PlayerRight());
 		left = stage.insert(new Q.PlayerLeft());
 
@@ -340,11 +336,13 @@ mosEnter: stage-4
 		back.on("touch" , function(){
 			Q.play("click.mp3");
 
-			if(player_state == 1){
+			if(player_state === 1){
 				stopBGM(bgm_player_man);
-			}else if(player_state == 2){
+			}else if(player_state === 2){
 				stopBGM(bgm_player_mosking);
-			}else if (player_state == 3){
+			}else if (player_state === 3){
+				stopBGM(bgm_player_mosG);
+			}else if( player_state === 4){
 				stopBGM(bgm_player_mos);
 			}
 

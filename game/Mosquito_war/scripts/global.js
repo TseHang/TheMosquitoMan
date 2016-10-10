@@ -43,7 +43,8 @@ GAME.ENEMY = {
 
 GAME.PLAYER = {
 	"mos_addCount": 2 ,
-	"moveSpeed": 3
+	"moveSpeed": 3,
+	"life":[]
 }
 
 function resetAttackTimer(){
@@ -83,6 +84,7 @@ function reset() {
 
 	GAME.PLAYER.mos_addCount = 2; 
 	GAME.PLAYER.moveSpeed = 3 ;
+	GAME.PLAYER.life.length = 0 ;
 
 	GAME.TIMEBAR.allSecs = 300 ; //reset timeBar timer
 

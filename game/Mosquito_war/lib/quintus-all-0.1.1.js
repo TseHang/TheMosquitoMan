@@ -1719,7 +1719,7 @@ Quintus.SVG = function(Q) {
 
 
 };
-
+  
 
 /*global Quintus:false */
 
@@ -1735,8 +1735,10 @@ Quintus.Audio = function(Q) {
     var hasTouch =  !!('ontouchstart' in window);
 
     if(!hasTouch) {
+      console.log("enableDesktopSound");
       Q.audio.enableDesktopSound();
     } else {
+      console.log("enableMobileSound");
       Q.audio.enableMobileSound();
     }
 
@@ -1763,6 +1765,7 @@ Quintus.Audio = function(Q) {
           delete Q.audio.active[s];
         },debounce);
       }
+      // console.log(Q.audio.channels);
       for (var i=0;i<Q.audio.channels.length;i++) {
         var now = new Date();
         if (Q.audio.channels[i]['finished'] < now.getTime()) {	

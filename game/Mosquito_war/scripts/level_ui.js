@@ -1,7 +1,6 @@
 
 ;Quintus.LevelUI = function(Q) {
   var lives_state ;
-  var life = [];
   var container ;
   var isLevelStop = false;
 
@@ -39,7 +38,8 @@
             x: power_x + 15,
             y: power_y + 20
           }));
-
+          
+          Q.stop("powerUp.mp3");
           Q.play("powerUp.mp3");
 
         }else{
@@ -92,15 +92,15 @@
       var d = 20 ;
 
       for (var i = 1 ; i <= lives_state ; i++ )
-        life.push( this.stage.insert(new Q.Life({x: 90 + d*i })) );
+        GAME.PLAYER.life.push( this.stage.insert(new Q.Life({x: 90 + d*i })) );
     },
 
     setLives: function(){
       lives_state = Q.state.get("lives");
 
-      life[lives_state].destroy(); // destroy LIFE BALL()
-      life.pop(); // Clear Pop array
-
+      GAME.PLAYER.life[lives_state].destroy(); // destroy LIFE BALL()
+      GAME.PLAYER.life.pop(); // Clear Pop array
+      console.log(GAME.PLAYER.life);
       if (lives_state <= 0){
         Q.stageScene("gameOver") ;
       }
