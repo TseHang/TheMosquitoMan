@@ -1,6 +1,4 @@
-{
-  "all": { "tilew": 10 , "tileh": 10 , "sx": 0 , "sy": 0 , "w": 740 , "h": 870 },
-  
+{ 
   "player_right":{"tilew":40 , "tileh":40 , "sx":150 , "sy":780 , "w":80 , "h":40},
   "player_left":{"tilew":40 , "tileh":40 , "sx":150 , "sy":820 , "w":80 , "h":40},
   "player_back":{"tilew":80 , "tileh":30 , "sx":250 , "sy":430 , "w":80 , "h":30},

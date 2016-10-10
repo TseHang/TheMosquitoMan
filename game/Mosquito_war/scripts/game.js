@@ -1,12 +1,3 @@
-/*
-	
-*/
-var quintus_container ;
-var bar ; // Global
-var result ;// Global 
-var inner_bar ;// Global
-var skip_btn ;
-
 window.addEventListener('load',function(){
 	var Q = Quintus().include('Sprites , Scenes , Input , Anim , 2D , Audio , Touch , UI')
 			.include('EnemySprites , PlayerSprites , KathaSprites , WarScenes , LandingUI , LevelUI , WarLevels')
@@ -56,9 +47,8 @@ window.addEventListener('load',function(){
 		"kick.mp3","player_ha.mp3","mosking_hurt.mp3","mosking_die_roar.mp3",
 		
 		// Data
-		"level.tmx" , "sprites.json","animate.json","player_mos_rotate.json"
+		"sprites.json","animate.json","player_mos_rotate.json"
 		] , function(){
-			Q.useTiles = window.location.href.indexOf('usetiles') > -1 ;
 
 			// Set all sprites sheets
 			Q.compileSheets("sprite.png" , "sprites.json") ;
@@ -102,39 +92,25 @@ window.addEventListener('load',function(){
 			Q.stageScene("title");
 		})
 
-	// Q.debug =  true ;
+	// Q.debug = true ;
 
-	quintus_container = document.getElementById("quintus_container");
-	skip_btn = document.getElementById("skip_btn") ;
+	// ADD ELEMENTDOM im HTML
+	GAME.ADD.quintus_container = document.getElementById("quintus_container");
 
-	bar = document.createElement("DIV") ; // Global
-	result = document.createElement("DIV");// Global 
-	inner_bar = document.createElement("DIV") ;// Global
+	GAME.ADD.bar = document.createElement("DIV") ; // Global
+	GAME.ADD.result = document.createElement("DIV");// Global 
+	GAME.ADD.inner_bar = document.createElement("DIV") ;// Global
 
-	bar.setAttribute("class", "bar");
-	inner_bar.setAttribute("id" , "inner_bar")
-	result.setAttribute("id","result");
+	GAME.ADD.bar.setAttribute("class", "bar");
+	GAME.ADD.inner_bar.setAttribute("id" , "inner_bar")
+	GAME.ADD.result.setAttribute("id","result");
 
-	result.innerHTML= "05 : 00";
+	GAME.ADD.result.innerHTML= "05 : 00";
 	
-	bar.appendChild(inner_bar);
-	bar.appendChild(result);
+	GAME.ADD.bar.appendChild(GAME.ADD.inner_bar);
+	GAME.ADD.bar.appendChild(GAME.ADD.result);
 
-	quintus_container.appendChild(bar);
-
-	skip_btn.addEventListener("mouseover",function(){ skip_btn.innerHTML = "SKIP";})
-	skip_btn.addEventListener("mouseout",function(){ skip_btn.innerHTML = "⥤";})
-	
-	skip_btn.addEventListener("click",function(){
-
-		if(isOpening){
-			video_opening.currentTime = video_opening.duration; // skip button 
-		}
-		else{
-			var num = Q.state.get("video_num");
-			videoArray[num - 1].currentTime = videoArray[num - 1].duration; // skip button 
-		}
-	})
+	GAME.ADD.quintus_container.appendChild(GAME.ADD.bar);
 
 	window.Q = Q ;
 	

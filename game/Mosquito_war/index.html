@@ -2,19 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
-  <title>MosquitoWar || 掌蚊人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="The Mosquito Man" content="yes" />
-  <script src='lib/quintus-all-0.1.1.js'></script>  
-  <script src='scripts/game.js' async></script> 
-  <script src='scripts/player_sprite.js' async></script>
-  <script src='scripts/enemy_sprite.js' async></script>
-  <script src='scripts/katha_sprite.js' async></script>
-  <script src='scripts/war_scene.js' async></script>
-  <script src='scripts/landing_ui.js' async></script>
-  <script src='scripts/level_ui.js' async></script>
-  <script src='scripts/war_level.js' async></script>
+  <!-- IE 兼容模式 -->
+  <meta htt0-equiv = "X-UA-Compatible" content = "IE=edge">
+  <meta name="description" content="一款基於HTML5、Quintus框架完成的小遊戲，讓我們一起對抗登革熱吧。" />
+  <meta name="author" content="杭孟澤、杭孟謙" />
+  <meta property="og:site_name" content="The Mosquito Man 掌蚊人">
+  <meta http-equiv="Cache-control" content="public">
+  <title>MosquitoWar || 掌蚊人</title>
 
+  <script src='lib/quintus-all-0.1.1.js'></script>  
   <style>
   	html{
   		height: 100%;
@@ -83,7 +80,7 @@
 		}
 
 		#skip_btn {
-			display: block;
+			display: none;
 			position: relative;
 			margin:auto ;
 			z-index: 2 ;
@@ -217,7 +214,16 @@
 	</audio>
 
 </body>
-<!-- videoＪＳ -->
+<script src='scripts/global.js'></script>
+
+<script src='scripts/game.js' async></script> 
+<script src='scripts/player_sprite.js' async></script>
+<script src='scripts/enemy_sprite.js' async></script>
+<script src='scripts/katha_sprite.js' async></script>
+<script src='scripts/war_scene.js' async></script>
+<script src='scripts/landing_ui.js' async></script>
+<script src='scripts/level_ui.js' async></script>
+<script src='scripts/war_level.js' async></script>
 <script src='scripts/controlTimeBar.js' async></script>
 <script src='scripts/controlVideo.js' async></script>
 <script src='scripts/controlAudio.js' async></script>

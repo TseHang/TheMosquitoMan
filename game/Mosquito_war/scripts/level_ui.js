@@ -275,12 +275,9 @@
 
       button_click(this);
       stopBGM(Q.state.get("whichBGM")) ; // reset 'bgm_level1' time
+      reset(); // reset
 
       Q.stageScene("title");
-
-      // reset mos attack and mosking attack TIMER
-      reset();
-
       this.container.destroy();
     }
   })

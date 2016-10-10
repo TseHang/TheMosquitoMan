@@ -2,70 +2,17 @@
 Drop katha rate:
 (1) level: 1/20
 (2) mosking: 1/10
+
+Drop mosAttack:
+(1) mosAttack: 1/6
+(2) mosking的Attack: 1/5
 */
-
-// 蚊子的attackTimer
-var attackTimer = [];
-var mosId = 0 ;
-
-// 血泡的放針Timer
-var k_attackTimer = [] ;
-var k_attackId = 0 ;
 
 ;Quintus.EnemySprites = function(Q){
 	Q.gravityY = 0;
   Q.gravityX = 0;
 
   var attackTimeInterval = 900 ;
-  var player_h ;
-
-  var k_die_timer ;
-
-  // 載入整個場景
-	// TileLayer --> GameTiles 
-	Q.TileLayer.extend("GameTiles",{
-		init: function(p) {
-			this._super({
-				dataAsset: "level.tmx" ,
-				sheet: 'all' ,
-				tileW: 10 ,
-				tileH: 10 ,
-				blockTileW: 21 ,
-				blockTileH: 27
-			});
-		},
-
-		// Override the load method to load the bg.tmx file,
-    // then pass the data array to the original implementation
-		load: function(dataAsset) {
-			var parser = new DOMPaser() ,
-					doc = parser.parseFromString( Q.asset(dataAsset) , "application/xml" ) ;
-
-			var layer = doc.getElementByTagName("layer")[0] ,
-					width = parseInt(layer.getAttribute("width")),
-					height = parseInt(layer.getAttribute("height"));
-
-			var data = [],
-					tiles = layer.getElementsByTagName("all"),
-					idx = 0;
-
-			for(var y = 0 ; y < height ; y++){
-				data[y] = [];
-				
-				for (var x = 0 ; x < width ; x++){	
-					var tile = tiles[idx] ;
-					data[y].push(parseInt(tile.getAttribute('gid')-1)) ;
-					idx++ ;
-				}
-			}
-
-			this._super(data);
-		},
-
-		collidableTile: function(tileNum) {
-      return tileNum != 23;
-    }
-	});
 
 	Q.Sprite.extend("Mos_magic_circle",{
 		init: function(p){
@@ -135,30 +82,30 @@ var k_attackId = 0 ;
 				sheet: "mos" + p.mosType,
 				sprite: "enemy",
 				collisionMask: Q.SPRITE_ENEMY ,
-				mosId: mosId,
+				mosId: GAME.ENEMY.mosId,
 				opacity: 0.1,
 				life: p.mosType,
 				count: 0
 			});
 			this.add("tween");
 			this.on("attacked"); 
+			this.on("hit" , this ,"collide");
 			this.animate({opacity:1},0.6,Q.Easing.Quadratic.InOut);
 
-			mosId++ ;
+			GAME.ENEMY.mosId++
 
 			var obj = this ; // 掉針
-			attackTimer.push( setInterval(function(){
 
+			GAME.ENEMY.attackTimer.push( setInterval(function(){
 				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over")){
-					// 決定是否掉落
-					var rand = Math.round(Math.random()*6);
 					
-					player_x =  Q.select('Player').items[0].p.x ;
-	      	player_y =  Q.select('Player').items[0].p.y ;
-	      	vx = player_x - obj.c.x ;
-	      	vy = player_y - obj.c.y ;
+					var rand = Math.round(Math.random()* GAME.ENEMY.RATE_mosAttack); // Rate: 1/6
+					var player_x =  Q.select('Player').items[0].p.x ;
+	      	var player_y =  Q.select('Player').items[0].p.y ;
+	      	var vx = player_x - obj.c.x ;
+	      	var vy = player_y - obj.c.y ;
 
-	      	angle = Math.atan2( vy , vx)/Math.PI*180
+	      	var angle = Math.atan2( vy , vx)/Math.PI*180
 
 					// 要判定場中有沒有出現相同的，因為原倍速太快，所以用比例調整速度
 					// if(rand == 1 && Q("MosAttack").length < 20
@@ -197,8 +144,8 @@ var k_attackId = 0 ;
 						this.p.sheet = "enemy_death";
 				};
 
-				// 消掉針
-				clearInterval( attackTimer[this.p.mosId] );
+				// CLEAR TIMER
+				clearInterval( GAME.ENEMY.attackTimer[this.p.mosId] );
 				dropKatha(this.stage,this,20);
 
 				// 死掉，destroy
@@ -209,11 +156,11 @@ var k_attackId = 0 ;
 		},
 
 		step: function(dt) {
-			if(Q.state.get("is_countdown_over")){
-				// use counter and that mos walk
-	      this.p.count++ ;
+			this.stage.collide(this);
 
-	      if(this.p.count % 100 == 0){
+			if(Q.state.get("is_countdown_over")){
+	      this.p.count++ ; // use counter and that mos walk
+	      if(this.p.count % GAME.ENEMY.mosSpeed == 0){
 	      	this.p.y += 20
 	      	this.c.y += 20
 	      	this.p.count = 0;
@@ -222,6 +169,17 @@ var k_attackId = 0 ;
 
 			if(this.p.y > Q.height)
 				this.destroy();
+    },
+
+    collide: function(col) {
+
+    	if(col.obj.isA("Player")) {
+    		if(!Q.state.get("isPlayerAttack")){
+      		Q("Player").trigger("hurt");
+        	Q.state.dec("lives" , 1) ;
+    		}
+    		this.destroy(); 
+      }
     }
 	});
 
@@ -298,7 +256,13 @@ var k_attackId = 0 ;
       this.p.y += this.p.vy * dt ;
       this.stage.collide(this);
 
-			if(this.p.y > Q.height)
+      /* 
+      [OCCUR]:
+      	1. 超出版面
+      	2. 蚊子全滅（進入mosEnter）
+      	3. 蚊子王掛掉
+      */
+			if(this.p.y > Q.height || Q.state.get("isMosenter") || Q.state.get("mosking_life") < 0)
 				this.destroy();
     },
 
@@ -339,8 +303,8 @@ var k_attackId = 0 ;
 
 			this.fly_up();
 			this.play("default");
-			window.setTimeout(function(){ obj.walk("right") ;} , 10000);
 
+			window.setTimeout(function(){ obj.walk("right") ;} , 10000);
 			console.log("mosking_life: " + this.p.life);
 		},
 
@@ -364,15 +328,9 @@ var k_attackId = 0 ;
 
 			if(this.p.life <= 0){
 				Q.play('mosking_die_roar.mp3');
+				this.stage.trigger("complete");
 
-				for(var i = 0 ; i < Q('MosKingAttack').items.length ; i++){
-					Q('MosKingAttack').items[i].play('disappear');
-				}
-				for(var i = 0 ; i < Q('MosAttack').items.length ; i++ ){
-					Q('MosAttack').items[i].trigger('destroy');
-				}
-				resetAttackTimer();
-				this.stage.trigger("complete");	
+				resetAttackTimer();	
 			}
 
 			Q.play('mosking_hurt.mp3');
@@ -402,6 +360,7 @@ var k_attackId = 0 ;
 	// 被打到後的蚊子王
 	Q.Sprite.extend("MosKing_die",{
 		init: function(p){
+
 			var life ;
 			var recoverY ;
 
@@ -414,8 +373,8 @@ var k_attackId = 0 ;
 
 			this.add("tween") ;
 			this.opacity_0();
-
 			Q.state.dec("mosking_life" , 1);
+
 			life = Q.state.get("mosking_life");
 			recoverY = this.p.y ; // record the location , that the mosking_die didn't drop
 
@@ -433,7 +392,7 @@ var k_attackId = 0 ;
 					callback: function(){
 						var sheet = (life >= 4)? "mosking_anim":"mosking_hurt";
 
-						if(life == 3){
+						if(life === 3){
 							playBGM(bgm_heartbeat_slow,1,false);
 						}
 
@@ -444,13 +403,13 @@ var k_attackId = 0 ;
 							scale: 1
 						}));
 
-						if(life %2 == 0 && life >= 0){
-							Q.play("mosking_scream.mp3");
-							for(var i = 0 ; i < k_attack_5.length ; i ++){
-								k_attack_5[i].animate({ y:k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
-							}
-
+						if(life %2 === 0 ){
 							var random = Math.round(Math.random()*2 + 1);
+
+							Q.play("mosking_scream.mp3");
+							for(var i = 0 ; i < GAME.ENEMY.k_attack_5.length ; i ++){
+								GAME.ENEMY.k_attack_5[i].animate({ y:GAME.ENEMY.k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
+							}
 							mosBloodEnter(this.stage,random,220);
 						}
 
@@ -478,7 +437,7 @@ var k_attackId = 0 ;
 			this._super(p , {
 				sheet: 'moskingattack_'+ p.mosType,
 				sprite: 'moskingattack' ,
-				k_attackId: k_attackId ,
+				k_attackId: GAME.ENEMY.k_attackId ,
 				live: 5 ,
 				opacity:0
 			})
@@ -487,14 +446,15 @@ var k_attackId = 0 ;
 			this.on("hit" , this ,"collide");
 			this.on("disappear");
 
-			k_attackId++ ;
+			GAME.ENEMY.k_attackId++ ;
 
 			// 掉針！！
 			var k_obj = this ;
-			k_attackTimer.push( setInterval(function(){
+
+			GAME.ENEMY.k_attackTimer.push( setInterval(function(){
 				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over")){
 
-					var random = Math.round(Math.random()*5);
+					var random = Math.round(Math.random() * GAME.ENEMY.RATE_moskingAttack); // 1/5
 
 					var player_x =  Q.select('Player').items[0].p.x ;
 	      	var player_y =  Q.select('Player').items[0].p.y ;
@@ -535,7 +495,7 @@ var k_attackId = 0 ;
 
    			this.play("disappear");
    			dropKatha(this.stage,this,10);
-				clearInterval( k_attackTimer[this.p.k_attackId] ); // clear attack timer
+				clearInterval( GAME.ENEMY.k_attackTimer[this.p.k_attackId] ); // clear attack timer
       }	
     },
 
@@ -544,8 +504,16 @@ var k_attackId = 0 ;
     },
 
     step: function(){
+    	/*
+    	[OCCUR]:
+    		1. 超過框框
+    		2. 蚊子王死掉
+    	*/
+
     	if(this.p.y > Q.height)
 				this.destroy();
+			if(Q.state.get("mosking_life") < 0 )
+				this.play("disappear");
     }
 	}) ;
 }

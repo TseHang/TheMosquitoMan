@@ -1,11 +1,6 @@
 /*
 */
 
-// 計算救兵 蚊子出來次數
-var mos_addCount = 2 ;
-var k_attack_5 = [];
-var moveSpeed = 3;
-
 ;Quintus.PlayerSprites = function(Q){
 	Q.gravityY = 0;
   Q.gravityX = 0;
@@ -36,12 +31,12 @@ var moveSpeed = 3;
 			// 控制人物
 			var player_w = this.p.w/2 ;
 			if (Q.inputs['A']){
-				this.p.x -= moveSpeed ;
+				this.p.x -= GAME.PLAYER.moveSpeed ;
 
 				if ( this.p.x < player_w)
 					this.p.x = player_w ;
 			}else if (Q.inputs['D']){
-				this.p.x += moveSpeed ;
+				this.p.x += GAME.PLAYER.moveSpeed ;
 
 				if ( this.p.x > (Q.width - player_w))
 					this.p.x = (Q.width - player_w) ;
@@ -50,27 +45,26 @@ var moveSpeed = 3;
 			if(Q("Enemy").length == 0 ){
 				if(Q.state.get("isMosenter")) ;
 				else{
-					if(mos_addCount > 0){
+					if(GAME.PLAYER.mos_addCount > 0){
 						Q.state.inc("isMosenterScene",1); // according to "isMosenterScene" NUM
 						Q.stageScene("mosEnter"); // 召喚蚊子
-						mos_addCount-- ;
+						
+						GAME.PLAYER.mos_addCount -- ;
 					} 
-					else if(mos_addCount == 0 && Q("Enemy").length == 0){
-						stopBGM(Q.state.get("whichBGM"));
+					else if(GAME.PLAYER.mos_addCount == 0 && Q("Enemy").length == 0){
 						this.stage.insert(new Q.MosKing()); // 加入魔王
 
+						stopBGM(Q.state.get("whichBGM"));
 						mosBloodEnter(this.stage,1,220); // blood bubble
-
-						// 使mos_addCount = -1 不繼續動
-		    		mos_addCount-- ;
-
-		    		Q.state.set("video_num",2);
-		    		playVideo(video_mosking_appear); // Play video_mosking_appear
+						
+						// 使 GAME.PLAYER.mos_addCount = -1 不繼續動
+						GAME.PLAYER.mos_addCount -- ;
+		    		playVideo(GAME.VIDEO.mosking_appear , 2); // Play video_mosking_appear
 					}	
 				}
 			}
 
-			if(Q.state.get("mosking_life")<0){
+			if(Q.state.get("mosking_life") < 0){
 				this.destroy();
 			}
 		},
@@ -130,7 +124,7 @@ var moveSpeed = 3;
 			var player_x = this.p.x ;
       var player_y = this.p.y ;
 
-      moveSpeed = 9;
+      GAME.PLAYER.moveSpeed = 9;
 
       this.stage.insert(new Q.PlayerSpeedUP({
       	x: player_x,
@@ -149,7 +143,7 @@ var moveSpeed = 3;
 		},
 
 		player_recover : function(){
-			moveSpeed = 3;
+			GAME.PLAYER.moveSpeed = 3;
 			Q("PlayerSpeedUP").trigger("hidden_destroy");
 		}
 	})

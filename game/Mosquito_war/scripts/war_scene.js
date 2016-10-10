@@ -18,8 +18,7 @@ STATE:
 15:video_num: video NUM ;
 16:isMosenter: if Mosenter ?
 17:isMosenterScene: if MosenterScene NUMBER (蚊子第幾次出現）?
-18:isOpening: if opening video ING ?
-19:whichBGM : which BGM player now in !
+18:whichBGM : which BGM player now in !
 -
 gameDescription: stage-2
 hud: stage-1
@@ -54,11 +53,10 @@ mosEnter: stage-4
     	video_num: 1,
     	isMosenter: false ,
     	isMosenterScene: 0,
-    	isOpening: false ,
     	whichBGM: bgm_opening
     });
 
-    if(isOpening === false){
+    if(GAME.VIDEO.isOpening === false){
     	console.log("war opening");
     	playBGM(bgm_opening ,1);
     }
@@ -223,10 +221,9 @@ mosEnter: stage-4
 	} , {stage : 2 });
 
 	Q.scene("introPlayerMan" , function(stage){
-
-		playBGM(bgm_player_man);
 		// 介紹故事
 		console.log("Scene: introPlayerMan");
+		playBGM(bgm_player_man);
 
 		// SET player_state = 1
 		Q.state.set('player_state' , 1);
@@ -357,9 +354,9 @@ mosEnter: stage-4
 	} , {stage: 1});
 
 	Q.scene("mosEnter" , function(stage){
-
-		Q.state.set("isMosenter",true);
+		
 		var mosEnterScene = Q.state.get("isMosenterScene");
+		Q.state.set("isMosenter",true);
 
 		stage.insert(new Q.Mosking_talk());
 		stage.insert(new Q.Mosking_talk_frame());
@@ -514,8 +511,7 @@ mosEnter: stage-4
 				startClock(0); 
 			}
 			else if (videoNum === 2){
-				var lastUsedTime = allSecs - remainSecs ;
-				startClock(lastUsedTime); 	
+				startClock(getUsedTime()); 	
 			}
 			
 			Q.clearStage(3);
@@ -557,9 +553,7 @@ mosEnter: stage-4
     Q.stageScene("hud") ;
 
     setupLevel("level1", stage);
-
-    Q.state.set("video_num",1)
-    playVideo(video_fight);// Play fight video
+    playVideo(GAME.VIDEO.fight , 1);// Play fight video
 
     // Set up a listener for when the stage is complete to load the next level
     stage.on("complete",function() {  
@@ -691,116 +685,4 @@ mosEnter: stage-4
 
 		reset();
 	})
-}
-
-
-function showBar(){
-	bar.style.display="block";
-}
-
-function hiddenBar(){
-	bar.style.display="none";
-}
-
-function resetAttackTimer(){
-	// 把沒打死的蚊子，所有計時器停掉
-  for (i = 0; i < attackTimer.length; i++)
-    clearInterval(attackTimer[i]);
-  for (i = 0; i < k_attackTimer.length; i++)
-    clearInterval(k_attackTimer[i]);
-
-  // 初始化 attackTimer(射蚊子的針用的)、k_attackTimer
-  // 把length = 0 是清空同一個記憶體，若是指定為 [] ，其實舊有資料還是存在，只是另外配給一段記憶體給新陣列
-  attackTimer.length = 0; 
-  k_attackTimer.length = 0;
-  mosId = 0;
-  k_attackId = 0;
-}
-
-function reset() {
-
-	resetAttackTimer();
-	stopTimeBar();
-
-  // 消除level 下面那條
-	Q.clearStage(1) ;
-	Q.clearStage(4) ;
-
-	// Update Q.state
-	Q.state.set({
-		mosking_life: 10,
-		lives: 4,
-		isPlayerAttack:false ,
-		isMosenter:false,
-		isMosenterScene:0,
-		video_num:0
-	});// reset mosking life
-
-	mos_addCount = 2; 
-	moveSpeed = 3 ;
-
-	allSecs = 300 ; //reset timeBar timer
-	bar.style.display="none";
-
-	result.innerHTML= "05 : 00";
-	inner_bar.style.width = "100%";
-}
-
-
-function mosBloodEnter(stage, random , y) {
-
-  var circle = stage.insert(new Q.Mos_magic_circle({y:220}));
-
-  circle.animate({ scale: 1, opacity: 1 }, 0.3, Q.Easing.Quadratic.InOut, {
-    callback: function() {
-      k_attack_5.push(this.stage.insert(new Q.MosquitoTracker({ data: Q.asset("addKingattack_s_"+random), y: y ,direct: "down"})));
-      this.animate({ opacity: 0 }, 0.5, Q.Easing.Linear, {
-        delay: 0.5,
-        callback: function() { this.destroy(); }
-      })
-    }
-  });
-}
-
-function dropKatha(stage,obj,rate) {
-  // 掉寶物(記得調倍率)
-  var rand = Math.round(Math.random() * rate);
-
-  if (rand == 1 && Q("Katha_1").length == 0 && !Q.state.get("iskatha1")) {
-    stage.insert(new Q.Katha_1({
-      x: obj.c.x,
-      y: obj.c.y
-    }));
-  } else if (rand == 2 && Q('Katha_2').length == 0 && !Q.state.get("iskatha2")) {
-    stage.insert(new Q.Katha_2({
-      x: obj.c.x,
-      y: obj.c.y
-    }));
-  } else if (rand == 3 && Q('Katha_3').length == 0 && !Q.state.get("iskatha3")) {
-    stage.insert(new Q.Katha_3({
-      x: obj.c.x,
-      y: obj.c.y
-    }));
-  }
-}
-
-function button_click(obj){
-	obj.animate({opacity:0.3,scale:0.9},0.05,Q.Easing.Linear,{
-    callback: function(){
-      obj.animate({opacity:1,scale:1},0.1,Q.Easing.Linear);
-    }
- 	})
-}
-
-function stageStop(){
-	Q.stage().paused = true ;
-	stopTimeBar();
-}
-
-function stageContinue(){
-	var lastUsedTime = allSecs - remainSecs ;
-	Q.stage().paused = false ;
-
-	if(Q.state.get("is_countdown_over"))
-		startClock(lastUsedTime);
 }
