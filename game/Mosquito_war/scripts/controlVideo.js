@@ -59,7 +59,11 @@ function canplayHandler(){
 function playVideo(video,num){
 	Q.state.set("video_num",num);
 	Q.state.set("is_video_over",false);
-	Q.play("change_scene.mp3");
+	Q.audio.play("change_scene.mp3");
+	
+	// 消掉針、氣功彈
+	Q('MosAttack').trigger('disappear');
+	Q('Power').trigger('disappear');
 
 	video.style.display="block";
 	video.style.zIndex=1;

@@ -69,9 +69,13 @@ Drop mosAttack:
 
     move: function(){
     	if(this.p.direct =="up")
-    		this.animate({y:this.p.y - 30 },0.6, Q.Easing.Quadratic.InOut,{ delay:0.3 });
+    		this.animate({y:this.p.y - 30 , },0.6, Q.Easing.Quadratic.InOut,{ delay:0.3 , callback: function(){
+    			Q('Enemy').trigger("call");
+    		}});
     	else if(this.p.direct == "down")
-    		this.animate({y:this.p.y + 30 },0.6, Q.Easing.Quadratic.InOut,{ delay:0.3 });
+    		this.animate({y:this.p.y + 30 },0.6, Q.Easing.Quadratic.InOut,{ delay:0.3 , callback: function(){
+    			Q('MosKingAttack').trigger("call");
+    		}});
     }
 	});
 
@@ -88,7 +92,7 @@ Drop mosAttack:
 				count: 0
 			});
 			this.add("tween");
-			this.on("attacked"); 
+			this.on("attacked,call"); 
 			this.on("hit" , this ,"collide");
 			this.animate({opacity:1},0.6,Q.Easing.Quadratic.InOut);
 
@@ -123,11 +127,15 @@ Drop mosAttack:
 
 		},
 
+		call: function(){
+	    this.c.y -= 30;
+		},
+
 		attacked: function(){
 			this.p.life = this.p.life - 1 ;
 
 			if (this.p.life <= 0){
-				Q.play('damage.mp3');
+				Q.audio.play('damage.mp3');
 
 				var sheet = this.p.sheet ;
 				switch(sheet){
@@ -161,8 +169,8 @@ Drop mosAttack:
 			if(Q.state.get("is_countdown_over")){
 	      this.p.count++ ; // use counter and that mos walk
 	      if(this.p.count % GAME.ENEMY.mosSpeed == 0){
-	      	this.p.y += 20
-	      	this.c.y += 20
+	      	this.p.y += 20;
+	      	this.c.y += 20;
 	      	this.p.count = 0;
 	      }
 			}
@@ -179,6 +187,7 @@ Drop mosAttack:
         	Q.state.dec("lives" , 1) ;
     		}
     		this.destroy(); 
+    		clearInterval( GAME.ENEMY.attackTimer[this.p.mosId] );
       }
     }
 	});
@@ -248,7 +257,7 @@ Drop mosAttack:
 
 			this.add("2d");
 			this.on("hit" , this ,"collide");
-			this.on("destroy"); // will just call destroy()
+			this.on("destroy,disappear"); // will just call destroy()
 		},
 
 		step: function(dt) {
@@ -262,8 +271,12 @@ Drop mosAttack:
       	2. 蚊子全滅（進入mosEnter）
       	3. 蚊子王掛掉
       */
-			if(this.p.y > Q.height || Q.state.get("isMosenter") || Q.state.get("mosking_life") < 0)
+			if(this.p.y > Q.height)
 				this.destroy();
+    },
+
+    disappear: function(){
+    	this.destroy();
     },
 
 		collide: function(col) {
@@ -275,7 +288,7 @@ Drop mosAttack:
     		}
     		this.destroy(); 
       }else if (col.obj.isA("PlayerInvincible")){
-      	Q.play("player_invincible_attack.mp3");
+      	Q.audio.play("player_invincible_attack.mp3");
       	this.destroy(); // When bump into Invincible Mask , destroy()
       }
     }
@@ -327,13 +340,19 @@ Drop mosAttack:
       var mosking_y = this.p.y ;
 
 			if(this.p.life <= 0){
-				Q.play('mosking_die_roar.mp3');
+				// Scene: winner
 				this.stage.trigger("complete");
+
+				Q.audio.play('mosking_die_roar.mp3');
+
+				Q('Player').trigger("destroy");
+				Q('MosAttack').trigger("disappear");
+				// Q('MosKingAttack').trigger("winLose");
 
 				resetAttackTimer();	
 			}
 
-			Q.play('mosking_hurt.mp3');
+			Q.audio.play('mosking_hurt.mp3');
 
 			this.stage.insert(new Q.MosKing_die({
 				x:mosking_x ,
@@ -406,10 +425,8 @@ Drop mosAttack:
 						if(life %2 === 0 ){
 							var random = Math.round(Math.random()*2 + 1);
 
-							Q.play("mosking_scream.mp3");
-							for(var i = 0 ; i < GAME.ENEMY.k_attack_5.length ; i ++){
-								GAME.ENEMY.k_attack_5[i].animate({ y:GAME.ENEMY.k_attack_5[i].p.y+60 } , 0.5 , Q.Easing.Quadratic.InOut);
-							}
+							Q.audio.play("mosking_scream.mp3");
+							Q('MosKingAttack').trigger('move');
 							mosBloodEnter(this.stage,random,220);
 						}
 
@@ -444,8 +461,10 @@ Drop mosAttack:
 			this.add("tween,animation");
 			this.animate({opacity:1},0.6,Q.Easing.Quadratic.InOut);
 			this.on("hit" , this ,"collide");
-			this.on("disappear");
+			this.on("disappear , attacked , call , move");
 
+			// Push this run's ID , then compare in 'call' fun.
+			GAME.ENEMY.k_attack_5.push(this.p.k_attackId);
 			GAME.ENEMY.k_attackId++ ;
 
 			// 掉針！！
@@ -479,19 +498,33 @@ Drop mosAttack:
 			} , attackTimeInterval ) );
 		},
 
+		call: function(){
+			// Check 
+			if(GAME.ENEMY.k_attack_5.includes(this.p.k_attackId)){
+				this.c.y += 30 ;
+			}
+		},
+
+		move: function(){
+			this.animate({y: this.p.y+60} ,0.5 , Q.Easing.Quadratic.InOut);
+		},
+
 		collide: function(col) {
-
-      // 扣血
-    	if(col.obj.isA("Power")) {
-        this.p.live-- ; 
-   		}
-
    		if(col.obj.isA("Player")) {
-        this.p.live = 0 ; 
+    		if(!Q.state.get("isPlayerAttack")){
+      		Q("Player").trigger("hurt");
+        	Q.state.dec("lives" , 1) ;
+    		}
+    		this.play("disappear");
+    		clearInterval( GAME.ENEMY.k_attackTimer[this.p.k_attackId] ); // clear attack timer
    		}
+    },
 
-   		if(this.p.live == 0){
-   			Q.play("blood_bubble_broken.mp3");
+    attacked: function(){
+    	this.p.live -- ;
+
+    	if(this.p.live == 0){
+   			Q.audio.play("blood_bubble_broken.mp3");
 
    			this.play("disappear");
    			dropKatha(this.stage,this,10);
@@ -507,12 +540,11 @@ Drop mosAttack:
     	/*
     	[OCCUR]:
     		1. 超過框框
-    		2. 蚊子王死掉
     	*/
 
     	if(this.p.y > Q.height)
 				this.destroy();
-			if(Q.state.get("mosking_life") < 0 )
+			if(Q.state.get('mosking_life') < 0)
 				this.play("disappear");
     }
 	}) ;

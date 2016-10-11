@@ -39,8 +39,7 @@
             y: power_y + 20
           }));
           
-          Q.stop("powerUp.mp3");
-          Q.play("powerUp.mp3");
+          Q.audio.play("powerUp.mp3");
 
         }else{
           sheet = 'power';
@@ -100,9 +99,20 @@
 
       GAME.PLAYER.life[lives_state].destroy(); // destroy LIFE BALL()
       GAME.PLAYER.life.pop(); // Clear Pop array
-      console.log(GAME.PLAYER.life);
+
       if (lives_state <= 0){
-        Q.stageScene("gameOver") ;
+
+        // Cuz this.atge is pointed to 'hud'(stage:2) , so use Q.stage()--> 'level1'
+        Q.stage().trigger("lose");
+
+        // Player , Attack . destroy!
+        Q('MosAttack').trigger("disappear");
+        Q('Player').trigger('destroy');
+
+        stopBGM(Q.state.get("whichBGM"));
+        playBGM(bgm_lose);
+
+        resetAttackTimer(); 
       }
     }
   });
@@ -122,7 +132,7 @@
       });
     },
     light: function(){
-      Q.play("countdown.mp3");
+      Q.audio.play("countdown.mp3");
       this.p.sheet = "three_bright";
     }
   });
@@ -141,7 +151,7 @@
       });
     },
     light: function(){
-      Q.play("countdown.mp3");
+      Q.audio.play("countdown.mp3");
       this.p.sheet = "two_bright";
     }
   });
@@ -161,13 +171,13 @@
     },
     light: function(){
       var obj = this ;
-      Q.play("countdown.mp3");
+      Q.audio.play("countdown.mp3");
       this.p.sheet = "one_bright";
 
       this.animate({},1,Q.Easing.Linear,{
         callback:function(){
           this.stage.trigger("countdown_over");
-          Q.play("countdown_final.mp3");
+          Q.audio.play("countdown_final.mp3");
         }
       });
     }
@@ -194,7 +204,7 @@
           Q.clearStage(3); // clear countdown
         }
 
-        Q.play("click.mp3");
+        Q.audio.play("click.mp3");
 
         button_click(this);
         stopBGM(Q.state.get("whichBGM"), 'continue') ;
@@ -240,7 +250,7 @@
         Q.stageScene("countdown");
       }
 
-      Q.play("click.mp3");
+      Q.audio.play("click.mp3");
 
       button_click(this);
       playBGM(Q.state.get("whichBGM"));
@@ -271,7 +281,7 @@
 
     touch : function(){
 
-      Q.play("click.mp3");
+      Q.audio.play("click.mp3");
 
       button_click(this);
       stopBGM(Q.state.get("whichBGM")) ; // reset 'bgm_level1' time
@@ -362,9 +372,10 @@
       this._super(p,{
         label: "功法：\n1. 在家中裝紗窗、紗門，不讓蚊蟲進屋，睡覺時掛蚊帳。\n2. 使用捕蚊燈電蚊拍，陰暗處或是地下室定期巡邏。\n3. 若有放在戶外的廢棄輪胎、積水容器等物品馬上清除。" ,
         align: "left",
-        x: Q.width/2 + 20,
-        y: Q.height/2 ,
-        weight: "normal",
+        x: 80,
+        y: 240 ,
+        weight: "300",
+        family:"Arial,微軟正黑體,sans-serif",
         opacity: 0,
         size: 16
       })
@@ -381,10 +392,11 @@
       this._super(p,{
         label: "效果：\n    召喚大魔導彈攻擊，持續 10 秒。" ,
         align: "left",
-        x: Q.width/2 - 60,
-        y: Q.height/2 + 70 ,
-        weight: "normal",
+        x: 100,
+        y: 330 ,
+        weight: "300",
         size: 16,
+        family:"Arial,微軟正黑體,sans-serif",
         color: "darkred",
         opacity:0
       })
@@ -403,11 +415,16 @@
         x: Q.width - 100,
         y: Q.height/2 + 70,
         asset: 'katha/katha_close.png',
+        opacity:0,
         type: Q.SPRITE_UI
       });
 
       this.add("tween");
       this.on("touch");
+
+      this.animate({opacity: 1} , 0.3 , Q.Linear ,{
+        delay: 0.3
+      });
     },
 
     touch: function(){
@@ -451,9 +468,10 @@
       this._super(p,{
         label: "功法：\n1. 清除不需要的容器，像花瓶、瓶蓋、缸盆、保麗龍\n、餅乾盒等，減少垃圾。\n2. 把暫時不需要用的容器「倒放」，以免積水。" ,
         align: "left",
-        x: Q.width/2,
-        y: Q.height/2 ,
-        weight: "normal",
+        x: 80,
+        y: 240 ,
+        weight: "300",
+        family:"Arial,微軟正黑體,sans-serif",
         opacity: 0,
         size: 16
       })
@@ -470,10 +488,11 @@
       this._super(p,{
         label: "效果：\n    移動速度升為 300%，持續 10 秒。" ,
         align: "left",
-        x: Q.width/2 - 60,
-        y: Q.height/2 + 70 ,
-        weight: "normal",
+        x: 100,
+        y: 330 ,
+        weight: "300",
         size: 16,
+        family:"Arial,微軟正黑體,sans-serif",
         color: "darkred",
         opacity:0
       })
@@ -521,9 +540,10 @@
       this._super(p,{
         label: "功法：\n1. 常洗澡，保持皮膚清爽。\n2. 在戶外或蚊蟲多的地方，盡量穿淺色長袖衣褲。\n3. 多吃洋蔥、大蒜、高麗菜、綠花椰菜，蚊子遠離你。" ,
         align: "left",
-        x: Q.width/2+ 5,
-        y: Q.height/2 ,
-        weight: "normal",
+        x: 80,
+        y: 240 ,
+        family:"Arial,微軟正黑體,sans-serif",
+        weight: "300",
         opacity: 0,
         size: 16
       })
@@ -540,11 +560,12 @@
       this._super(p,{
         label: "效果：\n    就是「無敵」，持續 6.666 秒。" ,
         align: "left",
-        x: Q.width/2 - 70,
-        y: Q.height/2 + 70 ,
-        weight: "normal",
-        size: 16,
+        x: 100,
+        y: 330 ,
+        weight: "300",
+        family:"Arial,微軟正黑體,sans-serif",
         color: "darkred",
+        size: 16,
         opacity:0
       })
 

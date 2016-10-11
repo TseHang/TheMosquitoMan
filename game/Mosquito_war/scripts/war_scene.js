@@ -26,6 +26,11 @@ katha: stage-2
 countdown: stage-3
 mosEnter: stage-4
 
+------------------
+CONTROL SCENE:
+(1)win: enemy_sprite.js --> trigger 'complete'( 人消失、針消失 )
+(2)lose: level_ui.js --> trigger 'lose'（ 血泡消失、針消失、人消失）
+
  */
 ;Quintus.WarScenes = function(Q) {
 	
@@ -72,12 +77,15 @@ mosEnter: stage-4
 		// 開始玩遊戲!!
 		// ＊＊＊＊＊＊
 		landing_play.on('touch' , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			stopBGM(Q.state.get("whichBGM"));
 
 			// animate BG!
 			bg.animate({ cy: Q.height/2 }, 1, Q.Easing.Quadratic.InOut , {
-				callback: function(){Q.stageScene("introStory");}
+				callback: function(){
+					// delay 0.02 sec , 因為stageScene 換太快，導致中間會出現黑屏
+					window.setTimeout(function(){Q.stageScene("introStory");},20);
+				}
 			});
 
 			// 消失 LOGO
@@ -98,14 +106,16 @@ mosEnter: stage-4
 		// 角色說明!!
 		// ＊＊＊＊＊＊
 		landing_player.on('touch' , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			stopBGM(Q.state.get("whichBGM"));
 
 			// 消失背景
 			bg.animate({ opacity: 0 }, 1, Q.Easing.Quadratic.InOut , {
 				callback: function(){
-					this.destroy();landing_logo.destroy();
-					landing_play.destroy(); landing_player.destroy();
+					landing_logo.destroy();
+					landing_play.destroy(); 
+					landing_player.destroy();
+					this.destroy();
 				}
 			});
 
@@ -134,13 +144,13 @@ mosEnter: stage-4
 		var intro_go = stage.insert(new Q.IntroGo());
 		
 		intro_howplay.on("touch" , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			Q.stageScene("gameDescription");
 		});
 
 		// start game!
 		intro_go.on('touch' , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			stopBGM(Q.state.get("whichBGM")) ;
 
 			intro_bg.animate({opacity: 0} , 1 , Q.Easing.Linear ,{
@@ -169,52 +179,56 @@ mosEnter: stage-4
 		stage.insert(new Q.UI.Text({
 			label: "白線斑蚊將以「血刺」攻擊\n玩家，須不斷閃躲或用攻擊\n抵消。",
 			color: "black",
-			x: Q.width/2 + 85 ,
-			y: Q.height/2 - 140,
+			x: 255 ,
+			y: 110,
 			weight: "normal",
 			align: "left",
+			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
 			size: 16
 		}))
 
 		stage.insert(new Q.UI.Text({
 			label: "神秘魔王現身，必須要小心\n以防血泡突破護體真氣。",
 			color: "black",
-			x: Q.width/2 + 85 ,
-			y: Q.height/2 - 40,
+			x: 255 ,
+			y: 210,
 			weight: "normal",
 			align: "left",
+			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
 			size: 16
 		}))
 
 		stage.insert(new Q.UI.Text({
 			label: "玩家操控主角，\nA鍵向左、D鍵向右。",
 			color: "black",
-			x: Q.width/2 + 60 ,
-			y: Q.height/2 + 60 ,
+			x: 255 ,
+			y: 310,
 			weight: "normal",
 			align: "left",
-			size: 15
+			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
+			size: 16
 		}))
 
 		stage.insert(new Q.UI.Text({
 			label: "以滑鼠控制方向，點擊左鍵\n發出氣功，勇猛殺敵。",
 			color: "black",
-			x: Q.width/2 + 80 ,
-			y: Q.height/2 + 140 ,
+			x: 255,
+			y: 395 ,
 			weight: "normal",
 			align: "left",
-			size: 15
+			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
+			size: 16
 		}))
 
 		var close_btn = stage.insert(new Q.Sprite({
 			x: Q.width - 120,
-      y: Q.height/2 + 170,
+      y: Q.height/2 + 180,
 			asset: 'katha/katha_close.png',
       type: Q.SPRITE_UI
 		}))
 
 		close_btn.on("touch", function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			Q.clearStage(2);
 		})
 
@@ -293,7 +307,7 @@ mosEnter: stage-4
 		left = stage.insert(new Q.PlayerLeft());
 
 		right.on("touch" , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 
 			if(player_state == 1){
 				stopBGM(bgm_player_man);
@@ -314,7 +328,7 @@ mosEnter: stage-4
 		})
 
 		left.on("touch" , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 
 			if(player_state == 1){
 				stopBGM(bgm_player_man);
@@ -334,7 +348,7 @@ mosEnter: stage-4
 		})
 
 		back.on("touch" , function(){
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 
 			if(player_state === 1){
 				stopBGM(bgm_player_man);
@@ -378,7 +392,7 @@ mosEnter: stage-4
 			callback: function(){
 				level.on("touch",function(){
 
-					Q.play("click.mp3");
+					Q.audio.play("click.mp3");
 					Q.clearStage(4);
 
 					var circle = Q.stage().insert(new Q.Mos_magic_circle());
@@ -392,13 +406,13 @@ mosEnter: stage-4
 	    				}));
 
 	    				if (mosEnterScene == 3)
-	    					Q.play("mosG_scream.mp3");
+	    					Q.audio.play("mosG_scream.mp3");
 
 	    				this.animate({opacity:0},0.5,Q.Easing.Linear,{
 	    					delay:0.5,
 	    					callback:function(){ 
 	    						if(mosEnterScene == 2)
-	    							Q.play("mos_scream.mp3");
+	    							Q.audio.play("mos_scream.mp3");
 
 	    						this.destroy();
 	    						Q.state.set("isMosenter",false);
@@ -415,10 +429,11 @@ mosEnter: stage-4
 
 	Q.scene("katha" , function(stage){                  
 		// kathaNum 會再吃到捲軸的時候被設定！
+		var btn ;
 		var kathaNum = Q.state.get("katha");
 		
 		Q.state.set("isLevelStop",true);
-		Q.play("katha_drop.mp3")
+		Q.audio.play("katha_drop.mp3")
 
 		if (kathaNum == 1){
 			stage.insert(new Q.Katha_1_bg());
@@ -450,13 +465,13 @@ mosEnter: stage-4
 		// 按鈕
 		btn.on("touch" , function(){
 			if (kathaNum == 1){
-				Q.play("player_powerup.mp3");
+				Q.audio.play("player_powerup.mp3");
 				window.setTimeout(function(){ Q("Power").trigger("power_recover"); Q.state.set("iskatha1",false);},10000);
 			}else if (kathaNum == 2){
-				Q.play("speedup.mp3");
+				Q.audio.play("speedup.mp3");
 				window.setTimeout(function(){ Q("Player").trigger("player_recover"); Q.state.set("iskatha2",false); } , 10000);
 			}else if( kathaNum == 3){
-				Q.play("player_invincible.mp3");
+				Q.audio.play("player_invincible.mp3");
 				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 6666);
 			}
 
@@ -465,7 +480,7 @@ mosEnter: stage-4
 			Q.state.set("isLevelStop",false);
 			stageContinue();
 			
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			// Clear the katha
 			Q.clearStage(2) ;
 		})
@@ -562,6 +577,16 @@ mosEnter: stage-4
     		}
     	})
     });
+
+    // Set up a listener for when the stage is losed to lose.
+    stage.on("lose",function() {  
+    	level.animate({opacity:0},1.5,Q.Easing.Linear,{
+    		delay:1,
+    		callback:function(){
+    			Q.stageScene("gameOver") ;
+    		}
+    	})
+    });
 	})
 
 	/*
@@ -579,9 +604,7 @@ mosEnter: stage-4
 	Q.scene("gameOver" , function(stage){
 		console.log("Scene: gameOver");
 
-		stopBGM(Q.state.get("whichBGM"));
 		stopBGM(bgm_heartbeat_slow);
-		playBGM(bgm_lose);
 		
 		stage.insert(new Q.Sprite({
 			asset:"level/gameover_bg.png",
@@ -615,7 +638,7 @@ mosEnter: stage-4
 			button_click(this);
 			stopBGM(bgm_lose);
 
-			Q.play("click.mp3") ;
+			Q.audio.play("click.mp3") ;
 			Q.stageScene("title")
 		});
 
@@ -623,7 +646,7 @@ mosEnter: stage-4
 			button_click(this);
 			stopBGM(bgm_lose);
 
-			Q.play("click.mp3") ;
+			Q.audio.play("click.mp3") ;
 			Q.stageScene("level1");
 		});
 
@@ -668,7 +691,7 @@ mosEnter: stage-4
 			button_click(this);
 			stopBGM(Q.state.get("whichBGM"));
 
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			Q.stageScene("title") ;
 		})
 
@@ -676,7 +699,7 @@ mosEnter: stage-4
 			button_click(this);
 			stopBGM(Q.state.get("whichBGM"));
 
-			Q.play("click.mp3");
+			Q.audio.play("click.mp3");
 			Q.stageScene("title") ;
 			window.open('https://www.facebook.com/themosquitoman/', '_blank');
 		})

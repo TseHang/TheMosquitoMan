@@ -46,10 +46,12 @@
 				if(Q.state.get("isMosenter")) ;
 				else{
 					if(GAME.PLAYER.mos_addCount > 0){
+						Q('MosAttack').trigger('destroy');
+
 						Q.state.inc("isMosenterScene",1); // according to "isMosenterScene" NUM
 						Q.stageScene("mosEnter"); // 召喚蚊子
 						
-						GAME.PLAYER.mos_addCount -- ;
+						GAME.PLAYER.mos_addCount -- ; 
 					} 
 					else if(GAME.PLAYER.mos_addCount == 0 && Q("Enemy").length == 0){
 						this.stage.insert(new Q.MosKing()); // 加入魔王
@@ -63,14 +65,10 @@
 					}	
 				}
 			}
-
-			if(Q.state.get("mosking_life") < 0){
-				this.destroy();
-			}
 		},
 
 		hurt: function(){
-			Q.play("player_hurt.mp3");
+			Q.audio.play("player_hurt.mp3");
 
 			var count = 8;
 			Q.state.set("isPlayerAttack",true);
@@ -165,10 +163,10 @@
 		},
 
 		step: function(){
-			this.p.x = Q.select('Player').items[0].p.x ;
-
-			if(Q.state.get("mosking_life")<0){
+			if(Q.state.get("mosking_life") < 0 || Q.state.get("lives") <= 0){
 				this.destroy();
+			}else{
+				this.p.x = Q.select('Player').items[0].p.x ;
 			}
 		},
 
@@ -196,10 +194,10 @@
 			this.animate({opacity: 1} , 0.3 , Q.Easing.Linear);
 		},
 		step: function(){
-			this.p.x = Q.select('Player').items[0].p.x ;
-
-			if(Q.state.get("mosking_life")<0){
+			if(Q.state.get("mosking_life") < 0 || Q.state.get("lives") <= 0){
 				this.destroy();
+			}else{
+				this.p.x = Q.select('Player').items[0].p.x ;
 			}
 		},
 		hidden_destroy: function(){
@@ -237,8 +235,10 @@
 			// Wait til we are inserted, then listen for events on the stage
 			this.on("hit" , this , "collide");
 
-			this.on("power_up");
-			this.on("power_recover");
+			this.on("power_up,power_recover,disappear");
+		},
+		disappear: function(){
+			this.destroy();
 		},
 
 		step: function(dt) {
@@ -248,13 +248,13 @@
     },
 
     collide: function(col) {
-    	if(col.obj.isA("MosAttack") || col.obj.isA("MosKing") || col.obj.isA("MosKingAttack")) {
-    		Q.play("power_collide.ogg",true);
+    	if(col.obj.isA("MosAttack") || col.obj.isA("MosKing")) {
+    		Q.audio.play("power_collide.ogg",true);
       	this.destroy(); // Power destroy() ;
         col.obj.trigger("destroy");
       }
-      else if( col.obj.isA("Enemy")){
-      	Q.play("power_collide.ogg",true);
+      else if( col.obj.isA("Enemy") || col.obj.isA("MosKingAttack")){
+      	Q.audio.play("power_collide.ogg",true);
       	this.destroy(); // Power destroy() ;
       	col.obj.trigger("attacked");
       }

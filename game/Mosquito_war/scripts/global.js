@@ -100,8 +100,8 @@ function mosBloodEnter(stage, random , y) {
 
   circle.animate({ scale: 1, opacity: 1 }, 0.3, Q.Easing.Quadratic.InOut, {
     callback: function() {
-      
-      GAME.ENEMY.k_attack_5.push(this.stage.insert(new Q.MosquitoTracker({ data: Q.asset("addKingattack_s_"+random), y: y ,direct: "down"})));
+      GAME.ENEMY.k_attack_5.length = 0 ;
+      this.stage.insert(new Q.MosquitoTracker({ data: Q.asset("addKingattack_s_"+random), y: y ,direct: "down"}));
       this.animate({ opacity: 0 }, 0.5, Q.Easing.Linear, {
         delay: 0.5,
         callback: function() { this.destroy(); }

@@ -102,10 +102,11 @@
       this._super({
         label : "               天地不仁，以萬物為芻狗。\n吾號掌蚊人，生逢亂世，慘遭「登革熱」\n危害，為了傷其根，斬其源，吾闖入終極之地\n將自己逼進死關，若不修煉至降蚊十八招大成\n，難以除害，誓死不出。\n戰友們！請幫助我一起修煉降蚊十八招吧！" ,
         align: "left" ,
-        x: Q.width/2 - 40 ,
-        y: Q.height/2 - 50 ,
+        x: 80,
+        y: 150,
         weight: "normal" ,
-        color: "white",
+        color: "#fffaf0",
+        family:"Arial,微軟正黑體,sans-serif",
         size: 20,
         opacity: 0
       });
@@ -236,7 +237,7 @@
     },
 
     rotate: function(){
-      Q.play("player_ha.mp3");
+      Q.audio.play("player_ha.mp3");
       this.play("rotate");
     }
   })
@@ -271,7 +272,7 @@
         opacity: 1
       });
 
-      Q.play("kick.mp3");
+      Q.audio.play("kick.mp3");
       // 因為在setTimeout裡，function 的 this 為 window，所以在這裡先記錄
       text1 = this ;
 
@@ -304,7 +305,7 @@
         opacity: 1
       });
 
-      Q.play("kick.mp3");
+      Q.audio.play("kick.mp3");
       text2 = this ;
 
       this.add("tween");
@@ -336,7 +337,7 @@
         opacity: 1
       });
 
-      Q.play("kick.mp3");
+      Q.audio.play("kick.mp3");
       text3 = this ;
 
       this.add("tween");
@@ -368,12 +369,12 @@
         opacity: 1
       });
 
-      Q.play("kick.mp3");
+      Q.audio.play("kick.mp3");
       this.add("tween");
       this.animate({ scale: 1 },0.2, Q.Easing.Quadratic.InOut , {
         callback: function(){
           // window.setTimeout(function(){
-          //   Q.play("player_ha.mp3");
+          //   Q.audio.play("player_ha.mp3");
           // } , 300)
 
           this.animate({opacity: 0} , 0.4 , Q.Linear , {

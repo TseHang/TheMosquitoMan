@@ -1,5 +1,6 @@
 window.addEventListener('load',function(){
-	var Q = Quintus().include('Sprites , Scenes , Input , Anim , 2D , Audio , Touch , UI')
+	var Q = Quintus()
+			.include('Sprites , Scenes , Input , Anim , 2D , Audio , Touch , UI')
 			.include('EnemySprites , PlayerSprites , KathaSprites , WarScenes , LandingUI , LevelUI , WarLevels')
 			.enableSound()
 			.setup({
@@ -9,8 +10,8 @@ window.addEventListener('load',function(){
 				upsampleWidth: 318,  // Double the pixel density of the 
   			upsampleHeight: 330 , 
 				downsampleWidth: 901,
-				downsampleHeight: 935,
-				scaleToFit: true
+				downsampleHeight: 935
+				// scaleToFit: true
 			})
 			.touch();
 
