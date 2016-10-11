@@ -183,7 +183,7 @@ CONTROL SCENE:
 			y: 110,
 			weight: "normal",
 			align: "left",
-			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
+			family:"Arial,微軟正黑體,sans-serif",
 			size: 16
 		}))
 
@@ -194,7 +194,7 @@ CONTROL SCENE:
 			y: 210,
 			weight: "normal",
 			align: "left",
-			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
+			family:"Arial,微軟正黑體,sans-serif",
 			size: 16
 		}))
 
@@ -205,7 +205,7 @@ CONTROL SCENE:
 			y: 310,
 			weight: "normal",
 			align: "left",
-			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
+			family:"Arial,微軟正黑體,sans-serif",
 			size: 16
 		}))
 
@@ -216,7 +216,7 @@ CONTROL SCENE:
 			y: 395 ,
 			weight: "normal",
 			align: "left",
-			family:"Arial,儷黑 Pro,微軟正黑體,sans-serif",
+			family:"Arial,微軟正黑體,sans-serif",
 			size: 16
 		}))
 
