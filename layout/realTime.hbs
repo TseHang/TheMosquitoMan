@@ -3,11 +3,7 @@
 
 <head>
   {{> head }}
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-  <link type="text/css" rel="stylesheet" href="./dist/css/realtime.css">
-
-  <!-- shake CSS -->
-  <title> 即時疫情 || The Mosquito Man </title>
+  <link type="text/css" rel="stylesheet" href="./dist/css/realTime.css">
 </head>
 
 <body style="overflow-x:hidden;">
@@ -16,16 +12,41 @@
   <div class="title-bar">
 	  <h1>即時疫情</h1>
 	</div>
+  
+  <div class ="block">
+    <div class = "news">
+      <div class = "half-circle circle-left"></div>
+      <div class = "half-circle circle-right"></div>
+      <h2>最近一週病例數：<span class = "dengue_num">3</span>&nbsp;例</h2>
+      <p>據統計，最近環境滋生源舉報點多發生於<span class = "dengue_place">室內</span>，<br>請您多注意家中環境。</p>
+      <a class = "recommend_ref" href="/killer">▶︎<i> 降蚊十八招：伏虎降蚊 - 「掌握家中環境」 </i>◀</a>
 
-  <div class="main">
-    <div id="map"> </div>
-    <div class="trans-panel"></div>
-    <div id="info" class="info"><span class="seven-days">最近一週內病例數：<span class="number"></span> 例</span> / 資料來源：政府開放資料平台
-      <div class="arrow"></div>
+<!--       <div class = "circle-bottom">
+        <div class = "circle-center">
+          <div class="circle-c"></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div> -->
     </div>
-    <div id="bar" class="bar"></div>
-    <div class="related">相關網站：<a href="http://web.ncku.edu.tw/files/11-1000-17008.php?Lang=zh-tw">成功大學登革熱防疫專區</a> | <a href="http://nidss.cdc.gov.tw/ch/Default.aspx?op=4">傳染病統計資料查詢系統</a> | <a href="http://www.cdc.gov.tw/list.aspx?treeid=d315941f29223d38&amp;nowtreeid=d315941f29223d38">疫病管制署登革熱專區</a>
-    ｜<a href="https://www.taiwanstat.com/realtime/dengue-vis-with-hospital/">台南登革熱及快篩診所地圖</a>
+    <div class = "b-box">
+      <div class = "box">
+        <div class = "box-img" id="map-1">
+          <img src = "{{path}}dist/src/img/realTime/map1.png">
+        </div>
+        <div class = "box-title" id = "box-1">
+          <h2 class = "title">即時疫情現況</h2>
+        </div>
+      </div>
+
+      <div class = "box" id="map-2">
+        <div class = "box-img">
+          <img src = "{{path}}dist/src/img/realTime/map2.png">
+        </div>
+        <div class="box-title" id = "box-2">
+          <h2 class = "title">可能疫情環境回報點分析</h2>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -35,9 +56,6 @@
 <script src="./dist/src/jquery-2.2.4.min.js"></script>
 <!-- nav.js -->
 <script src="./dist/js/nav.js"></script>
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-<script src="./dist/js/bar.js"></script>
-<script src="./dist/js/realtime.js"></script>
+<!-- realTime -->
+<script src ="./dist/js/realTime.js"></script>
 </html>

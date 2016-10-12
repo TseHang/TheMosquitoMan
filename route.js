@@ -56,6 +56,15 @@ var route = [
       partials: './partials.js',
       layout:  "./layout/about.hbs",
       filename: './about.html'
-    }
+    },
+    {
+      data: {
+        title: '即時病例統計',
+        path: '../'
+      },
+      partials: './partials.js',
+      layout:  "./layout/realTime_patient.hbs",
+      filename: "./realMap/realTime_patient.html"
+    },
   ];
 module.exports = route;
