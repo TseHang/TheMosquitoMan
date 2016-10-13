@@ -100,7 +100,8 @@ body {
 }
 
 .box{
-	@include setSize(440px , 45%);
+	// 注意一個 box 寫死為 height:325px;
+	@include setSize(440px , 325px);
   margin: 10px;
   // border: solid 8px $yellow-color;
 
@@ -110,13 +111,16 @@ body {
 
   >.box-img{
   	@include border-radius(25px);
-  	width:95%;
-  	height:75%;
+  	@include setSize(95%,250px);
   	margin:15px auto;
   	overflow:hidden;
 
   	> img{
   		width:100%;
+  	}
+
+  	> img.box-img-no-full{
+  		height:100%;
   	}
   }
 	
@@ -125,13 +129,17 @@ body {
 		// @include border-corner-radius(top, left, 80%);
   	// @include border-corner-radius(top, right, 80%);
 		top:0%;
-		height:0%;
-		transition: all 0.2s ease-in ;
+		height:35px;
+
+		margin: 0px auto 10px auto ; //firefox
+		@include transition-property(all); //firefox
+  	@include transition-duration(0.2s); //firefox
+  	@include transition-timing-function(ease-in); //firefox
 	}
 
   .title{
   	@extend .blue;
-  	font-size:$font-size + 3px;
+  	font-size:$font-size + 5px;
   	letter-spacing:5px;
   }
 }
@@ -141,8 +149,8 @@ body {
 	transform: scale(1.02) translateX(-3px) translateY(-3px);
 
 	>.box-title{
-		height:100%;
-		top:calc(-75% - 30px);
+		@include addHeight(280px , 45px);
+		top:-280px;
 
 		display:flex;
 		background-color: rgba(41, 44, 119, 0.7);
@@ -157,7 +165,7 @@ body {
 
 @media screen and (max-width:1130px) {
 	.box{
-		@include setSize(80%,50%);
+		width:80%;
 	}
 }
 

@@ -7,10 +7,10 @@ body {
 }
 
 .title-bar {
-  @include setSize(190px, 50px);
+  @include setSize(300px, 50px);
   background-color: $yellow-color;
   margin-top: 7%;
-  padding-left: $mainTitleLeft;
+  padding-left: 5%;
   >h1 {
     letter-spacing: 5px;
     font-size: $title-font;
