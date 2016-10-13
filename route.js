@@ -75,5 +75,14 @@ var route = [
       layout:  "./layout/realTime_heat.hbs",
       filename: "./realMap/realTime_heat.html"
     },
+    {
+      data: {
+        title: '掌蚊人環境回報比賽',
+        path: '../'
+      },
+      partials: './partials.js',
+      layout:  "./layout/competition.hbs",
+      filename: "./interact/competition.html"
+    }
   ];
 module.exports = route;

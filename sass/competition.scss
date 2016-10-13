@@ -1,0 +1,124 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+  background-color: $green-color;
+}
+
+.title-bar {
+  @include setSize(450px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft - 2%;
+
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+.content {
+  font-family: 'ヒラギノ明朝 Pro';
+  padding: 20px $mainTitleLeft+2%;
+  p {
+  	margin:10px 0px 20px 0px;
+  	font-size: $font-size + 2px ;
+    color: #666;
+    line-height: 1.5;
+  }
+}
+
+.footerline {
+  height: 150px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  background-image: url(../src/img/about-us/aboutus-04.png);
+}
+
+.headline {
+  // margin-top: 40px;
+  // padding: 40px 95px;
+  h2 {
+    float: right;
+    color: $blue-color;
+  }
+  .about-h2 {
+    font-size: $font-dlarge-size + 3px;
+  }
+  .team-h2 {
+    font-size: 28px;
+  }
+}
+
+.h-content {
+  width: 480px;
+  float: right;
+  img {
+    position: absolute;
+    right: 0;
+    // margin-top: 50px;
+  }
+}
+
+
+.competition-img{
+	padding:5% $mainTitleLeft;
+	text-align:center;
+
+	> img{
+		width:100%;
+	}
+}
+
+.section3-top{
+	width: 70%;
+  margin: 32px 0 3% 10%;
+	border-bottom:4px solid $yellow-color ;
+	@extend %position_relative;
+}
+
+.man-run-container-animation{
+	bottom:0px;
+	left:50%;
+	position:absolute;
+
+	@include animation(run 8s linear infinite);
+}
+@include keyframes(run){
+	from{
+		opacity:1;
+		left:45%;
+	}
+	40%{
+		opacity:1;
+	}
+	80%{
+		opacity:0;
+		left:100%;
+	}
+	100%{
+		opacity:0;
+	}
+}
+
+.man-run{
+	background: url('../src/img/5-run-all.png') no-repeat right;
+	width:214px;
+	height:91px;
+
+	@include animation(man-run 0.5s steps(9) infinite);
+}
+@include keyframes(man-run){
+	from{
+		background-position-x: 0px;
+	}
+	to{
+		background-position-x: -1926px;
+	}
+}

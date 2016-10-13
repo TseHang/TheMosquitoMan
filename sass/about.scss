@@ -32,7 +32,7 @@ body {
     font-size: $title-font;
     color: $blue-color;
     padding-top: 20px;
-}
+  }
 }
 
 .headline {
@@ -41,13 +41,13 @@ body {
   h2 {
     float: right;
     color: #9b9c9c;
-}
-.about-h2 {
-  font-size: 24px;
-}
-.team-h2 {
-  font-size: 28px;
-}
+  }
+  .about-h2 {
+    font-size: 24px;
+  }
+  .team-h2 {
+    font-size: 28px;
+  }
 }
 
 strong {
@@ -60,7 +60,7 @@ strong {
   p {
     color: #666;
     line-height: 1.5;
-}
+  }
 }
 
 h3 {
@@ -89,7 +89,7 @@ h4 {
     position: absolute;
     right: 0;
     margin-top: 35px;
-}
+  }
 }
 
 .left-sidebar {
