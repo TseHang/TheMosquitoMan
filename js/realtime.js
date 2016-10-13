@@ -5,5 +5,5 @@
 
 	$('#box-2').click(function(){
 		window.location.href="./realMap/realTime_heat.html";
-	})
+	});
 })(window)
