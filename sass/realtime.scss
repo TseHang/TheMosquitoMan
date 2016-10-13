@@ -28,14 +28,9 @@ body {
 }
 
 .news{
-	@include setSize(55% , 40%);
 	@extend %position_relative;
-  margin: 3% auto 5px auto;
-  background-color:white ;
-  border-top: solid 2px $blue-color;
-  border-bottom: solid 25px $blue-color;
-
-  box-sizing:border-box;
+	width:100% ;
+  margin: 0% auto 6% auto;
 
   > .half-circle{
   	@include setSize(50%,100%);
@@ -49,6 +44,7 @@ body {
   }
 
   > h2{
+  	color: $blue-color;
 		font-size: $font-ddlarge-size;
 		margin : 10% auto 15px auto;
 		overflow:hidden;
@@ -77,20 +73,119 @@ body {
   }
 
   .dengue_place{
-  	@extend .font-normal-to-big;
+  	@extend .font-big-to-dbig;
   }
+}
+
+.recommend_ref:hover{
+	border-bottom:solid 1px;
 }
 
 @keyframes typing{
   from{width:0;}
-  70%{width:80%;opacity:1;}
-  100%{width:80%;opacity:1;}
+  70%{width:400px;opacity:1;}
+  100%{width:400px;opacity:1;}
 }
 @keyframes caret{
 	1%,99%{border-color:black;}
   50%,100%{border-color:transparent;}
 }
 
+
+.b-box{
+	display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box{
+	@include setSize(440px , 45%);
+  margin: 10px;
+  // border: solid 8px $yellow-color;
+
+  box-sizing: border-box;
+  background-color:white ;
+  transition:all 0.3s ease-in;
+
+  >.box-img{
+  	@include border-radius(25px);
+  	width:95%;
+  	height:75%;
+  	margin:15px auto;
+  	overflow:hidden;
+
+  	> img{
+  		width:100%;
+  	}
+  }
+	
+	>.box-title{
+		@extend %position_relative;
+		// @include border-corner-radius(top, left, 80%);
+  	// @include border-corner-radius(top, right, 80%);
+		top:0%;
+		height:0%;
+		transition: all 0.2s ease-in ;
+	}
+
+  .title{
+  	@extend .blue;
+  	font-size:$font-size + 3px;
+  	letter-spacing:5px;
+  }
+}
+
+.box:hover{
+	cursor:pointer;
+	transform: scale(1.02) translateX(-3px) translateY(-3px);
+
+	>.box-title{
+		height:100%;
+		top:calc(-75% - 30px);
+
+		display:flex;
+		background-color: rgba(41, 44, 119, 0.7);
+	}
+
+	.title{
+		font-size:$font-ddlarge-size - 3px;
+		color:white;
+		margin:auto;
+	}
+}
+
+@media screen and (max-width:1130px) {
+	.box{
+		@include setSize(80%,50%);
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.box{
+		width:100%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.news{
+		>h2{
+			font-size: $font-dlarge-size + 2px;
+		}
+
+		.dengue_num{
+	  	font-size: $font-ddlarge-size + 2px;
+	  }
+	}
+
+	@keyframes typing{
+	  from{width:0;}
+	  70%{width:100%;opacity:1;}
+	  100%{width:100%;opacity:1;}
+	}
+
+}
+
+/*
 .circle-bottom{
 	@include setSize(90px , 90px);
 	@include border-radius(100%);
@@ -146,67 +241,4 @@ body {
 	right:0px;
 	transform: translateX(50%);
 }
-
-.b-box{
-	display: inline-flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.box{
-	@include setSize(440px , 40%);
-  margin: 10px 5px;
-  // border: solid 8px $yellow-color;
-
-  box-sizing: border-box;
-  background-color:white ;
-  box-shadow:2px 2px 2px 2px rgba(51, 51, 51, 0.2);
-  transition:all 0.3s ease-in;
-
-  >.box-img{
-  	@include border-radius(25px);
-  	width:95%;
-  	height:75%;
-  	margin:15px auto;
-  	overflow:hidden;
-
-  	> img{
-  		width:100%;
-  	}
-  }
-	
-	>.box-title{
-		@extend %position_relative;
-		@include border-corner-radius(top, left, 80%);
-  	@include border-corner-radius(top, right, 80%);
-		top:0%;
-		height:20%;
-		transition: all 0.3s ease-in ;
-	}
-
-  .title{
-  	@extend .blue;
-  	font-size:$font-size + 3px;
-  	letter-spacing:5px;
-  }
-}
-
-.box:hover{
-	cursor:pointer;
-	transform: scale(1.02) translateX(-3px) translateY(-3px);
-	box-shadow:2px 2px 5px 5px rgba(51, 51, 51, 0.7);
-
-	>.box-title{
-		@include addHeight(60% ,15px);
-		top:-50%;
-		display:flex;
-		background-color: rgba(41, 44, 119, 0.8);
-	}
-
-	.title{
-		font-size:$font-ddlarge-size - 3px;
-		color:white;
-		margin:auto;
-	}
-}
-
+*/

@@ -1,0 +1,239 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+
+body{
+  background-color: $green-color;
+}
+
+.title-bar {
+  @include setSize(470px, 50px);
+
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: 3%;
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+.info {
+    padding: 8px 10px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.legend {
+    text-align: center;
+    line-height: 20px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 54px;
+    float: left;
+    margin-right: 10px;
+    opacity: 0.7;
+}
+
+
+.legend-header{
+    vertical-align: middle;
+    height: 15px;
+    line-height: 15px;
+}
+
+.ui.button{
+    padding: 8px 10px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    width: 145px;
+    height: 32px;
+    font-size: 15px;
+    text-align: center;
+    font-family: Microsoft JhengHei;
+    margin: 0 10px 10px 0;
+}
+
+.title{
+    margin:5% auto 1% ;
+    opacity: 0.9;
+}
+
+.popup,#status{
+    text-align: center;
+    line-height: 20px;
+    opacity: 0.8;
+    font-family:monospace;
+    font-size: 14px;
+}
+
+#inputs{
+    display: flex;
+    flex:2;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+body{
+    z-index: -100;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h1,.no_content{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#mainTitle{
+    padding:1% 0% 1.8% 0%;
+    text-align: center;
+}
+
+#mapid{
+    width: 60%;
+    height: 650px;
+    margin-bottom: 2%;
+    margin-top: 40px;
+    z-index: 0;
+    float: left;
+}
+
+
+.description{
+    margin: 0 auto;
+    padding:20px 5px ;
+    text-align: center;
+    // height: 650px;
+    width: 30%;
+    margin: 40px 0 20px 0;
+    font-family: Microsoft JhengHei;
+    background-color:white;
+    float: left;
+    border-radius:25px;
+
+    color: #333;
+}
+
+.svgPlot,.DayTitle,.compare,.bottom,.note{
+    margin: 0 auto;
+    text-align: center;
+    font-family: Microsoft JhengHei;
+}
+
+.bottom{
+    margin-top: 14%;
+    margin-bottom:30px;
+}
+
+.compare{
+    font-size: 22px;
+}
+
+svg{
+    margin: 35px 0 20px 0;
+}
+
+.pie{
+    stroke: #fff;
+}
+
+.btn{
+    width: 150px;
+    opacity: 0.6;
+}
+.note{
+    margin:10% 0px;
+}
+.note p{
+    font-size: 8px;
+    font-weight: 300;
+    opacity:0.6;
+}
+
+*, :after, :before {
+    box-sizing: initial;
+}
+
+.input_field > .ui.selection.dropdown{
+    min-height: 0;
+}
+
+.ui.button{
+    width: 125px;
+    height: 18px;
+}
+
+.main{
+    margin: 20px auto;
+    z-index: -200;
+    position: relative;
+}
+
+.mapM,#mapid{
+    z-index: 10;
+    position: relative;
+}
+
+.mapM,.description{
+    margin-left:5%;
+    margin-right:5%;
+}
+
+#header{
+    // margin-top:10px;
+    font-size: 30px;
+    color:$blue-color;
+}
+
+#first{
+    @extend .font-normal-to-big;
+}
+
+#second{
+    font-size: $font-size;
+}
+
+@media only screen and (max-width: 1000px) {
+    // .main{
+    //     display:flex;
+    // }
+    #inputs{
+        display: block;
+    }
+    .title{
+        margin-top:10%;
+    }
+    .input_field{
+        text-align: center;
+        margin: 5% 0% 0% 0%;
+    }
+    #mapid {
+        opacity:0;
+        height: 40px;
+        margin:0;
+        z-index: 0;
+    }
+
+    .description{
+        width:80%;
+        margin: 0 10% 10% 10%;
+    }
+
+}

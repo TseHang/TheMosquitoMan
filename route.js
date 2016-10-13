@@ -66,5 +66,14 @@ var route = [
       layout:  "./layout/realTime_patient.hbs",
       filename: "./realMap/realTime_patient.html"
     },
+    {
+      data: {
+        title: '病媒蚊環境回報點分布',
+        path: '../'
+      },
+      partials: './partials.js',
+      layout:  "./layout/realTime_heat.hbs",
+      filename: "./realMap/realTime_heat.html"
+    },
   ];
 module.exports = route;

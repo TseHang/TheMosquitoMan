@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lan="en">
+
+<head>
+  {{> head }}
+  <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="../dist/src/L.Control.Locate.min.css" />
+  <link type="text/css" rel="stylesheet" href="../dist/css/realTime_heat.css">
+</head>
+
+<body style="overflow-x:hidden;">
+  {{> header }}
+
+  <div class="title-bar">
+	  <h1>病媒蚊環境回報點分布</h1>
+	</div>
+
+  <div class="title">
+    <div class="ui container" id="inputs">
+      <div class="input_field">
+        <span>調查區間：</span>
+        <div class="ui search selection dropdown" id="district_area">
+          <input type="hidden" name="country">
+          <i class="dropdown icon"></i>
+          <div class="default text">請選擇區間</div>
+          <div class="menu">
+            <div class="item" data-value="3">最近三天</div>
+            <div class="item" data-value="5">最近五天</div>
+            <div class="item" data-value="7">最近七天</div>
+            <div class="item" data-value="all">至今</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="mapM"></div>
+    
+    <div class="description">
+      <div class="svgPlot"></div>
+      <div class="compare" style="margin-top:30px;">
+        <p id="first">目前室內回報數 > 室外回報數</p>
+        <p id="second">請多注意室內周遭積水髒亂處</p>
+      </div>
+      <div class="bottom">
+        <p>請選擇調查區間來得知區間內所發生的回報事件分布</p>
+        <p>ex: 調查區間:三天, 出現三天內所有的環境回報點。</p>
+      </div>
+      <div class="note">
+        <p>※因個資問題，所有資料已經過糊化處理，非精確位置，資料僅呈現</p>
+        <p>各地區回報點密度趨勢。呈現資料自2016年10月16日，每小時更新。</p>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+
+  {{> footer}}
+</body>
+<!-- jquery -->
+<script src="../dist/src/jquery-2.2.4.min.js"></script>
+<!-- <script src = 'http://code.jquery.com/jquery-2.1.4.min.js'></script> -->
+<!-- nav.js -->
+<script src="../dist/js/nav.js"></script>
+
+<!-- the chart  need JS FILE-->
+<script type="text/javascript" src="../dist/src/d3.v3.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+<script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+<script src="../dist/src/L.Control.Locate.js"></script>
+<script type="text/javascript" src="../dist/js/realTime_heat.js"></script>
+</html>
