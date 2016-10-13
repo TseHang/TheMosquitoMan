@@ -54,6 +54,9 @@ body {
   .team-h2 {
     font-size: 28px;
   }
+  img{
+    z-index: -1;
+  }
 }
 
 .h-content {
@@ -121,4 +124,31 @@ body {
 	to{
 		background-position-x: -1926px;
 	}
+}
+
+@media screen and (max-width: 750px) {
+
+  .section3-top{
+    display:none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  .title-bar {
+    >h1 {
+      letter-spacing: 2px;
+      font-size: $font-dlarge-size + 3px;
+    }
+  }
+
+  .headline{
+    img{
+      width:40%;
+    }
+  }
+
+  .competition-img{
+    padding:10% 8%;
+  }
 }
