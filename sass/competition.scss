@@ -54,9 +54,6 @@ body {
   .team-h2 {
     font-size: 28px;
   }
-  img{
-    z-index: -1;
-  }
 }
 
 .h-content {
@@ -65,6 +62,7 @@ body {
   img {
     position: absolute;
     right: 0;
+    z-index: -1;
     // margin-top: 50px;
   }
 }
@@ -124,6 +122,11 @@ body {
 	to{
 		background-position-x: -1926px;
 	}
+}
+
+#fans_message{
+  cursor:pointer;
+  border-bottom:solid 1px;
 }
 
 @media screen and (max-width: 750px) {
