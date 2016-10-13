@@ -68,7 +68,7 @@ var route = [
     },
     {
       data: {
-        title: '病媒蚊環境回報點分布',
+        title: '可能疫情環境回報點分析',
         path: '../'
       },
       partials: './partials.js',

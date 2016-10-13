@@ -1,13 +1,24 @@
-var data_url2 ='tmpdata-master/breeding_source_20160912.json';
-var data_url ='https://s3-ap-northeast-1.amazonaws.com/dengue-test/breeding-sources/heatmap_blurred.json';
+var data_url='https://dengue-breeding-source.s3.amazonaws.com:443/breeding-sources/heatmap_blurred.json'
 
 var dataThree=[],dataFive=[],dataSeven=[],dataAll=[];
+var InOutThree=[],InOutFive=[],InOutSeven=[],InOutAll=[];
 
 var datas = getdata(data_url);
-var data2=[{"value":20},{"value":30}];  // indoor outdoor
+var data2=[{"value":20},{"value":30}];  // out in
 var svg=null;
 
-/*
+var radius = 240 / 2;
+var pie = d3.layout.pie()
+            .sort(null)
+            .value(function(d) { return d.value; });
+var arc = d3.svg.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
+
+
+
+console.log(getdata(data_url));
+
 $.fn.scrollView = function () {
     console.log("ScollFn");
     return this.each(function () {
@@ -16,43 +27,62 @@ $.fn.scrollView = function () {
         }, "fast");
     });
 }
-*/
+
 
 var mon={"Jan":"1", "Feb":"2", "Mar":"3", "Apr":"4", "May":"5", "Jun":"6",
   "Jul":"7", "Aug":"8", "Sep":"9", "Oct":"10", "Nov":"11", "Dec":"12"};
 
 
-        //var month=datas.generated_time.substr(datas.generated_time.indexOf(" "),datas.generated_time.indexOf(" ")+2);
-        var day=datas.generated_time.split(" ");
-        var index=day.indexOf("");
-        if(index != -1)
-        {
-            day.splice(index,1);
-        }
-        var date=[day[2],day[4],mon[day[1]]];
-
-
+    var in3=0,out3=0,in7=0,out7=0,out5=0,in5=0,inA=0,outA=0;
 
         datas.data.forEach(function(d){
-            //var date=d.update_time.substr(0,10).split("-");
+            var month=d.update_time.substr(d.update_time.indexOf(" "),d.update_time.indexOf(" ")+2);
+            var day=d.update_time.split(" ");
+            var index=day.indexOf("");
+            if(index != -1)
+            {
+                day.splice(index,1);
+            }
+            var date=[day[2],day[4],mon[day[1]]];
+
             if(judgeDate(date,"all")==="1")
             {
                 var tmp=[d.lat,d.lng,1];
+                if(d.type==="戶外"){
+                    outA=outA+1;
+                }else{
+                    inA=inA+1;
+                }
                 dataAll.push(tmp);
 
                 if(judgeDate(date,"7")==="1")
                 {
                     var tmp=[d.lat,d.lng,1];
+                    if(d.type==="戶外"){
+                        out7=out7+1;
+                    }else{
+                        in7=in7+1;
+                    }
                     dataSeven.push(tmp);
 
                     if(judgeDate(date,"5")==="1")
                     {
                         var tmp=[d.lat,d.lng,1];
+                        if(d.type==="戶外"){
+                            out5=out5+1;
+                        }else{
+                            in5=in5+1;
+                        }
                         dataFive.push(tmp);
 
                         if(judgeDate(date,"3")==="1")
                         {
                             var tmp=[d.lat,d.lng,1];
+                            if(d.type==="戶外"){
+                                out3=out3+1;
+                            }else{
+                                in3=in3+1;
+                            }
                             dataThree.push(tmp);
                         }
                     }
@@ -60,6 +90,10 @@ var mon={"Jan":"1", "Feb":"2", "Mar":"3", "Apr":"4", "May":"5", "Jun":"6",
             }
         })
 
+         InOutThree=[{"value":out3},{"value":in3}];
+         InOutFive=[{"value":out5},{"value":in5}];
+         InOutSeven=[{"value":out7},{"value":in7}];
+         InOutAll=[{"value":outA},{"value":inA}];
 
 
 var v=0;
@@ -77,6 +111,8 @@ $('.ui.dropdown').dropdown();
 
                   }
                   else{
+                    $(".description").css("float", "left");
+                    $(".description").css("margin", "40px 5% 20px 5%");
                     v=v+1;
                     nowValue=value;
                     heatMap(value);
@@ -113,6 +149,8 @@ $('.ui.dropdown').dropdown();
             $(document).on("click", ".ui.button.quit", function () {
                 $('.ui.dropdown')
                     .dropdown('restore defaults');
+                 $(".description").css("float", "none");
+                 $(".description").css("margin", "auto");
                 removeMap();
             });
 
@@ -141,15 +179,19 @@ function heatMap(value){
         {
             case "3":
                 var breedPoints=dataThree;
+                var InOut=InOutThree;
                 break;
             case "5":
                 var breedPoints=dataFive;
+                var InOut=InOutFive;
                 break;
             case "7":
                  var breedPoints=dataSeven;
+                 var InOut=InOutFive;
                 break;
             case "all":
-                 var breedPoints=dataAll.slice();
+                 var breedPoints=dataAll;
+                 var InOut=InOutAll;
                 break;
         }
         var center=[0,0],max=30;
@@ -223,7 +265,7 @@ function heatMap(value){
             }).addTo(heats);
 
             mymap.addLayer(heats);
-            //$('#mapid').scrollView();
+            $('#mapid').scrollView();
 
             if(svg===null)
             {
@@ -240,16 +282,7 @@ function heatMap(value){
                 var z = d3.scale.category20b()
                       .range(["#74c476","#c6dbef"]);
 
-                var radius = 240 / 2;
-                var arc = d3.svg.arc()
-                    .outerRadius(radius - 10)
-                    .innerRadius(0);
-                var arc2 = d3.svg.arc() //the bigger one when click the pie chart
-                    .outerRadius(132)
-                    .innerRadius(0);
-                var pie = d3.layout.pie()
-                    .sort(null)
-                    .value(function(d) { return d.value; });
+
 
 
                 var path = svg.datum(data2).selectAll(".pie")
@@ -300,14 +333,20 @@ function heatMap(value){
                       });
 
             }else{  //update pie plot
-                //if(v!=0){piePlot(inOut)};
+                if(v!=0){
+                    piePlot(InOut)
+                };
             }
 
 
             if(data2[0].value<data2[1].value){
                 document.getElementById("first").innerHTML = "目前室內回報數 > 室外回報數";
                 document.getElementById("second").innerHTML = "請多注意室內周遭積水髒亂處";
-            }else{
+            }else if(data2[0].value==data2[1].value){
+                document.getElementById("first").innerHTML = "目前室外回報數 = 室內回報數";
+                document.getElementById("second").innerHTML = "請多注意室內、外周遭積水髒亂處";
+            }
+            else{
                 document.getElementById("first").innerHTML = "目前室外回報數 > 室內回報數";
                 document.getElementById("second").innerHTML = "請多注意室外周遭積水髒亂處";
             }
@@ -423,7 +462,7 @@ function judgeDate(date,slice){
 
 function piePlot(data)
 {
-    console.log("update");
+  console.log("update");
   var path = svg.datum(data).selectAll(".pie");
 
   pie.value(function(d) { return d.value; }); // change the value function
