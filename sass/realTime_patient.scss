@@ -147,6 +147,10 @@ text {
   z-index: 999999;
 }
 
+.navbar {
+  z-index: 9999;
+}
+
 @include keyframes(bounce) {
   0%, 20%, 50%, 80%, 100% {
   @include transform(translateY(0));
