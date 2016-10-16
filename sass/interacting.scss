@@ -6,8 +6,23 @@ body {
   background-color:$green-color;
 }
 
-.display-none{
-  display:none !important ;
+@mixin gradient($a , $a_pa , $b , $b_pa , $c , $c_pa){
+  background: radial-gradient($a $a_pa, $b $b_pa , $c $c_pa);
+  -moz-background: radial-gradient($a $a_pa, $b $b_pa , $c $c_pa);
+  -o-background: radial-gradient($a $a_pa, $b $b_pa , $c $c_pa);
+  -webkit-background: radial-gradient($a $a_pa, $b $b_pa , $c $c_pa);
+}
+
+%position_absolute{
+  position:absolute ;
+}
+
+%border_circle{
+  @include border-radius(100%);
+}
+
+.active{
+  display:block !important;
 }
 
 .section{
@@ -26,67 +41,214 @@ body {
     font-size: $title-font;
     color: $blue-color;
     padding-top: 20px;
-}
+  }
 }
 
-.notBuildBox {
-  height: 60%;
+.bg_cloud {
+  @include setSize(100%, 60%);
+  @extend %position_absolute;
+  top:23%;
+  z-index:-1 ;
   background: url(../src/img/interact/interact-26.png);
   background-size: 90%;
-  background-position: center center;
+  background-position: 700px center;
+  background-repeat: no-repeat;
+
+  animation:cloude_move 300s linear  infinite;
+  -webkit-animation: cloude_move 300s linear infinite;
+  -moz-animation: cloude_move 300s linear infinite;
+}
+
+@keyframes cloude_move{
+  to{ background-position-x: -1200px ;}
+}
+
+.obj{
+  @extend %all_center;
+  @extend %position_relative;
+  margin-top:45px ;
+}
+.full{
+  @include setSize(100%,100%);
+  @extend %position_absolute;
+  @extend %verticle_center ;
+  z-index:-1;
+  top: 0px;
+  left: 0px;
+  justify-content: space-between;
+}
+
+.main{
+  @include border-radius(25px);
+  @include setSize(50%,360px);
+  background-color:$yellow-color;
+  padding:20px;
+  margin:15px 6%;
+}
+
+.shadow{
+  @include setSize(90%,30px);
+  @include border-radius(100%);
+  @include gradient(rgba(0, 0, 0, 0.4) ,0%, rgba(0, 0, 0, 0.2), 50% ,rgba(0, 0, 0, 0.01), 75%);
+  margin: 30px auto 0px auto;
+}
+
+.side-bar{
+  @include setSize(125px,170px);
+  @include transition-property(all); //firefox
+  @include transition-duration(0.3s); //firefox
+  @include transition-timing-function(ease-in); //firefox
+  @extend %position_relative ;
+  >.triangle{
+    fill-opacity:1;
+    cursor:pointer;
+    fill:$yellow-color;
+  }
+
+  >.top-r-rect{
+    fill:$blue-color;
+    transform: rotateZ(37deg);
+  }
+
+  >.top-l-rect{
+    fill:$blue-color;
+    transform: rotateZ(-37deg); 
+  }
+}
+
+
+.board{
+  @extend %position_relative;
+  @include setSize(90%,83%);
+  display:none;
+
+  background: #fff;
+  margin: 10px auto;
+  box-sizing: border-box;
+  border: 6px solid rgba(255, 255, 255, 0.83);
+
+  background-position: center center ;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
-.section {
-  h2 {
-    font-size: 24px;
-    line-height: 1.4em;
-}
+.intro-text{
+  @extend %position_absolute;
+  @include setSize(100%,0%);
+  @include transition-property(all); //firefox
+  @include transition-duration(0.3s); //firefox
+  @include transition-timing-function(ease-in); //firefox
+
+  background-color: rgba(45, 48, 121, 0.9);
+  text-align:center ;
+  color: white ;
+  top:0% ;
+  z-index:2 ;
+  opacity:0 ;
+
+  > h2{
+    margin:50px 20px ;
+    letter-spacing:2px ;
+    font-size:$font-ddlarge-size + 2px ;
+  }
+  >p{
+    letter-spacing:1px ;
+    line-height:1.5;
+    margin: 20px;
+    font-size: 18px;
+  }
 }
 
-.sub-h {
-  margin-left: 130px;
+.circle{
+  @extend %border_circle ;
+  @extend %all_center ;
+
+  @include setSize(80px,80px);
+  @include transition-property(font-size); //firefox
+  @include transition-duration(0.15s); //firefox
+  @include transition-timing-function(ease-in); //firefox
+  background-color: $blue-color ;
+  cursor:pointer ;
+  margin:7px 30px ;
+  color: white;
+  background-color: #292c77;
+  font-size: 75px;
 }
 
-.man {
-  position: absolute;
-  bottom: 65px;
-  right: 32%;
-  height: 90px;
+.stretch{
+  opacity:1 ;
+  height:100%;
 }
 
-.q {
-  position: absolute;
-  bottom: 170px;
-  background: #fdf5db;
-  padding: 20px 20px;
-  right: 10%;
-  border-radius: 10px;
-  line-height: 1.3;
-}
+.box{
+  @include setSize(0%,160px);
+  @include transition-property(all); //firefox
+  @include transition-duration(0.2s); //firefox
+  @include transition-timing-function(ease-in); //firefox
 
-.btn {
-  background-color: #a2a2a2; //#F44336;
+  // @extend %position_absolute ;
+  background-color: rgba(41, 44, 119, 0.7);
+  cursor:pointer;
   color: #fff;
-  width: 66px;
-  padding: 7px;
-  border-radius: 5px;
-  float: right;
-  margin-top: 2px;
+  opacity:0;
+  text-align:center;
+
+  > h2{
+    margin: 20px;
+    font-size: $font-dlarge-size;
+  }
+
+  >p{
+    letter-spacing:2px;
+    padding:10px;
+  }
 }
 
-.arrow {
-  position:absolute;
-  color: #fdf5db;
-  width: 0;
-  height: 0;
-  line-height: 0;
-  border-width: 30px 15px 0px;
-  border-style: solid dashed dashed;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  bottom: -17px;
-  left: -8px;
-  transform: rotate(31deg);
-  -webkit-transform: rotate(31deg);
+#box-right{
+  right:0px;
+}
+#box-left{
+  left:0px;
+}
+
+#interact_1{
+  background-image: url(../src/img/interact/competition.jpg);
+}
+#interact_2{
+  background-image: url(../src/img/interact/theMosquitoMan.png);
+}
+
+.box-open{
+  width:26% ;
+  opacity:1 ;
+}
+
+.box-bottom{
+  @extend %all_center ;
+  width:100%;
+}
+
+.sm-select{
+  display:none ;
+  width:40px;
+  cursor:pointer ;
+}
+
+@media screen and (max-width: 940px){
+  .full, .side-bar {
+    display:none ;
+  }
+  .main{
+    width:80% ;
+    padding:20px 0px;
+  }
+  .sm-select{
+    display:block ;
+  }
+}
+
+@media screen and (max-height: 600px){
+  .section{
+    height:130%;
+  }
 }

@@ -3,7 +3,6 @@
 
 <head>
   {{> head }}
-  <link type="text/css" rel="stylesheet" href="./dist/css/notBuild.css">
   <link type="text/css" rel="stylesheet" href="./dist/css/interacting.css">
 </head>
 
@@ -16,24 +15,67 @@
 		<div class="title-bar">
 		  <h1>練武功</h1>
 		</div>
-	
-    <div class="notBuildBox">
-      <h2>掌蚊人親授秘訣，<br/>
-        <span class="sub-h">你，準備好了嗎？</span></h2>
+    <div class="bg_cloud"></div>
+    
+    <div class = "obj">
 
-      <div class="q"><p>跟我來！<br/>讓我帶你們一起來闖關吧！</p>
-        <div class="btn">即將開放</div>
-        <div class="arrow "></div>
+      <div class = "full">
+        <div id = "box-left" class = "box select-left">
+          <h2>掌蚊人遊戲</h2>
+          <p>有一人自創「降蚊十八招」...</p>
+        </div>
+        <div id = "box-right" class = "box select-right">
+          <h2>掌蚊人遊戲</h2>
+          <p>有一人自創「降蚊十八招」...</p>
+        </div>
       </div>
-        <img class="man" src="./dist/src/img/interact/interact-30.png" alt="掌紋人圖示">
 
+      <svg id = "slide-bar-l" class="side-bar">
+        <polygon id = "t-l" class = "triangle" points="125,10 125,160 25,85" />
+        <rect class = "top-l-rect" x="-30" y="78" width="135" height="5"/>
+      </svg>
+
+      <div class = "main">
+        <!-- 比賽 -->
+        <div class = "board active" id = "interact_1">
+          <div class = "intro-text">
+            <h2>掌蚊人環境回報比賽</h2>
+            <p>雨後找積水，Iphone 任你選。</br>讓我們一起來守護環境吧。</p>
+          </div>
+        </div>
+
+        <!-- 比賽 -->
+        <div class = "board" id = "interact_2">
+          <div class = "intro-text">
+            <h2>【掌蚊人】遊戲</h2>
+            <p>天地不仁，以萬物為芻狗</br>吾號掌蚊人，自創降蚊十八招。</br>誓死滅蚊！</p>
+          </div>
+        </div>
+
+        <div class = "box-bottom">
+          <img class = "sm-select select-left" src="../dist/src/img/interact/left.svg" alt="選取上一個">
+          <div class ="circle">
+           ● 
+          </div>
+          <img id = "sm-right" class = "sm-select select-right" src="../dist/src/img/interact/right.svg" alt="選取下一個">
+        </div>
+
+        <div class = "shadow"></div>
+
+      </div>
+      <svg id = "slide-bar-r" class="side-bar">
+        <polygon id = "t-r" class = "triangle" points="0,10 100,85 0,160" />
+        <rect class = "top-r-rect" x="-4" y="3" width="135" height="5"/>
+      </svg>
     </div>
 
   </div>
+
+  {{> footer}}
 </body>
 <!-- jquery -->
 <script src="./dist/src/jquery-2.2.4.min.js"></script>
 <!-- nav.js -->
 <script src="./dist/js/nav.js"></script>
-<!-- noBuild.js -->
+<script src="./dist/js/interacting.js"></script>
 </html>
