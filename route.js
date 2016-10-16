@@ -77,6 +77,15 @@ var route = [
     },
     {
       data: {
+        title: '「掌蚊人」遊戲',
+        path: '../'
+      },
+      partials: './partials.js',
+      layout:  "./layout/game.hbs",
+      filename: "./interact/game.html"
+    },
+    {
+      data: {
         title: '掌蚊人環境回報比賽',
         path: '../'
       },
