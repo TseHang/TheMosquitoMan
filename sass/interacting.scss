@@ -99,6 +99,8 @@ body {
   @include transition-duration(0.3s); //firefox
   @include transition-timing-function(ease-in); //firefox
   @extend %position_relative ;
+  left:0px;
+
   >.triangle{
     fill-opacity:1;
     cursor:pointer;
@@ -232,6 +234,13 @@ body {
   display:none ;
   width:40px;
   cursor:pointer ;
+}
+
+#enter_text{
+  @extend %position_absolute;
+  display:none ;
+  margin-left:140px;
+  color: $blue-color;
 }
 
 @media screen and (max-width: 940px){

@@ -107,3 +107,10 @@ $('#box-left').mouseout(function(){
 
 	$('#box-left').removeClass("box-open");
 })
+
+$('.board').mouseover(function(){
+	$('#enter_text').css("display","block");
+})
+$('.board').mouseout(function(){
+	$('#enter_text').css("display","none");
+})
