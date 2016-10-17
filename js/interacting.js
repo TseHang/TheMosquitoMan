@@ -1,12 +1,12 @@
 var interactContent = [
 	{
-		"id":"1" ,
+		"audio":"bgm_competition" ,
 		"link": "./interact/competition",
 		"title":"掌蚊人環境比賽活動",
 		"content":"雨後清積水，Iphone 任你選！"
 	},
 	{
-		"id":"2" ,
+		"audio":"bgm_game" ,
 		"link": "./interact/game",
 		"title":"掌蚊人遊戲",
 		"content":"戰友們！請幫助我一起滅蚊吧！！"
@@ -17,15 +17,20 @@ var interactLength = interactContent.length ;
 
 $('.select-right').click(function(){
 	$('#interact_'+interactId).toggleClass('active');
+	stopAudio(interactContent[interactId-1].audio);
 
 	interactId = (interactId+1 > interactLength)? 1 : interactId+1 ;
+	playAudio(interactContent[interactId-1].audio);
 	changeContent() ;
+	// console.log("11");
 })
 
 $('.select-left').click(function(){
 	$('#interact_'+interactId).toggleClass('active');
+	stopAudio(interactContent[interactId-1].audio);
 	
 	interactId = (interactId-1 <= 0)? interactLength : interactId-1 ;
+	playAudio(interactContent[interactId-1].audio);
 	changeContent() ;
 })
 
@@ -72,6 +77,12 @@ $(".circle").mouseout(function(){
 });
 
 $('.circle').click(function(){
+	// 執行 mouseover 的動作
+	$(".circle").css("fontSize","75px");
+  $(".circle").text("●");
+
+  $(".intro-text").removeClass("stretch");
+
 	window.location.href= interactContent[interactId-1].link;
 })
 
@@ -108,9 +119,40 @@ $('#box-left').mouseout(function(){
 	$('#box-left').removeClass("box-open");
 })
 
+// enter_text show/off
 $('.board').mouseover(function(){
 	$('#enter_text').css("display","block");
 })
 $('.board').mouseout(function(){
 	$('#enter_text').css("display","none");
 })
+
+// Control Sound
+$('#sound').click(function(){
+	$('#sound').toggleClass("sound_off");
+	$("#"+interactContent[interactId-1].audio).prop("muted",!$("#"+interactContent[interactId-1].audio).prop("muted"));
+})
+function volumeDown(id){
+  var volume = $("#" + id).prop("volume")-0.0001;
+  if(volume <=0){
+    volume = 0;
+    return true ;
+  }
+  $("#"+id).prop("volume",volume);
+  return false ;
+}
+
+function stopAudio(id){
+	while(volumeDown(id) === false){
+		volumeDown(id) ;
+	}
+	console.log("slow mute");
+
+  $("#"+id).trigger('pause');
+  $("#"+id).prop("currentTime",0);
+}
+
+function playAudio(id){
+	$("#"+id).prop("volume",1);
+	$('#'+id).trigger('play');
+}

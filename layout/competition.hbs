@@ -117,9 +117,13 @@
       </p>
     </div>
 
-    <div class="footerline f1">
-    </div>
+    <div id = "sound" class = ""></div>
+    <div class="footerline f1"></div>
   </div>
+
+  <audio id="bgm_competition" autoplay loop>
+    <source src="../dist/audio/competition.mp3" type="audio/mp3">
+  </audio>
 
   {{> footer}}
 </body>
@@ -127,6 +131,13 @@
 <script src="../dist/src/jquery-2.2.4.min.js"></script>
 <!-- nav.js -->
 <script src="../dist/js/nav.js"></script>
+<!-- Cintrol audio -->
+<script type="text/javascript">
+  $('#sound').click(function(){
+    $('#sound').toggleClass("sound_off");
+    $("#bgm_competition").prop("muted",!$("#bgm_competition").prop("muted"));
+  })
+</script>
 
 <script>
   $('#fans_message').click(function(){

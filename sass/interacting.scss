@@ -173,7 +173,6 @@ body {
   cursor:pointer ;
   margin:7px 30px ;
   color: white;
-  background-color: #292c77;
   font-size: 75px;
 }
 
@@ -227,6 +226,7 @@ body {
 
 .box-bottom{
   @extend %all_center ;
+  @extend %position_relative ;
   width:100%;
 }
 
@@ -236,10 +236,25 @@ body {
   cursor:pointer ;
 }
 
+#sound{
+  @extend %position_absolute ;
+  @include setSize(60px , 45px);
+  right:30px ;
+  cursor:pointer;
+
+  background-position: center center ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image:url(../src/img/interact/soundOn.svg);
+}
+.sound_off{
+  background-image:url(../src/img/interact/soundOff.svg) !important;
+}
+
 #enter_text{
   @extend %position_absolute;
   display:none ;
-  left:55% ;
+  left:59% ;
   color: $blue-color;
 }
 

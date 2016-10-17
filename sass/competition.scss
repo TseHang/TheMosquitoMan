@@ -129,6 +129,20 @@ body {
   border-bottom:solid 1px;
 }
 
+#sound{
+  @include setSize(60px , 45px);
+  cursor:pointer;
+  margin-left:$mainTitleLeft ;
+
+  background-position: center center ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image:url(../src/img/interact/soundOn.svg);
+}
+.sound_off{
+  background-image:url(../src/img/interact/soundOff.svg) !important;
+}
+
 @media screen and (max-width: 750px) {
 
   .section3-top{

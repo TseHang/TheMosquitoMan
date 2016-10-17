@@ -57,7 +57,8 @@
           <div class ="circle">
            ● 
           </div>
-          <p id ="enter_text">點遊戲按鈕進入喔！</p>
+          <p id ="enter_text">點擊按鈕進入喔！</p>
+          <div id = "sound" class = ""></div>
           <img id = "sm-right" class = "sm-select select-right" src="../dist/src/img/interact/right.svg" alt="選取下一個">
         </div>
 
@@ -69,8 +70,14 @@
         <rect class = "top-r-rect" x="-4" y="3" width="135" height="5"/>
       </svg>
     </div>
-
   </div>
+
+  <audio id="bgm_competition" autoplay loop>
+    <source src="../dist/audio/competition.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_game" preload loop>
+    <source src="../dist/audio/game.mp3" type="audio/mp3">
+  </audio>
 
   {{> footer}}
 </body>

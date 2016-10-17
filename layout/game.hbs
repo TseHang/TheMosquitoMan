@@ -28,12 +28,23 @@
         <img class="man" src="../dist/src/img/interact/interact-30.png" alt="掌紋人圖示">
 
     </div>
+    <div id = "sound" class = ""></div>
 
   </div>
+
+  <audio id="bgm_game" autoplay loop>
+    <source src="../dist/audio/game.mp3" type="audio/mp3">
+  </audio>
 </body>
 <!-- jquery -->
 <script src="../dist/src/jquery-2.2.4.min.js"></script>
 <!-- nav.js -->
 <script src="../dist/js/nav.js"></script>
-<!-- noBuild.js -->
+<!-- Audio -->
+<script type="text/javascript">
+  $('#sound').click(function(){
+    $('#sound').toggleClass("sound_off");
+    $("#bgm_game").prop("muted",!$("#bgm_game").prop("muted"));
+  })
+</script>
 </html>

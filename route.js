@@ -68,7 +68,7 @@ var route = [
     },
     {
       data: {
-        title: '可能疫情環境回報點分析',
+        title: '群眾集力式蚊媒風險回報點分析',
         path: '../'
       },
       partials: './partials.js',
