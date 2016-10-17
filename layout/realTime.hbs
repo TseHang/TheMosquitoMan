@@ -17,9 +17,11 @@
     <div class = "news">
       <!-- <div class = "half-circle circle-left"></div>
       <div class = "half-circle circle-right"></div> -->
-      <h2>最近一週病例數：<span class = "dengue_num">3</span>&nbsp;例</h2>
+      <h2>最近一週病例數：<span class = "dengue_num"></span>&nbsp;例</h2>
       <p>據統計，最近環境滋生源舉報點多發生於<span class = "dengue_place"><i>室內</i></span>，請您多注意家中環境。</p>
-      <a class = "recommend_ref" href="/killer">▶︎<i> 降蚊十八招：伏虎降蚊 - 「掌握家中環境」 </i>◀</a>
+      <a class = "recommend_ref" href="/realTime/realTime_patient">✔︎︎<i>統計資料範圍為全台，且包含境外移入，點此看「即時疫情現況」</i></a>
+      </br>
+      <a class = "recommend_ref" href="/killer">✔︎︎<i> 降蚊十八招：伏虎降蚊 - 「掌握家中環境」 </i></a>
 
 <!--       <div class = "circle-bottom">
         <div class = "circle-center">
@@ -53,10 +55,11 @@
 
   {{> footer}}
 </body>
-<!-- jquery -->
+<!-- jquery nav-->
 <script src="./dist/src/jquery-2.2.4.min.js"></script>
-<!-- nav.js -->
 <script src="./dist/js/nav.js"></script>
+<!-- d3.js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
 <!-- realTime -->
 <script src ="./dist/js/realtime.js"></script>
 </html>

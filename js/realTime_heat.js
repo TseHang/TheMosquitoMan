@@ -197,76 +197,7 @@ function heatMap(value){
         var center=[0,0],max=30;
 
         if(breedPoints.length > 0){ //none empty
-            if(mymap == null){
-                //$('.description').remove();
-                $('.no_content').remove();
-                $('.mapM').append('<div id="mapid"></div>');
-                //$('.mainT').prepend('<div id="mapid"></div>');
-
-                mymap = L.map('mapid').setView([22.9971,120.2126], 15);
-
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
-                maxZoom: 18,
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-                id: 'mapbox.streets'
-                }).addTo(mymap);
-
-                btn.addTo(mymap);
-                legend.addTo(mymap);
-
-            //locate
-                var lc = L.control.locate({
-                    strings: {
-                        title: "Show me where I am, yo!"
-                    }
-                }).addTo(mymap);
-                $('.description').prepend('<h2 class="DayTitle" id="header"></h2>');
-                document.getElementById("header").innerHTML = trans[nowValue]+"環境回報分布圖";
-                $('.compare').append('<p id="first"></p>\
-                                      <p id="second"></p>');
-
-            }
-
-            mymap.removeLayer(heats);
-            heats = new L.LayerGroup();
-
-            // heat map
-            breedPoints = arrayUnique(breedPoints);
-
-            var xArr=[],yArr=[];
-
-            breedPoints.forEach(function(d){
-                d[2] = d[2]/max;
-
-                xArr.push(d[0]);
-                yArr.push(d[1]);
-            })
-
-            if(filterOutliers(xArr).length!=0)
-            {
-                xArr=filterOutliers(xArr);
-                yArr=filterOutliers(yArr);
-            }
-
-            center=[sum(xArr)/xArr.length,sum(yArr)/yArr.length];
-            mymap.setView(center,16);
-
-            var heat = L.heatLayer(breedPoints,{
-                radius: 25,
-                blur: 17,
-                minOpacity:0.4,
-                gradient: {
-                    0.4: 'SlateBlue',
-                    0.6: 'Gold',
-                    1: 'red',
-                }
-            }).addTo(heats);
-
-            mymap.addLayer(heats);
-            $('#mapid').scrollView();
-
+// 
             if(svg===null)
             {
                 var margin = {top: 10, right: 10, bottom: 10, left: 10},
@@ -350,6 +281,77 @@ function heatMap(value){
                 document.getElementById("first").innerHTML = "目前室外回報數 > 室內回報數";
                 document.getElementById("second").innerHTML = "請多注意室外周遭積水髒亂處";
             }
+
+            
+            if(mymap == null){
+                //$('.description').remove();
+                $('.no_content').remove();
+                $('.mapM').append('<div id="mapid"></div>');
+                //$('.mainT').prepend('<div id="mapid"></div>');
+
+                mymap = L.map('mapid').setView([22.9971,120.2126], 15);
+
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                id: 'mapbox.streets'
+                }).addTo(mymap);
+
+                btn.addTo(mymap);
+                legend.addTo(mymap);
+
+            //locate
+                var lc = L.control.locate({
+                    strings: {
+                        title: "Show me where I am, yo!"
+                    }
+                }).addTo(mymap);
+                $('.description').prepend('<h2 class="DayTitle" id="header"></h2>');
+                document.getElementById("header").innerHTML = trans[nowValue]+"環境回報分布圖";
+                $('.compare').append('<p id="first"></p>\
+                                      <p id="second"></p>');
+
+            }
+
+            mymap.removeLayer(heats);
+            heats = new L.LayerGroup();
+
+            // heat map
+            breedPoints = arrayUnique(breedPoints);
+
+            var xArr=[],yArr=[];
+
+            breedPoints.forEach(function(d){
+                d[2] = d[2]/max;
+
+                xArr.push(d[0]);
+                yArr.push(d[1]);
+            })
+
+            if(filterOutliers(xArr).length!=0)
+            {
+                xArr=filterOutliers(xArr);
+                yArr=filterOutliers(yArr);
+            }
+
+            center=[sum(xArr)/xArr.length,sum(yArr)/yArr.length];
+            mymap.setView(center,16);
+
+            var heat = L.heatLayer(breedPoints,{
+                radius: 25,
+                blur: 17,
+                minOpacity:0.4,
+                gradient: {
+                    0.4: 'SlateBlue',
+                    0.6: 'Gold',
+                    1: 'red',
+                }
+            }).addTo(heats);
+
+            mymap.addLayer(heats);
+            $('#mapid').scrollView();
 
         }else{
             console.log("none of any event");

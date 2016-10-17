@@ -202,6 +202,11 @@ svg{
     color:$blue-color;
 }
 
+.input_field{
+    color: #333 ;
+    font-weight:bold ;
+}
+
 #first{
     @extend .font-normal-to-big;
 }
@@ -225,6 +230,7 @@ svg{
         margin: 5% 0% 0% 0%;
     }
     #mapid {
+        display:none;
         opacity:0;
         height: 40px;
         margin:0;
@@ -239,6 +245,14 @@ svg{
 }
 
 @media screen and (max-width:500px){
+    .input_field{
+        text-align: center;
+        margin: 17% 0% 0% 0%;
+        > span{
+            line-height:3 ;
+        }
+    }
+
     .title-bar {
         width:100%;
         padding-left: 1%;
