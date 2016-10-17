@@ -86,7 +86,7 @@ var route = [
     },
     {
       data: {
-        title: '掌蚊人環境回報比賽',
+        title: '群眾集力環境回報比賽',
         path: '../'
       },
       partials: './partials.js',
