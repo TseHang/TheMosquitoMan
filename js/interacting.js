@@ -2,7 +2,7 @@ var interactContent = [
 	{
 		"audio":"bgm_competition" ,
 		"link": "./interact/competition",
-		"title":"掌蚊人環境比賽活動",
+		"title":"群眾集力環境回報比賽",
 		"content":"雨後清積水，Iphone 任你選！"
 	},
 	{
@@ -157,6 +157,8 @@ function playAudio(id){
 	$("#"+id).prop("volume",1);
 	$('#'+id).trigger('play');
 
-	if($('#sound').has('soundOff'))
+	if($('#sound').hasClass('sound_off'))
 		$('#'+id).prop("muted",true);
+	else
+		$('#'+id).prop("muted",false);
 }
