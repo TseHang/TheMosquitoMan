@@ -132,6 +132,7 @@ $('#sound').click(function(){
 	$('#sound').toggleClass("sound_off");
 	$("#"+interactContent[interactId-1].audio).prop("muted",!$("#"+interactContent[interactId-1].audio).prop("muted"));
 })
+
 function volumeDown(id){
   var volume = $("#" + id).prop("volume")-0.0001;
   if(volume <=0){
@@ -155,4 +156,7 @@ function stopAudio(id){
 function playAudio(id){
 	$("#"+id).prop("volume",1);
 	$('#'+id).trigger('play');
+
+	if($('#sound').has('soundOff'))
+		$('#'+id).prop("muted",true);
 }
