@@ -20,18 +20,25 @@
     <div class = "obj">
 
       <div class = "full">
-        <div id = "box-left" class = "box select-left">
-          <h2>掌蚊人遊戲</h2>
-          <p>有一人自創「降蚊十八招」...</p>
+        <div id = "box-left" class = "box">
+          <h2>上一個：<span id = "right_text">掌蚊人遊戲</span></h2>
         </div>
-        <div id = "box-right" class = "box select-right">
-          <h2>掌蚊人遊戲</h2>
-          <p>有一人自創「降蚊十八招」...</p>
+        <div id = "box-right" class = "box">
+          <h2>下一個：<span id = "left_text">掌蚊人遊戲</span></h2>
         </div>
       </div>
 
       <svg id = "slide-bar-l" class="side-bar">
-        <polygon id = "t-l" class = "triangle" points="125,10 125,160 25,85" />
+      <!-- Blur  firefox doesn't work-->
+<!--         <defs>
+          <filter id="f_l" x="0" y="0" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceAlpha" dx="-8" dy="5" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="6" />
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+          </filter>
+        </defs> -->
+
+        <polygon id = "t-l" class = "triangle select-left" points="125,10 125,160 25,85" />
         <rect class = "top-l-rect" x="-30" y="78" width="135" height="5"/>
       </svg>
 
@@ -68,7 +75,16 @@
 
       </div>
       <svg id = "slide-bar-r" class="side-bar">
-        <polygon id = "t-r" class = "triangle" points="0,10 100,85 0,160" />
+      <!-- Blur  firefox doesn't work-->
+<!--         <defs>
+          <filter id="f_r" x="0" y="0" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceAlpha" dx="8" dy="5" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="6" />
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+          </filter>
+        </defs> -->
+
+        <polygon id = "t-r" class = "triangle select-right" points="0,10 100,85 0,160" />
         <rect class = "top-r-rect" x="-4" y="3" width="135" height="5"/>
       </svg>
     </div>

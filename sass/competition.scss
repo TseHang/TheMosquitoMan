@@ -135,7 +135,7 @@ body {
 #sound{
   @include setSize(60px , 45px);
   cursor:pointer;
-  margin-left:$mainTitleLeft ;
+  margin: 0px 0px 20px $mainTitleLeft;
 
   background-position: center center ;
   background-size: cover;

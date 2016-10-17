@@ -18,22 +18,34 @@
 	var interactLength = interactContent.length ;
 
 	$('.select-right').click(function(){
+		$('.select-right').addClass('click_anim');
+
 		$('#interact_'+interactId).toggleClass('active');
 		stopAudio(interactContent[interactId-1].audio);
 
 		interactId = (interactId+1 > interactLength)? 1 : interactId+1 ;
-		playAudio(interactContent[interactId-1].audio);
+		playAudio(interactContent[interactId-1].audio );
 		changeContent() ;
 		// console.log("11");
+
+		window.setTimeout(function(){
+			$('.select-right').removeClass('click_anim');			
+		},200);
 	})
 
 	$('.select-left').click(function(){
+		$('.select-left').addClass('click_anim');
+
 		$('#interact_'+interactId).toggleClass('active');
 		stopAudio(interactContent[interactId-1].audio);
 		
 		interactId = (interactId-1 <= 0)? interactLength : interactId-1 ;
-		playAudio(interactContent[interactId-1].audio);
+		playAudio(interactContent[interactId-1].audio );
 		changeContent() ;
+
+		window.setTimeout(function(){
+			$('.select-left').removeClass('click_anim');			
+		},200);
 	})
 
 
@@ -41,24 +53,15 @@
 		$('#interact_'+ interactId).toggleClass('active');
 
 		if(interactId === interactLength){
-			$('#box-right')[0].childNodes[0].innerHTML=interactContent[0].title ;
-			$('#box-right')[0].childNodes[1].innerHTML=interactContent[0].content ;
-
-			$('#box-left')[0].childNodes[0].innerHTML=interactContent[interactId-2].title ;
-			$('#box-left')[0].childNodes[1].innerHTML=interactContent[interactId-2].content ;
+			$('#right_text').text(interactContent[0].title) ;
+			$('#left_text').text(interactContent[interactId-2].title) ;
 
 		}else if(interactId === 1){
-			$('#box-right')[0].childNodes[0].innerHTML=interactContent[interactId].title ;
-			$('#box-right')[0].childNodes[1].innerHTML=interactContent[interactId].content ;
-
-			$('#box-left')[0].childNodes[0].innerHTML=interactContent[interactLength-1].title ;
-			$('#box-left')[0].childNodes[1].innerHTML=interactContent[interactLength-1].content ;
+			$('#right_text').text(interactContent[interactId].title) ;
+			$('#left_text').text(interactContent[interactLength-1].title) ;
 		}else{
-			$('#box-right')[0].childNodes[0].innerHTML=interactContent[interactId].title ;
-			$('#box-right')[0].childNodes[1].innerHTML=interactContent[interactId].content ;
-			
-			$('#box-left')[0].childNodes[0].innerHTML=interactContent[interactId-2].title ;
-			$('#box-left')[0].childNodes[1].innerHTML=interactContent[interactId-2].content ;
+			$('#right_text').text(interactContent[interactId].title) ;
+			$('#left_text').text(interactContent[interactId-2].title) ;
 		}
 	}
 
@@ -91,34 +94,37 @@
 	// 左右動畫
 	$('#t-r').mouseover(function(){
 		$('.full').css("zIndex",3);
-		$('.slide-bar').css("opacity","0.3");
-		$('#slide-bar-r').css("left","50px");
-
-		$('#box-right').addClass("box-open");
+		$('#slide-bar-r').css({
+			"transform":"scale(1.3)"
+		});
+		$('#box-right').toggleClass("box-right-hover");
 	})
 
-	$('#box-right').mouseout(function(){
+	$('#t-r').mouseout(function(){
 		$('.full').css("zIndex",-1);
-		$('.slide-bar').css("opacity","1");
-		$('#slide-bar-r').css("left","0px");
+		$('#slide-bar-r').css({
+			"transform":"scale(1)"
+		});
 
-		$('#box-right').removeClass("box-open");
+		$('#box-right').toggleClass("box-right-hover");
 	})
 
 	$('#t-l').mouseover(function(){
 		$('.full').css("zIndex",3);
-		$('.slide-bar').css("opacity","0.3");
-		$('#slide-bar-l').css("left","-50px");
+		$('#slide-bar-l').css({
+			"transform":"scale(1.3)"
+		});
 
-		$('#box-left').addClass("box-open");
+		$('#box-left').toggleClass("box-left-hover");
 	})
 
-	$('#box-left').mouseout(function(){
+	$('#t-l').mouseout(function(){
 		$('.full').css("zIndex",-1);
-		$('.slide-bar').css("opacity","1");
-		$('#slide-bar-l').css("left","0px");
+		$('#slide-bar-l').css({
+			"transform":"scale(1)"
+		});
 
-		$('#box-left').removeClass("box-open");
+		$('#box-left').toggleClass("box-left-hover");
 	})
 
 	// enter_text show/off
@@ -155,7 +161,7 @@
 	  $("#"+id).prop("currentTime",0);
 	}
 
-	function playAudio(id){
+	function playAudio(id , direct){
 		$("#"+id).prop("volume",1);
 		$('#'+id).trigger('play');
 

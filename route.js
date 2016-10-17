@@ -59,6 +59,15 @@ var route = [
     },
     {
       data: {
+        title: '網站內容來源檢索',
+        path: './'
+      },
+      partials: './partials.js',
+      layout:  "./layout/resource.hbs",
+      filename: "./resource.html"
+    },
+    {
+      data: {
         title: '即時病例統計',
         path: '../'
       },

@@ -28,6 +28,9 @@
       </div>
     </div>
     
+    <!-- Sound control -->
+    <div id = "sound" class = ""></div>
+    
     <!-- 競賽辦法 -->
     <div class="mainTitleBox" >
       <div class="leftBar"></div>
@@ -104,8 +107,6 @@
       如有疑問，請<span id = "fans_message">聯絡「掌蚊人」粉專</span>。</i>
       </p>
     </div>
-
-    <div id = "sound" class = ""></div>
     <div class="footerline f1"></div>
   </div>
 
@@ -125,9 +126,7 @@
     $('#sound').toggleClass("sound_off");
     $("#bgm_competition").prop("muted",!$("#bgm_competition").prop("muted"));
   })
-</script>
 
-<script>
   $('#fans_message').click(function(){
     window.open('https://www.facebook.com/messages/688143401336565', '_blank');
   })

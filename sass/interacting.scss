@@ -69,9 +69,9 @@ body {
   margin-top:45px ;
 }
 .full{
-  @include setSize(100%,100%);
   @extend %position_absolute;
   @extend %verticle_center ;
+  width:100% ;
   z-index:-1;
   top: 0px;
   left: 0px;
@@ -96,7 +96,7 @@ body {
 .side-bar{
   @include setSize(125px,170px);
   @include transition-property(all); //firefox
-  @include transition-duration(0.3s); //firefox
+  @include transition-duration(0.2s); //firefox
   @include transition-timing-function(ease-in); //firefox
   @extend %position_relative ;
   left:0px;
@@ -105,6 +105,11 @@ body {
     fill-opacity:1;
     cursor:pointer;
     fill:$yellow-color;
+
+    &:hover{
+      stroke: $blue-color;
+      stroke-width: 9px;
+    }
   }
 
   >.top-r-rect{
@@ -118,6 +123,16 @@ body {
   }
 }
 
+.click_anim{
+  @include animation(click 0.15s linear);   
+}
+
+@include keyframes(click) {
+  50%{
+    opacity:0.2 ;
+    transform: scale(0.8);
+  }
+}
 
 .board{
   @extend %position_relative;
@@ -182,12 +197,11 @@ body {
 }
 
 .box{
-  @include setSize(0%,160px);
   @include transition-property(all); //firefox
   @include transition-duration(0.2s); //firefox
   @include transition-timing-function(ease-in); //firefox
+  @extend %position_relative;
 
-  // @extend %position_absolute ;
   background-color: rgba(41, 44, 119, 0.7);
   cursor:pointer;
   color: #fff;
@@ -206,10 +220,21 @@ body {
 }
 
 #box-right{
-  right:0px;
+  right:-200px;
 }
+
+.box-right-hover{
+  right:0px !important;
+  opacity:1 ;
+}
+
 #box-left{
-  left:0px;
+  left:-200px;
+}
+
+.box-left-hover{
+  left:0px !important;
+  opacity:1 ;
 }
 
 #interact_1{
@@ -217,11 +242,6 @@ body {
 }
 #interact_2{
   background-image: url(../src/img/interact/theMosquitoMan.png);
-}
-
-.box-open{
-  width:26% ;
-  opacity:1 ;
 }
 
 .box-bottom{
@@ -239,6 +259,7 @@ body {
 #sound{
   @extend %position_absolute ;
   @include setSize(60px , 45px);
+  top:0px;
   right:30px ;
   cursor:pointer;
 
@@ -269,15 +290,24 @@ body {
   .sm-select{
     display:block ;
   }
+
+  #enter_text{
+    opacity:0;
+  }
+}
+
+@media screen and (max-width: 550px ){
+  .intro-text{
+    display:none;
+  }
+  #sound{
+    @include setSize(50px , 38px);
+    right:0px ;
+  }
 }
 
 @media screen and (max-height: 600px){
   .section{
     height:130%;
   }
-
-  .intro-text{
-    display:none;
-  }
-
 }
