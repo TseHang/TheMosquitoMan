@@ -8,7 +8,7 @@ body {
 }
 
 .title-bar {
-  @include setSize(450px, 50px);
+  @include setSize(550px, 50px);
   background-color: $yellow-color;
   margin-top: 7%;
   padding-left: $mainTitleLeft - 2%;
