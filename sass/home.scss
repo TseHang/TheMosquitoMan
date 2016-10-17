@@ -475,6 +475,11 @@ $logo-title-zindex:20;
 		left:20%;
 		cursor:pointer ;
 	}
+
+	> .cloud-button_3{
+		left:60%;
+		cursor:pointer ;
+	}
 }
 
 .cloud-button{
@@ -482,12 +487,13 @@ $logo-title-zindex:20;
 	width:40%;
 
 	> p{
+		position:absolute;
+
 		opacity:0;
 		color:#575555;
 		left:20%;
 		font-size:1.3em;
 		font-weight:bold;
-		position:absolute;
 
 		border-radius:20%;
 		background-color:rgba(255,235,59,0.2);
@@ -498,6 +504,15 @@ $logo-title-zindex:20;
 	> #button-p_2{
 		top:10px;
 		left:15%;
+	}
+
+	> #button-p_3{
+		top:10px;
+		left:28%;
+		opacity:0.7;
+
+		background-color: rgba(244, 67, 54, 0.15);
+    box-shadow: 0 0 7px 7px rgba(244,67,54, 0.1);
 	}
 }
 

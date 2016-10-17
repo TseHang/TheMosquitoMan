@@ -22,8 +22,6 @@ var s = skrollr.init({
   //render事件
 
   render: function(data) {
-    //Log the current scroll position.
-
 
     // 判斷雲出來的時機
     if (parseInt($('.background').css("left")) < 0){
