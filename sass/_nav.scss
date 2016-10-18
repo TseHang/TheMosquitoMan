@@ -38,7 +38,19 @@ $nav-font-size:16px;
     opacity: 0.7;
     transform: scale(0.9);
     font-weight: bold;
+
+    .high-light{
+    	@include animation(blink 1s linear infinite);
+    }
   }
+
+}
+
+@include keyframes(blink){
+	50%{
+		opacity:0.9 ;
+		text-shadow:rgba(244, 67, 54, 0.1) 0px 0px 8px;
+	}
 }
 
 .navbar_li_a{
@@ -56,6 +68,12 @@ $nav-font-size:16px;
 
 	> p{
 		font-size:0.9em;
+	}
+
+	.high-light{
+		margin-right:2px ;
+		color: rgba(244, 67, 54, 0.6) ;
+		text-shadow:$red-color 0px 0px 8px ;
 	}
 }
 
