@@ -279,6 +279,22 @@ body {
   color: $blue-color;
 }
 
+@media screen and (min-width: 1700px){
+  .main{
+    height:600px !important;
+  }
+  .box-bottom{
+    margin-top:45px ;
+  }
+}
+
+
+@media screen and (min-width: 1400px){
+  .main{
+    height:500px ;
+  }
+}
+
 @media screen and (max-width: 940px){
   .full, .side-bar {
     display:none ;
