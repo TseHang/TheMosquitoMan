@@ -1,6 +1,9 @@
 var path = require('path');
 var url = require('url');
 var fs = require('fs');
+/*
+  route 這個陣列裡面的東西，都是canner 來轉換！
+*/
 
 var route = [
     {
