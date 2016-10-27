@@ -56,3 +56,9 @@
 	border-image-repeat: $repeat; 
 }
 
+@mixin transition($property,$duration,$timing){
+	@include transition-property($property);
+  @include transition-duration($duration);
+  @include transition-timing-function($timing);
+}
+

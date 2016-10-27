@@ -104,6 +104,15 @@ var route = [
       partials: './partials.js',
       layout:  "./layout/competition.hbs",
       filename: "./interact/competition.html"
+    },
+    {
+      data: {
+        title: '抽獎機',
+        path: '../'
+      },
+      partials: './partials.js',
+      layout:  "./layout/slot_machine.hbs",
+      filename: "./interact/slot_machine.html"
     }
   ];
 module.exports = route;

@@ -6,6 +6,7 @@ module.exports= function (hbs) {
   hbs.registerPartial('head_content', getPartials('head_content'));
   hbs.registerPartial('header', getPartials('header'));
   hbs.registerPartial('footer', getPartials('footer'));
+  hbs.registerPartial('led', getPartials('led'));
 };
 
 function getPartials(filename) {

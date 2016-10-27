@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lan="en">
+
+<head>
+  {{> head }}
+  <link type="text/css" rel="stylesheet" href="{{path}}dist/css/slot_machine.css">
+</head>
+
+<body style="overflow-x:hidden;">
+  
+  {{>header}}
+
+  <div class = "draw_bot">
+    <div class ="slot_machine disabled">
+      <div class = "slot">
+        <div class = "slot_t slot_final" style = "color:#333;">0</div>
+      </div>
+      <div class = "slot">
+        <div class = "slot_t slot_final" style = "color:#333" >9</div>
+      </div>
+
+      <div class = "slot">
+        <div id = "slot1" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot2" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot3" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot4" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot5" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot6" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot7" class = "slot_t">0</div>
+      </div>
+      <div class = "slot">
+        <div id = "slot8" class = "slot_t">0</div>
+      </div>
+
+    </div>
+    <!-- Led -->
+    <div class = "section_led" >
+      {{> led}}
+    </div>
+  
+    <!-- Draw list -->
+    <div class = "list">
+      <h1><i>得獎名單</i></h1>
+      <div class = "list_box">
+      </div>
+    </div>
+
+    <div class = "btn btn_draw">開始</div>
+    <div class = "btn btn_reset">重來</div>
+
+    <div class = "ground"></div>
+    <div class="murica"></div>
+    <div class="ballotwrap">
+      <div class="ballot">
+        <p id ="name">澤</p>
+        <p id ="phone">0913138802</p>
+      </div>
+    </div>
+    <section class="container">
+      <div id="cube">
+        <figure class="front">
+          <div class="eye"></div>
+          <div class="eye"></div>
+          <div class="mouth"></div>
+        </figure>
+        <figure class="back"></figure>
+        <figure class="right"></figure>
+        <figure class="left"></figure>
+        <figure class="top"><h1>PHONE</h1></figure>
+        <figure class="top2"><h1>LUCKY</h1></figure>
+        <figure class="top3"></figure>
+        <figure class="top4"></figure>
+      </div>
+    </section>
+  </div>
+  {{>footer}}
+</body>
+
+<!-- jquery -->
+<script src="{{path}}dist/src/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+  // Get Data
+  var items = [];
+  $.getJSON( "../dist/src/drawList.json", function( data ) {
+    $.each( data, function(key ,value) {
+      items.push(value);
+    });
+  });
+</script>
+<script src="{{path}}dist/js/nav.js"></script>
+<script src="{{path}}dist/js/led.js"></script>
+<script src="{{path}}dist/js/slot.js"></script>
+<script src="{{path}}dist/js/slot_machine.js"></script>
+</html>
