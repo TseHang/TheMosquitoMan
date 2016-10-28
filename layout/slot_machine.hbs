@@ -60,6 +60,9 @@
     <div class = "btn btn_draw">開始</div>
     <div class = "btn btn_reset">重來</div>
 
+    <!-- Sound control -->
+    <div id = "sound" class = ""></div>
+
     <div class = "ground"></div>
     <div class="murica"></div>
     <div class="ballotwrap">
@@ -86,6 +89,41 @@
     </section>
   </div>
   {{>footer}}
+
+  <audio id="bgm_opening" class = "bgm_select" autoplay loop>
+    <source src="{{path}}dist/audio/slot_opening.mp3" type="audio/mp3">
+  </audio>
+
+  <audio id="bgm_draw" class = "bgm_select" preload="preload" loop>
+    <source src="{{path}}dist/audio/slot_draw2.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- bgm_drop -->
+  <audio id="bgm_drop1" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop2" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop3" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop4" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop5" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop6" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop7" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+  <audio id="bgm_drop8" class = "bgm_select" preload="preload">
+    <source src="{{path}}dist/audio/slot_drop.mp3" type="audio/mp3">
+  </audio>
+
 </body>
 
 <!-- jquery -->
@@ -98,9 +136,13 @@
       items.push(value);
     });
   });
+
+  $("#bgm_opening").prop("volume",0.4);
+
 </script>
 <script src="{{path}}dist/js/nav.js"></script>
 <script src="{{path}}dist/js/led.js"></script>
 <script src="{{path}}dist/js/slot.js"></script>
+<script src="{{path}}dist/js/slotAudio.js"></script>
 <script src="{{path}}dist/js/slot_machine.js"></script>
 </html>

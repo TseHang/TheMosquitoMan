@@ -33,6 +33,21 @@ body {
   display:none !important;
 }
 
+
+#sound{
+  @include setSize(60px , 45px);
+  cursor:pointer;
+  margin: 0px 0px 20px $mainTitleLeft;
+
+  background-position: center center ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image:url(../src/img/interact/soundOn.svg);
+}
+.sound_off{
+  background-image:url(../src/img/interact/soundOff.svg) !important;
+}
+
 .section_led{
   @extend %all_center ;
   height: 100px;
@@ -184,7 +199,7 @@ body {
     height:$ballot-height;
     overflow:hidden;
     left:50%;
-    top:17%;
+    top:13%;
     transform:translateX(-50%);
     z-index:2;
     .ballot{
@@ -428,12 +443,12 @@ body {
 
 @media screen and (min-height: 800px){
   .ballotwrap{
-    top:23% !important;
+    top:21% !important;
   }
 }
 
 @media screen and (min-height: 900px){
   .ballotwrap{
-    top:30% !important;
+    top:28% !important;
   }
 }

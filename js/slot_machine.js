@@ -58,14 +58,12 @@
 		answerObj.trueName = array[lucky].name;
 		answerObj.truePhone = array[lucky].phone;
 
-		console.log(answerObj);
-
 		// remove lucky num
 		array.splice(lucky,1);
 		return answerObj;
 	}
 
-	// add Listener
+	// add final Listener
 	(function(winodw){
 		slot.forEach(function(value ,index){
 			document.getElementById('slot'+(index+1)).addEventListener('isFinal',isFinal,false) ;
@@ -106,14 +104,20 @@
 
 	function isFinal(e) {
 		var jq_id = '#'+this.id;
-		// console.log(e);
-	  $(jq_id).removeClass('slot_move');
-	  $(jq_id).addClass('slot_final');
+		var id = this.id.split("slot")[1];
 
-	  draw_count++ ;
+		draw_count++ ;		
+	  $(jq_id).removeClass('slot_move').addClass('slot_final');
+
+	  // play bgm_drop
+	  playAudio('bgm_drop'+id , 0.6);
+
 		if(draw_count === slot.length){
 			allStop();
 			$('.list_box').append('<p> '+luckyer.name+' </p>')
+
+			stopAudio('bgm_draw');
+			playAudio('bgm_opening' , 0.4);
 		}
 	}
 
@@ -131,24 +135,26 @@
 
 	function start(){
 		slot.forEach(function(value){
+			$(value.el).removeClass('slot_final').addClass('slot_move');
 			value.start();
-			$(value.el).removeClass('slot_final');
-			$(value.el).addClass('slot_move');
 		})
 
 		$('.slot_machine').removeClass('disabled');
 		$('.section_led').addClass('disabled');
 
 		$('.draw_bot').removeClass('wink');
-		$('.slot_final').removeClass('draw_final_twinkle');
+		$('.slot_t').removeClass('draw_final_twinkle');
 
 		// btn clicked
 		$('.btn_draw').toggleClass('clicked');
+
+		stopAudio('bgm_opening');
+		playAudio('bgm_draw' , 0.3);
 	}
 
 	function allStop(){
 		// background twinkle
-		$('.slot_final').addClass('draw_final_twinkle');
+		$('.slot_t').addClass('draw_final_twinkle');
 		$('.draw_bot').addClass('wink');
 
 		$('.btn_draw').toggleClass('clicked');
@@ -160,15 +166,18 @@
 		$('.btn_draw').removeClass('clicked');
 
 		$('.draw_bot').removeClass('wink');
-		$('.slot_t').removeClass('draw_final_twinkle');
+		$('.slot_t').removeClass('draw_final_twinkle slot_move');
 
 		$('.slot_machine').addClass('disabled');
 		$('.section_led').removeClass('disabled');
 
 		slot.forEach(function(value ,index){
 			value.reset();
-			$(value.el).removeClass('slot_move slot_final');
+			$(value.el).removeClass('slot_final');
 		})
+
+		stopAudio('bgm_draw');
+		playAudio('bgm_opening' , 0.4); // If opening is playing , then continue
 	}
 
 })(window)
