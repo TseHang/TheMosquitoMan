@@ -113,6 +113,15 @@ var route = [
       partials: './partials.js',
       layout:  "./layout/slot_machine.hbs",
       filename: "./interact/slot_machine.html"
+    },
+    {
+      data: {
+        title: '掌蚊人',
+        path: './'
+      },
+      partials: './partials.js',
+      layout:  "./game/Mosquito_war/index.hbs",
+      filename: "./interact/game/Mosquito_war/index.html"
     }
   ];
 module.exports = route;
