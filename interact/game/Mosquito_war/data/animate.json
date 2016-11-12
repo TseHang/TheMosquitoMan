@@ -1,0 +1,6 @@
+{
+  "player_man_rotate": { "tilew": 500 , "tileh": 220 , "sx": 0 , "sy": 0 , "w": 2000 , "h": 220 },
+  "player_man_man": {"tilew":210 , "tileh":230 , "sx":0 , "sy":230 , "w":840 , "h":230},
+  "mosking_anim":{"tilew": 350 , "tileh":200 , "sx":850 , "sy":260 , "w":2450, "h":200},
+  "mosking_hurt":{"tilew":410 , "tileh":200 , "sx":0 , "sy":460 , "w":2870 , "h":200}
+}

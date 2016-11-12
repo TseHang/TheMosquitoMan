@@ -100,7 +100,7 @@
   Q.UI.Text.extend("IntroText" , {
     init: function(){
       this._super({
-        label : "               天地不仁，以萬物為芻狗。\n吾號掌蚊人，生逢亂世，慘遭「登革熱」\n危害，為了傷其根，斬其源，吾闖入終極之地\n將自己逼進死關，若不修煉至降蚊十八招大成\n，難以除害，誓死不出。\n戰友們！請幫助我一起修煉降蚊十八招吧！" ,
+        label : "               天地不仁，以萬物為芻狗。\n吾號掌蚊人，生逢亂世，慘遭「登革熱」\n危害，為了傷其根，斬其源，吾將自己\n逼進死關，為的就是完成降蚊十八招大成。\n\n        時間只有五分鐘，戰友們！衝吧！" ,
         align: "left" ,
         x: 80,
         y: 150,
@@ -119,7 +119,7 @@
   Q.Sprite.extend("IntroGo",{
     init: function(p) {
       this._super(p,{
-        x: Q.width/2 + 70,
+        x: Q.width/2 - 70,
         y: Q.height/2 + 55 ,
         asset: 'landing/intro_btn_go.png',
         opacity:0,
@@ -139,7 +139,7 @@
   Q.Sprite.extend("IntroHowplay",{
     init: function(p) {
       this._super(p,{
-        x: Q.width/2 - 70,
+        x: Q.width/2 + 70,
         y: Q.height/2 + 55 ,
         asset: 'landing/intro_btn_howplay.png',
         opacity:0,

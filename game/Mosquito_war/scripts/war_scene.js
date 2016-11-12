@@ -26,6 +26,13 @@ katha: stage-2
 countdown: stage-3
 mosEnter: stage-4
 
+-
+video_num: 0 --> openinig
+video_num: 1 --> fight
+video_num: 2 --> mosking_appear
+video_num: 3 --> winnerB
+video_num: 4 --> winnerA
+video_num: 5 --> winnerS
 ------------------
 CONTROL SCENE:
 (1)win: enemy_sprite.js --> trigger 'complete'( 人消失、針消失 )
@@ -47,7 +54,7 @@ CONTROL SCENE:
     	katha: 0 ,
     	player_state: 1 ,
     	power_up: 0 ,
-    	mosking_life: 10 ,
+    	mosking_life: 2 ,
     	isPlayerAttack: false ,
     	isStop: false,
     	iskatha1: false ,
@@ -55,9 +62,10 @@ CONTROL SCENE:
     	iskatha3: false ,
     	is_countdown_over: false,
     	is_video_over: false,
-    	video_num: 1,
+    	video_num: 0,
     	isMosenter: false ,
     	isMosenterScene: 0,
+    	winnerTime: 0,
     	whichBGM: bgm_opening
     });
 
@@ -125,7 +133,7 @@ CONTROL SCENE:
 			}) ;
 
 			// 消失按鍵
-			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
+			landing_play.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut);
 			landing_player.animate({ opacity: 0 }, 0.5 , Q.Easing.Quadratic.InOut) ;
 		});
 	})
@@ -133,9 +141,6 @@ CONTROL SCENE:
 	Q.scene("introStory" , function(stage){
 
 		playBGM(bgm_ready_start,0.4);
-
-		// 介紹故事
-		console.log("Scene: introStory");
 
 		var intro_bg = stage.insert(new Q.IntroBg()) ;
 		var intro_man = stage.insert(new Q.IntroMan()) ;
@@ -177,10 +182,10 @@ CONTROL SCENE:
 
 		stage.insert(new Q.GameDescription_bg());
 		stage.insert(new Q.UI.Text({
-			label: "白線斑蚊將以「血刺」攻擊\n玩家，須不斷閃躲或用攻擊\n抵消。",
+			label: "A鍵向左，D鍵向右",
 			color: "black",
-			x: 255 ,
-			y: 110,
+			x: 100 ,
+			y: 150,
 			weight: "normal",
 			align: "left",
 			family:"Arial,微軟正黑體,sans-serif",
@@ -188,10 +193,10 @@ CONTROL SCENE:
 		}))
 
 		stage.insert(new Q.UI.Text({
-			label: "神秘魔王現身，必須要小心\n以防血泡突破護體真氣。",
+			label: "點擊左鍵發射氣功砲，\n打擊邪惡的蚊子大軍。",
 			color: "black",
-			x: 255 ,
-			y: 210,
+			x: 100,
+			y: 190,
 			weight: "normal",
 			align: "left",
 			family:"Arial,微軟正黑體,sans-serif",
@@ -199,10 +204,10 @@ CONTROL SCENE:
 		}))
 
 		stage.insert(new Q.UI.Text({
-			label: "玩家操控主角，\nA鍵向左、D鍵向右。",
+			label: "邪惡的白線斑蚊將以\n「血刺」攻擊玩家。",
 			color: "black",
-			x: 255 ,
-			y: 310,
+			x: 100 ,
+			y: 345,
 			weight: "normal",
 			align: "left",
 			family:"Arial,微軟正黑體,sans-serif",
@@ -210,10 +215,10 @@ CONTROL SCENE:
 		}))
 
 		stage.insert(new Q.UI.Text({
-			label: "以滑鼠控制方向，點擊左鍵\n發出氣功，勇猛殺敵。",
+			label: "捲軸記載了掌蚊奧義，\n打開即可使用",
 			color: "black",
-			x: 255,
-			y: 395 ,
+			x: 100,
+			y: 410 ,
 			weight: "normal",
 			align: "left",
 			family:"Arial,微軟正黑體,sans-serif",
@@ -222,7 +227,7 @@ CONTROL SCENE:
 
 		var close_btn = stage.insert(new Q.Sprite({
 			x: Q.width - 120,
-      y: Q.height/2 + 180,
+      y: Q.height/2 + 190,
 			asset: 'katha/katha_close.png',
       type: Q.SPRITE_UI
 		}))
@@ -566,7 +571,7 @@ CONTROL SCENE:
     Q.stageScene("hud") ;
 
     setupLevel("level1", stage);
-    playVideo(GAME.VIDEO.fight , 1);// Play fight video
+    playVideo(GAME.VIDEO.fight , 1);
 
     // Set up a listener for when the stage is complete to load the next level
     stage.on("complete",function() {  
@@ -655,10 +660,25 @@ CONTROL SCENE:
 
 	// 遊戲贏家畫面
 	Q.scene("winner" , function(stage){
+		
+		var usedTime = getUsedTime();
 
 		stopBGM(bgm_mosking);
 		stopBGM(bgm_heartbeat_slow);
 		playBGM(bgm_winner);
+
+		reset();
+
+		if (usedTime <= 240){
+			playVideo(GAME.VIDEO.winnerS , 5);
+			console.log(usedTime);
+		}else if(usedTime <= 270){
+			playVideo(GAME.VIDEO.winnerA , 4);
+			console.log(usedTime);
+		}else{
+			playVideo(GAME.VIDEO.winnerB , 3);
+			console.log(usedTime);
+		}
 
 		stage.insert(new Q.Sprite({
 			asset:"level/winner_bg.png",
@@ -703,7 +723,5 @@ CONTROL SCENE:
 			Q.stageScene("title") ;
 			window.open('https://www.facebook.com/themosquitoman/', '_blank');
 		})
-
-		reset();
 	})
 }

@@ -318,7 +318,7 @@ Drop mosAttack:
 			this.play("default");
 
 			window.setTimeout(function(){ obj.walk("right") ;} , 10000);
-			console.log("mosking_life: " + this.p.life);
+			console.log("mosking_lifea: " + this.p.life);
 		},
 
 		walk: function(test){
@@ -342,12 +342,10 @@ Drop mosAttack:
 			if(this.p.life <= 0){
 				// Scene: winner
 				this.stage.trigger("complete");
-
 				Q.audio.play('mosking_die_roar.mp3');
 
 				Q('Player').trigger("destroy");
 				Q('MosAttack').trigger("disappear");
-				// Q('MosKingAttack').trigger("winLose");
 
 				resetAttackTimer();	
 			}
@@ -471,7 +469,7 @@ Drop mosAttack:
 			var k_obj = this ;
 
 			GAME.ENEMY.k_attackTimer.push( setInterval(function(){
-				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over")){
+				if(Q.state.get("is_video_over") && Q.state.get("is_countdown_over") && Q.state.get("mosking_life") >= 0){
 
 					var random = Math.round(Math.random() * GAME.ENEMY.RATE_moskingAttack); // 1/5
 
