@@ -114,6 +114,14 @@ window.addEventListener('load',function(){
 	GAME.ADD.quintus_container.appendChild(GAME.ADD.bar);
 
 	window.Q = Q ;
-	
-	console.log("gameJS Loading");
+
+
+	// document.getElementById('shareBtn').onclick = function() {
+	// 	console.log("22222")
+	//   FB.ui({
+	//     method: 'share',
+	//     display: 'popup',
+	//     href: 'https://developers.facebook.com/docs/',
+	//   }, function(response){});
+	// }
 } , true);
