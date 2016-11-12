@@ -115,13 +115,4 @@ window.addEventListener('load',function(){
 
 	window.Q = Q ;
 
-
-	// document.getElementById('shareBtn').onclick = function() {
-	// 	console.log("22222")
-	//   FB.ui({
-	//     method: 'share',
-	//     display: 'popup',
-	//     href: 'https://developers.facebook.com/docs/',
-	//   }, function(response){});
-	// }
 } , true);

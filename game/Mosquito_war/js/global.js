@@ -37,7 +37,8 @@ GAME.ADD = {
 	"quintus_container": null,
 	"bar": null ,
 	"result":null ,
-	"inner_bar": null
+	"inner_bar": null,
+	"state": document.getElementById('state')
 }
 
 // attackTimer: 針出現的 Timer
@@ -155,4 +156,8 @@ function stageContinue(){
 	Q.stage().paused = false ;
 	if(Q.state.get("is_countdown_over"))
 		startClock(getUsedTime());
+}
+
+function setState(state){
+	GAME.ADD.state.innerHTML = state;
 }
