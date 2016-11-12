@@ -33,6 +33,15 @@ function stopTimeBar(){
   clearInterval(GAME.TIMEBAR.timeBarFlag);
 }
 
+function resetTimeBar(){
+  clearInterval(GAME.TIMEBAR.timeBarFlag);
+
+  GAME.TIMEBAR.allSecs = 300 ; //reset timeBar timer
+  GAME.ADD.bar.style.display="none";
+  GAME.ADD.result.innerHTML= "05 : 00";
+  GAME.ADD.inner_bar.style.width = "100%";
+}
+
 function getUsedTime(){
   return GAME.TIMEBAR.allSecs - GAME.TIMEBAR.remainSecs;
 }

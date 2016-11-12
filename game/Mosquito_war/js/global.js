@@ -1,10 +1,23 @@
-var GAME = {};
+var GAME = {
+	VIDEO: {},
+	AUDIO: {},
+	TIMEBAR: {},
+	ADD: {},
+	ENEMY: {},
+	PLAYER: {}
+};
 
+/*
+	videoArray: cuz opening isn't put in videoArray, so GAME.VIDEO.fight is videoArray[0]
+*/
 GAME.VIDEO = {
 	"isOpening": true ,
 	"opening": document.getElementById("video_opening") , 
 	"fight": document.getElementById("video_fight") , 
 	"mosking_appear": document.getElementById("video_mosking_appear"),
+	"winnerB": document.getElementById("video_winnerB"),
+	"winnerA": document.getElementById("video_winnerA"),
+	"winnerS": document.getElementById("video_winnerS"),
 	"skip_btn":document.getElementById("skip_btn") ,
 	"videoArray": []
 };
@@ -24,7 +37,6 @@ GAME.ADD = {
 	"quintus_container": null,
 	"bar": null ,
 	"result":null ,
-	"result": null ,
 	"inner_bar": null
 }
 
@@ -42,7 +54,7 @@ GAME.ENEMY = {
 }
 
 GAME.PLAYER = {
-	"mos_addCount": 2 ,
+	"mos_addCount": 0 ,
 	"moveSpeed": 3,
 	"life":[]
 }
@@ -66,7 +78,7 @@ function resetAttackTimer(){
 function reset() {
 
 	resetAttackTimer();
-	stopTimeBar();
+	resetTimeBar();
 
   // 消除level 下面那條
 	Q.clearStage(1) ;
@@ -85,12 +97,6 @@ function reset() {
 	GAME.PLAYER.mos_addCount = 2; 
 	GAME.PLAYER.moveSpeed = 3 ;
 	GAME.PLAYER.life.length = 0 ;
-
-	GAME.TIMEBAR.allSecs = 300 ; //reset timeBar timer
-
-	GAME.ADD.bar.style.display="none";
-	GAME.ADD.result.innerHTML= "05 : 00";
-	GAME.ADD.inner_bar.style.width = "100%";
 }
 
 

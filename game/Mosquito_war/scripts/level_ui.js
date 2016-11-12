@@ -19,7 +19,7 @@
     },
 
     touch : function(touch){
-      if(Q.state.get("is_countdown_over") && !Q.state.get("isLevelStop") && Q.state.get("mosking_life")>=0){
+      if(Q.state.get("is_countdown_over") && !Q.state.get("isLevelStop") && Q.state.get("mosking_life") >= 0 && Q.state.get("lives") > 0){
         
         var power_x = Q.select('Player').items[0].p.x ;
         var power_y = Q.select('Player').items[0].p.y - 70 ;
@@ -28,7 +28,7 @@
         var dy = touch.y - power_y;
 
         // atan2(y , x)，出來 angel是一个弧度值，且判斷好象限
-        var angle = Math.atan2( dy , dx)/Math.PI*180
+        var angle = Math.atan2(dy, dx)/Math.PI*180
 
         // 看一下有沒有吃到奧義
         var is_power_up = Q.state.get("power_up");
@@ -102,7 +102,7 @@
 
       if (lives_state <= 0){
 
-        // Cuz this.atge is pointed to 'hud'(stage:2) , so use Q.stage()--> 'level1'
+        // Cuz this.stage is pointed to 'hud'(stage:2) , so use Q.stage()--> 'level1'
         Q.stage().trigger("lose");
 
         // Player , Attack . destroy!

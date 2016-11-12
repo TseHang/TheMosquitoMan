@@ -8,6 +8,9 @@ GAME.video.skip_btn : SKIP_BTN button
 (function(){
 	GAME.VIDEO.videoArray.push(GAME.VIDEO.fight);
 	GAME.VIDEO.videoArray.push(GAME.VIDEO.mosking_appear);
+	GAME.VIDEO.videoArray.push(GAME.VIDEO.winnerB);
+	GAME.VIDEO.videoArray.push(GAME.VIDEO.winnerA);
+	GAME.VIDEO.videoArray.push(GAME.VIDEO.winnerS);
 
 	GAME.VIDEO.skip_btn.addEventListener("mouseover",function(){ GAME.VIDEO.skip_btn.innerHTML = "SKIP";}) ;
 	GAME.VIDEO.skip_btn.addEventListener("mouseout",function(){ GAME.VIDEO.skip_btn.innerHTML = "⥤";}) ;
@@ -16,8 +19,8 @@ GAME.video.skip_btn : SKIP_BTN button
 			GAME.VIDEO.opening.currentTime = GAME.VIDEO.opening.duration; // skip button 
 		}
 		else{
-			var num = Q.state.get("video_num");
-			GAME.VIDEO.videoArray[num - 1].currentTime = GAME.VIDEO.videoArray[num - 1].duration; // skip button 
+			var videoNum = Q.state.get("video_num");
+			GAME.VIDEO.videoArray[videoNum - 1].currentTime = GAME.VIDEO.videoArray[videoNum - 1].duration; // skip button 
 		}
 	}) ;
 
@@ -52,12 +55,12 @@ function canplayHandler(){
 	loadAllVideo();// loadAllVideo
 	loadAllAudio();// loadAllaudio
 
-	console.log("All Audio Video Loading Over");
+	console.log("All Audio and Video Loading Over!!");
 	GAME.VIDEO.opening.removeEventListener("canplay",canplayHandler,false);
 }
 
 function playVideo(video,num){
-	Q.state.set("video_num",num);
+	Q.state.set("video_num", num);
 	Q.state.set("is_video_over",false);
 	Q.audio.play("change_scene.mp3");
 	
@@ -72,49 +75,48 @@ function playVideo(video,num){
 	GAME.ADD.quintus_container.style.zIndex = -1 ;
 	GAME.VIDEO.skip_btn.style.display = "block";
 
-	// hidden the timeBar
 	stageStop();
 	hiddenBar();
 	video.play();
 }
 
-function hidden(video){
 
-	video.style.display="none";
-	video.style.zIndex=0;
-	video.style.opacity=0;
+function loadAllVideo(){
+  GAME.VIDEO.videoArray.forEach(function(value, index){
+    value.load();
+    value.addEventListener("ended",function() {
 
-	GAME.ADD.quintus_container.style.zIndex = 1 ;
-	GAME.VIDEO.skip_btn.style.display = "none";
+      hiddenVideo(this); 
+      if (index === 0){
+        Q.stageScene("countdown");
+        Q.state.set("is_countdown_over",false);
 
-	showBar(); // show the timeBar
+        playBGM(bgm_level1, 1);
 
-	// REMBER don't need to startClock , cuz we have to wait countdown over
-	Q.stage().paused = false ;
-	Q.state.set("is_video_over",true);
-}
+      }else if(index === 1){
 
- function loadAllVideo(){
-	// console.log(videoArray);
-	for (i = 0 ; i < GAME.VIDEO.videoArray.length ; i++){
-		
-		GAME.VIDEO.videoArray[i].load();
-		GAME.VIDEO.videoArray[i].addEventListener("ended",function() {
-			
-			hidden(this); 
-			if (this == video_fight){
-				Q.stageScene("countdown");
-				Q.state.set("is_countdown_over",false);
+        Q.stageScene("countdown");
+        Q.state.set("is_countdown_over",false);
 
-				playBGM(bgm_level1,1) ;
+        playBGM(bgm_mosking);
+      }
+    });
+  })
 
-			}else if(this == video_mosking_appear){
+	function hiddenVideo(video){
 
-				Q.stageScene("countdown");
-				Q.state.set("is_countdown_over",false);
+		video.style.display="none";
+		video.style.zIndex=0;
+		video.style.opacity=0;
 
-				playBGM(bgm_mosking);
-			}
-		});
+		GAME.ADD.quintus_container.style.zIndex = 1 ;
+		GAME.VIDEO.skip_btn.style.display = "none";
+
+    if(video === GAME.VIDEO.fight || video === GAME.VIDEO.mosking_appear)
+      showBar(); // show the timeBar
+
+		// REMEMBER don't need to startClock , cuz we have to wait countdown over
+		Q.stage().paused = false ;
+		Q.state.set("is_video_over",true);
 	}
 }
