@@ -115,4 +115,19 @@ window.addEventListener('load',function(){
 
 	window.Q = Q ;
 
+	ref.on('child_added', function(snapshot) {
+
+	  var person = snapshot.val();
+    var rank = sortRank(person.time);
+
+    // if rank equal to '-1', means no rank 
+    if (rank){
+      for (var i = 0; i < 5; i++){
+        document.getElementById('time' + (i+1)).innerHTML =  formatTime(GAME.rank[i].time);
+      }
+    }
+
+    console.log("insert score");
+	});
+
 } , true);

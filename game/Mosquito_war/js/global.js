@@ -5,7 +5,8 @@ var GAME = {
 	ADD: {},
 	ENEMY: {},
 	PLAYER: {},
-	kathaTimer:[]
+	kathaTimer:[],
+	rank:[]
 };
 
 /*
@@ -168,4 +169,61 @@ function stageContinue(){
 
 function setState(state){
 	GAME.ADD.state.innerHTML = state;
+}
+
+function sortRank(time){
+	var rank = false;
+
+	GAME.rank.push({
+		time: time
+		// name: name
+	})
+
+	GAME.rank.sort(function(a, b){
+		var keyA = a.time;
+		var keyB = b.time;
+
+		if(keyA < keyB)
+			return -1;
+		else if(keyA > keyB)
+			return 1;
+		else
+			return 0;
+	})
+
+	GAME.rank.forEach(function(value, index){
+		value.rank = index + 1;
+
+		if(index < 5){
+			if (value.time === time)
+				rank = index + 1;
+		}
+	})
+	return rank;
+}
+
+function sendFackData(time){
+	var reault = {
+		time: time
+	};
+
+	ref
+    .push()
+    .set(reault)
+    .then(function() {
+      console.log('sucuess');
+    })
+    .catch(function() {
+      console.log('error');
+    });
+}
+
+function formatTime(time){
+	var min = Math.floor(time / 60);
+	var sec = time % 60;
+
+	if(sec < 10)
+		sec = '0' + sec;
+
+	return min + ':' + sec;
 }
