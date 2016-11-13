@@ -4,7 +4,8 @@ var GAME = {
 	TIMEBAR: {},
 	ADD: {},
 	ENEMY: {},
-	PLAYER: {}
+	PLAYER: {},
+	kathaTimer:[]
 };
 
 /*
@@ -62,10 +63,12 @@ GAME.PLAYER = {
 
 function resetAttackTimer(){
 	// 把沒打死的蚊子，所有計時器停掉
-  for (i = 0; i < GAME.ENEMY.attackTimer.length; i++)
-    clearInterval(GAME.ENEMY.attackTimer[i]);
-  for (i = 0; i < GAME.ENEMY.k_attackTimer.length; i++)
-    clearInterval(GAME.ENEMY.k_attackTimer[i]);
+	GAME.ENEMY.attackTimer.forEach(function(value){
+		clearInterval(value);
+	})
+	GAME.ENEMY.k_attackTimer.forEach(function(value){
+		clearInterval(value);
+	})
 
   // 初始化 attackTimer(射蚊子的針用的)、k_attackTimer
   // 把length = 0 是清空同一個記憶體，若是指定為 [] ，其實舊有資料還是存在，只是另外配給一段記憶體給新陣列
@@ -98,6 +101,11 @@ function reset() {
 	GAME.PLAYER.mos_addCount = 2; 
 	GAME.PLAYER.moveSpeed = 3 ;
 	GAME.PLAYER.life.length = 0 ;
+
+	GAME.kathaTimer.forEach(function(value){
+		clearInterval(value);
+		GAME.kathaTimer.length = 0;
+	}) 
 }
 
 

@@ -141,7 +141,7 @@ CONTROL SCENE:
 
 	Q.scene("introStory" , function(stage){
 
-		setState('記得先看「怎麼玩」，衝吧');
+		setState('記得先看「怎麼玩」再開始唷！');
 		playBGM(bgm_ready_start,0.4);
 
 		var intro_bg = stage.insert(new Q.IntroBg()) ;
@@ -243,7 +243,7 @@ CONTROL SCENE:
 
 	Q.scene("introPlayerMan" , function(stage){
 		
-		setState('請你聽我... 娓娓道來...');
+		setState('這世界... 遠比你想的可怕...');
 		playBGM(bgm_player_man);
 
 		// SET player_state = 1
@@ -445,7 +445,7 @@ CONTROL SCENE:
 
 		if (kathaNum == 1){
 			
-			setState('一手遮蚊！');
+			setState('看我...一 手 遮 蚊 ！');
 			stage.insert(new Q.Katha_1_bg());
 			stage.insert(new Q.Katha_1_title());
 			stage.insert(new Q.Katha_1_text());
@@ -456,7 +456,7 @@ CONTROL SCENE:
 		}
 		else if(kathaNum == 2 ) {
 
-			setState('縮文成吋！');
+			setState('看我...縮 蚊 成 寸 ！');
 			stage.insert(new Q.Katha_2_bg());
 			stage.insert(new Q.Katha_2_title());
 			stage.insert(new Q.Katha_2_text());
@@ -466,7 +466,7 @@ CONTROL SCENE:
 			Q.state.set("iskatha2",true);
 		}else if (kathaNum == 3){
 
-			setState('防蚊神體！');
+			setState('看我...防 蚊 神 體 ！');
 			stage.insert(new Q.Katha_3_bg());
 			stage.insert(new Q.Katha_3_title());
 			stage.insert(new Q.Katha_3_text());
@@ -480,13 +480,28 @@ CONTROL SCENE:
 		btn.on("touch" , function(){
 			if (kathaNum == 1){
 				Q.audio.play("player_powerup.mp3");
-				window.setTimeout(function(){ Q("Power").trigger("power_recover"); Q.state.set("iskatha1",false);},10000);
+				GAME.kathaTimer[0] = window.setTimeout(function(){
+					Q("Power").trigger("power_recover");
+					Q.state.set("iskatha1",false);
+
+					setState('再來，我一個打十個！');
+				},10000);
 			}else if (kathaNum == 2){
 				Q.audio.play("speedup.mp3");
-				window.setTimeout(function(){ Q("Player").trigger("player_recover"); Q.state.set("iskatha2",false); } , 10000);
+				GAME.kathaTimer[1] = window.setTimeout(function(){
+					Q("Player").trigger("player_recover");
+					Q.state.set("iskatha2",false); 
+
+					setState('繼續，我正要認真呢！');
+				} , 10000);
 			}else if( kathaNum == 3){
 				Q.audio.play("player_invincible.mp3");
-				window.setTimeout(function(){ Q("PlayerInvincible").trigger("hidden_destroy"); Q.state.set("iskatha3",false);} , 6666);
+				GAME.kathaTimer[2] = window.setTimeout(function(){
+					Q("PlayerInvincible").trigger("hidden_destroy");
+					Q.state.set("iskatha3",false);
+
+					setState('來吧，可惡的蚊子們！');
+				} , 6666);
 			}
 
 			Q.state.set("katha" , 0);
@@ -587,6 +602,7 @@ CONTROL SCENE:
     	level.animate({opacity:0},1.5,Q.Easing.Linear,{
     		delay:2,
     		callback:function(){
+    			setState('感謝你，戰友！我們成功了！');
     			Q.stageScene("winner");  
     		}
     	})
@@ -597,6 +613,7 @@ CONTROL SCENE:
     	level.animate({opacity:0},1.5,Q.Easing.Linear,{
     		delay:1,
     		callback:function(){
+    			setState('嗚... 我會... 再回來的！');
     			Q.stageScene("gameOver") ;
     		}
     	})
@@ -680,12 +697,15 @@ CONTROL SCENE:
 
 		if (usedTime <= 240){
 			playVideo(GAME.VIDEO.winnerS , 5);
+			setState('恭喜您以'+ Math.round(usedTime) + '時間破關！')
 			console.log(usedTime);
 		}else if(usedTime <= 270){
 			playVideo(GAME.VIDEO.winnerA , 4);
+			setState('恭喜您以'+ Math.round(usedTime) + '時間破關！')
 			console.log(usedTime);
 		}else{
 			playVideo(GAME.VIDEO.winnerB , 3);
+			setState('恭喜您以'+ Math.round(usedTime) + '時間破關！')
 			console.log(usedTime);
 		}
 

@@ -73,6 +73,8 @@
 			var count = 8;
 			Q.state.set("isPlayerAttack",true);
 			this.twinkle_opacity_0(count);
+
+			setState('～～可惡...啊～～');
 		},
 
 		twinkle_opacity_0: function(count){
@@ -86,6 +88,7 @@
 				})
 			}else{
 				Q.state.set("isPlayerAttack",false);
+				setState('竟然敢傷害我，要你好看！');
 
 				switch(Q.state.get("lives"))
 				{
