@@ -60,7 +60,7 @@ GAME.ENEMY = {
 }
 
 GAME.PLAYER = {
-	"mos_addCount": 0 ,
+	"mos_addCount": 2 ,
 	"moveSpeed": 3,
 	"life":[]
 }

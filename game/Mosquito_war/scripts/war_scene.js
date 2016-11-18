@@ -54,7 +54,7 @@ CONTROL SCENE:
     	katha: 0 ,
     	player_state: 1 ,
     	power_up: 0 ,
-    	mosking_life: 1 ,
+    	mosking_life: 10 ,
     	isPlayerAttack: false ,
     	isStop: false,
     	iskatha1: false ,

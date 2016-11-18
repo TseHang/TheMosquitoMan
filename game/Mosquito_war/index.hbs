@@ -18,7 +18,6 @@
 	<section class = "top-bar"></section>
 	<div class = "heroeBoard">
 		<div class = "state" id = "state">這是... 掌蚊的世界...</div>
-		<!-- <div class = "state">恭喜您以<span id = "score">2:38</span>拿下佳績</div> -->
 		<h2>掌蚊英雄榜</h2>
 		<table>
 		  <tr class = "rankGood">
@@ -47,19 +46,12 @@
 		    <td id = "time5">2:50</td>
 		  </tr>
 		</table>
-<!-- 		<div>
-			<p class = "rankGood" >1. <span id = "name1">大哥1</span> <span id = "time1">2:20</span></p>
-      <p>2. <span id = "name2">大哥2</span> <span id = "time2">2:30</span></p>
-      <p>3. <span id = "name3">大哥3</span> <span id = "time3">2:40</span></p>
-      <p>4. <span id = "name4">大哥4</span> <span id = "time4">2:50</span></p>
-      <p>5. <span id = "name5">大哥5</span> <span id = "time5">2:60</span></p>
-		</div> -->
 		<p class = "shareText">一起滅蚊:</p>
     <div class="fb-share-button" data-href="http://www.denguefever.tw/interact/game/Mosquito_war/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.denguefever.tw%2Finteract%2Fgame%2FMosquito_war%2F&amp;src=sdkpreparse"></a></div>
 	</div>
 
 	<div class = "video_container">
-		<video class = "video" id = "video_opening" src = "video/opening.mp4" autoplay></video>
+		<video class = "video" id = "video_opening" style = "display:block; z-index:1; opacity:1;"src = "video/opening.mp4" autoplay></video>
 		<video class = "video" id = "video_fight" src = "video/fight.mp4" preload="none"></video>
 		<video class = "video" id = "video_mosking_appear" src = "video/mosking_appear.mp4" preload="none"></video>
 		<video class = "video" id = "video_winnerB" src = "video/winnerB.mp4" preload="none"></video>
@@ -67,7 +59,7 @@
 		<video class = "video" id = "video_winnerS" src = "video/winnerS.mp4" preload="none"></video>
 	</div>
 
-	<div id="skip_btn">⥤</div>
+	<div id="skip_btn" style = "display:block;">⥤</div>
 
 	<!-- MUSIC -->
 	<audio id="bgm_opening" preload = "none">
