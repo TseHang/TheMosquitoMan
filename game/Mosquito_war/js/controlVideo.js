@@ -59,9 +59,9 @@ function canplayHandler(){
 	GAME.VIDEO.opening.removeEventListener("canplay",canplayHandler,false);
 }
 
-function playVideo(video,num){
+function playVideo(video, num){
 	Q.state.set("video_num", num);
-	Q.state.set("is_video_over",false);
+	Q.state.set("is_video_over", false);
 	Q.audio.play("change_scene.mp3");
 	
 	// 消掉針、氣功彈

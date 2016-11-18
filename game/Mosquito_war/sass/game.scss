@@ -56,11 +56,12 @@ body {
   border-radius: 20px;
   letter-spacing: 4px;
   text-align: center;
-  padding: 10px 3%;
+  padding: 10px 1%;
   border: solid 6px $blue-color;
 
-  p{
+  tr{
     color: black;
+    line-height: 1.5;
   }
 
   > .fb-share-button{
@@ -91,6 +92,7 @@ body {
 .rankGood{
   font-weight: bolder;
   font-size: 17px;
+  color: $red-color !important;
 }
 
 #score{
@@ -107,6 +109,45 @@ body {
     background-color: black;
   }
 
+  h2{
+    letter-spacing: 2px;
+  }
+
+}
+
+.inputName{
+  @extend %position_absolute;
+  top: 124px;
+  left: 209px;
+  font-size: 17px;
+  width: 150px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #525049;
+
+  display: none;
+
+  &:focus{
+    outline: none;
+  }
+}
+
+#winnerName{
+  @extend %position_absolute;
+  top: 109px;
+  left: 210px;
+  font-size: 20px;
+
+  display: none;
+}
+
+#winnerTime{
+  @extend %position_absolute;
+  top: 153px;
+  left: 210px;
+  font-size: 20px;
+
+  display: none;
 }
 
 .disable{

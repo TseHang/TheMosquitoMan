@@ -237,7 +237,6 @@
 
 			// Wait til we are inserted, then listen for events on the stage
 			this.on("hit" , this , "collide");
-
 			this.on("power_up,power_recover,disappear");
 		},
 		disappear: function(){

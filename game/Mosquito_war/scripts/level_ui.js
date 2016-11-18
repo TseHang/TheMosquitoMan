@@ -32,7 +32,7 @@
 
         // 看一下有沒有吃到奧義
         var is_power_up = Q.state.get("power_up");
-        if(is_power_up>0) {
+        if(is_power_up > 0) {
           sheet = 'power_up';
           this.stage.insert(new Q.PrePowerUp({
             x: power_x + 15,
@@ -289,6 +289,65 @@
 
       Q.stageScene("title");
       this.container.destroy();
+    }
+  })
+
+  Q.Sprite.extend("Winner_bg" , {
+    init: function(p){
+      this._super(p,{
+        x: Q.width/2,
+        y: Q.height/2
+      })
+    }
+  })
+
+  Q.Sprite.extend("Winner_goTitle" , {
+    init: function(p){
+      this._super(p,{
+        sheet : "level_goTitle_winner",
+        x: Q.width/2,
+        y: Q.height/2 + 150,
+        opacity:1,
+        scale:1,
+        type: Q.SPRITE_UI
+      })
+
+      this.on("touch");
+      this.add("tween");
+    },
+
+    touch : function(){
+
+      Q.audio.play("click.mp3");
+
+      button_click(this);
+      stopBGM(Q.state.get("whichBGM")) ; // reset 'bgm_level1' time
+
+      Q.stageScene("title");
+      this.destroy();
+    }
+  })
+
+
+  Q.Sprite.extend("Winner_nameSubmit" , {
+    init: function(p){
+      this._super(p,{
+        sheet : "level_nameSubmit",
+        x: Q.width/2 + 193,
+        y: 140,
+        opacity:1,
+        scale:1,
+        type: Q.SPRITE_UI
+      })
+
+      this.on("touch,destroy");
+      this.add("tween");
+    },
+
+    touch: function(){
+      Q.audio.play("click.mp3");
+      button_click(this);
+      this.destroy();
     }
   })
 

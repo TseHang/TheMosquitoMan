@@ -10,7 +10,7 @@ var GAME = {
 };
 
 /*
-	videoArray: cuz opening isn't put in videoArray, so GAME.VIDEO.fight is videoArray[0]
+	videoArray: cuz opening isn't put in videoArray, so GAME.VIDEO.fight is videoArray[0]... and so on...
 */
 GAME.VIDEO = {
 	"isOpening": true ,
@@ -40,7 +40,10 @@ GAME.ADD = {
 	"bar": null ,
 	"result":null ,
 	"inner_bar": null,
-	"state": document.getElementById('state')
+	"input_name": null,
+	"winner_name": null,
+	"winner_time": null,
+	"state": document.getElementById('state'),
 }
 
 // attackTimer: 針出現的 Timer
@@ -95,8 +98,7 @@ function reset() {
 		lives: 4,
 		isPlayerAttack:false ,
 		isMosenter:false,
-		isMosenterScene:0,
-		video_num:0
+		isMosenterScene:0
 	});// reset mosking life
 
 	GAME.PLAYER.mos_addCount = 2; 
@@ -171,14 +173,16 @@ function setState(state){
 	GAME.ADD.state.innerHTML = state;
 }
 
-function sortRank(time){
+function sortRank(time, name){
 	var rank = false;
 
 	GAME.rank.push({
-		time: time
-		// name: name
+		time: time,
+		name: name,
+		rank: -1
 	})
 
+	// compare & sort
 	GAME.rank.sort(function(a, b){
 		var keyA = a.time;
 		var keyB = b.time;
@@ -194,6 +198,7 @@ function sortRank(time){
 	GAME.rank.forEach(function(value, index){
 		value.rank = index + 1;
 
+		// 取排序好的前五名，若是有找到跟這個一樣的時間，就回傳他的排名，沒有就 False
 		if(index < 5){
 			if (value.time === time)
 				rank = index + 1;
@@ -202,9 +207,21 @@ function sortRank(time){
 	return rank;
 }
 
-function sendFackData(time){
+function formatTime(time){
+	var min = Math.floor(time / 60);
+	var sec = time % 60;
+
+	if(sec < 10)
+		sec = '0' + sec;
+
+	return min + ':' + sec;
+}
+
+
+function sendWinnerData(time, name){
 	var reault = {
-		time: time
+		time: time,
+		name: name
 	};
 
 	ref
@@ -216,14 +233,33 @@ function sendFackData(time){
     .catch(function() {
       console.log('error');
     });
+
+  GAME.ADD.winner_name.innerHTML = name;
+
+  inputNameHidden();
+  winnerNameShow();
 }
 
-function formatTime(time){
-	var min = Math.floor(time / 60);
-	var sec = time % 60;
+function inputNameHidden(){
+	GAME.ADD.input_name.style.display = "none";
+}
 
-	if(sec < 10)
-		sec = '0' + sec;
+function inputNameShow(){
+	GAME.ADD.input_name.style.display = "block";
+}
 
-	return min + ':' + sec;
+function winnerNameHidden(){
+	GAME.ADD.winner_name.style.display = "none";
+}
+
+function winnerNameShow(){
+	GAME.ADD.winner_name.style.display = "block";
+}
+
+function winnerTimeHidden(){
+	GAME.ADD.winner_time.style.display = "none";
+}
+
+function winnerTimeShow(){
+	GAME.ADD.winner_time.style.display = "block";
 }

@@ -54,7 +54,7 @@ CONTROL SCENE:
     	katha: 0 ,
     	player_state: 1 ,
     	power_up: 0 ,
-    	mosking_life: 2 ,
+    	mosking_life: 1 ,
     	isPlayerAttack: false ,
     	isStop: false,
     	iskatha1: false ,
@@ -686,68 +686,49 @@ CONTROL SCENE:
 
 	// 遊戲贏家畫面
 	Q.scene("winner" , function(stage){
-		
-		var usedTime = getUsedTime();
+		var usedTime = Math.round(getUsedTime());
+		var winnerBg ;
+
+		if (usedTime <= 240){
+			playVideo(GAME.VIDEO.winnerS , 5);
+			winnerBg = "winnerS_bg.png";
+			setState('恭喜您以'+ usedTime + '秒 成績破關！')
+		}else if(usedTime <= 270){
+			playVideo(GAME.VIDEO.winnerA , 4);
+			winnerBg = "winnerA_bg.png";
+			setState('恭喜您以'+ usedTime + '秒 成績破關！')
+		}else{
+			playVideo(GAME.VIDEO.winnerB , 3);
+			winnerBg = "winnerB_bg.png";
+			setState('恭喜您以'+ usedTime + '秒 成績破關！')
+		}
+
+		var winner_bg = stage.insert(new Q.Winner_bg({
+			asset:"level/" + winnerBg
+		})) ;
+
+		var goTitle = stage.insert(new Q.Winner_goTitle()) ;
+		var nameSubmit = stage.insert(new Q.Winner_nameSubmit());
+
+		GAME.ADD.winner_time.innerHTML = formatTime(usedTime) + "   秒";
 
 		stopBGM(bgm_mosking);
 		stopBGM(bgm_heartbeat_slow);
 		playBGM(bgm_winner);
+		inputNameShow();
+		winnerTimeShow();
 
 		reset();
 
-		if (usedTime <= 240){
-			playVideo(GAME.VIDEO.winnerS , 5);
-			setState('恭喜您以'+ Math.round(usedTime) + '秒 成績破關！')
-		}else if(usedTime <= 270){
-			playVideo(GAME.VIDEO.winnerA , 4);
-			setState('恭喜您以'+ Math.round(usedTime) + '秒 成績破關！')
-		}else{
-			playVideo(GAME.VIDEO.winnerB , 3);
-			setState('恭喜您以'+ Math.round(usedTime) + '秒 成績破關！')
-		}
-
-		stage.insert(new Q.Sprite({
-			asset:"level/winner_bg.png",
-			x: Q.width/2,
-			y: Q.height/2
-		})) ;
-
-		var goTitle = stage.insert(new Q.Sprite({
-			sheet:"level_goTitle_winner",
-			x: Q.width/2,
-			y: Q.height/2 + 100,
-			opacity:1,
-			scale:1,
-			type: Q.SPRITE_UI
-		})) ;
-
-		var goFanspage = stage.insert(new Q.Sprite({
-			sheet:"level_goFanspage_winner",
-			x: Q.width/2,
-			y: Q.height/2 + 150,
-			opacity:1,
-			scale:1,
-			type: Q.SPRITE_UI
-		})) ;
-		
-		goTitle.add("tween");
-		goFanspage.add("tween");
-
-		goTitle.on("touch",function(){
-			button_click(this);
-			stopBGM(Q.state.get("whichBGM"));
-
-			Q.audio.play("click.mp3");
-			Q.stageScene("title") ;
+		goTitle.on("touch", function(){
+			inputNameHidden();
+			winnerNameHidden();
+			winnerTimeHidden();
 		})
 
-		goFanspage.on("touch",function(){
-			button_click(this);
-			stopBGM(Q.state.get("whichBGM"));
-
-			Q.audio.play("click.mp3");
-			Q.stageScene("title") ;
-			window.open('https://www.facebook.com/themosquitoman/', '_blank');
+		nameSubmit.on("touch", function(){
+			sendWinnerData(usedTime, GAME.ADD.input_name.value);
+			// window.open('https://www.facebook.com/themosquitoman/', '_blank');
 		})
 	})
 }

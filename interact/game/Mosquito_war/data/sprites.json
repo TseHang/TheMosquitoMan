@@ -9,6 +9,7 @@
   "level_goAgain_gameover":{"tilew":110 , "tileh":40 , "sx":260, "sy":790 , "w":110 ,"h":40},
   "level_goTitle_winner":{"tilew":140 , "tileh":40 , "sx":250, "sy":460 , "w":140 ,"h":40},
   "level_goFanspage_winner":{"tilew":140 , "tileh":40 , "sx":250, "sy":500 , "w":140 ,"h":40},
+  "level_nameSubmit":{"tilew":80 , "tileh":30 , "sx":510, "sy":680 , "w":80 ,"h":30},
 
   "three_dark":{"tilew":40 , "tileh":60,"sx":380,"sy":700,"w":40,"h":60},
   "three_bright":{"tilew":40 , "tileh":60,"sx":380,"sy":760,"w":40,"h":60},

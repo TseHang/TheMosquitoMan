@@ -32,8 +32,9 @@ window.addEventListener('load',function(){
 		"player/player_man_text1.png","player/player_man_text2.png","player/player_man_text3.png","player/player_man_text4.png",
 
 		// level
-		"level/level_bg.png","level/gameover_bg.png","level/winner_bg.png",
+		"level/level_bg.png","level/gameover_bg.png",
 		"level/mosking_talk_2.png","level/mosking_talk_3.png","level/mos_magic_circle.png",
+    "level/winnerB_bg.png","level/winnerA_bg.png","level/winnerS_bg.png",
 
 		// katha
 		"katha/katha_1_bg.png","katha/katha_1_title.png","katha/katha_close.png",
@@ -101,33 +102,51 @@ window.addEventListener('load',function(){
 	GAME.ADD.bar = document.createElement("DIV") ; // Global
 	GAME.ADD.result = document.createElement("DIV");// Global 
 	GAME.ADD.inner_bar = document.createElement("DIV") ;// Global
+  GAME.ADD.input_name = document.createElement("INPUT") ;// Global
+  GAME.ADD.winner_name = document.createElement("H2") ;// Global
+  GAME.ADD.winner_time = document.createElement("H2") ;// Global
 
 	GAME.ADD.bar.setAttribute("class", "bar");
 	GAME.ADD.inner_bar.setAttribute("id" , "inner_bar")
 	GAME.ADD.result.setAttribute("id","result");
+  GAME.ADD.winner_name.setAttribute("id", "winnerName");
+  GAME.ADD.winner_time.setAttribute("id", "winnerTime");
+  GAME.ADD.input_name.setAttribute("class","inputName");
+  GAME.ADD.input_name.setAttribute("value", "最多8字元");
+  GAME.ADD.input_name.setAttribute("type", "name");
+  GAME.ADD.input_name.setAttribute("maxlength", "8");
 
 	GAME.ADD.result.innerHTML= "05 : 00";
 	
 	GAME.ADD.bar.appendChild(GAME.ADD.inner_bar);
 	GAME.ADD.bar.appendChild(GAME.ADD.result);
-
 	GAME.ADD.quintus_container.appendChild(GAME.ADD.bar);
+  GAME.ADD.quintus_container.appendChild(GAME.ADD.input_name);
+  GAME.ADD.quintus_container.appendChild(GAME.ADD.winner_name);
+  GAME.ADD.quintus_container.appendChild(GAME.ADD.winner_time);
 
 	window.Q = Q ;
 
 	ref.on('child_added', function(snapshot) {
-
 	  var person = snapshot.val();
-    var rank = sortRank(person.time);
+    var rank = sortRank(person.time, person.name);
 
-    // if rank equal to '-1', means no rank 
+    // if rank equal to false, means no top 5 
     if (rank){
-      for (var i = 0; i < 5; i++){
-        document.getElementById('time' + (i+1)).innerHTML =  formatTime(GAME.rank[i].time);
+      var max = 5;
+      var length = GAME.rank.length;
+      if (length < 5)
+        max = length;
+
+      for (var i = 0; i < max; i++){
+        document.getElementById('name' + (i+1)).innerHTML = GAME.rank[i].name;
+        document.getElementById('time' + (i+1)).innerHTML = formatTime(GAME.rank[i].time);
       }
     }
 
-    console.log("insert score");
+    console.log("insert score SUCCESSFUL!");
 	});
+
+  // alert("shit!!!");
 
 } , true);
