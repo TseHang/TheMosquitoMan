@@ -38,7 +38,8 @@ body{
     line-height: 20px;
     color: #555;
 }
-.legend i {
+
+.legend .color{
     width: 18px;
     height: 54px;
     float: left;
@@ -52,7 +53,29 @@ body{
     height: 15px;
     line-height: 15px;
 }
+.ui.checkbox.remove{
+    padding: 8px 10px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    width: 145px;
+    height: 32px;
+    font-size: 15px;
+    text-align: center;
+    font-family: Microsoft JhengHei;
+    margin: 0 10px 10px 0;
+}
 
+.ui.checkbox.remove{
+    width: 125px;
+    height: 20px;
+}
+
+.ui.checkbox.remove input{
+    margin-top:9.5px;
+    margin-left:11px;
+}
 .ui.button{
     padding: 8px 10px;
     background: white;

@@ -446,7 +446,7 @@ function heatMap(value) {
     removeMap();
 
     $('.description').prepend('<div class="no_content">\
-                                    <img src="image/no_content.png"> \
+                                    <img src="../dist/src/img/realTime/no_content.png"> \
                                     <h4>此區間暫無調查資料</h4>\
                                 </div>');
     $('.description').prepend('<h2 class="DayTitle" id="header"></h2>');
