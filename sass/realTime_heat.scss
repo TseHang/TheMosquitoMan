@@ -215,6 +215,17 @@ svg{
     font-size: $font-size;
 }
 
+#mapid > .leaflet-map-pane > .leaflet-marker-pane > .leaflet-marker-icon {
+    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png) !important;
+    width: 30px !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    text-align: center;
+    background-position: -75px;
+}
+
 @media only screen and (max-width: 1000px) {
     // .main{
     //     display:flex;
