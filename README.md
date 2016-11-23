@@ -42,15 +42,36 @@ $ ./bin/build -w
 
 ### Add a new site
 - Create a `.hbs` file in **`layout/`**
+
+```html
+<!DOCTYPE HTML>
+<html lan="en">
+<head>
+  {{> head }}
+</head>
+
+<body style="overflow-x:hidden;">
+  {{>header}}
+  
+  ---------------
+  Write your code
+  ---------------
+  
+</body>
+<script src="./dist/src/jquery-2.2.4.min.js"></script>
+<script src="./dist/js/nav.js"></script>
+</html>
+```
+
 - `.scss` or `.sass` or `.css` in **`sass/`**
-  in your .hbs file :
+  - in your .hbs file :
 
 ```html
 <link href="./dist/css/filename.css">
 ```
 
 - `.js` in **`js/`** 
-  in your .hbs file :
+  - in your .hbs file :
 
 ```html
 <script src="./dist/js/filename.js"></script>
