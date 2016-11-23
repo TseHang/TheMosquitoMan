@@ -57,6 +57,7 @@ $ ./bin/build -w
   Write your code
   ---------------
   
+  {{> footer}}
 </body>
 <script src="./dist/src/jquery-2.2.4.min.js"></script>
 <script src="./dist/js/nav.js"></script>
