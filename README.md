@@ -41,22 +41,22 @@ $ ./bin/build -w
 ## Develop
 
 ### Add a new site
-1. Create a `.hbs` file in **`layout/`**
-2. `.scss` or `.sass` or `.css` in **`sass/`**
+- Create a `.hbs` file in **`layout/`**
+- `.scss` or `.sass` or `.css` in **`sass/`**
   in your .hbs file :
 
 ```html
 <link href="./dist/css/filename.css">
 ```
 
-3. `.js` in **`js/`** 
+- `.js` in **`js/`** 
   in your .hbs file :
 
 ```html
 <script src="./dist/js/filename.js"></script>
 ```
 
-4. Remember update `route.js`
+- Remember update `route.js`
 
 ```js
 {
@@ -70,8 +70,7 @@ $ ./bin/build -w
 },
 ```
 
-5. Make command : 
-
+- Make command : 
 ```
 $ gulp
 $ ./bin/build -w
