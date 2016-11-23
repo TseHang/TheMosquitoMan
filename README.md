@@ -35,13 +35,48 @@ $ ./bin/build -w
 - Use **`gulp`** to construct it .
   - **Maybe**, if your gilp doesn't work , you can make this command 
   - **`npm install -g gulp-cli`** 
-- **`canner-core`** is your main component which you also use in `handlebar.js`.
+- **`canner-core`** is your main component which you also use in [`handlebar.js`](http://handlebarsjs.com).
 
 
 ## Develop
 
-選定好要加入 layout 的資料夾，看好即可開始動手
-- remember update route.js file
+### Add a new site
+1. Create a `.hbs` file in **`layout/`**
+2. `.scss` or `.sass` or `.css` in **`sass/`**
+  in your .hbs file :
+
+```html
+<link href="./dist/css/filename.css">
+```
+
+3. `.js` in **`js/`** 
+  in your .hbs file :
+
+```html
+<script src="./dist/js/filename.js"></script>
+```
+
+4. Remember update `route.js`
+
+```js
+{
+  data: {
+    path: './',
+    title: 'My title'
+  },
+  partials: './partials.js',
+  layout:  "./layout/index.hbs",
+  filename: "./index.html"
+},
+```
+
+5. Make command : 
+
+```
+$ gulp
+$ ./bin/build -w
+```
+
 ### Structure
 
 ```
@@ -55,6 +90,7 @@ qa.html : 有蚊必答
 realTime.html : 即時疫情
 resource.html : 資料來源
 route.js : control hbs 產生的內容及位置
+partial.js : control .hbs's component (詳細請看handlebar.js)
 gulpfile.js : control gulp
 config.rb : compass's config
 | - realMap/ : 即時疫情下面的各圖表html
