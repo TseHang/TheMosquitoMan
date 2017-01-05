@@ -9,14 +9,14 @@
 		},
 		{
 			"audio":"bgm_game" ,
-			"link": "./interact/game",
+			"link": "./interact/game.html",
 			"title":"掌蚊人遊戲",
 			"content":"戰友們！請幫助我一起滅蚊吧！！"
 		}
 	] ;
 	var interactId = 1 ;
 	var interactLength = interactContent.length ;
-
+	
 	$('.select-right').click(function(){
 		$('.select-right').addClass('click_anim');
 
