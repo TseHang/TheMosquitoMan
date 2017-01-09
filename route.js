@@ -71,6 +71,15 @@ var route = [
     },
     {
       data: {
+        title: '網站授權聲明',
+        path: './'
+      },
+      partials: './partials.js',
+      layout:  "./layout/copyright.hbs",
+      filename: "./copyright.html"
+    },
+    {
+      data: {
         title: '即時病例統計',
         path: '../'
       },
@@ -116,7 +125,7 @@ var route = [
     },
     {
       data: {
-        title: '掌蚊人',
+        title: '掌蚊宗師',
         path: './'
       },
       partials: './partials.js',
