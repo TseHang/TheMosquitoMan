@@ -1,670 +1,673 @@
-@import 'reset';
-@import 'nav';
-@import 'vendor/shake/csshake-little.min';
-@import 'vendor/shake/csshake-crazy.min';
-@import 'vendor/shake/csshake-vertical.min';
+@import "reset";
+@import "nav";
+@import "vendor/shake/csshake-little.min";
+@import "vendor/shake/csshake-crazy.min";
+@import "vendor/shake/csshake-vertical.min";
 
-$background-color:white;
-$logo-title-zindex:20;
+$background-color: white;
+$logo-title-zindex: 20;
 
-.wrap{
-	@extend %RWDscreen;
-	position:fixed;
+.wrap {
+  @extend %RWDscreen;
+  position: fixed;
 
-	> img {
-		position:absolute;
-	}
+  > img {
+    position: absolute;
+  }
 
-	> div {
-		position:absolute;
-	}
+  > div {
+    position: absolute;
+  }
 }
 
-.background{
-	@extend %RWDscreen;
+.background {
+  @extend %RWDscreen;
 
-	> .horizontal{
-		display:inline-flex;
-		height:100%;
-	}
-	img{
-		height:100%;
-	}
+  > .horizontal {
+    display: inline-flex;
+    height: 100%;
+  }
+  img {
+    height: 100%;
+  }
 }
 
-// 
+//
 // section1
 .mosquito-container {
-	right:9%;
-	top:13%;
-	width:9%;
+  right: 9%;
+  top: 13%;
+  width: 9%;
 
-	@include animation(top-down 0.6s linear infinite alternate);
+  @include animation(top-down 0.6s linear infinite alternate);
 }
 
-@include keyframes(top-down){
-	0%{
-		top:13%;
-	}
-	100%{
-		top:15%;
-	}
+@include keyframes(top-down) {
+  0% {
+    top: 13%;
+  }
+  100% {
+    top: 15%;
+  }
 }
 
-.mosquito-container-animation-main{
+.mosquito-container-animation-main {
   will-change: transform;
-	@include animation(mosquito-animation-main 2s linear infinite alternate) ;
+  @include animation(mosquito-animation-main 2s linear infinite alternate);
 }
-@include keyframes(mosquito-animation-main){
-	0%{
-		transform:rotateZ(0deg);
-	}
-	50%{
-		transform:rotateZ(3600deg);
-	}
-	100%{
-		transform:rotateZ(0deg);
-	}
-}
-
-.mos-disappear{
-	display:none !important;
+@include keyframes(mosquito-animation-main) {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(3600deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
 }
 
-.mos-after{
-	width:9%;
-	opacity:0;
+.mos-disappear {
+  display: none !important;
 }
 
-.mos1{
-	right:77%;
-	top:15%;
+.mos-after {
+  width: 9%;
+  opacity: 0;
 }
 
-.mos2{
-	right:82%;
-	top:50%;
+.mos1 {
+  right: 77%;
+  top: 15%;
 }
 
-.mos3{
-	right:42%;
-	top:80%;
+.mos2 {
+  right: 82%;
+  top: 50%;
 }
 
-.mos4{
-	right:7%;
-	top:76%;
+.mos3 {
+  right: 42%;
+  top: 80%;
 }
 
-
-.mos-after-animation-1{
-	@include animation(mos-after-animation-1 1s linear infinite alternate) ;
+.mos4 {
+  right: 7%;
+  top: 76%;
 }
 
-@include keyframes(mos-after-animation-1){
-	0%{
-		right:77%;
-		top:15%;
-		transform:scale(1);
-	}
-	35%{
-		right:57%;
-		top:80%;
-		transform:scale(2);
-	}
-	50%{
-		right:5%;
-		top:90%;
-		transform:scale(1);
-	}
-	85%{
-		top:20%;
-		transform:scale(2);
-	}
-	100%{
-		right:77%;
-		top:15%;
-		transform:scale(1);
-	}
+.mos-after-animation-1 {
+  @include animation(mos-after-animation-1 1s linear infinite alternate);
 }
 
-.mos-after-animation-2{
-	@include animation(mos-after-animation-2 1s linear infinite alternate) ;
+@include keyframes(mos-after-animation-1) {
+  0% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
+  35% {
+    right: 57%;
+    top: 80%;
+    transform: scale(2);
+  }
+  50% {
+    right: 5%;
+    top: 90%;
+    transform: scale(1);
+  }
+  85% {
+    top: 20%;
+    transform: scale(2);
+  }
+  100% {
+    right: 77%;
+    top: 15%;
+    transform: scale(1);
+  }
 }
 
-@include keyframes(mos-after-animation-2){
-	0%{
-		right:82%;
-		top:50%;
-		transform:scale(1);
-	}
-	25%{
-		right:5%;
-		top:90%;
-		transform:scale(2);
-	}
-	50%{
-		right:30%;
-		top:20%;
-		transform:scale(1);
-	}
-	75%{
-		right:62%;
-		top:10%;
-		transform:scale(2);
-	}
-	100%{
-		right:82%;
-		top:50%;
-		transform:scale(1);
-	}
+.mos-after-animation-2 {
+  @include animation(mos-after-animation-2 1s linear infinite alternate);
 }
 
-.mos-after-animation-3{
-	@include animation(mos-after-animation-3 1s linear infinite alternate) ;
+@include keyframes(mos-after-animation-2) {
+  0% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
+  25% {
+    right: 5%;
+    top: 90%;
+    transform: scale(2);
+  }
+  50% {
+    right: 30%;
+    top: 20%;
+    transform: scale(1);
+  }
+  75% {
+    right: 62%;
+    top: 10%;
+    transform: scale(2);
+  }
+  100% {
+    right: 82%;
+    top: 50%;
+    transform: scale(1);
+  }
 }
 
-@include keyframes(mos-after-animation-3){
-	0%{
-		right:42%;
-		top:80%;
-		transform:scale(1);
-	}
-	15%{
-		right:80%;
-		top:60%;
-		transform:scale(2);
-	}
-	50%{
-		right:40%;
-		top:28%;
-		transform:scale(1);
-	}
-	60%{
-		right:20%;
-		top:59%;
-		transform:scale(1);
-	}
-	85%{
-		right:6%;
-		top:90%;
-		transform:scale(2);
-	}
-	100%{
-		right:42%;
-		top:80%;
-		transform:scale(1);
-	}
+.mos-after-animation-3 {
+  @include animation(mos-after-animation-3 1s linear infinite alternate);
 }
 
-.mos-after-animation-4{
-	@include animation(mos-after-animation-4 2s linear infinite alternate) ;
+@include keyframes(mos-after-animation-3) {
+  0% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
+  15% {
+    right: 80%;
+    top: 60%;
+    transform: scale(2);
+  }
+  50% {
+    right: 40%;
+    top: 28%;
+    transform: scale(1);
+  }
+  60% {
+    right: 20%;
+    top: 59%;
+    transform: scale(1);
+  }
+  85% {
+    right: 6%;
+    top: 90%;
+    transform: scale(2);
+  }
+  100% {
+    right: 42%;
+    top: 80%;
+    transform: scale(1);
+  }
 }
 
-@include keyframes(mos-after-animation-4){
-	0%{
-		right:7%;
-		top:76%;
-	}
-	15%{
-		right:79%;
-		top:19%;
-	}
-	30%{
-		right:70%;
-		top:75%;
-	}
-	45%{
-		right:5%;
-		top:10%;
-	}
-	60%{
-		right:30%;
-		top:40%;
-	}
-	75%{
-		right:65%;
-		top:45%;
-	}
-	86%{
-		right:45%;
-		top:50%;
-	}
-	93%{
-		right:40%;
-		top:25%;
-	}
-	100%{
-		right:7%;
-		top:76%;
-	}
+.mos-after-animation-4 {
+  @include animation(mos-after-animation-4 2s linear infinite alternate);
+}
+
+@include keyframes(mos-after-animation-4) {
+  0% {
+    right: 7%;
+    top: 76%;
+  }
+  15% {
+    right: 79%;
+    top: 19%;
+  }
+  30% {
+    right: 70%;
+    top: 75%;
+  }
+  45% {
+    right: 5%;
+    top: 10%;
+  }
+  60% {
+    right: 30%;
+    top: 40%;
+  }
+  75% {
+    right: 65%;
+    top: 45%;
+  }
+  86% {
+    right: 45%;
+    top: 50%;
+  }
+  93% {
+    right: 40%;
+    top: 25%;
+  }
+  100% {
+    right: 7%;
+    top: 76%;
+  }
 }
 
 #mosquito {
-	background: url('../src/img/1-mosquito-all.png') repeat no-repeat;
-	width:50px;
-	height:64px;
-	@include animation(mosquito-fly 0.4s steps(3) infinite);
+  background: url("../src/img/1-mosquito-all.png") repeat no-repeat;
+  width: 50px;
+  height: 64px;
+  @include animation(mosquito-fly 0.4s steps(3) infinite);
 }
 
-@include keyframes(mosquito-fly){
-	to{
-		background-position-x:-150px;
-	}
+@include keyframes(mosquito-fly) {
+  to {
+    background-position-x: -150px;
+  }
 }
 
-.mainTitle{
-	width:50%;
-	left:34%;
-	top:20%;
+.mainTitle {
+  width: 50%;
+  left: 34%;
+  top: 20%;
 
-	> img {
-		@extend %position_relative;
-	}
+  > img {
+    @extend %position_relative;
+  }
 
-	> .logo-title{
-		width:102%;
-		cursor:pointer;
-		z-index:$logo-title-zindex;
+  > .logo-title {
+    width: 102%;
+    cursor: pointer;
+    z-index: $logo-title-zindex;
 
-		&:hover{
-			@include animation(section1-animation 0.2s linear 2 forwards);
-		}
-	}
+    &:hover {
+      @include animation(section1-animation 0.2s linear 2 forwards);
+    }
+  }
 
-	> .section1-text{
-		position:absolute;
+  > .section1-text {
+    position: absolute;
 
-		width:68%;
-		bottom:10%;
-		left:-16%;
-		z-index:$logo-title-zindex+1;
-	}
+    width: 68%;
+    bottom: 10%;
+    left: -16%;
+    z-index: $logo-title-zindex+1;
+  }
 }
 
-.logo-title-animation{
-	@include animation(section1-animation 0.2s linear infinite );
+.logo-title-animation {
+  @include animation(section1-animation 0.2s linear infinite );
 }
-@include keyframes (section1-animation ) {
+@include keyframes (section1-animation) {
   10% {
     transform: translate(-1px, 5px) rotate(-1.5deg);
-    opacity: 0.99; }
+    opacity: 0.99;
+  }
   20% {
     transform: translate(-2px, -1px) rotate(0.5deg);
-    opacity: 0.38; }
+    opacity: 0.38;
+  }
   30% {
     transform: translate(1px, -4px) rotate(0.5deg);
-    opacity: 0.34; }
+    opacity: 0.34;
+  }
   40% {
     transform: translate(1px, -4px) rotate(2.5deg);
-    opacity: 0.24; }
+    opacity: 0.24;
+  }
   50% {
     transform: translate(1px, -2px) rotate(0.5deg);
-    opacity: 0.55; }
+    opacity: 0.55;
+  }
   60% {
     transform: translate(2px, 1px) rotate(-0.5deg);
-    opacity: 0.72; }
+    opacity: 0.72;
+  }
   70% {
     transform: translate(-3px, 5px) rotate(0.5deg);
-    opacity: 0.26; }
+    opacity: 0.26;
+  }
   80% {
     transform: translate(4px, 3px) rotate(2.5deg);
-    opacity: 0.7; }
+    opacity: 0.7;
+  }
   90% {
     transform: translate(0px, 3px) rotate(-1.5deg);
-    opacity: 0.32; }
-  0%, 100% {
-    transform: translate(0, 0) rotate(0); } 
- }
+    opacity: 0.32;
+  }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
 
-// 
+//
 // section2
-#mosss{
-	top:11%;
-	left:-100%;
-	// png
-	width:34% ;
-	
+#mosss {
+  top: 11%;
+  left: -100%;
+  // png
+  width: 34%;
 }
 
-#section2-text{
-	top:43%;
-	left:-100%;
-	width:45%;
-	display:none;
+#section2-text {
+  top: 43%;
+  left: -100%;
+  width: 45%;
+  display: none;
 }
 
-#bottle{
-	bottom:-100%;
-	width:70%;
-	left:5%;
+#bottle {
+  bottom: -100%;
+  width: 70%;
+  left: 5%;
 }
 
-#bottle-2{
-	width:50%;
-	bottom:-100%;
-	left:50%;
+#bottle-2 {
+  width: 50%;
+  bottom: -100%;
+  left: 50%;
 }
 
-// 
-// section3 
+//
+// section3
 
-#tsunami{
-	width:100%;
-	bottom:-100%;
+#tsunami {
+  width: 100%;
+  bottom: -100%;
 }
 
-#section3-text{
-	top:19%;
-	left:11%;
-	width:45%;
-	opacity:0;
+#section3-text {
+  top: 19%;
+  left: 11%;
+  width: 45%;
+  opacity: 0;
 }
 
-.bone{
-	bottom:-100%;
-	width:80%;
+.bone {
+  bottom: -100%;
+  width: 80%;
 }
 
-#bone1{
-	left:5%;
-
+#bone1 {
+  left: 5%;
 }
 
-// 
+//
 // section4
-#theMosquitoMan{
-	width:5%;
-	left:50%;
-	bottom:30%;
-	opacity:0;
+#theMosquitoMan {
+  width: 5%;
+  left: 50%;
+  bottom: 30%;
+  opacity: 0;
 }
 
-.section4-text{
-	width:45%;
-	bottom:62%;
-	left:15%;
-	opacity:0;
+.section4-text {
+  width: 45%;
+  bottom: 62%;
+  left: 15%;
+  opacity: 0;
 
-	> img {
-		@extend %position_relative;
-	}
+  > img {
+    @extend %position_relative;
+  }
 
-	> #section4-text_1{
-		width:100%;
-	}
+  > #section4-text_1 {
+    width: 100%;
+  }
 
-	> #section4-text_2{
-		width:60%;
-		left:50%;
-		opacity:0;
-	}
+  > #section4-text_2 {
+    width: 60%;
+    left: 50%;
+    opacity: 0;
+  }
 }
 
-.cloud{
-	left:13%;
-	width:100%;
-	height:80%;
-	display:flex;
+.cloud {
+  left: 13%;
+  width: 100%;
+  height: 80%;
+  display: flex;
 
-	opacity:0;
+  opacity: 0;
 
-	will-change: transform;
+  will-change: transform;
+  -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+  animation-play-state: paused;
+
+  &.play-animation {
 	@include animation(cloud-move 300s linear infinite forwards);
-	-webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
-	    animation-play-state: paused;
+	-webkit-animation-play-state: running; /* Chrome, Safari, Opera */
+	animation-play-state: running;
+  }
 }
 
-.cloud-move{
-	@include animation(cloud-move 300s linear forwards);
-}
-
-@include keyframes(cloud-move){
-	0%{
-		//left:10%;
+@include keyframes(cloud-move) {
+  0% {
+    //left:10%;
     @include transform(translateX(-10%));
-	}
-	100%{
+  }
+  100% {
     @include transform(translateX(-80%));
-		//left:-80%;
-	}
+    //left:-80%;
+  }
 }
 
-.cloud-col{
-	display:flex;
-	flex-direction:column;
-	width:50%;
-	height:100%;
-	> img {
-		@extend %position_relative;
-		width:40%;
-	}
+.cloud-col {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  > img {
+    @extend %position_relative;
+    width: 40%;
+  }
 
-	> .cloud01 {
-	}
-	> .cloud02 {
-		left:-10%;
-		top:-5%;
-	}
-	> .cloud03 {
-		left:30%;
-	}
+  > .cloud02 {
+    left: -10%;
+    top: -5%;
+  }
+  > .cloud03 {
+    left: 30%;
+  }
 
-	> .cloud04 {
-		top:25%;
-		left:-10%;
-	}
-	> .cloud05 {
-		top:-7%;
-		left:30%;
-	}
-	> .cloud06 {
-		left:50%;
-	}
-	> .cloud07 {
-		left:20%;
-	}
+  > .cloud04 {
+    top: 25%;
+    left: -10%;
+  }
+  > .cloud05 {
+    top: -7%;
+    left: 30%;
+  }
+  > .cloud06 {
+    left: 50%;
+  }
+  > .cloud07 {
+    left: 20%;
+  }
 
-	> .cloud-button_1{
-		top:25%;
-		left:-10%;
-		cursor:pointer ;
-	}
+  > .cloud-button_1 {
+    top: 25%;
+    left: -10%;
+    cursor: pointer;
+  }
 
-	> .cloud-button_2{
-		left:20%;
-		cursor:pointer ;
-	}
+  > .cloud-button_2 {
+    left: 20%;
+    cursor: pointer;
+  }
 
-	> .cloud-button_3{
-		left:60%;
-		cursor:pointer ;
-	}
+  > .cloud-button_3 {
+    left: 60%;
+    cursor: pointer;
+  }
 }
 
-.cloud-button{
-	@extend %position_relative;
-	width:40%;
+.cloud-button {
+  @extend %position_relative;
+  width: 40%;
 
-	> p{
-		position:absolute;
+  > p {
+    position: absolute;
 
-		opacity:0;
-		color:#575555;
-		left:20%;
-		font-size:1.3em;
-		font-weight:bold;
+    opacity: 0;
+    color: #575555;
+    left: 20%;
+    font-size: 1.3em;
+    font-weight: bold;
 
-		border-radius:20%;
-		background-color:rgba(255,235,59,0.2);
-		box-shadow:0px 0px 7px 7px rgba(255,235,59,0.1);
-		cursor:pointer;
-	}
+    border-radius: 20%;
+    background-color: rgba(255, 235, 59, 0.2);
+    box-shadow: 0px 0px 7px 7px rgba(255, 235, 59, 0.1);
+    cursor: pointer;
+  }
 
-	> #button-p_2{
-		top:10px;
-		left:15%;
-	}
+  > #button-p_2 {
+    top: 10px;
+    left: 15%;
+  }
 
-	> #button-p_3{
-		top:10px;
-		left:28%;
-		opacity:0.7;
+  > #button-p_3 {
+    top: 10px;
+    left: 28%;
+    opacity: 0.7;
 
-		background-color: rgba(244, 67, 54, 0.15);
-    box-shadow: 0 0 7px 7px rgba(244,67,54, 0.1);
-	}
+    background-color: rgba(244, 67, 54, 0.15);
+    box-shadow: 0 0 7px 7px rgba(244, 67, 54, 0.1);
+  }
 }
 
-// 
+//
 // section5
 
-.man-run-container{
-	bottom:35%;
-	left:-30%;
-	will-change: transform;
+.man-run-container {
+  bottom: 35%;
+  left: -30%;
+  will-change: transform;
 
-	display:block;
+  display: block;
 }
 
-.man-run-container-animation{
-	@include animation(run 8s linear infinite forwards);
+.man-run-container-animation {
+  @include animation(run 8s linear infinite forwards);
 }
-@include keyframes(run){
-	0%{
-		left:-8%;
-		bottom:35%;
-		opacity:1 ;
-	}
-	10%{
-		bottom:40%;
-		left:6%;
-	}
-	25%{
-		bottom:27%;
-		left:20%;
-	}
-	55%{
-		left:60%;
-		bottom:22%;
-	}
-	68%{
-		opacity:1
-	}
-	70%{
-		bottom:28%;
-		left:65%;
-		opacity:0;
-	}
-	80%{
-		bottom:7%;
-		left:75%;
-	}
-	100%{
-		bottom:5%;
-		left:150%;
-		opacity:0 ;
-	}
-	
-}
-
-.man-run{
-	position:relative;
-	background: url('../src/img/5-run-all.png') no-repeat right;
-	width:214px;
-	height:91px;
-
-	@include animation(man-run 0.5s steps(9) infinite);
-}
-@include keyframes(man-run){
-	from{
-		background-position-x: 0px;
-	}
-	to{
-		background-position-x: -1926px;
-	}
+@include keyframes(run) {
+  0% {
+    left: -8%;
+    bottom: 35%;
+    opacity: 1;
+  }
+  10% {
+    bottom: 40%;
+    left: 6%;
+  }
+  25% {
+    bottom: 27%;
+    left: 20%;
+  }
+  55% {
+    left: 60%;
+    bottom: 22%;
+  }
+  68% {
+    opacity: 1;
+  }
+  70% {
+    bottom: 28%;
+    left: 65%;
+    opacity: 0;
+  }
+  80% {
+    bottom: 7%;
+    left: 75%;
+  }
+  100% {
+    bottom: 5%;
+    left: 150%;
+    opacity: 0;
+  }
 }
 
+.man-run {
+  position: relative;
+  background: url("../src/img/5-run-all.png") no-repeat right;
+  width: 214px;
+  height: 91px;
 
+  @include animation(man-run 0.5s steps(9) infinite);
+}
+@include keyframes(man-run) {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1926px;
+  }
+}
 
 @media screen and (max-width: 900px) {
-	#mosquito{
-		top:9%;
-	}
-	#logo-title{
-		top:18%;
-	}
+  #mosquito {
+    top: 9%;
+  }
+  #logo-title {
+    top: 18%;
+  }
 }
 
 @media screen and (max-width: 768px) {
-	#mosquito{
-		top:6%;
-	}
-	#logo-title{
-		top:10%;
-	}
+  #mosquito {
+    top: 6%;
+  }
+  #logo-title {
+    top: 10%;
+  }
 }
-
 
 // 直版
-@media screen and (max-width: 780px)and (max-height: 1025px) {
-	.mainTitle{
-		width:80%;
-		left:16%;
-		top:30%;
-	}
-	#mosss{
-		width:63% ;
-	}
+@media screen and (max-width: 780px) and (max-height: 1025px) {
+  .mainTitle {
+    width: 80%;
+    left: 16%;
+    top: 30%;
+  }
+  #mosss {
+    width: 63%;
+  }
 
-	#section2-text{
-		width:65% ;
-		top:55% ;
-		left:20%;
-	}
+  #section2-text {
+    width: 65%;
+    top: 55%;
+    left: 20%;
+  }
 
-	#theMosquitoMan{
-		width:15%;
-	}
-	
-	#bottle{
-		width:90%;
-	}
-	#bottle-2{
-		display:none ;
-	}
+  #theMosquitoMan {
+    width: 15%;
+  }
 
-	#section3-text{
-		width:73%;
-	}
-	.bone{
-		width:95%;
-	}
+  #bottle {
+    width: 90%;
+  }
+  #bottle-2 {
+    display: none;
+  }
 
-	.section4-text{
-		width:62%;
-	}
+  #section3-text {
+    width: 73%;
+  }
+  .bone {
+    width: 95%;
+  }
+
+  .section4-text {
+    width: 62%;
+  }
 }
 
-@media screen and (max-width: 500px) and (max-height: 750px){
-	.mainTitle{
-		width:80%;
-	}
-	#section2-text {
-		width:75%;
-	}
-	#section3-text{
-		width:82%;
-	}
-	.section4-text {
-		width:67%;
-	}
-	.cloud-button {
-		> p {
-			width:150%;
-		}
-	}
-	#mosss{
-		width:63% ;
-	}
+@media screen and (max-width: 500px) and (max-height: 750px) {
+  .mainTitle {
+    width: 80%;
+  }
+  #section2-text {
+    width: 75%;
+  }
+  #section3-text {
+    width: 82%;
+  }
+  .section4-text {
+    width: 67%;
+  }
+  .cloud-button {
+    > p {
+      width: 150%;
+    }
+  }
+  #mosss {
+    width: 63%;
+  }
 }
