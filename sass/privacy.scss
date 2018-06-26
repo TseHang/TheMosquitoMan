@@ -1,0 +1,63 @@
+@import 'reset';
+@import 'nav';
+@import 'footer';
+@import 'mainTitleBox';
+
+body {
+  background-color: $green-color;
+}
+
+.mainTitleBox{
+  margin-top: 50px;
+}
+
+.title-bar {
+  @include setSize(450px, 50px);
+  background-color: $yellow-color;
+  margin-top: 7%;
+  padding-left: $mainTitleLeft - 2%;
+
+  >h1 {
+    letter-spacing: 5px;
+    font-size: $title-font;
+    color: $blue-color;
+    padding-top: 20px;
+  }
+}
+
+.content {
+  font-family: 'ヒラギノ明朝 Pro';
+  padding: 20px $mainTitleLeft+2%;
+  font-size: 1em;
+  color: #666;
+
+  h2 {
+    font-size: $font-size + 5px ;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin:10px 0px 20px 0px;
+    line-height: 1.5;
+  }
+
+  a{
+    line-height:2 ;
+    &:hover{
+      border-bottom:solid 1px ;
+    }
+  }
+
+  ul{
+    list-style-type: decimal;
+    line-height: 1.5;
+    margin-top: 1em;
+    margin-left: 2em;
+    list-style-type: disc;
+  }
+}
+
+.paragraph {
+  margin: 2rem auto;
+  font-size: $font-size + 2px;
+}

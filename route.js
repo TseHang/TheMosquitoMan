@@ -80,6 +80,15 @@ var route = [
     },
     {
       data: {
+        title: '隱私權政策',
+        path: './'
+      },
+      partials: './partials.js',
+      layout:  "./layout/privacy.hbs",
+      filename: "./privacy.html"
+    },
+    {
+      data: {
         title: '即時病例統計',
         path: '../'
       },
