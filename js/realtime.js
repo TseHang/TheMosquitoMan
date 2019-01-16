@@ -1,10 +1,10 @@
 (function(window){
 	$('#box-1').click(function(){
-	window.location.href="./realMap/realTime_patient.html";
+	window.location.href="./realTime_patient.html";
 	});
 
 	$('#box-2').click(function(){
-		window.location.href="./realMap/realTime_heat.html";
+		window.location.href="./realTime_heat.html";
 	});
 
 

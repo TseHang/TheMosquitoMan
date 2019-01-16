@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- IE 兼容模式 -->
+  <meta htt0-equiv = "X-UA-Compatible" content = "IE=edge">
+  <meta name="description" content="一款基於HTML5、Quintus框架完成的小遊戲，讓我們一起對抗登革熱吧。" />
+  <meta name="author" content="杭孟澤、杭孟謙" />
+  <meta property="og:site_name" content="The Mosquito Man 掌蚊人">
+  <meta http-equiv="Cache-control" content="public">
+  <title>MosquitoWar || 掌蚊人</title>
+	
+	<script src='./interact/game/Mosquito_war/js/quintus-all.min.js'></script> 
+  <link type="text/css" rel="stylesheet" href = "./interact/game/Mosquito_war/css/game.css">
+</head>
+<body>
+	<section class = "top-bar"></section>
+	<div class = "heroeBoard">
+		<div class = "state" id = "state">這是... 掌蚊的世界...</div>
+		<h2>掌蚊英雄榜</h2>
+		<table>
+		  <tr class = "rankGood">
+		    <td>1. </td>
+		    <td id = "name1">大哥1</td>
+		    <td id = "time1">2:10</td>
+		  </tr>
+		  <tr>
+		    <td>2. </td>
+		    <td id = "name2">大哥2</td>
+		    <td id = "time2">2:20</td>
+		  </tr>
+		  <tr>
+		    <td>3. </td>
+		    <td id = "name3">大哥3</td>
+		    <td id = "time3">2:30</td>
+		  </tr>
+		  <tr>
+		    <td>4. </td>
+		    <td id = "name4">大哥4</td>
+		    <td id = "time4">2:40</td>
+		  </tr>
+		  <tr>
+		    <td>5. </td>
+		    <td id = "name5">大哥5</td>
+		    <td id = "time5">2:50</td>
+		  </tr>
+		</table>
+		<p class = "shareText">一起滅蚊:</p>
+    <div class="fb-share-button" data-href="http://www.denguefever.tw/interact/game/Mosquito_war/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.denguefever.tw%2Finteract%2Fgame%2FMosquito_war%2F&amp;src=sdkpreparse"></a></div>
+	</div>
+
+	<div class = "video_container">
+		<video class = "video" id = "video_opening" style = "display:block; z-index:1; opacity:1;"src = "video/opening.mp4" autoplay></video>
+		<video class = "video" id = "video_fight" src = "video/fight.mp4" preload="none"></video>
+		<video class = "video" id = "video_mosking_appear" src = "video/mosking_appear.mp4" preload="none"></video>
+		<video class = "video" id = "video_winnerB" src = "video/winnerB.mp4" preload="none"></video>
+		<video class = "video" id = "video_winnerA" src = "video/winnerA.mp4" preload="none"></video>
+		<video class = "video" id = "video_winnerS" src = "video/winnerS.mp4" preload="none"></video>
+	</div>
+
+	<div id="skip_btn" style = "display:block;">⥤</div>
+
+	<!-- MUSIC -->
+	<audio id="bgm_opening" preload = "none">
+    <source src="audio/BGM/opening.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_ready_start" preload = "none">
+    <source src="audio/BGM/ready_start.mp3" type="audio/mp3">
+	</audio>	
+
+	<audio id="bgm_player_man" preload = "none">
+    <source src="audio/BGM/player_man.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_player_mosking" preload="none">
+    <source src="audio/BGM/player_mosking.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_player_mos" preload="none">
+    <source src="audio/BGM/player_mos.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_player_mosG" preload="none">
+    <source src="audio/BGM/player_mosG.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_level1" preload="none">
+    <source src="audio/BGM/level1.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_mosking" preload="none">
+    <source src="audio/BGM/mosking.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_mos_appear" preload="none">
+    <source src="audio/BGM/mos_appear.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_mosG_appear" preload="none">
+    <source src="audio/BGM/mosG_appear.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_heartbeat_slow" preload="none">
+    <source src="audio/BGM/heartbeat_slow.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_lose" preload="none">
+    <source src="audio/BGM/lose.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="bgm_winner" preload="none">
+    <source src="audio/BGM/winner.mp3" type="audio/mp3">
+	</audio>
+
+	<div id="fb-root"></div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+<script>
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.8&appId=145125035895568";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBLriA2ypVRUT5IRFMUK5-v3HUOQyQcFKU",
+    authDomain: "themosquitomangame.firebaseapp.com",
+    databaseURL: "https://themosquitomangame.firebaseio.com",
+    storageBucket: "themosquitomangame.appspot.com",
+    messagingSenderId: "863744203926"
+  };
+
+  var DB = firebase.initializeApp(config);
+  var ref = DB.database().ref('/');
+</script>
+
+<script src='js/global.js'></script> 
+<script src='js/controlAudio.js'></script>
+<script src='js/controlVideo.js'></script>
+<script src='js/controlTimeBar.js'></script>
+<script src='js/index.js'></script> 
+<script src='js/game.min.js'></script>
+
+</html>

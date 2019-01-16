@@ -10,6 +10,7 @@ Must have
 + [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 + For **`Ubuntu`** , you must have to install `ruby` and `ruby-compass`
   - command: **`sudo apt install ruby-compass`**
++ Node < 10.0 (Because gulp 3.9 doesn't support it)
 
 
 ### Install package
@@ -21,15 +22,10 @@ npm install -i
 ### Usage
 
 
-build sass , js 
+build sass , js, hbs, and minify
 
 ```bash
 $ gulp
-```
-
-build hbs's template to html, and watch
-```bash
-$ ./bin/build -w
 ```
 
 - Use **`gulp`** to construct it .
@@ -78,24 +74,18 @@ $ ./bin/build -w
 <script src="./dist/js/filename.js"></script>
 ```
 
-- Remember update `route.js`
+- Remember update `hbsRouter.js`
 
 ```js
 {
-  data: {
-    path: './',
-    title: 'My title'
-  },
-  partials: './partials.js',
-  layout:  "./layout/index.hbs",
-  filename: "./index.html"
+  path: './',
+  title: 'My title'
 },
 ```
 
 - Make command : 
 ```
 $ gulp
-$ ./bin/build -w
 ```
 
 ### Structure
@@ -110,12 +100,13 @@ knowledge.html : 聞風喪膽
 qa.html : 有蚊必答
 realTime.html : 即時疫情
 resource.html : 資料來源
-route.js : control hbs 產生的內容及位置
+slot_machine.html : 抽獎機
+hbsRouter.js : control hbs 產生的內容及位置
 partial.js : control .hbs's component (詳細請看handlebar.js)
 gulpfile.js : control gulp
 config.rb : compass's config
-| - realMap/ : 即時疫情下面的各圖表html
 | - interact/ : 互動專區裡面的html
+| - | - game/Mosquito_war/ : 掌蚊宗師遊戲檔案 build
 | - content/ : 文言蚊的html
 | - sass/ : scss檔案（compass會自動抓取這裡面的scss檔來編譯）
 | - js/ : js 檔案（未編譯前）
@@ -129,7 +120,7 @@ config.rb : compass's config
 | - | - src/ : img, data, and some library's file
 | - | - favicon/ : 網頁標籤上左上角的小小icon
 | - game/ : 各遊戲檔案
-| - | - Mosquito_war/ : 掌蚊宗師遊戲檔案
+| - | - Mosquito_war/ : 掌蚊宗師遊戲檔案 source 
 
 
 ```

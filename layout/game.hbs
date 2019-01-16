@@ -3,8 +3,8 @@
 
 <head>
   {{> head }}
-  <link type="text/css" rel="stylesheet" href="../dist/css/notBuild.css">
-  <link type="text/css" rel="stylesheet" href="../dist/css/game.css">
+  <link type="text/css" rel="stylesheet" href="./dist/css/notBuild.css">
+  <link type="text/css" rel="stylesheet" href="./dist/css/game.css">
 </head>
 
 <body style="overflow-x:hidden;">
@@ -21,11 +21,12 @@
       <h2>掌蚊人親授秘訣，<br/>
         <span class="sub-h">你，準備好了嗎？</span></h2>
 
-      <div class="q"><p>跟我來！<br/>讓我帶你們一起來闖關吧！</p>
-        <div class="btn">即將開放</div>
+      <div class="q">
+        <p>跟我來！<br/>讓我帶你們一起來闖關吧！</p>
+        <a class="btn" href="./interact/game/Mosquito_war/index.html">玩玩看吧!</a>
         <div class="arrow "></div>
       </div>
-        <img class="man" src="../dist/src/img/interact/interact-30.png" alt="掌紋人圖示">
+        <img class="man" src="./dist/src/img/interact/interact-30.png" alt="掌紋人圖示">
 
     </div>
     <div id = "sound" class = ""></div>
@@ -33,13 +34,13 @@
   </div>
 
   <audio id="bgm_game" autoplay loop>
-    <source src="../dist/audio/game.mp3" type="audio/mp3">
+    <source src="./dist/audio/game.mp3" type="audio/mp3">
   </audio>
 </body>
 <!-- jquery -->
-<script src="../dist/src/jquery-2.2.4.min.js"></script>
+<script src="./dist/src/jquery-2.2.4.min.js"></script>
 <!-- nav.js -->
-<script src="../dist/js/nav.js"></script>
+<script src="./dist/js/nav.js"></script>
 <!-- Audio -->
 <script type="text/javascript">
   $('#sound').click(function(){
